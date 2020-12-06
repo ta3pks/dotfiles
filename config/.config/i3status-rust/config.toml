@@ -1,0 +1,13 @@
+[[block]]
+block="cpu"
+format = "{barchart} {utilization}% {frequency}GHz"
+[[block]]
+block="net"
+use_bits=true
+format = "{speed_down} {speed_up}"
+[[block]]
+block="sound"
+[[block]]
+block="time"
+[[block]]
+block="battery"

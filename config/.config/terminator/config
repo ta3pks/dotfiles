@@ -1,0 +1,41 @@
+[global_config]
+  borderless = True
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  inactive_color_offset = 1.0
+  suppress_multiple_term_dialog = True
+  title_font = Sans 10
+[keybindings]
+  copy = <Primary><Shift>c
+  go_down = <Alt>j
+  go_left = <Alt>h
+  go_right = <Alt>l
+  go_up = <Alt>k
+  group_all = None
+  group_all_toggle = <Super>g
+  layout_launcher = None
+  paste = <Primary><Shift>v
+  split_horiz = <Super>bracketleft
+  split_vert = <Super>bracketright
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#282828"
+    cursor_color = "#aaaaaa"
+    font = FuraCode Nerd Font Medium 16
+    foreground_color = "#ebdbb2"
+    icon_bell = False
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    scroll_on_output = True
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False

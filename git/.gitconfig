@@ -1,0 +1,33 @@
+[user]
+	name = nikos efthias
+	email = nikos@mugsoft.io
+[github]
+	user = nikos.efthias@gmail.com
+[core]
+	excludesfile = /Users/nikos/.gitignore_global
+	ignoreCase = false
+	autocrlf = input
+[push]
+	default = current
+# [url "git@github.com:"]
+# 	insteadOf = https://github.com
+#  [url "git@gitlab.mugsoft.io:"]
+#  	insteadOf = https://gitlab.mugsoft.io/
+[commit]
+	gpgsign = false
+[alias]
+	c = checkout
+	d = branch -d
+	bla = branch -la
+	s = status
+	f = fetch -p
+	p = push
+	prn = fetch --all --prune
+	tl = tag -l
+	fap = fetch --all --prune
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /private/var/folders/61/4l9xx96s4r7875t115wgq_4r0000gn/T/AppTranslocation/2D0598F0-D233-413C-9CFE-CB1D3158CB0B/d/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

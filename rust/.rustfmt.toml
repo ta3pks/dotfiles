@@ -1,0 +1,12 @@
+imports_layout         = "mixed"
+# force_multiline_blocks = true
+# reorder_impl_items     = true
+ reorder_imports        = true
+# indent_style           = "Block"
+ unstable_features      = true
+# empty_item_single_line = false
+# fn_single_line         = false
+ merge_imports          = true
+# fn_args_density        = "compressed"
+# report_todo            = "Always"
+# report_fixme            = "Always"

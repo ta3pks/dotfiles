@@ -1,0 +1,3 @@
+[submodule "config/.config/kitty/kitty-themes"]
+	path = config/.config/kitty/kitty-themes
+	url = git@github.com:dexpota/kitty-themes.git

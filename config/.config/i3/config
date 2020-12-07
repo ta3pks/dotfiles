@@ -15,6 +15,7 @@ default_border none
 default_floating_border none
 bindsym $mod+minus move scratchpad
 bindsym $mod+Shift+underscore scratchpad show
+bindsym $mod+Escape exec bash /home/nikos/.config/i3/screen_lock.sh
 
 set $mod Mod4
 set $alt Mod1

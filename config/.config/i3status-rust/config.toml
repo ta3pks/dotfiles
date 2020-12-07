@@ -1,4 +1,8 @@
 [[block]]
+block="temperature"
+collapsed=false
+format="{average}"
+[[block]]
 block="uptime"
 [[block]]
 block="cpu"

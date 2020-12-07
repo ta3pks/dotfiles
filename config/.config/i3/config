@@ -47,6 +47,8 @@ bindsym XF86MonBrightnessUp exec /home/nikos/.config/i3/screen_brightness.sh + 1
 bindsym XF86MonBrightnessDown exec /home/nikos/.config/i3/screen_brightness.sh - 10
 bindsym $mod+$alt+3 exec flameshot gui
 bindsym $mod+Tab exec rofi -show window
+bindsym $mod+control+j exec bash /home/nikos/.config/i3/prev_next_workspace.sh +
+bindsym $mod+control+k exec bash /home/nikos/.config/i3/prev_next_workspace.sh -
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 

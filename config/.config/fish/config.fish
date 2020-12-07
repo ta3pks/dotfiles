@@ -29,6 +29,9 @@ end
 function terminatorcfg
 	$EDITOR ~/.config/terminator/config
 end
+function i3dir
+	cd ~/.config/i3/
+end
 function fish_prompt
 	set_color red
 	printf "%s >" (prompt_pwd)

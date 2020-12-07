@@ -1,4 +1,6 @@
 [[block]]
+block="uptime"
+[[block]]
 block="cpu"
 format = "{barchart} {utilization}% {frequency}GHz"
 [[block]]
@@ -8,6 +10,8 @@ format = "{speed_down} {speed_up}"
 [[block]]
 block="sound"
 [[block]]
-block="time"
-[[block]]
 block="battery"
+format="{time} {percentage}%"
+[[block]]
+block="time"
+format="%d/%m %a %I:%M %P"

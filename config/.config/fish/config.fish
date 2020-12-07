@@ -23,6 +23,9 @@ end
 function i3cfg
 	$EDITOR ~/.config/i3/config
 end
+function statuscfg
+	$EDITOR ~/.config/i3status-rust/config.toml
+end
 function terminatorcfg
 	$EDITOR ~/.config/terminator/config
 end

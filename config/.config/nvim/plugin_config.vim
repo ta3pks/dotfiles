@@ -1,4 +1,5 @@
 let g:polyglot_disabled = ['go']
+let g:lsp_highlight_references_enabled = 0
 call plug#begin('~/plugged')
 " Plug 'fatih/vim-go'
 " Plug 'neovimhaskell/haskell-vim'

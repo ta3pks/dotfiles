@@ -1,5 +1,6 @@
-exec setxkbmap -layout tr,gr,ge,ru -variant alt,,,phonetic
-exec setxkbmap -option ctrl:swapcaps -option grp:alt_shift_toggle
+exec_always setxkbmap -layout tr,gr,ge,ru -variant alt,,,phonetic -option ctrl:swapcaps -option grp:alt_shift_toggle
+exec_always xinput set-prop 12 288 1 &>/dev/null
+exec_always xinput set-prop 11 288 1 &>/dev/null
 exec --no-startup-id xrandr --output eDP-1  --scale 0.6
 exec --no-startup-id setxkbmap -option ctrl:swapcaps
 exec --no-startup-id xinput set-prop 11 288 1
@@ -57,6 +58,7 @@ bindsym $mod+$alt+3 exec flameshot gui
 bindsym $mod+Tab exec rofi -show window
 bindsym $mod+control+k exec bash /home/nikos/.config/i3/prev_next_workspace.sh +
 bindsym $mod+control+j exec bash /home/nikos/.config/i3/prev_next_workspace.sh -
+bindsym $alt+c exec kitty bash -c "calc"
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 

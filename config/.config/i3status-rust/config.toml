@@ -10,7 +10,8 @@ format = "{barchart} {utilization}% {frequency}GHz"
 [[block]]
 block="net"
 use_bits=true
-format = "{speed_down} {speed_up}"
+format = "{ip} {speed_down} {speed_up}"
+device="wlan0"
 [[block]]
 block="sound"
 [[block]]

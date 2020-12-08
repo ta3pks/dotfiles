@@ -4,6 +4,7 @@ exec_always xinput set-prop 11 288 1 &>/dev/null
 exec --no-startup-id xrandr --output eDP-1  --scale 0.6
 exec --no-startup-id setxkbmap -option ctrl:swapcaps
 exec --no-startup-id xinput set-prop 11 288 1
+exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 120 "bash /home/nikos/.config/i3/screen_lock.sh" ""
 default_border none
 default_floating_border none
 bindsym $mod+minus move scratchpad
@@ -29,20 +30,7 @@ set $alt Mod1
 # is used in the bar {} block below.
 font pango:FiraCode Nerd Font Bold 10
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
 
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status-rs

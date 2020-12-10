@@ -2,8 +2,8 @@ exec_always setxkbmap -layout tr,gr,ge,ru -variant alt,,,phonetic -option ctrl:s
 exec_always xinput set-prop 12 288 1 &>/dev/null
 exec_always xinput set-prop 11 288 1 &>/dev/null
 exec --no-startup-id xrandr --output eDP-1  --scale 0.6
+exec --no-startup-id redshift
 exec_always --no-startup-id xinput set-prop 11 288 1
-exec_always --no-startup-id xinput set-prop 16 288 1
 exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 120 "bash /home/nikos/.config/i3/screen_lock.sh" ""
 default_border none
 default_floating_border none

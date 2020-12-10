@@ -2,8 +2,8 @@ exec_always setxkbmap -layout tr,gr,ge,ru -variant alt,,,phonetic -option ctrl:s
 exec_always xinput set-prop 12 288 1 &>/dev/null
 exec_always xinput set-prop 11 288 1 &>/dev/null
 exec --no-startup-id xrandr --output eDP-1  --scale 0.6
-exec --no-startup-id setxkbmap -option ctrl:swapcaps
-exec --no-startup-id xinput set-prop 11 288 1
+exec_always --no-startup-id xinput set-prop 11 288 1
+exec_always --no-startup-id xinput set-prop 16 288 1
 exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 120 "bash /home/nikos/.config/i3/screen_lock.sh" ""
 default_border none
 default_floating_border none
@@ -38,10 +38,10 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym XF86MonBrightnessUp exec /home/nikos/.config/i3/screen_brightness.sh + 
-bindsym XF86MonBrightnessDown exec /home/nikos/.config/i3/screen_brightness.sh - 
-bindsym XF86KbdBrightnessUp exec /home/nikos/.config/i3/kbd_backlight.sh + 
-bindsym XF86KbdBrightnessDown exec /home/nikos/.config/i3/kbd_backlight.sh - 
+bindsym XF86MonBrightnessUp exec /home/nikos/.config/i3/screen_brightness.sh +
+bindsym XF86MonBrightnessDown exec /home/nikos/.config/i3/screen_brightness.sh -
+bindsym XF86KbdBrightnessUp exec /home/nikos/.config/i3/kbd_backlight.sh +
+bindsym XF86KbdBrightnessDown exec /home/nikos/.config/i3/kbd_backlight.sh -
 bindsym $mod+$alt+3 exec flameshot gui
 bindsym $mod+Tab exec rofi -show window
 bindsym $mod+control+k exec bash /home/nikos/.config/i3/prev_next_workspace.sh +

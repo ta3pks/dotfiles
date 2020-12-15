@@ -81,6 +81,7 @@ function! s:on_lsp_buffer_enabled() abort
 	nnoremap <buffer> \lf :LspDocumentFormat<cr>
 	nnoremap <buffer> <M-C-L> :LspDocumentFormat<cr>
 	nnoremap <buffer> \ld :LspDocumentDiagnostics<cr>
+	nnoremap <buffer> \w :LspWorkspaceSymbol <cr>
 endfunction
 augroup lsp_install
 	au!

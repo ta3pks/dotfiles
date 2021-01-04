@@ -15,6 +15,7 @@ Plug 'gregsexton/MatchTag'
 Plug 'jiangmiao/auto-pairs'
 Plug 'lifepillar/pgsql.vim'
 Plug 'mattn/emmet-vim'
+Plug 'mmahnic/vim-flipwords'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
@@ -87,6 +88,7 @@ augroup lsp_install
 	au!
 	autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+autocmd BufReadPost *.tsx set ft=typescript.tsx
 let g:firenvim_config = {
 			\ 'localSettings':{
 			\ 'https://(www)?.facebook.com/':{'takeover':'never','priority':999}

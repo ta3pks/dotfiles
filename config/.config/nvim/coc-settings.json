@@ -37,5 +37,4 @@
 	}
 	,"coc.preferences.useQuickfixForLocations": true
 	,"coc.source.buffer.ignoreGitignore": true
-	,"diagnostic.refreshAfterSave": true
 }

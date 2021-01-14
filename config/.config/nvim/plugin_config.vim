@@ -16,9 +16,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'lifepillar/pgsql.vim'
 Plug 'mattn/emmet-vim'
 Plug 'mmahnic/vim-flipwords'
-Plug 'mattn/vim-lsp-settings'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dense-analysis/ale'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdtree'| Plug 'Xuyuanp/nerdtree-git-plugin'| Plug 'ryanoasis/vim-devicons'
@@ -63,6 +62,9 @@ highlight LspErrorText ctermfg=green ctermbg=none
 highlight LspErrorHighlight cterm=none
 highlight LspWarningText ctermfg=yellow ctermbg=none
 highlight LspWarningHighlight cterm=none
+
+au BufReadPost * highlight CocFloating ctermbg=None 
+au BufReadPost * highlight CocErrorFloat ctermbg=None ctermfg=Red  
 let g:lsp_diagnostics_enabled=1
 let g:lsp_signs_enabled=1
 let g:lsp_preview_float=0
@@ -70,24 +72,17 @@ let g:lsp_documentation_float=0
 let g:lsp_signature_help_enabled=0
 let g:lsp_highlight_references_enables=0
 let g:lsp_highlight_references_delay = 100
-function! s:on_lsp_buffer_enabled() abort
-	setlocal omnifunc=lsp#complete
-	nnoremap <buffer> <c-]> :LspDefinition<cr>
-	nnoremap <buffer> \r :LspRename<cr>
-	nnoremap  <buffer>K :LspHover<cr>
-	nnoremap <buffer> \lr :LspReferences<cr>
-	nnoremap  <buffer>\q :LspCodeAction<cr>
-	nnoremap  <buffer><c-j> :LspNextDiagnostic<cr>
-	nnoremap <buffer> <c-k> :LspPreviousDiagnostic<cr>
-	nnoremap <buffer> \lf :LspDocumentFormat<cr>
-	nnoremap <buffer> <M-C-L> :LspDocumentFormat<cr>
-	nnoremap <buffer> \ld :LspDocumentDiagnostics<cr>
-	nnoremap <buffer> \w :LspWorkspaceSymbol <cr>
-endfunction
-augroup lsp_install
-	au!
-	autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
+let g:ale_set_loclist=1
+" function! s:on_lsp_buffer_enabled() abort
+set omnifunc=ale#completion#OmniFunc
+let g:ale_completion_autoimport = 1
+nnoremap <buffer> <c-]> :ALEGoToDefinition<cr>
+nnoremap <buffer> \r :ALERename<cr>
+nnoremap <silent> K :ALEDocumentation<cr>
+nnoremap <buffer> \lr :LspReferences<cr>
+nnoremap <silent> \q :ALECodeAction<cr>
+nnoremap <silent> <M-C-l> :ALEFix<cr>
+" endfunction
 autocmd BufReadPost *.tsx set ft=typescript.tsx
 let g:firenvim_config = {
 			\ 'localSettings':{

@@ -1,4 +1,7 @@
 [[block]]
+block="pomodoro"
+use_nag=true
+[[block]]
 block="temperature"
 collapsed=false
 format="{average}"

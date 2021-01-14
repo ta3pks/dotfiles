@@ -1,4 +1,4 @@
-function nvm -a cmd v -d "Node version manager"
+function nvm --argument-names cmd v --description "Node version manager"
     if test -z "$v" && contains -- "$cmd" install use
         for file in .nvmrc .node-version
             set file (_nvm_find_up $PWD $file) && read v <$file && break
@@ -31,7 +31,7 @@ function nvm -a cmd v -d "Node version manager"
         case install
             _nvm_index_update $nvm_mirror/index.tab $nvm_data/.index || return
 
-            string match --entire --regex (_nvm_version_match $v) <$nvm_data/.index | read v alias
+            string match --entire --regex -- (_nvm_version_match $v) <$nvm_data/.index | read v alias
 
             if ! set --query v[1]
                 echo "nvm: Invalid version number or alias: \"$argv[2..-1]\"" >&2
@@ -39,9 +39,9 @@ function nvm -a cmd v -d "Node version manager"
             end
 
             if test ! -e $nvm_data/$v
-                set --local os (uname -s | string lower)
+                set --local os (command uname -s | string lower)
                 set --local ext tar.gz
-                set --local arch (uname -m)
+                set --local arch (command uname -m)
 
                 switch $os
                     case aix
@@ -79,7 +79,7 @@ function nvm -a cmd v -d "Node version manager"
                 echo -e "Fetching \x1b[4m$url\x1b[24m\x1b[7m"
 
                 if ! command curl --progress-bar --location $url \
-                    | command tar --extract --gzip --directory $nvm_data/$v 2>/dev/null
+                        | command tar --extract --gzip --directory $nvm_data/$v 2>/dev/null
                     command rm -rf $nvm_data/$v
                     echo -e "\033[F\33[2K\x1b[0mnvm: Invalid mirror or host unavailable: \"$url\"" >&2
                     return 1
@@ -87,7 +87,7 @@ function nvm -a cmd v -d "Node version manager"
 
                 echo -en "\033[F\33[2K\x1b[0m"
 
-                if test "$os" = "win"
+                if test "$os" = win
                     command mv $nvm_data/$v/$dir $nvm_data/$v/bin
                 else
                     command mv $nvm_data/$v/$dir/* $nvm_data/$v
@@ -103,7 +103,7 @@ function nvm -a cmd v -d "Node version manager"
             printf "Now using Node %s (npm %s) %s\n" (_nvm_node_info)
         case use
             test $v = default && set v $nvm_default_version
-            _nvm_list | string match --entire --regex (_nvm_version_match $v) | read v __
+            _nvm_list | string match --entire --regex -- (_nvm_version_match $v) | read v __
 
             if ! set --query v[1]
                 echo "nvm: Node version not installed or invalid: \"$argv[2..-1]\"" >&2
@@ -124,14 +124,14 @@ function nvm -a cmd v -d "Node version manager"
 
             test $v = default && test ! -z "$nvm_default_version" && set v $nvm_default_version
 
-            _nvm_list | string match --entire --regex (_nvm_version_match $v) | read v __
+            _nvm_list | string match --entire --regex -- (_nvm_version_match $v) | read v __
 
             if ! set -q v[1]
                 echo "nvm: Node version not installed or invalid: \"$argv[2..-1]\"" >&2
                 return 1
             end
 
-            echo -e "Uninstalling Node $v "(command --search node | string replace ~ \~)
+            printf "Uninstalling Node %s %s\n" $v (string replace ~ \~ "$nvm_data/$v/bin/node")
 
             _nvm_version_deactivate $v
 
@@ -143,42 +143,41 @@ function nvm -a cmd v -d "Node version manager"
         case lsr {ls,list}-remote
             _nvm_index_update $nvm_mirror/index.tab $nvm_data/.index || return
             _nvm_list | command awk '
-                FNR == NR && FILENAME == "-" {
-                    is_local[$1]++
-                    next
-                } { print $0 (is_local[$1] ? " ✓" : "") }
+                FILENAME == "-" && (is_local[$1] = FNR == NR) { next } {
+                    print $0 (is_local[$1] ? " ✓" : "")
+                }
             ' - $nvm_data/.index | _nvm_list_format (_nvm_current) $argv[2]
         case \*
-            echo "nvm: Unknown flag or command: \"$cmd\" (see `nvm -h`)" >&2
+            echo "nvm: Unknown command or option: \"$cmd\" (see nvm -h)" >&2
             return 1
     end
 end
 
-function _nvm_find_up -a path file
+function _nvm_find_up --argument-names path file
     test -e "$path/$file" && echo $path/$file || begin
         test "$path" != / || return
         _nvm_find_up (command dirname $path) $file
     end
 end
 
-function _nvm_version_match -a v
-    string replace --regex '^v?(\d+|\d+\.\d+)$' 'v$1.' $v \
-        | string replace --filter --regex '^v?(\d+)' 'v$1' \
-        | string escape --style=regex || string lower '\b'$v'(?:/\w+)?$'
+function _nvm_version_match --argument-names v
+    string replace --regex -- '^v?(\d+|\d+\.\d+)$' 'v$1.' $v |
+        string replace --filter --regex -- '^v?(\d+)' 'v$1' |
+        string escape --style=regex ||
+        string lower '\b'$v'(?:/\w+)?$'
 end
 
-function _nvm_list_format -a current filter
+function _nvm_list_format --argument-names current filter
     command awk -v current="$current" -v filter="$filter" '
         $0 ~ filter {
-            len = ++i
-            indent = (n = length($1)) > indent ? n : indent
+            len = i++
+            pad = (n = length($1)) > pad ? n : pad
             versions[len] = $1
             aliases[len] = $2 " " $3
         }
         END {
-            for (i = len; i > 0; i--) {
-                printf((current == versions[i] ? " ▶ " : "   ") "%"indent"s %s\n", versions[i], aliases[i])
-            }
+            while (i--)
+                printf((current == versions[i] ? " ▶ " : "   ") "%"pad"s %s\n", versions[i], aliases[i])
             exit (len == 0)
         }
     '
@@ -190,9 +189,10 @@ function _nvm_current
 end
 
 function _nvm_node_info
-    set --local npm_pkg_json (realpath (command --search npm))
+    set --local npm_path (string replace bin/npm-cli.js "" (realpath (command --search npm)))
     command node --eval "
         console.log(process.version)
-        console.log(require('"(string replace bin/npm-cli.js package.json $npm_pkg_json)"').version)"
-    command --search node | string replace ~ \~
+        console.log(require('"$npm_path"/package.json').version)
+        console.log(process.execPath.replace(os.homedir(), '~'))
+    "
 end

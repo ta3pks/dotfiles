@@ -7,4 +7,7 @@ function! s:runts()
 endfunction
 nnoremap \c :vsp\|exe "term npx tsc ".expand("%")\|normal! i<cr>
 
+nnoremap \s :exe "vim /".input("search: ")."/ ./src/**"<cr>
+
 setl wildignore=*/node_modules/*
+let b:ale_fixers=['xo']

@@ -15,7 +15,7 @@ bindsym $mod+Escape exec bash /home/nikos/.config/i3/screen_lock.sh
 bindsym $mod+e exec mailspring
 bindsym $mod+p exec kitty fish -c "sudo powertop"
 bindsym $mod+$alt+p exec kitty "htop"
-for_window [class="mpv"] floating enable,resize set 800 px 300 px, move position  800 20,sticky enable
+for_window [class="mpv"] floating enable,resize set 400 px 300 px, move position  800 20,sticky enable
 for_window [class="Mailspring"] move to workspace 10
 for_window [class="TelegramDesktop"] move to workspace 10
 for_window [class="copyq"] floating enable

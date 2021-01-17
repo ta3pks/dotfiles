@@ -12,3 +12,5 @@ func! RunCLang()
 	term gcc -g % && ./a.out
 	normal i
 endfunction
+let b:ale_fixers=['clang-format']
+let b:ale_linters=['clangd']

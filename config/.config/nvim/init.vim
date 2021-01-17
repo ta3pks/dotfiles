@@ -4,7 +4,6 @@ au!
 "settings
 syntax on
 set t_Co=256
-colorscheme elflord
 au colorscheme * hi spellrare ctermbg=none cterm=underline|hi spellbad cterm=underline ctermbg=none|hi SignColumn ctermbg=black|hi folded ctermbg=none ctermfg=1
 set completeopt=noinsert,menuone,noselect
 set nofoldenable

@@ -48,3 +48,7 @@ nnoremap <buffer> \f :RustFmt<cr>
 let b:ale_fixers=[]
 " let g:ale_rust_rls_executable='/usr/local/bin/rust-analyzer'
 setlocal wildignore=*/target/*,Cargo.lock
+let b:ale_linters=['analyzer']
+let b:ale_fixers=['rustfmt']
+let g:rustfmt_fail_silently = 0
+let g:ale_rust_rustfmt_options="--edition 2018"

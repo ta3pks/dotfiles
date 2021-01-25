@@ -2,7 +2,11 @@ let g:polyglot_disabled = ['go']
 let g:lsp_highlight_references_enabled = 0
 let g:LanguageClient_useFloatingHover=0
 let g:LanguageClient_loggingFile =  expand('~/LanguageClient.log')
+let g:LanguageClient_showCompletionDocs = 0
+let g:LanguageClient_diagnosticsList = "Location"
 let g:LanguageClient_serverCommands = {
+			\'c': ['clangd'],
+			\ 'haskell':['haskell-language-server-wrapper' ,'--lsp'],
 			\ 'rust': {
 				\"name":"rust-analyzer",
 				\"command":['rust-analyzer'],
@@ -12,8 +16,28 @@ let g:LanguageClient_serverCommands = {
 					\ "lens":{"methodReferences": v:true }
 					\}
 				\},
-			\ 'vim':['vim-language-server','--stdio']
+			\ 'vim':['vim-language-server','--stdio'],
+			\ 'typescript.tsx':['typescript-language-server','--stdio'],
+			\ 'typescript':['typescript-language-server','--stdio'],
+			\ 'javascript':['typescript-language-server','--stdio'],
+			\ 'javascript.jsx':['typescript-language-server','--stdio'],
 			\ }
+
+function LC_maps()
+	if has_key(g:LanguageClient_serverCommands, &filetype)
+		nmap <silent> <c-]> <Plug>(lcn-definition)
+		nmap <silent> \r <Plug>(lcn-rename)
+		nmap <silent> K <Plug>(lcn-hover)
+		nmap <silent> \lr <Plug>(lcn-references)
+		nmap <silent> \q <Plug>(lcn-code-action)
+		nmap <silent> <M-C-l> <Plug>(lcn-format)
+		nmap <silent> <M-C-i> <Plug>(lcn-menu)
+		nmap <silent> \ll <Plug>(lcn-code-lens-action)
+		nmap <silent> \le <Plug>(lcn-explain-error)
+		nmap <silent> <c-j> <Plug>(lcn-diagnostics-next)
+		nmap <silent> <c-k> <Plug>(lcn-diagnostics-prev)
+	endif
+endfunction
 
 let g:LanguageClient_rootMarkers = ['.git']
 call plug#begin('~/plugged')
@@ -56,20 +80,6 @@ colorscheme gruvbox8
 nnoremap \lst :LanguageClientStart<cr>
 nnoremap \lss :LanguageClientStop<cr>
 set completefunc=LanguageClient#complete
-function LC_maps()
-	if has_key(g:LanguageClient_serverCommands, &filetype)
-		nmap <silent> <c-]> <Plug>(lcn-definition)
-		nmap <silent> \r <Plug>(lcn-rename)
-		nmap <silent> K <Plug>(lcn-hover)
-		nmap <silent> \lr <Plug>(lcn-references)
-		nmap <silent> \q <Plug>(lcn-code-action)
-		nmap <silent> <M-C-l> <Plug>(lcn-format)
-		nmap <silent> <M-C-i> :call LanguageClient#executeCodeAction('source.organizeImports')<cr>
-		nmap <silent> <c-j> <Plug>(lcn-diagnostics-next) 
-		nmap <silent> <c-k> <Plug>(lcn-diagnostics-prev) 
-	endif
-endfunction
-
 autocmd FileType * call LC_maps()
 
 let g:ctrlp_custom_ignore='node_modules/\|dist/\|target'

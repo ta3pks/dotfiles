@@ -48,3 +48,6 @@ if not functions -q fisher
 end
 # set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 source ~/.asdf/asdf.fish
+# ghcup-env
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
+test -f /home/nikos/.ghcup/env ; and set -gx PATH $HOME/.cabal/bin /home/nikos/.ghcup/bin $PATH

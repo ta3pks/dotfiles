@@ -156,7 +156,7 @@ nnoremap <silent> \kd :call Keybase_download()<cr>
 inoremap <a-v> <C-r>=system('xclip -o -selection clipboard')<cr>
 if has('nvim')
 "plugin config
-exec 'source '.fnamemodify($MYVIMRC,':p:h').'/plugin_config.vim'
+source ~/.config/nvim/plugin_config.vim
 endif
 command! FixTrailing :%s/\s\+$//g
 " nnoremap \sr :call writefile(["/tmp/updated"],"/tmp/updated")<cr>

@@ -80,10 +80,7 @@ nnoremap <silent><C-w><C-p> <esc>:tabnew ~/.config/nvim/plugin_config.vim<cr>
 nnoremap <silent><C-w><C-l> <esc>:call OpenFtPlugin()<cr>
 nnoremap <silent><Leader>l :set list!<cr>
 nnoremap <silent> Q :q<cr>
-nnoremap <silent><Leader>tt :exe 'lgrep TODO: -r . '<cr>
 nnoremap <silent><Leader>s :execute 'grep '.input('search: ').' -r . '<cr>
-nnoremap <silent> \tn i//TODO:
-inoremap <silent> \tn //TODO:
 nnoremap <silent> <C-s> :set spell!<cr>
 nnoremap <C-k> :lprevious<cr>
 nnoremap <C-j> :lnext<cr>

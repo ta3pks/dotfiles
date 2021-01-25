@@ -13,7 +13,8 @@ let g:LanguageClient_serverCommands = {
 				\"initializationOptions":{
 					\"cargo":{ "loadOutDirsFromCheck": v:true },
 					\"procMacro":{"enable": v:true},
-					\ "lens":{"methodReferences": v:true }
+					\ "lens":{"methodReferences": v:true },
+					\ "diagnostics":{"disabled":["macro-error"]}
 					\}
 				\},
 			\ 'vim':['vim-language-server','--stdio'],
@@ -41,15 +42,19 @@ endfunction
 
 let g:LanguageClient_rootMarkers = ['.git']
 call plug#begin('~/plugged')
+" Plug 'cstrahan/vim-capnp'
+" Plug 'dense-analysis/ale'
 " Plug 'fatih/vim-go'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'neovimhaskell/haskell-vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'autozimu/LanguageClient-neovim', {  'branch': 'next',  'do': 'bash install.sh' }
 Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'chr4/nginx.vim'
-" Plug 'cstrahan/vim-capnp'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dag/vim-fish'
 Plug 'dart-lang/dart-vim-plugin'
+Plug 'freitass/todo.txt-vim'
 Plug 'godlygeek/tabular'
 Plug 'gregsexton/MatchTag'
 Plug 'jiangmiao/auto-pairs'
@@ -57,12 +62,6 @@ Plug 'lifepillar/pgsql.vim'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'mattn/emmet-vim'
 Plug 'mmahnic/vim-flipwords'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'dense-analysis/ale'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdtree'| Plug 'Xuyuanp/nerdtree-git-plugin'| Plug 'ryanoasis/vim-devicons'

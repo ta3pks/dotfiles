@@ -9,7 +9,7 @@ function! Rust_to_ts()
 	silent! global/#\[/d
 	silent! %substitute/Vec<\([^>]\+\)>/\1[]/g
 	silent! %substitute/\(\w\+\)\s*:\s*Option<\([^>]\+\)>/\1?:\2/g
-	silent! %substitute/\(f\(64\|32\)\|i32\|i64\|isize\)/number/g
+	silent! %substitute/\(f\(64\|32\)\|i32\|i64\|usize\|u64\|isize\)/number/g
 	silent! %substitute/String/string/g
 	silent! %substitute/bool\>/boolean/g
 	silent! %substitute/\<pub\> //g

@@ -62,7 +62,6 @@ Plug 'lifepillar/pgsql.vim'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'mattn/emmet-vim'
 Plug 'mmahnic/vim-flipwords'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdtree'| Plug 'Xuyuanp/nerdtree-git-plugin'| Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'

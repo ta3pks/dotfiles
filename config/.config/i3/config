@@ -1,13 +1,11 @@
 exec_always setxkbmap -layout tr,gr,ge,ru -variant alt,,,phonetic -option ctrl:swapcaps -option grp:alt_shift_toggle
-exec_always xinput set-prop 12 288 1 &>/dev/null
 exec_always xinput set-prop 11 288 1 &>/dev/null
 exec_always xinput set-prop 11 300 0.6 &>/dev/null
 exec --no-startup-id flameshot
-exec --no-startup-id xrandr --output eDP-1  --scale 0.6 
+exec --no-startup-id xrandr --output eDP-1  --scale 0.6
 exec --no-startup-id redshift
 exec --no-startup-id copyq
-exec_always --no-startup-id xinput set-prop 11 288 1
-exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 120 "bash /home/nikos/.config/i3/screen_lock.sh" ""
+exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 600 "bash /home/nikos/.config/i3/screen_lock.sh" ""
 default_border none
 default_floating_border none
 bindsym $mod+minus move scratchpad
@@ -15,6 +13,7 @@ bindsym $mod+Shift+underscore scratchpad show
 bindsym $mod+Escape exec bash /home/nikos/.config/i3/screen_lock.sh
 bindsym $mod+e exec mailspring
 bindsym $mod+p exec kitty fish -c "sudo powertop"
+bindsym $mod+Shift+p exec bwmenu
 bindsym $mod+$alt+p exec kitty "htop"
 for_window [class="mpv"] floating enable,resize set 400 px 300 px, move position  1300 20,sticky enable
 for_window [class="Mailspring"] move to workspace 10

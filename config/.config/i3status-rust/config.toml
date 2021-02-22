@@ -1,7 +1,4 @@
 [[block]]
-block="pomodoro"
-use_nag=true
-[[block]]
 block="temperature"
 collapsed=false
 format="{average}"
@@ -9,7 +6,7 @@ format="{average}"
 block="uptime"
 [[block]]
 block="cpu"
-format = "{barchart} {utilization}% {frequency}GHz"
+format = "{barchart} {utilization} {frequency}"
 [[block]]
 block="net"
 use_bits=true

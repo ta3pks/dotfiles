@@ -88,7 +88,7 @@ let g:airline_powerline_fonts = 0
 let g:airline_theme='raven'
 let NERDTreeWinSize = 30
 nnoremap <silent><Leader>gg :Gstatus<CR>
-nnoremap <Leader>p :Gpush<cr>
+nnoremap <Leader>p :Git push<cr>
 nnoremap <silent><Leader>nc :NERDTreeClose<cr>
 nnoremap <silent><Leader>nt :NERDTreeToggle<cr>
 nnoremap <silent><Leader>nf :NERDTreeFind<cr>

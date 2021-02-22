@@ -43,7 +43,7 @@ function! Tag()
 endfunctio
 nnoremap <buffer>\tt :call Tag()<cr>
 command! -nargs=1 F vim /<args>/  src/**
-nnoremap <buffer> \s :exe 'F '.input('key: ')<cr>
+nnoremap <buffer> \s :exe 'grep '.input('key: ').' -iR . --exclude-dir target --exclude-dir .git'<cr>
 nnoremap <buffer> \f :RustFmt<cr>
 let b:ale_fixers=[]
 " let g:ale_rust_rls_executable='/usr/local/bin/rust-analyzer'
@@ -52,3 +52,4 @@ let b:ale_linters=['analyzer']
 let b:ale_fixers=['rustfmt']
 let g:rustfmt_fail_silently = 0
 let g:ale_rust_rustfmt_options="--edition 2018"
+setl makeprg="make"

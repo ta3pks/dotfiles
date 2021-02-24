@@ -1,6 +1,7 @@
 exec_always setxkbmap -layout tr,gr,ge,ru -variant alt,,,phonetic -option ctrl:swapcaps -option grp:alt_shift_toggle
-exec_always xinput set-prop 11 288 1 &>/dev/null
-exec_always xinput set-prop 11 300 0.6 &>/dev/null
+exec_always xinput set-prop bcm5974 'libinput Natural Scrolling Enabled' 1 &>/dev/null
+exec_always xinput set-prop bcm5974 "libinput Accel Speed" 0.6 &>/dev/null
+exec_always xinput set-prop "pointer:Logitech MX Vertical" "libinput Natural Scrolling Enabled" 1
 exec --no-startup-id flameshot
 exec --no-startup-id xrandr --output eDP-1  --scale 0.6
 exec --no-startup-id redshift

@@ -1,9 +1,4 @@
 let g:polyglot_disabled = ['go']
-let g:lsp_highlight_references_enabled = 0
-let g:LanguageClient_useFloatingHover=0
-let g:LanguageClient_loggingFile =  expand('~/LanguageClient.log')
-let g:LanguageClient_showCompletionDocs = 0
-let g:LanguageClient_diagnosticsList = "Location"
 let g:LanguageClient_serverCommands = {
 			\'c': ['clangd'],
 			\ 'haskell':['haskell-language-server-wrapper' ,'--lsp'],
@@ -22,8 +17,49 @@ let g:LanguageClient_serverCommands = {
 			\ 'typescript':['typescript-language-server','--stdio'],
 			\ 'javascript':['typescript-language-server','--stdio'],
 			\ 'javascript.jsx':['typescript-language-server','--stdio'],
+			\ 'svelte':['svelteserver','--stdio'],
 			\ }
 
+call plug#begin('~/plugged')
+" Plug 'cstrahan/vim-capnp'
+" Plug 'dense-analysis/ale'
+" Plug 'fatih/vim-go'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neovimhaskell/haskell-vim'
+" Plug 'thosakwe/vim-flutter'
+Plug 'airblade/vim-gitgutter'
+Plug 'autozimu/LanguageClient-neovim', {  'branch': 'next',  'do': 'bash install.sh' }
+Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+Plug 'chr4/nginx.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'dag/vim-fish'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'freitass/todo.txt-vim'
+Plug 'godlygeek/tabular'
+Plug 'gregsexton/MatchTag'
+Plug 'jiangmiao/auto-pairs'
+Plug 'lifepillar/pgsql.vim'
+Plug 'lifepillar/vim-gruvbox8'
+Plug 'luochen1990/rainbow'
+Plug 'mattn/emmet-vim'
+Plug 'mmahnic/vim-flipwords'
+Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/nerdtree'| Plug 'Xuyuanp/nerdtree-git-plugin'| Plug 'ryanoasis/vim-devicons'
+Plug 'sheerun/vim-polyglot'
+Plug 'sirver/ultisnips'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-dadbod'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/netrw.vim'
+Plug 'wakatime/vim-wakatime'
+call plug#end()
+let g:lsp_highlight_references_enabled = 0
+let g:LanguageClient_useFloatingHover=0
+let g:LanguageClient_loggingFile =  expand('~/LanguageClient.log')
+let g:LanguageClient_showCompletionDocs = 0
+let g:LanguageClient_diagnosticsList = "Location"
+let g:rainbow_active = 1
 function LC_maps()
 	if has_key(g:LanguageClient_serverCommands, &filetype)
 		nmap <silent> <c-]> <Plug>(lcn-definition)
@@ -41,38 +77,6 @@ function LC_maps()
 endfunction
 
 let g:LanguageClient_rootMarkers = ['.git']
-call plug#begin('~/plugged')
-" Plug 'cstrahan/vim-capnp'
-" Plug 'dense-analysis/ale'
-" Plug 'fatih/vim-go'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'neovimhaskell/haskell-vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'autozimu/LanguageClient-neovim', {  'branch': 'next',  'do': 'bash install.sh' }
-Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-Plug 'chr4/nginx.vim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'dag/vim-fish'
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'freitass/todo.txt-vim'
-Plug 'godlygeek/tabular'
-Plug 'gregsexton/MatchTag'
-Plug 'jiangmiao/auto-pairs'
-Plug 'lifepillar/pgsql.vim'
-Plug 'lifepillar/vim-gruvbox8'
-Plug 'mattn/emmet-vim'
-Plug 'mmahnic/vim-flipwords'
-Plug 'rust-lang/rust.vim'
-Plug 'scrooloose/nerdtree'| Plug 'Xuyuanp/nerdtree-git-plugin'| Plug 'ryanoasis/vim-devicons'
-Plug 'sheerun/vim-polyglot'
-Plug 'thosakwe/vim-flutter'
-Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-dadbod'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'vim-scripts/netrw.vim'
-Plug 'wakatime/vim-wakatime'
-call plug#end()
 colorscheme gruvbox8
 "plugin settings
 nnoremap \lst :LanguageClientStart<cr>

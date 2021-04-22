@@ -21,7 +21,7 @@ set nowrap
 set tabstop=4
 set noexpandtab
 set shiftwidth=4
-set list
+set nolist
 set listchars=tab:\|\ ,eol:\ ,space:┆
 set nohlsearch
 set wildignorecase

@@ -14,15 +14,6 @@ func! s:RUST_RUN(cmd)
 endfunction
 
 command! ToRawStr :norm! da"ir##<esc>P
-inoreabbr <buffer> pln println!(":%%:{}",:%%:);
-inoreabbr <buffer> dbg_ dbg!(":%%:");
-inoreabbr <buffer> fmt_ format!(":%%:{}",:%%:);
-inoreabbr <buffer> _async Box::pin(async move{:% here %:});
-inoreabbr <buffer> _str &'static str
-inoreabbr <buffer> drv! #[derive(Clone,Debug:%%:)]
-inoreabbr <buffer> epln eprintln!(":%%:{}",:%%:);
-inoreabbr <buffer> test_ #[test]<cr> fn :% <name> %: () {:% < > %:}
-inoreabbr <buffer> tests_ #[cfg(test)]<cr> mod tests <cr> {<cr> use super::*;<cr> :% %:<cr>}
 
 let b:ale_linters = ['cargo']
 let g:rustfmt_autosave = 0
@@ -43,8 +34,7 @@ function! Tag()
 endfunctio
 nnoremap <buffer>\tt :call Tag()<cr>
 command! -nargs=1 F vim /<args>/  src/**
-nnoremap <buffer> \s :exe 'grep '.input('key: ').' -iR . --exclude-dir target --exclude-dir .git'<cr>
-nnoremap <buffer> \f :RustFmt<cr>
+nnoremap <buffer> \s :exe 'grep '.input('key: ').' -iR . --exclude-dir target --exclude-dir .git --exclude *.lock'<cr>
 let b:ale_fixers=[]
 " let g:ale_rust_rls_executable='/usr/local/bin/rust-analyzer'
 setlocal wildignore=*/target/*,Cargo.lock

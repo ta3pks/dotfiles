@@ -61,9 +61,9 @@ bindsym $alt+c exec kitty bash -c "calc"
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty fish -c tmux
+bindsym $mod+Return exec kitty
 bindsym $mod+Shift+Return exec kitty fish -c "tmux a"
-bindsym $mod+control+Return exec kitty
+bindsym $mod+control+Return exec kitty fish -c "tmux"
 
 # kill focused window
 bindsym $mod+q kill

@@ -14,5 +14,5 @@ func! s:NextPlaceHolder()
 	call setline(l:sline,l:line)
 	call feedkeys("i")
 endfunc
-inoremap <silent>;; :call <SID>NextPlaceHolder()
-inoreabbr plhd :%%:<left><left>
+" inoremap <silent>;; :call <SID>NextPlaceHolder()\
+" inoreabbr plhd :%%:<left><left>

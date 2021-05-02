@@ -53,9 +53,9 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
 endif
 command! -nargs=0 OR   :call	 CocAction('runCommand', 'editor.action.organizeImport')
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-inoremap <silent><expr> <CR>
+inoremap <silent><expr> <C-Space>
       \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<CR>"
+      \ coc#expandableOrJumpable() ? "\<C-Space>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<C-Space>"
 
 
 let g:coc_snippet_next = '<c-j>'

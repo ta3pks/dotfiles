@@ -3,6 +3,7 @@
 	"coc.source.buffer.ignoreGitignore": true,
 	"rust-analyzer.diagnostics.disabled": [
 		"unresolved-proc-macro",
-		"unresolved-macro-call"
+		"unresolved-macro-call",
+		"macro-error"
 	]
 }

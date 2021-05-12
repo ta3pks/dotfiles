@@ -6,6 +6,7 @@ nnoremap <buffer> \b : call <SID>RUST_RUN("build --workspace")<cr>
 nnoremap <buffer> \t : call <SID>RUST_RUN("test -- --nocapture")<cr>
 nnoremap <buffer> \tc : call <SID>RUST_RUN("test ".expand("<cword>")." -- --nocapture")<cr>
 nnoremap <buffer> \c : call <SID>RUST_RUN("check --workspace ".g:rust_params)<cr>
+nnoremap <buffer> \mc :make check<cr>
 
 func! s:RUST_RUN(cmd)
 	vsp
@@ -34,7 +35,7 @@ function! Tag()
 endfunctio
 nnoremap <buffer>\tt :call Tag()<cr>
 command! -nargs=1 F vim /<args>/  src/**
-nnoremap <buffer> \s :exe 'grep '.input('key: ').' -iR . --exclude-dir target --exclude-dir .git --exclude *.lock'<cr>
+nnoremap <buffer> \s :exe 'vim /'.input('key: ').'/ src/**'<cr>
 let b:ale_fixers=[]
 " let g:ale_rust_rls_executable='/usr/local/bin/rust-analyzer'
 setlocal wildignore=*/target/*,Cargo.lock

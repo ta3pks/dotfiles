@@ -9,8 +9,8 @@ block="cpu"
 format = "{barchart} {utilization} {frequency}"
 [[block]]
 block="net"
-use_bits=true
-format = "{ip} {speed_down} {speed_up}"
+# use_bits=true
+format = "{ip} {speed_down*_b} {speed_up*_b}"
 [[block]]
 block="sound"
 [[block]]

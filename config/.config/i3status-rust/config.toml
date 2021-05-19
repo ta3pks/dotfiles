@@ -15,7 +15,7 @@ format = "{ip} {speed_down*_b} {speed_up*_b}"
 block="sound"
 [[block]]
 block="battery"
-format="{time} {percentage}%"
+format="{time} {percentage}"
 [[block]]
 block="time"
 format="%d/%m %a %I:%M %P"

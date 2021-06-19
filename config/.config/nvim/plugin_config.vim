@@ -26,11 +26,13 @@ Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/netrw.vim'
+Plug 'junegunn/vim-peekaboo'
 Plug 'wakatime/vim-wakatime'
 call plug#end() "}}}
 " let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size=1
 let g:indent_guides_start_level=2
+let g:peekaboo_window="vert bo 100new"
 nmap <silent> <c-k> <Plug>(coc-diagnostic-prev)
 nmap <silent> <c-j> <Plug>(coc-diagnostic-next)
 nmap <silent> <c-]> <Plug>(coc-definition)
@@ -56,6 +58,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 inoremap <silent><expr> <C-Space>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-Space>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<C-Space>"
+nnoremap \\, :Flip , )<cr>
 
 
 let g:coc_snippet_next = '<c-j>'
@@ -85,7 +88,7 @@ let g:scratch_insert_autohide = 0
 let g:airline_powerline_fonts = 0
 let g:airline_theme='raven'
 let NERDTreeWinSize = 30
-nnoremap <silent><Leader>gg :Git<CR>
+nnoremap <silent><Leader>gg :wa\|Git<CR>
 nnoremap <Leader>p :Git push<cr>
 nnoremap <silent><Leader>nc :NERDTreeClose<cr>
 nnoremap <silent><Leader>nt :NERDTreeToggle<cr>

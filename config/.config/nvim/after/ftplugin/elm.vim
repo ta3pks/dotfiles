@@ -18,3 +18,4 @@ let b:ale_fixers = ['elm-format']
 " nnoremap <buffer> <c-\> :ALEFindReferences<cr>
 " nnoremap <buffer> \r :ALERename<cr>
 setlocal wildignore=*.d,*.elmi,*.elmo,*/node_modules/*,*.dat,*/elm-stuff/*,*/lib/bs/*
+nnoremap \s :exe 'vim /'.input("search: ").'/ src/**' <cr>

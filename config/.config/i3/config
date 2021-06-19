@@ -2,9 +2,12 @@ exec_always setxkbmap -layout tr,gr,ge,ru -variant alt,,,phonetic -option ctrl:s
 exec_always xinput set-prop bcm5974 'libinput Natural Scrolling Enabled' 1 &>/dev/null
 exec_always xinput set-prop bcm5974 "libinput Accel Speed" 0.6 &>/dev/null
 exec_always xinput set-prop "pointer:Logitech MX Vertical" "libinput Natural Scrolling Enabled" 1
+exec_always xinput set-prop "Apple Inc. Magic Trackpad 2" "libinput Accel Speed"  0.6 &>/dev/null
+exec_always xinput set-prop "Apple Inc. Magic Trackpad 2" 'libinput Natural Scrolling Enabled' 1 &>/dev/null
 exec --no-startup-id nm-applet
 exec --no-startup-id flameshot
-exec --no-startup-id xrandr --output eDP  --scale 0.6
+# exec --no-startup-id xrandr --output eDP  --scale 0.6
+exec --no-startup-id xrandr --output eDP --mode 1920x1200
 exec --no-startup-id redshift
 exec --no-startup-id copyq
 exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 600 "bash /home/nikos/.config/i3/screen_lock.sh" ""
@@ -56,8 +59,8 @@ bindsym $mod+$alt+4 exec flameshot full -c
 bindsym $mod+Tab exec rofi -show window
 bindsym $mod+control+k workspace next
 bindsym $mod+control+j workspace prev
-bindsym $mod+equal workspace back_and_forth
-bindsym $alt+c exec kitty bash -c "calc"
+bindsym $mod+equal exec kitty bash -c "calc"
+bindsym $mod+grave workspace back_and_forth
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 

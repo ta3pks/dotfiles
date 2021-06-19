@@ -1,7 +1,7 @@
 if !exists('g:rust_params')
 	let g:rust_params = ''
 endif
-nnoremap <buffer> \e : call <SID>RUST_RUN("run ". g:rust_params )<cr>
+nnoremap <buffer> \e :wa \| call <SID>RUST_RUN("run ". g:rust_params )<cr>
 nnoremap <buffer> \b : call <SID>RUST_RUN("build --workspace")<cr>
 nnoremap <buffer> \t : call <SID>RUST_RUN("test -- --nocapture")<cr>
 nnoremap <buffer> \tc : call <SID>RUST_RUN("test ".expand("<cword>")." -- --nocapture")<cr>
@@ -34,11 +34,11 @@ function! Tag()
 	echo system("git tag v".vers)
 endfunctio
 nnoremap <buffer>\tt :call Tag()<cr>
-command! -nargs=1 F vim /<args>/  src/**
-nnoremap <buffer> \s :exe 'vim /'.input('key: ').'/ src/**'<cr>
+command! -nargs=1 F vim /<args>/  ./**
+nnoremap <buffer> \s :exe 'vim /'.input('key: ').'/ ./**'<cr>
 let b:ale_fixers=[]
 " let g:ale_rust_rls_executable='/usr/local/bin/rust-analyzer'
-setlocal wildignore=*/target/*,Cargo.lock
+setlocal wildignore+=*/target/*,Cargo.lock,*/*test
 let b:ale_linters=['analyzer']
 let b:ale_fixers=['rustfmt']
 let g:rustfmt_fail_silently = 0

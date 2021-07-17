@@ -1,12 +1,18 @@
 if !exists('g:rust_params')
 	let g:rust_params = ''
 endif
-nnoremap <buffer> \e :wa \| call <SID>RUST_RUN("run ". g:rust_params )<cr>
+if !exists('g:rust_run_params')
+	let g:rust_run_params = ''
+endif
+nnoremap <buffer> \e :wa \| call <SID>RUST_RUN("run ".g:rust_run_params )<cr>
 nnoremap <buffer> \b : call <SID>RUST_RUN("build --workspace")<cr>
 nnoremap <buffer> \t : call <SID>RUST_RUN("test -- --nocapture")<cr>
 nnoremap <buffer> \tc : call <SID>RUST_RUN("test ".expand("<cword>")." -- --nocapture")<cr>
 nnoremap <buffer> \c : call <SID>RUST_RUN("check --workspace ".g:rust_params)<cr>
 nnoremap <buffer> \mc :make check<cr>
+nnoremap <buffer> <c-m-l> :RustFmt<cr>
+
+
 
 func! s:RUST_RUN(cmd)
 	vsp
@@ -15,6 +21,7 @@ func! s:RUST_RUN(cmd)
 endfunction
 
 command! ToRawStr :norm! da"ir##<esc>P
+command! -nargs=+ CgAdd :!cargo add <args>
 
 let b:ale_linters = ['cargo']
 let g:rustfmt_autosave = 0
@@ -41,6 +48,6 @@ let b:ale_fixers=[]
 setlocal wildignore+=*/target/*,Cargo.lock,*/*test
 let b:ale_linters=['analyzer']
 let b:ale_fixers=['rustfmt']
-let g:rustfmt_fail_silently = 0
+let g:rustfmt_fail_silently = 1
 let g:ale_rust_rustfmt_options="--edition 2018"
 setl makeprg="make"

@@ -7,7 +7,7 @@ exec_always xinput set-prop "Apple Inc. Magic Trackpad 2" 'libinput Natural Scro
 exec --no-startup-id nm-applet
 exec --no-startup-id flameshot
 # exec --no-startup-id xrandr --output eDP  --scale 0.6
-exec --no-startup-id xrandr --output eDP --mode 1920x1200
+exec --no-startup-id xrandr --output eDP-1 --mode 1920x1200
 exec --no-startup-id redshift
 exec --no-startup-id copyq
 exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 600 "bash /home/nikos/.config/i3/screen_lock.sh" ""

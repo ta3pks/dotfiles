@@ -1,5 +1,6 @@
+set -x JAVA_HOME /usr/lib/jvm/java-8-openjdk
 set -ax PATH  ~/.cargo/bin ~/.cabal/bin ~/.ghcup/bin ~/.gem/ruby/2.6.0/bin /snap/bin ~/Android//Sdk/platform-tools ~/android-studio/bin /usr/lib/dart/bin ~/Android/Sdk/emulator
-set -ax PATH $HOME/.local/bin ~/.mybin ~/go/bin ~/bitcoin/bin/ ~/.gem/ruby/2.7.0/bin/ /usr/local/bin/ ~/adb-fastboot/current/ ~/.local/flutter/bin/
+set -ax PATH $HOME/.local/bin ~/.mybin ~/go/bin ~/bitcoin/bin/ ~/.gem/ruby/2.7.0/bin/ /usr/local/bin/ ~/adb-fastboot/current/ ~/.local/flutter/bin/ $JAVA_HOME/bin
 set -x LC_ALL en_US.UTF-8
 set -x GPG_TTY (tty)
 set -x EDITOR nvim
@@ -51,3 +52,5 @@ source ~/.asdf/asdf.fish
 # ghcup-env
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
 test -f /home/nikos/.ghcup/env ; and set -gx PATH $HOME/.cabal/bin /home/nikos/.ghcup/bin $PATH
+alias rss=newsboat
+alias snvim="sudo -E nvim"

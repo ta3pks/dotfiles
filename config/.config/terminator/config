@@ -14,6 +14,7 @@
   group_all_toggle = <Super>g
   layout_launcher = None
   paste = <Primary><Shift>v
+  new_tab = <Ctrl><Shift>t
   split_horiz = <Super>bracketleft
   split_vert = <Super>bracketright
 [layouts]

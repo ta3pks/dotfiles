@@ -9,6 +9,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dag/vim-fish'
 Plug 'dart-lang/dart-vim-plugin'
+Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug','vue'] }
 Plug 'freitass/todo.txt-vim'
 Plug 'godlygeek/tabular'
 Plug 'gregsexton/MatchTag'
@@ -33,6 +34,7 @@ call plug#end() "}}}
 let g:indent_guides_guide_size=1
 let g:indent_guides_start_level=2
 let g:peekaboo_window="vert bo 100new"
+let g:peekaboo_prefix="\\"
 nmap <silent> <c-k> <Plug>(coc-diagnostic-prev)
 nmap <silent> <c-j> <Plug>(coc-diagnostic-next)
 nmap <silent> <c-]> <Plug>(coc-definition)

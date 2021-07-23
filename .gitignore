@@ -35,3 +35,4 @@ rust/.cargo/registry/
 rust/.cargo/.crates.toml
 rust/.cargo/.crates2.json
 rust/.cargo/.package-cache
+config/.config/OpenSCAD/OpenSCAD.conf

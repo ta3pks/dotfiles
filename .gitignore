@@ -24,3 +24,9 @@ config/.config/teamviewer/client.conf
 config/.config/yarn/global/yarn.lock
 config/.config/QtProject.conf
 config/.config/mimeapps.list
+config/.config/GIMP/
+
+config/.config/gtk-2.0/gtkfilechooser.ini
+rust/.cargo/bin/
+
+rust/.cargo/env

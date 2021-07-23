@@ -31,3 +31,4 @@ then
 	done
 fi
 if [ -e /home/nikos/.nix-profile/etc/profile.d/nix.sh ]; then . /home/nikos/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+. "$HOME/.cargo/env"

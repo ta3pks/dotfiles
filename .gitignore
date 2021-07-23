@@ -30,3 +30,8 @@ config/.config/gtk-2.0/gtkfilechooser.ini
 rust/.cargo/bin/
 
 rust/.cargo/env
+rust/.cargo/registry/
+
+rust/.cargo/.crates.toml
+rust/.cargo/.crates2.json
+rust/.cargo/.package-cache

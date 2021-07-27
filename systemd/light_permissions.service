@@ -1,0 +1,8 @@
+[Unit]
+Description="light permission setter"
+After=gdm.service
+[Service]
+Type=simple
+ExecStart=/usr/bin/chmod 0777 /sys/class/backlight/gmux_backlight/brightness /sys/class/leds/smc::kbd_backlight/brightness
+[Install]
+WantedBy=gdm.service

@@ -18,4 +18,4 @@ block="battery"
 format="{time} {percentage}"
 [[block]]
 block="time"
-format="%d/%m %a %I:%M %P"
+format="%d/%m(%b) %a %I:%M %P"

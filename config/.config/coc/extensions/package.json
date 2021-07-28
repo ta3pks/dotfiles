@@ -4,6 +4,7 @@
     "coc-fish": ">=1.0.11",
     "coc-marketplace": ">=1.8.1",
     "coc-rust-analyzer": ">=0.47.2",
+    "coc-toml": ">=1.1.0",
     "coc-vimlsp": ">=0.12.2"
   }
 }

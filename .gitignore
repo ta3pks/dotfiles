@@ -36,3 +36,7 @@ rust/.cargo/.crates.toml
 rust/.cargo/.crates2.json
 rust/.cargo/.package-cache
 config/.config/OpenSCAD/OpenSCAD.conf
+config/.config/coc/extensions/coc-rust-analyzer-data/rust-analyzer
+config/.config/coc/extensions/coc-toml-data/schemas/842614c23c7a7c4d872d71ec1a207277f8126d32f5336bda93e715f192886da2.json
+config/.config/coc/extensions/coc-toml-data/schema_index.json
+rust/.cargo/git/

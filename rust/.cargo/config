@@ -1,3 +1,7 @@
+[profile.dev]
+opt-level = 0
+overflow-checks = false
+lto = "off"
 [build]
 # rustc-wrapper="sccache"
 [target.x86_64-unknown-linux-gnu]
@@ -6,9 +10,9 @@
 # "-C","linker=mold","-C","link-arg=-fuse=mold"
 # ]
 [target.armv7-unknown-linux-gnueabihf]
-linker="arm-linux-gnueabihf-gcc"
+linker = "arm-linux-gnueabihf-gcc"
 [target.aarch64-unknown-linux-gnu]
-linker="aarch64-linux-gnu-gcc"
+linker = "aarch64-linux-gnu-gcc"
 [target.aarch64-unknown-linux-musl]
-linker="aarch64-linux-musl-gcc"
-rustflags = [ "-C", "target-feature=+crt-static", "-C", "link-arg=-lgcc" ]
+linker = "aarch64-linux-musl-gcc"
+rustflags = ["-C", "target-feature=+crt-static", "-C", "link-arg=-lgcc"]

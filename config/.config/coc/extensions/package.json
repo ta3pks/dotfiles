@@ -5,6 +5,7 @@
     "coc-marketplace": ">=1.8.1",
     "coc-rust-analyzer": ">=0.47.2",
     "coc-toml": ">=1.1.0",
-    "coc-vimlsp": ">=0.12.2"
+    "coc-vimlsp": ">=0.12.2",
+    "coc-xml": ">=1.14.1"
   }
 }

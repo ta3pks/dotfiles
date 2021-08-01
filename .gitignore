@@ -49,3 +49,6 @@ config/.config/cef_user_data/
 config/.config/discord/
 
 config/.config/coc/extensions/coc-xml-data/org.eclipse.lemminx-0.17.1-uber.jar
+config/.config/coc/commands
+config/.config/coc/list-commands-history.json
+config/.config/gtk-3.0/bookmarks

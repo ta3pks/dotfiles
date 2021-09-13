@@ -63,3 +63,16 @@ config/.config/coc/lists
 config/.config/coc/snippets-mru
 config/.config/exercism/user.json
 config/.config/kdeconnect/*
+
+config/.config/libreoffice/*
+
+config/.config/nautilus/*
+config/.config/skypeforlinux/*
+
+config/.config/solaar/*
+config/.config/thefuck/*
+config/.config/xournalpp/*
+config/.config/user-dirs.dirs
+config/.config/pavucontrol.ini
+config/.config/user-dirs.locale
+rust/.cargo/credentials

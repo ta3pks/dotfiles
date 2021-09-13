@@ -52,3 +52,14 @@ config/.config/coc/extensions/coc-xml-data/org.eclipse.lemminx-0.17.1-uber.jar
 config/.config/coc/commands
 config/.config/coc/list-commands-history.json
 config/.config/gtk-3.0/bookmarks
+
+config/.config/coc/list-marketplace-history.json
+config/.config/VirtualBox/*
+
+config/.config/coc/list-symbols-history.json
+config/.config/coc/list-lists-history.json
+config/.config/coc/list-extensions-history.json
+config/.config/coc/lists
+config/.config/coc/snippets-mru
+config/.config/exercism/user.json
+config/.config/kdeconnect/*

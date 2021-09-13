@@ -1,6 +1,6 @@
 nnoremap \e :exe "vsp \| term deno run % "\| normal! i<cr>
 nnoremap \c :vsp\|exe "term npx tsc --jsx react ".expand("%")\|normal! i<cr>
-nnoremap \s :exe "vim /".input("search: ")."/ ./**"<cr>
+nnoremap \s :exe "vim /".input("search: ")."/ ./src/**"<cr>
 setl wildignore=*/node_modules/*
 function! Rust_to_ts()
 	silent! global/#\[/d

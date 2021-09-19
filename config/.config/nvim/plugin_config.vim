@@ -90,7 +90,8 @@ let g:scratch_insert_autohide = 0
 let g:airline_powerline_fonts = 0
 let g:airline_theme='raven'
 let NERDTreeWinSize = 30
-nnoremap <silent><Leader>gg :wa\|tabnew\|exe "term lazygit"\|vert resize \|norm! i<CR>
+nnoremap <silent><Leader>gl :wa\|tabnew\|exe "term lazygit"\|vert resize \|norm! i<CR>
+nnoremap <silent><Leader>gg :wa\| :Git<cr>
 nnoremap <Leader>p :Git push<cr>
 nnoremap <silent><Leader>nc :NERDTreeClose<cr>
 nnoremap <silent><Leader>nt :NERDTreeToggle<cr>

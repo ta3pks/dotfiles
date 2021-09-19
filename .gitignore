@@ -76,3 +76,5 @@ config/.config/user-dirs.dirs
 config/.config/pavucontrol.ini
 config/.config/user-dirs.locale
 rust/.cargo/credentials
+
+config/.config/coc/extensions/coc-sqlfluff-data/

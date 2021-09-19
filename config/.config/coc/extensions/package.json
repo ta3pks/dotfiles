@@ -8,6 +8,7 @@
     "coc-protobuf": ">=0.0.2",
     "coc-rust-analyzer": ">=0.52.0",
     "coc-snippets": ">=2.4.6",
+    "coc-sqlfluff": ">=0.2.7",
     "coc-toml": ">=1.1.0",
     "coc-tsserver": ">=1.8.6",
     "coc-vetur": ">=1.2.5",

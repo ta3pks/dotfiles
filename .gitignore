@@ -78,3 +78,5 @@ config/.config/user-dirs.locale
 rust/.cargo/credentials
 
 config/.config/coc/extensions/coc-sqlfluff-data/
+
+config/.config/coc/extensions/coc-tabnine-data/

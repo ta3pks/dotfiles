@@ -1,3 +1,6 @@
 [submodule "config/.config/kitty/kitty-themes"]
 	path = config/.config/kitty/kitty-themes
 	url = git@github.com:dexpota/kitty-themes.git
+[submodule "tmux/.tmux/plugins/tpm"]
+	path = tmux/.tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm

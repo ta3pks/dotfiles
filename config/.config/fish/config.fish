@@ -22,6 +22,9 @@ test -f ~/.nix-profile/etc/profile.d/nix.sh && bass source ~/.nix-profile/etc/pr
 # set -x http_proxy socks5://127.0.0.1:9050
 # set -x https_proxy socks5://127.0.0.1:9050
 # set -x all_proxy socks5://127.0.0.1:9050
+function sshcfg
+	$EDITOR ~/.ssh/config
+end
 function fishcfg
 	$EDITOR ~/.config/fish/config.fish
 end

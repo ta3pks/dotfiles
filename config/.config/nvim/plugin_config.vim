@@ -2,6 +2,7 @@ let g:polyglot_disabled = ['go']
 
 call plug#begin('~/plugged') "{{{
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'chr4/nginx.vim'
@@ -23,8 +24,6 @@ Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdtree'| Plug 'Xuyuanp/nerdtree-git-plugin'| Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-dadbod'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/netrw.vim'
 Plug 'junegunn/vim-peekaboo'
@@ -90,9 +89,9 @@ let g:scratch_insert_autohide = 0
 let g:airline_powerline_fonts = 0
 let g:airline_theme='raven'
 let NERDTreeWinSize = 30
-nnoremap <silent><Leader>gl :wa\|tabnew\|exe "term lazygit"\|vert resize \|norm! i<CR>
-nnoremap <silent><Leader>gg :wa\| :Git<cr>
-nnoremap <Leader>p :Git push<cr>
+nnoremap <silent><Leader>gg :wa\|tabnew\|exe "term lazygit"\|vert resize \|norm! i<CR>
+" nnoremap <silent><Leader>gg :wa\| :Git<cr>
+" nnoremap <Leader>p :Git push<cr>
 nnoremap <silent><Leader>nc :NERDTreeClose<cr>
 nnoremap <silent><Leader>nt :NERDTreeToggle<cr>
 nnoremap <silent><Leader>nf :NERDTreeFind<cr>

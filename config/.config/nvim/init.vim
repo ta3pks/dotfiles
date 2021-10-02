@@ -29,7 +29,7 @@ set nospell
 set splitbelow
 set splitright
 set number
-set mouse=
+set mouse=a
 set relativenumber
 set autoindent
 set noautochdir

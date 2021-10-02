@@ -1,3 +1,5 @@
+[alias]
+t = "test -- --nocapture --color always"
 [profile.dev]
 opt-level = 0
 overflow-checks = false

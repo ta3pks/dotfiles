@@ -17,6 +17,7 @@
     "coc-tsserver": ">=1.8.6",
     "coc-vetur": ">=1.2.5",
     "coc-vimlsp": ">=0.12.4",
-    "coc-xml": ">=1.14.1"
+    "coc-xml": ">=1.14.1",
+    "coc-yaml": ">=1.4.2"
   }
 }

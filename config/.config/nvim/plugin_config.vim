@@ -1,31 +1,28 @@
 let g:polyglot_disabled = ['go']
 
 call plug#begin('~/plugged') "{{{
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
+"Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-Plug 'chr4/nginx.vim'
+"Plug 'chr4/nginx.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dag/vim-fish'
-Plug 'dart-lang/dart-vim-plugin'
+"Plug 'dart-lang/dart-vim-plugin'
 Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug','vue'] }
-Plug 'freitass/todo.txt-vim'
+"Plug 'freitass/todo.txt-vim'
 Plug 'godlygeek/tabular'
 Plug 'gregsexton/MatchTag'
 Plug 'jiangmiao/auto-pairs'
-Plug 'lifepillar/pgsql.vim'
 Plug 'lifepillar/vim-gruvbox8'
-Plug 'luochen1990/rainbow'
 Plug 'mattn/emmet-vim'
 Plug 'mmahnic/vim-flipwords'
 Plug 'rust-lang/rust.vim'
-Plug 'scrooloose/nerdtree'| Plug 'Xuyuanp/nerdtree-git-plugin' "| Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdtree' "| Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
-Plug 'vim-scripts/netrw.vim'
+"Plug 'vim-scripts/netrw.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'wakatime/vim-wakatime'
 call plug#end() "}}}
@@ -34,6 +31,7 @@ let g:indent_guides_guide_size=1
 let g:indent_guides_start_level=2
 let g:peekaboo_window="vert bo 100new"
 let g:peekaboo_prefix="\\"
+command -nargs=* Swap Flip <args>
 nmap <silent> <c-k> <Plug>(coc-diagnostic-prev)
 nmap <silent> <c-j> <Plug>(coc-diagnostic-next)
 nmap <silent> <c-]> <Plug>(coc-definition)

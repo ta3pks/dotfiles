@@ -1,36 +1,26 @@
 let g:polyglot_disabled = ['go']
 
 call plug#begin('~/plugged') "{{{
-"Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 "Plug 'chr4/nginx.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'github/copilot.vim'
 Plug 'dag/vim-fish'
-"Plug 'dart-lang/dart-vim-plugin'
 Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug','vue'] }
-"Plug 'freitass/todo.txt-vim'
 Plug 'godlygeek/tabular'
 Plug 'gregsexton/MatchTag'
 Plug 'jiangmiao/auto-pairs'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'mattn/emmet-vim'
 Plug 'mmahnic/vim-flipwords'
-Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdtree' "| Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
-"Plug 'vim-scripts/netrw.vim'
-Plug 'junegunn/vim-peekaboo'
 Plug 'wakatime/vim-wakatime'
 call plug#end() "}}}
-" let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_guide_size=1
-let g:indent_guides_start_level=2
-let g:peekaboo_window="vert bo 100new"
-let g:peekaboo_prefix="\\"
 command -nargs=* Swap Flip <args>
 nmap <silent> <c-k> <Plug>(coc-diagnostic-prev)
 nmap <silent> <c-j> <Plug>(coc-diagnostic-next)
@@ -57,6 +47,8 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 inoremap <silent><expr> <C-Space>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-Space>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<C-Space>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 nnoremap \\, :Flip , )<cr>
 
 
@@ -77,12 +69,9 @@ endfunction
 
 
 
-let g:LanguageClient_rootMarkers = ['.git']
-colorscheme gruvbox8_hard
+colorscheme gruvbox8
 
 let g:ctrlp_custom_ignore='node_modules/\|dist/\|target'
-let g:go_fmt_autosave = 0
-let g:go_mod_fmt_autosave = 0
 let g:scratch_insert_autohide = 0
 let g:airline_powerline_fonts = 0
 let g:airline_theme='raven'
@@ -114,4 +103,3 @@ let g:firenvim_config = {
 			\ 'https://(www)?.facebook.com/':{'takeover':'never','priority':999}
 			\ }
 			\}
-command! -nargs=1 PSQL DB postgresql://postgres:postgres@localhost <args>

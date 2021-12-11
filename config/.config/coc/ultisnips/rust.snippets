@@ -36,3 +36,9 @@ endsnippet
 snippet rtr "routerify router builder" b
 Router::builder().build().unwrap()
 endsnippet
+snippet bpin "Box pin" b
+Box::pin(async move{
+$0
+${1:Ok(${2:()})}
+})
+endsnippet

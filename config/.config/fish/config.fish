@@ -65,10 +65,7 @@ set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
 test -f /home/nikos/.ghcup/env ; and set -gx PATH $HOME/.cabal/bin /home/nikos/.ghcup/bin $PATH
 alias rss=newsboat
 alias snvim="sudo -E nvim"
-set -x CC_x86_64_unknown_linux_musl x86_64-unknown-linux-musl-gcc
-set -x CXX_x86_64_unknown_linux_musl x86_64-unknown-linux-musl-g++
-set -x AR_x86_64_unknown_linux_musl x86_64-unknown-linux-musl-ar
-set -x CARGO_TARGET_X86_64_UNKNOWN_LINUX_MUSL_LINKER x86_64-unknown-linux-musl-gcc
+set -x __CARGO_FIX_YOLO 1
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
 

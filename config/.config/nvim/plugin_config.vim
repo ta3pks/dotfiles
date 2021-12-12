@@ -13,6 +13,7 @@ Plug 'godlygeek/tabular'
 Plug 'gregsexton/MatchTag'
 Plug 'jiangmiao/auto-pairs'
 Plug 'lifepillar/vim-gruvbox8'
+Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
 Plug 'mmahnic/vim-flipwords'
 Plug 'scrooloose/nerdtree' "| Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons'
@@ -32,7 +33,7 @@ nnoremap <silent> <M-C-l>  :call CocAction('format')<cr>
 xmap <leader>q	<Plug>(coc-codeaction-selected)
 nmap <leader>a	<Plug>(coc-codeaction-selected)
 nmap <leader>q	<Plug>(coc-codeaction)
-nmap <leader>f  <Plug>(coc-fix-current)
+nmap <leader>f	<Plug>(coc-fix-current)
 nnoremap <m-C-i> :CocList commands<cr>
 if has('nvim-0.4.0') || has('patch-8.2.0750')
   nnoremap <silent><nowait><expr> <C-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-e>"
@@ -45,10 +46,10 @@ endif
 command! -nargs=0 OR   :call	 CocAction('runCommand', 'editor.action.organizeImport')
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 inoremap <silent><expr> <C-Space>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-Space>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<C-Space>"
+	  \ pumvisible() ? coc#_select_confirm():
+	  \ coc#expandableOrJumpable() ? "\<C-Space>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<C-Space>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+							  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 nnoremap \\, :Flip , )<cr>
 
 
@@ -76,8 +77,8 @@ let g:scratch_insert_autohide = 0
 let g:airline_powerline_fonts = 0
 let g:airline_theme='raven'
 let NERDTreeWinSize = 30
-nnoremap <silent><Leader>gg :wa\|tabnew\|exe "term lazygit"\|vert resize \|norm! i<CR>
-" nnoremap <silent><Leader>gg :wa\| :Git<cr>
+" nnoremap <silent><Leader>gg :wa\|tabnew\|exe "term lazygit"\|vert resize \|norm! i<CR>
+nnoremap <silent><Leader>gg :wa\| :Git<cr>
 " nnoremap <Leader>p :Git push<cr>
 nnoremap <silent><Leader>nc :NERDTreeClose<cr>
 nnoremap <silent><Leader>nt :NERDTreeToggle<cr>

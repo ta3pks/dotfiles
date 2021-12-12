@@ -22,3 +22,4 @@ augroup __fugitive
 	au BufLeave .skipped_items exe 'bd '.bufnr('.skipped_items')
 	au BufWinEnter .skipped_items nnoremap <buffer> \su :call <SID>UnskipWorktree()<cr>
 augroup END
+nnoremap <buffer> P :Git push<cr>

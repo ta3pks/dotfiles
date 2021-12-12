@@ -12,7 +12,7 @@ Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug','vue'] }
 Plug 'godlygeek/tabular'
 Plug 'gregsexton/MatchTag'
 Plug 'jiangmiao/auto-pairs'
-Plug 'lifepillar/vim-gruvbox8'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
 Plug 'mmahnic/vim-flipwords'
@@ -36,20 +36,20 @@ nmap <leader>q	<Plug>(coc-codeaction)
 nmap <leader>f	<Plug>(coc-fix-current)
 nnoremap <m-C-i> :CocList commands<cr>
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-e>"
-  nnoremap <silent><nowait><expr> <C-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-y>"
-  inoremap <silent><nowait><expr> <C-e> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-y> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-e>"
-  vnoremap <silent><nowait><expr> <C-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-y>"
+	nnoremap <silent><nowait><expr> <C-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-e>"
+	nnoremap <silent><nowait><expr> <C-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-y>"
+	inoremap <silent><nowait><expr> <C-e> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+	inoremap <silent><nowait><expr> <C-y> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+	vnoremap <silent><nowait><expr> <C-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-e>"
+	vnoremap <silent><nowait><expr> <C-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-y>"
 endif
 command! -nargs=0 OR   :call	 CocAction('runCommand', 'editor.action.organizeImport')
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 inoremap <silent><expr> <C-Space>
-	  \ pumvisible() ? coc#_select_confirm():
-	  \ coc#expandableOrJumpable() ? "\<C-Space>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<C-Space>"
+			\ pumvisible() ? coc#_select_confirm():
+			\ coc#expandableOrJumpable() ? "\<C-Space>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<C-Space>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-							  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 nnoremap \\, :Flip , )<cr>
 
 
@@ -59,18 +59,18 @@ let g:coc_snippet_prev = '<c-k>'
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-	execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-	call CocActionAsync('doHover')
-  else
-	execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	elseif (coc#rpc#ready())
+		call CocActionAsync('doHover')
+	else
+		execute '!' . &keywordprg . " " . expand('<cword>')
+	endif
 endfunction
 
 
 
-colorscheme gruvbox8
+colorscheme onehalfdark
 
 let g:ctrlp_custom_ignore='node_modules/\|dist/\|target'
 let g:scratch_insert_autohide = 0
@@ -87,15 +87,15 @@ nnoremap <silent> <Leader>b :exec "Tabularize/".input("enter regex: ")."/"<cr>
 nnoremap <C-b> :CtrlPBuffer<cr>
 let g:user_emmet_settings = {
 			\  'reason' : {
-			\	   'extends' : 'jsx',
-			\  },
-			\  'typescriptreact' : {
-			\	   'extends' : 'jsx',
-			\  },
-			\  'typescript' : {
-			\	   'extends' : 'jsx',
-			\  },
-			\}
+				\	   'extends' : 'jsx',
+				\  },
+				\  'typescriptreact' : {
+					\	   'extends' : 'jsx',
+					\  },
+					\  'typescript' : {
+						\	   'extends' : 'jsx',
+						\  },
+						\}
 let g:user_emmet_leader_key = "<m-e>"
 set signcolumn=auto
 autocmd BufReadPost *.tsx set ft=typescript.tsx

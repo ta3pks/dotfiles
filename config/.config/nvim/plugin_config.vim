@@ -1,30 +1,34 @@
 let g:polyglot_disabled = ['go']
 
 call plug#begin('~/plugged') "{{{
+"Plug 'chr4/nginx.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-"Plug 'chr4/nginx.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'jacoborus/tender.vim'
-Plug 'rakr/vim-one'
-Plug 'github/copilot.vim'
-Plug 'rust-lang/rust.vim'
-Plug 'dag/vim-fish'
 Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug','vue'] }
+Plug 'dag/vim-fish'
+Plug 'github/copilot.vim'
 Plug 'godlygeek/tabular'
 Plug 'gregsexton/MatchTag'
+Plug 'jacoborus/tender.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
+Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'mmahnic/vim-flipwords'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rakr/vim-one'
+Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdtree' "| Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'wakatime/vim-wakatime'
 call plug#end() "}}}
 command -nargs=* Swap Flip <args>
+let g:rainbow#pairs = [['(', ')'], ['[', ']'] , ['{', '}']]
+let g:rainbow#blacklist = ['#cc241d']
+autocmd FileType * RainbowParentheses
 nmap <silent> <c-k> <Plug>(coc-diagnostic-prev)
 nmap <silent> <c-j> <Plug>(coc-diagnostic-next)
 nmap <silent> <c-]> <Plug>(coc-definition)
@@ -33,9 +37,11 @@ nmap <leader>r <Plug>(coc-rename)
 xmap <M-C-l>  <Plug>(coc-format-selected)
 nnoremap <silent> <M-C-l>  :call CocAction('format')<cr>
 xmap <leader>q	<Plug>(coc-codeaction-selected)
-nmap <leader>a	<Plug>(coc-codeaction-selected)
-nmap <leader>q	<Plug>(coc-codeaction)
-nmap <leader>f	<Plug>(coc-fix-current)
+nmap <leader>a	<Plug>(coc-codeaction)
+nmap <m-.>	<plug>(coc-codeaction-cursor)
+nmap <m-,>	<Plug>(coc-fix-current)
+nnoremap <m-s> :CocList symbols<cr>
+nnoremap <m-d> :CocList diagnostics<cr>
 nnoremap <m-C-i> :CocList commands<cr>
 if has('nvim-0.4.0') || has('patch-8.2.0750')
 	nnoremap <silent><nowait><expr> <C-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-e>"

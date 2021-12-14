@@ -56,7 +56,7 @@ endif
 augroup __mysettings
 	au!
 	autocmd bufenter * :checktime
-	" autocmd VimLeavePre * :mksession! ./Session.vim
+	autocmd VimLeavePre * :mksession! ./Session.vim
 	autocmd VimEnter * :call LoadSession()
 	autocmd vimenter * :let g:b=system('pwd')
 	autocmd vimenter * :call Load_project_config()
@@ -98,7 +98,7 @@ function! LoadSession()
 	endif
 endfunction
 function! Load_project_config()
-if filereadable('project.vim')
+if filereadable('.project.vim')
 	source project.vim
 	echo 'sourced project file'
 endif
@@ -157,3 +157,7 @@ endif
 command! FixTrailing :%s/\s\+$//g
 " nnoremap \sr :call writefile(["/tmp/updated"],"/tmp/updated")<cr>
 set foldmethod=marker
+command! BufOnly exe("%bd\|e #\|bd #")
+nnoremap <c-m-o> :BufOnly<cr>
+nnoremap <c-right> :call feedkeys('2zl')<cr>
+nnoremap <c-left> :call feedkeys('2zh')<cr>

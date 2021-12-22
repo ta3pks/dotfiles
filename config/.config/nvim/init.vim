@@ -62,6 +62,7 @@ augroup __mysettings
 	autocmd vimenter * :call Load_project_config()
 	autocmd BufWritePost /tmp/copy.md :silent 1,$yank +
 	autocmd BufEnter /tmp/copy.md :execute "normal! ggdG" | :put! +
+	autocmd BufEnter todo.txt set filetype=TODO
 augroup END
 function! OpenFtPlugin()
 	let ft = &ft
@@ -161,3 +162,4 @@ command! BufOnly exe("%bd\|e #\|bd #")
 nnoremap <c-m-o> :BufOnly<cr>
 nnoremap <c-right> :call feedkeys('2zl')<cr>
 nnoremap <c-left> :call feedkeys('2zh')<cr>
+nnoremap \d :!date<cr>

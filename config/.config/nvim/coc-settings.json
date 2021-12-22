@@ -7,5 +7,6 @@
 		"macro-error"
 	],
 	"rust-analyzer.checkOnSave.command": "clippy",
+	"rust-analyzer.checkOnSave.allFeatures": true,
 	"rust-analyzer.cargo.allFeatures": true
 }

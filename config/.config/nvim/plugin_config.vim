@@ -5,6 +5,7 @@ call plug#begin('~/plugged') "{{{
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'hsanson/vim-openapi'
 Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug','vue'] }
 Plug 'dag/vim-fish'
 Plug 'github/copilot.vim'
@@ -58,6 +59,12 @@ inoremap <silent><expr> <C-Space>
 			\ coc#expandableOrJumpable() ? "\<C-Space>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<C-Space>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Use <c-space> to trigger completion.
+if has('nvim')
+	inoremap <silent><expr> <c-space> coc#refresh()
+else
+	inoremap <silent><expr> <c-@> coc#refresh()
+endif
 nnoremap \\, :Flip , )<cr>
 
 
@@ -83,6 +90,7 @@ colorscheme one
 let g:ctrlp_custom_ignore='node_modules/\|dist/\|target'
 let g:scratch_insert_autohide = 0
 let g:airline_powerline_fonts = 0
+let g:airline#extensions#whitespace#enabled = 0
 let g:airline_theme='one'
 let NERDTreeWinSize = 30
 " nnoremap <silent><Leader>gg :wa\|tabnew\|exe "term lazygit"\|vert resize \|norm! i<CR>
@@ -124,4 +132,7 @@ if (empty($TMUX))
 		set termguicolors
 	endif
 endif
-
+nnoremap \wt :WakaTimeToday<cr>
+command! WakatimeOpen :silent !open https://wakatime.com<cr>
+nnoremap  \wo :WakatimeOpen<cr>
+command! Gpull :Git pull<cr>

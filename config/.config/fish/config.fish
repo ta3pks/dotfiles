@@ -70,3 +70,5 @@ set -x __CARGO_FIX_YOLO 1
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
 
 fish_add_path /opt/homebrew/opt/libpq/bin
+set -x PGPASSWORD postgres
+fish_add_path /opt/homebrew/opt/llvm/bin

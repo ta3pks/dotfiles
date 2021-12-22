@@ -8,6 +8,7 @@ nnoremap <buffer> \e :wa \| call <SID>RUST_RUN("run ".g:rust_run_params )<cr>
 nnoremap <buffer> \b : call <SID>RUST_RUN("build")<cr>
 nnoremap <buffer> \t : call <SID>RUST_RUN("test -- --nocapture")<cr>
 nnoremap <buffer> \tc :call <SID>RUST_RUN("test ".expand("<cword>")." -- --nocapture")<cr>
+nnoremap <buffer> \ti :call <SID>RUST_RUN("test ".input("name of the test fn: ")." -- --nocapture")<cr>
 nnoremap <buffer> \c :make check<cr>
 nnoremap <buffer> \mc :call <SID>RUST_RUN("clippy ".g:rust_params)<cr>
 nnoremap <buffer> <c-m-l> :RustFmt<cr>

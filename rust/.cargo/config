@@ -4,6 +4,7 @@ t = "test -- --nocapture --color always"
 opt-level = 0
 overflow-checks = false
 lto = "off"
+debug=true
 [build]
 # rustc-wrapper="sccache"
 [target.x86_64-unknown-linux-gnu]

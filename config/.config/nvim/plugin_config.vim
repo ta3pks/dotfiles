@@ -136,3 +136,4 @@ nnoremap \wt :WakaTimeToday<cr>
 command! WakatimeOpen :silent !open https://wakatime.com<cr>
 nnoremap  \wo :WakatimeOpen<cr>
 command! Gpull :Git pull<cr>
+let g:airline#extensions#tabline#enabled = 0

@@ -1,4 +1,7 @@
 {
+	"suggest.removeDuplicateItems": true,
+	"diagnostic.highlighLimit": 100,
+	"signature.enable": true,
 	"coc.preferences.useQuickfixForLocations": true,
 	"coc.source.buffer.ignoreGitignore": true,
 	"rust-analyzer.diagnostics.disabled": [

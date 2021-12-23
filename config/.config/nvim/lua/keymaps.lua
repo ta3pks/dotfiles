@@ -1,7 +1,7 @@
 local utils = require("utils")
 
 local keymaps = {
-	["Q"] = ":q<cr>",
+	["Q"] = ":bd<cr>",
 	["<space>"] = "za",
 	["<c-w>r"] = ":source $MYVIMRC<bar>echo 'reloaded'<cr>",
 	["<c-w><c-s>"] = ":tabnew $MYVIMRC<cr>",

@@ -1,10 +1,11 @@
 local utils = require("utils")
 
 local keymaps = {
-	["Q"] = ":bd<cr>",
+	["Q"] = ":lua require'keymaps'.close_buffer()<cr>",
 	["<space>"] = "za",
 	["<c-w>r"] = ":source $MYVIMRC<bar>echo 'reloaded'<cr>",
 	["<c-w><c-s>"] = ":tabnew $MYVIMRC<cr>",
+	["<c-w><c-u>"] = ":lua require'keymaps'.open_utils_file()<cr>",
 	["<leader>kr"] = ":lua require'keymaps'.reload_keymaps()<cr>",
 	["<leader>ko"] = ":lua require'keymaps'.open_keymap_file()<cr>",
 	["<leader><cr>"] = ":lua require('plugins.openterm').open_term()<cr>",
@@ -24,7 +25,7 @@ local keymaps = {
 	["<c-m-o>"] = ":%bd <bar> e # <bar> bd #<cr>",
 	["<c-right>"] = ":call feedkeys('2zl')<cr>",
 	["<c-left>"] = ":call feedkeys('2zh')<cr>",
-	["<leader>d"] = ":!date<cr>",
+	["<leader>d"] = {":!date<cr>",silent=true}
 }
 
 local function map(mode, maps)
@@ -61,5 +62,15 @@ function m.i(keymaps)
 end
 function m.open_keymap_file()
 	vim.cmd("tabnew " .. string.match(vim.env.MYVIMRC, ".*/") .. "/lua/keymaps.lua")
+end
+function m.open_utils_file()
+	vim.cmd("tabnew " .. string.match(vim.env.MYVIMRC, ".*/") .. "/lua/utils.lua")
+end
+function m.close_buffer()
+	if utils.num_active_bufs() == 0 then
+		vim.cmd("q")
+	else
+		vim.cmd("bw")
+	end
 end
 return m

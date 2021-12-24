@@ -67,10 +67,10 @@ function m.open_utils_file()
 	vim.cmd("tabnew " .. string.match(vim.env.MYVIMRC, ".*/") .. "/lua/utils.lua")
 end
 function m.close_buffer()
-	if utils.num_active_bufs() == 0 then
+	if utils.num_active_bufs() == 1 then
 		vim.cmd("q")
 	else
-		vim.cmd("bw")
+		vim.cmd("bd")
 	end
 end
 return m

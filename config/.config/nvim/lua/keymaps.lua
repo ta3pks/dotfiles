@@ -28,6 +28,7 @@ local keymaps = {
 	["<leader>d"] = {":!date<cr>",silent=true}
 }
 
+vim.cmd("command! W :w")
 local function map(mode, maps)
 	local mapfn
 	if mode == "n" then

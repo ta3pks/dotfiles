@@ -16,16 +16,17 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'mmahnic/vim-flipwords'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['rust', 'typescript','javascript']}
 Plug 'rakr/vim-one'
-Plug 'rust-lang/rust.vim'
-Plug 'scrooloose/nerdtree' "| Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons'
+Plug 'rust-lang/rust.vim', {'for': ['rust']}
+Plug 'scrooloose/nerdtree',{ 'on': 'NERDTreeToggle' } "| Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'wakatime/vim-wakatime'
 call plug#end() "}}}
 command -nargs=* Swap Flip <args>
+command -nargs=0 SwapArgs Swap , )
 let g:rainbow#pairs = [['(', ')'], ['[', ']'] , ['{', '}']]
 let g:rainbow#blacklist = ['#cc241d']
 autocmd FileType * RainbowParentheses
@@ -36,10 +37,10 @@ nmap <silent> \lr <Plug>(coc-references)
 nmap <leader>r <Plug>(coc-rename)
 xmap <M-C-l>  <Plug>(coc-format-selected)
 nnoremap <silent> <M-C-l>  :call CocAction('format')<cr>
-xmap <leader>q	<Plug>(coc-codeaction-selected)
-nmap <leader>a	<Plug>(coc-codeaction)
-nmap <m-.>	<plug>(coc-codeaction-cursor)
-nmap <m-,>	<Plug>(coc-fix-current)
+xmap <silent><leader>q	<Plug>(coc-codeaction-selected)
+nmap <silent><leader>a	<Plug>(coc-codeaction)
+nmap <silent><m-.>	<plug>(coc-codeaction-cursor)
+nmap <silent><m-,>	<Plug>(coc-fix-current)
 nnoremap <m-s> :CocList symbols<cr>
 nnoremap <m-d> :CocList diagnostics<cr>
 nnoremap <m-C-i> :CocList commands<cr>

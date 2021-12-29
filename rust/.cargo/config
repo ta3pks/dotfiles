@@ -12,6 +12,8 @@ linker="x86_64-unknown-linux-gnu-gcc"
 # rustflags=[
 # "-C","linker=mold","-C","link-arg=-fuse=mold"
 # ]
+[target.x86_64-unknown-linux-musl]
+linker = "x86_64-unknown-linux-musl-gcc"
 [target.armv7-unknown-linux-gnueabihf]
 linker = "arm-linux-gnueabihf-gcc"
 [target.aarch64-unknown-linux-gnu]
@@ -31,5 +33,3 @@ linker = "i686-linux-android26-clang"
 [target.x86_64-linux-android]
 linker = "x86_64-linux-android26-clang"
 
-[target.x86_64-unknown-linux-musl]
-linker = "x86_64-unknown-linux-musl-gcc"

@@ -1,6 +1,7 @@
 require("events")
 require("keymaps")
 require("plugins")
+require("neorgcfg")
 local utils = require("utils")
 local api = vim.api
 vim.cmd([[

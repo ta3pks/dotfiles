@@ -11,7 +11,7 @@ nnoremap <buffer> \tc :call <SID>RUST_RUN("test ".expand("<cword>")." -- --nocap
 nnoremap <buffer> \ti :call <SID>RUST_RUN("test ".input("name of the test fn: ")." -- --nocapture")<cr>
 nnoremap <buffer> \c :make check<cr>
 nnoremap <buffer> \mc :call <SID>RUST_RUN("clippy ".g:rust_params)<cr>
-nnoremap <buffer> <c-m-l> :RustFmt<cr>
+"nnoremap <buffer> <c-m-l> :RustFmt<cr>
 
 
 

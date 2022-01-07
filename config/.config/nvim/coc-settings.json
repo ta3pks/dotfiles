@@ -3,6 +3,13 @@
 	"diagnostic.highlighLimit": 100,
 	"signature.enable": true,
 	"coc.preferences.useQuickfixForLocations": true,
+	"coc.preferences.formatOnSaveFiletypes": [
+		"rust",
+		"json",
+		"toml",
+		"javascript",
+		"typescript"
+	],
 	"coc.source.buffer.ignoreGitignore": true,
 	"rust-analyzer.diagnostics.disabled": [
 		"unresolved-proc-macro",
@@ -11,5 +18,9 @@
 	],
 	"rust-analyzer.checkOnSave.command": "clippy",
 	"rust-analyzer.checkOnSave.allFeatures": false,
-	"rust-analyzer.cargo.allFeatures": false
+	"rust-analyzer.cargo.allFeatures": false,
+	"rust-analyzer.rustfmt.extraArgs": [
+		"+nightly"
+	]
+
 }

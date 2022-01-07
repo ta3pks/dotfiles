@@ -25,7 +25,8 @@ local keymaps = {
 	["<c-m-o>"] = ":%bd <bar> e # <bar> bd #<cr>",
 	["<c-right>"] = ":call feedkeys('2zl')<cr>",
 	["<c-left>"] = ":call feedkeys('2zh')<cr>",
-	["<leader>d"] = {":!date<cr>",silent=true}
+	["<leader>d"] = { ":!date<cr>", silent = true },
+	["<m-o>"] = { ":CocOutline<cr>", silent = true },
 }
 
 vim.cmd("command! W :w")
@@ -51,8 +52,7 @@ end
 map("n", keymaps) --init default global keymaps
 local m = {}
 function m.reload_keymaps()
-	package.loaded.keymaps = nil
-	vim.cmd("source $MYVIMRC")
+	utils.rerequire("keymaps")
 	print("keymaps reloaded")
 end
 function m.n(keymaps)

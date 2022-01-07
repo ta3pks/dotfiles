@@ -12,10 +12,8 @@ return {
 	keys = {
 		{key="e",mods="SUPER",action=wezterm.action{SplitHorizontal={}}},
 		{key="e",mods="SUPER|CTRL",action=wezterm.action{SplitVertical={}}},
-		{key="j",mods="SUPER|ALT",action=wezterm.action{ActivatePaneDirection="Prev"}},
-		{key="k",mods="SUPER|ALT",action=wezterm.action{ActivatePaneDirection="Next"}},
-		{key="J",mods="SUPER|ALT",action=wezterm.action{ActivatePaneDirection="Down"}},
-		{key="K",mods="SUPER|ALT",action=wezterm.action{ActivatePaneDirection="Up"}},
+		{key="k",mods="SUPER|ALT",action=wezterm.action{ActivatePaneDirection="Prev"}},
+		{key="j",mods="SUPER|ALT",action=wezterm.action{ActivatePaneDirection="Next"}},
 		{key="L",mods="CTRL",action="DisableDefaultAssignment"},
 		{key="Z",mods="CTRL",action="DisableDefaultAssignment"},
 		{key="z",mods="SUPER",action="TogglePaneZoomState"},

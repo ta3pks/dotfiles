@@ -17,7 +17,7 @@ nnoremap <buffer> \mc :call <SID>RUST_RUN("clippy ".g:rust_params)<cr>
 
 func! s:RUST_RUN(cmd)
 	vsp
-	exe "term bash -c 'cargo " . a:cmd . "'"
+	exe "term bash -c 'time cargo " . a:cmd . "'"
 	normal! i
 endfunction
 

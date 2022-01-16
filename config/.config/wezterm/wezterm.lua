@@ -17,5 +17,8 @@ return {
 		{key="L",mods="CTRL",action="DisableDefaultAssignment"},
 		{key="Z",mods="CTRL",action="DisableDefaultAssignment"},
 		{key="z",mods="SUPER",action="TogglePaneZoomState"},
-	}
+	},
+	--quick_select_patterns={
+	--	--"[a-zA-Z.]+",-- any word with a possible dot in it
+	--}
 }

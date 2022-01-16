@@ -8,7 +8,8 @@
 		"json",
 		"toml",
 		"javascript",
-		"typescript"
+		"typescript",
+		"typescriptreact"
 	],
 	"coc.source.buffer.ignoreGitignore": true,
 	"rust-analyzer.diagnostics.disabled": [

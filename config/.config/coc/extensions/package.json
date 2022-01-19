@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@onichandame/coc-proto3": ">=0.0.3",
+    "@yaegassy/coc-ansible": ">=0.4.0",
     "@yaegassy/coc-nginx": ">=0.3.4",
     "coc-fish": ">=1.0.11",
     "coc-go": ">=1.1.0",
@@ -18,7 +19,6 @@
     "coc-tsserver": ">=1.9.6",
     "coc-vetur": ">=1.2.5",
     "coc-vimlsp": ">=0.12.5",
-    "coc-xml": ">=1.14.1",
-    "coc-yaml": ">=1.6.1"
+    "coc-xml": ">=1.14.1"
   }
 }

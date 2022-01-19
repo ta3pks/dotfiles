@@ -86,3 +86,5 @@ config/.config/coc/extensions/coc-go-data/bin/gopls
 tmux/.tmux/plugins/tmux-*
 config/.config/coc/list-diagnostics-history.json
 /config/.config/coc/extensions/coc-lua-data/
+
+config/.config/coc/suggest.txt

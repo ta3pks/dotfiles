@@ -15,7 +15,8 @@
 	"rust-analyzer.diagnostics.disabled": [
 		"unresolved-proc-macro",
 		"unresolved-macro-call",
-		"macro-error"
+		"macro-error",
+		"inactive-code"
 	],
 	"rust-analyzer.checkOnSave.command": "clippy",
 	"rust-analyzer.checkOnSave.allFeatures": false,
@@ -23,5 +24,4 @@
 	"rust-analyzer.rustfmt.extraArgs": [
 		"+nightly"
 	]
-
 }

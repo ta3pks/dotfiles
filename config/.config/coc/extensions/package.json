@@ -5,7 +5,7 @@
     "@yaegassy/coc-nginx": ">=0.3.4",
     "coc-fish": ">=1.0.11",
     "coc-go": ">=1.1.0",
-    "coc-html": ">=1.6.0",
+    "coc-html": ">=1.6.1",
     "coc-html-css-support": ">=0.2.4",
     "coc-json": ">=1.4.1",
     "coc-lua": ">=1.0.1",
@@ -16,7 +16,7 @@
     "coc-sqlfluff": ">=0.5.1",
     "coc-swagger": ">=0.0.2",
     "coc-toml": ">=1.1.0",
-    "coc-tsserver": ">=1.9.6",
+    "coc-tsserver": ">=1.9.8",
     "coc-vetur": ">=1.2.5",
     "coc-vimlsp": ">=0.12.5",
     "coc-xml": ">=1.14.1"

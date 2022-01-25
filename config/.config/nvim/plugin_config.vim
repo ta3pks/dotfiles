@@ -18,7 +18,7 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'mmahnic/vim-flipwords'
 Plug 'neoclide/coc.nvim', {'branch': 'release' }
 Plug 'rafcamlet/coc-nvim-lua'
-Plug 'themercorp/themer.lua'
+Plug 'rakr/vim-one'
 Plug 'rust-lang/rust.vim', {'for': ['rust']}
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
@@ -28,6 +28,7 @@ Plug 'nvim-lua/plenary.nvim' | Plug 'nvim-neorg/neorg' | Plug 'hrsh7th/nvim-cmp'
 Plug 'wakatime/vim-wakatime'
 call plug#end() "}}}
 command -nargs=* Swap Flip <args>
+colorscheme one
 command -nargs=0 SwapArgs Swap , )
 let g:rainbow#pairs = [['(', ')'], ['[', ']'] , ['{', '}']]
 let g:rainbow#blacklist = ['#cc241d']

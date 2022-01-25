@@ -18,7 +18,7 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'mmahnic/vim-flipwords'
 Plug 'neoclide/coc.nvim', {'branch': 'release' }
 Plug 'rafcamlet/coc-nvim-lua'
-Plug 'rakr/vim-one'
+Plug 'themercorp/themer.lua'
 Plug 'rust-lang/rust.vim', {'for': ['rust']}
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
@@ -85,9 +85,6 @@ function! s:show_documentation()
 	endif
 endfunction
 
-
-
-colorscheme one
 
 let g:ctrlp_custom_ignore='node_modules/\|dist/\|target'
 let g:scratch_insert_autohide = 0

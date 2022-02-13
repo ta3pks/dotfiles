@@ -89,3 +89,4 @@ config/.config/coc/list-diagnostics-history.json
 
 config/.config/coc/suggest.txt
 config/.config/fish/functions/proxy_connecteds.fish
+config/.config/fish/functions/trp.fish

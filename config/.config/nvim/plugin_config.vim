@@ -12,7 +12,6 @@ Plug 'github/copilot.vim'
 Plug 'godlygeek/tabular'
 Plug 'gregsexton/MatchTag'
 Plug 'jacoborus/tender.vim'
-Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'mmahnic/vim-flipwords'
@@ -24,7 +23,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'nvim-lua/plenary.nvim' | Plug 'nvim-neorg/neorg' | Plug 'hrsh7th/nvim-cmp'  | Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
 Plug 'wakatime/vim-wakatime'
 call plug#end() "}}}
 command -nargs=* Swap Flip <args>

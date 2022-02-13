@@ -9,7 +9,8 @@
 		"toml",
 		"javascript",
 		"typescript",
-		"typescriptreact"
+		"typescriptreact",
+		"haskell"
 	],
 	"coc.source.buffer.ignoreGitignore": true,
 	"rust-analyzer.diagnostics.disabled": [

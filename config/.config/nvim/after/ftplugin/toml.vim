@@ -1,1 +1,1 @@
-nnoremap <silent> <buffer> \c :make check<cr>
+nnoremap <silent> <buffer> \c :!cargo clippy --workspace<cr>

@@ -1,3 +1,4 @@
+fish_vi_key_bindings
 set -x DATABASE_URL "postgres://postgres:postgres@127.0.0.1/smm?sslmode=disable"
 set -x JAVA_HOME /usr/lib/jvm/java-8-openjdk
 set -ax PATH  ~/.cargo/bin ~/.cabal/bin ~/.ghcup/bin ~/.gem/ruby/2.6.0/bin /snap/bin ~/Android//Sdk/platform-tools ~/android-studio/bin /usr/lib/dart/bin ~/Android/Sdk/emulator

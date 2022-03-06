@@ -10,6 +10,7 @@
     "coc-html-css-support": ">=0.4.0",
     "coc-json": ">=1.4.1",
     "coc-lua": ">=1.0.1",
+    "coc-markdown-preview-enhanced": ">=0.4.1",
     "coc-marketplace": ">=1.8.1",
     "coc-protobuf": ">=0.0.2",
     "coc-rust-analyzer": ">=0.60.0",
@@ -20,6 +21,7 @@
     "coc-tsserver": ">=1.9.13",
     "coc-vetur": ">=1.2.5",
     "coc-vimlsp": ">=0.12.5",
+    "coc-webview": ">=0.11.0",
     "coc-xml": ">=1.14.1"
   }
 }

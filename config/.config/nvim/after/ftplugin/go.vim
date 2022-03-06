@@ -12,10 +12,8 @@
 	nnoremap <buffer> <Leader>gc :GoCallers<cr>
 	nnoremap <buffer> <Leader>e :call <SID>RUNGO() <cr>
 	nnoremap <buffer> <leader>[ :tabnew /tmp/main.go<CR>
-	nnoremap <buffer> <C-d> :GoDecls<cr>
 	nnoremap <buffer><silent> \\ :GoImports<cr>
 	"SNIPPETS
-	inoreabbr <buffer> {{{}}} //{{{//}}}<Up>
 	inoreabbr <buffer> noimp fmt.Errorf("not implemented yet")
 	inoreabbr <buffer> ferrf fmt.Errorf(":% <error message> %:")
 	inoreabbr <buffer> td: //TODO:

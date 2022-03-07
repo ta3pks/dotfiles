@@ -2,6 +2,10 @@
 	"suggest.removeDuplicateItems": true,
 	"diagnostic.highlighLimit": 100,
 	"signature.enable": true,
+	"diagnostic.messageTarget": "echo",
+	"diagnostic.virtualTextCurrentLineOnly": false,
+	"diagnostic.virtualText": true,
+	"rust-analyzer.inlayHints.enable": true,
 	"coc.preferences.useQuickfixForLocations": true,
 	"coc.preferences.formatOnSaveFiletypes": [
 		"rust",

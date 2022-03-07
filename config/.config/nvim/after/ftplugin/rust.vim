@@ -33,3 +33,4 @@ setlocal wildignore+=*/target/*,Cargo.lock,*/*test
 let g:rustfmt_fail_silently = 1
 setl makeprg="make"
 setl foldmethod=marker
+setl nowrap

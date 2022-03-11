@@ -5,7 +5,6 @@
 	"diagnostic.messageTarget": "echo",
 	"diagnostic.virtualTextCurrentLineOnly": false,
 	"diagnostic.virtualText": true,
-	"rust-analyzer.inlayHints.enable": true,
 	"coc.preferences.useQuickfixForLocations": true,
 	"coc.preferences.formatOnSaveFiletypes": [
 		"rust",
@@ -17,6 +16,8 @@
 		"haskell"
 	],
 	"coc.source.buffer.ignoreGitignore": true,
+	"rust-analyzer.enable": true,
+	"rust-analyzer.inlayHints.enable": true,
 	"rust-analyzer.diagnostics.disabled": [
 		"unresolved-proc-macro",
 		"unresolved-macro-call",
@@ -24,10 +25,15 @@
 		"inactive-code"
 	],
 	"rust-analyzer.checkOnSave.command": "clippy",
+	"rust-analyzer.checkOnSave.enable": false,
 	"rust-analyzer.checkOnSave.allFeatures": false,
 	"rust-analyzer.cargo.allFeatures": false,
 	"rust-analyzer.cargo.features": [],
 	"rust-analyzer.rustfmt.extraArgs": [
 		"+nightly"
-	]
+	],
+	"rust.cfg_test": false,
+	"rust.clippy_preference": "on",
+	"rust.jobs": 8,
+	"rust.racer_completion": false
 }

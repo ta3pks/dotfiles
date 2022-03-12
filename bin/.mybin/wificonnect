@@ -1,9 +1,0 @@
-#!/bin/sh
-if test -z $1
-then
-_iface="wlp4s0"
-else 
-_iface=$1
-fi
-sudo wpa_supplicant -i $_iface -c ~/.config/wpa_supplicant.conf -B
-sudo dhcpcd

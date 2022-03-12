@@ -1,5 +1,0 @@
-[Unit]
-Description="xflux service"
-[Service]
-ExecStart=xflux -l 41.6538624  -g 41.6342015 -k 2000 -nofork 
-

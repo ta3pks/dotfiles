@@ -5,6 +5,8 @@ call plug#begin('~/plugged') "{{{
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'hsanson/vim-openapi'
 Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug','vue'] }
 Plug 'dag/vim-fish'

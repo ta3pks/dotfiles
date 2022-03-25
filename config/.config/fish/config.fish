@@ -19,7 +19,6 @@ if test (which thefuck)
 		fuck
 	end
 end
-test -f ~/.nix-profile/etc/profile.d/nix.sh && bass source ~/.nix-profile/etc/profile.d/nix.sh
 # set -x http_proxy socks5://127.0.0.1:9050
 # set -x https_proxy socks5://127.0.0.1:9050
 # set -x all_proxy socks5://127.0.0.1:9050
@@ -73,3 +72,5 @@ test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shel
 fish_add_path /opt/homebrew/opt/libpq/bin
 set -x PGPASSWORD postgres
 fish_add_path /opt/homebrew/opt/llvm/bin
+
+source /opt/homebrew/opt/asdf/libexec/asdf.fish

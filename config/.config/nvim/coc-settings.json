@@ -7,6 +7,7 @@
 	"diagnostic.virtualText": true,
 	"coc.preferences.useQuickfixForLocations": true,
 	"coc.preferences.formatOnSaveFiletypes": [
+		"html",
 		"rust",
 		"json",
 		"toml",
@@ -25,7 +26,7 @@
 		"inactive-code"
 	],
 	"rust-analyzer.checkOnSave.command": "clippy",
-	"rust-analyzer.checkOnSave.enable": false,
+	"rust-analyzer.checkOnSave.enable": true,
 	"rust-analyzer.checkOnSave.allFeatures": false,
 	"rust-analyzer.cargo.allFeatures": false,
 	"rust-analyzer.cargo.features": [],
@@ -35,5 +36,6 @@
 	"rust.cfg_test": false,
 	"rust.clippy_preference": "on",
 	"rust.jobs": 8,
+	"rust-client.channel": "nightly",
 	"rust.racer_completion": false
 }

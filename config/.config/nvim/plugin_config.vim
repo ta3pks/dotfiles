@@ -9,6 +9,7 @@ Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'hsanson/vim-openapi'
 Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug','vue'] }
+Plug 'tomtom/tcomment_vim'
 Plug 'dag/vim-fish'
 Plug 'github/copilot.vim'
 Plug 'godlygeek/tabular'

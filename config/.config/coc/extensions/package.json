@@ -15,7 +15,7 @@
     "coc-marketplace": ">=1.9.0",
     "coc-protobuf": ">=0.0.2",
     "coc-python": ">=1.2.13",
-    "coc-rust-analyzer": ">=0.61.1",
+    "coc-rust-analyzer": ">=0.61.2",
     "coc-snippets": ">=3.0.5",
     "coc-sqlfluff": ">=0.7.1",
     "coc-swagger": ">=0.0.3",

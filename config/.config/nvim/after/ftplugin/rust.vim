@@ -27,7 +27,7 @@ command! -nargs=+ CgAdd :!cargo add <args>
 let g:rustfmt_autosave = 0
 let g:rustfmt_command = 'rustfmt +nightly --edition=2018'
 command! -nargs=1 F vim /<args>/  ./**
-nnoremap <buffer> \s :exe 'Ggrep -i "'.input('key: ').'"'<cr>
+"nnoremap <buffer> \s :exe 'Ggrep -i "'.input('key: ').'"'<cr>
 " let g:ale_rust_rls_executable='/usr/local/bin/rust-analyzer'
 setlocal wildignore+=*/target/*,Cargo.lock,*/*test
 let g:rustfmt_fail_silently = 1

@@ -1,10 +1,9 @@
 let g:polyglot_disabled = ['go']
-
 call plug#begin('~/plugged') "{{{
 "Plug 'chr4/nginx.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'nvim-lua/plenary.nvim'|Plug 'nvim-telescope/telescope.nvim'|Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'hsanson/vim-openapi'
@@ -101,7 +100,11 @@ nnoremap <silent><Leader>nc :NERDTreeClose<cr>
 nnoremap <silent><Leader>nt :NERDTreeToggle<cr>
 nnoremap <silent><Leader>nf :NERDTreeFind<cr>
 nnoremap <silent> <Leader>b :exec "Tabularize/".input("enter regex: ")."/"<cr>
-nnoremap <C-b> :CtrlPBuffer<cr>
+nnoremap <C-b> :Telescope buffers<cr>
+nnoremap <leader>s :Telescope live_grep<cr>
+nnoremap <c-\> :Telescope resume<cr>
+nnoremap <C-p> :Telescope find_files<cr>
+nnoremap <C-f> :Telescope grep_string<cr>
 let g:user_emmet_settings = {
 			\  'reason' : {
 				\	   'extends' : 'jsx',

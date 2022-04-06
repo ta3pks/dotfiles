@@ -14,7 +14,6 @@ local keymaps = {
 	["<c-s>"] = ":set spell!<cr>",
 	["<C-k>"] = ":lprevious<cr>",
 	["<C-j>"] = ":lnext<cr>",
-	["<C-f>"] = ":lfirst<cr>",
 	["<C-h>"] = ":cprevious<cr>",
 	["<C-l>"] = ":cnext<cr>",
 	["#"] = ":b#<cr>",

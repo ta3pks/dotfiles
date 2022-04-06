@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
-"@ansible/ansible-language-server@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@ansible/ansible-language-server/-/ansible-language-server-0.5.2.tgz#8c10a232120b2063008c9faf6a25ec50e1cde8b8"
-  integrity sha512-w1SrRZMSx8iM4PAomsMtEJ4t/CmS3l42VSyxBG1fBuhHNvYzv8yoGtJSX0lfPSQMBssxLb5J6XMUUrXFGhlUEA==
+"@ansible/ansible-language-server@^0.5.3":
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/@ansible/ansible-language-server/-/ansible-language-server-0.5.4.tgz#99ed5cef80a8263de1fabd9039cdb6711ff487e5"
+  integrity sha512-PRjqGWBgYFkR+FOmquqObsYSFZt/BDYUfmc1dg2OCLU0f3dT7kf0d7oL19n/Pjhl5qlHZ4gQC1o9fxuJ4iD4Ww==
   dependencies:
     "@flatten-js/interval-tree" "^1.0.18"
-    globby "^11.0.4"
+    globby "^13.1.1"
     ini "^2.0.0"
     lodash "^4.17.21"
     uuid "^8.3.2"
@@ -206,12 +206,12 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.21.tgz#864b987c0c68d07b4345845c3e63b75edd143644"
   integrity sha512-DBZCJbhII3r90XbQxI8Y9IjjiiOGlZ0Hr32omXIZvwwZ7p4DMMXGrKXVyPfuoBOri9XNtL0UK69jYIBIsRX3QQ==
 
-"@yaegassy/coc-ansible@>=0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@yaegassy/coc-ansible/-/coc-ansible-0.6.0.tgz#5adbe819641ca4de4733770d47e3ebb0a2a7cde1"
-  integrity sha512-kYeAmNVB/acSfao7ZdkaidOPC/GudXP/8QViIkOWVyfZob+i9Wtd1RWsVUDs2kG3V3Eg50D/O5ZkCtHgeGHAqw==
+"@yaegassy/coc-ansible@>=0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@yaegassy/coc-ansible/-/coc-ansible-0.6.1.tgz#2d808ae156615a7c1810259806454209dbe8fed9"
+  integrity sha512-9uuckHEWmvV3YBqRVsGWjjwrocWhVJ7qatyIRUSZkMccBFUlU/FIpl9GlybpmITUMeoeGyqQIgKinkWIdPV8Fw==
   dependencies:
-    "@ansible/ansible-language-server" "^0.5.2"
+    "@ansible/ansible-language-server" "^0.5.3"
 
 "@yaegassy/coc-nginx@>=0.3.4":
   version "0.3.4"
@@ -321,11 +321,6 @@ argparse@^1.0.7:
   integrity sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==
   dependencies:
     sprintf-js "~1.0.2"
-
-array-union@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/array-union/-/array-union-2.1.0.tgz#b798420adbeb1de828d84acd8a2e23d3efe85e8d"
-  integrity sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==
 
 asn1@~0.2.3:
   version "0.2.6"
@@ -507,6 +502,11 @@ chrome-location@^1.2.1:
     userhome "^1.0.0"
     which "^1.0.5"
 
+coc-db@>=0.0.44:
+  version "0.0.44"
+  resolved "https://registry.yarnpkg.com/coc-db/-/coc-db-0.0.44.tgz#64e90fe3684ff8edab9cb375205b7c2a03328bf4"
+  integrity sha512-CBJ25/4ZTw3jpGe41pi89VAgh7iJuo3mFpZSYeS0xNzNYTZ0VLFSR4R34QE7RXV97wHXzny6gbIjuHvjOUGNUg==
+
 coc-fish@>=1.0.11:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/coc-fish/-/coc-fish-1.0.11.tgz#7f9d9f48eb2c6d1942e460829b925a02cac76865"
@@ -571,25 +571,25 @@ coc-protobuf@>=0.0.2:
   resolved "https://registry.yarnpkg.com/coc-protobuf/-/coc-protobuf-0.0.2.tgz#69adac2e212ca84dc8fc97074bffe564f00e10df"
   integrity sha512-cciy2lMLREfiZQBTDI9Yx5Msu6dotTnQqm78au+KKkZUSFcWQRgs2Lrycw+MU3SoJeTcpTEZdbjhpg5eLi32Og==
 
-coc-rls@>=1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/coc-rls/-/coc-rls-1.1.6.tgz#0f7172bb9d43dbd19157a2a3153a338bac8276c9"
-  integrity sha512-/XUM5UjOtnVBHghxBtwHz6C2lWnWgF8kX2+uocc356c2Bn8msQa6mrN0lijhlpDlsomSMPkGpZiY4zS1tNakMw==
+coc-python@>=1.2.13:
+  version "1.2.13"
+  resolved "https://registry.yarnpkg.com/coc-python/-/coc-python-1.2.13.tgz#74c5b9d3413a13310027f93578915bac33692c62"
+  integrity sha512-thsXkbwwJMpiGa/1GiPvFnbWtC5K8QcZvcUtoc4lU8Hf38LbywK5qRp6M7tOAabJOq5dYcIYYbPZWzGwhoZEiw==
 
-coc-rust-analyzer@>=0.60.1:
-  version "0.60.1"
-  resolved "https://registry.yarnpkg.com/coc-rust-analyzer/-/coc-rust-analyzer-0.60.1.tgz#97a1138955524b7e590aba803a0725d4277cc1e3"
-  integrity sha512-wEVUE817neA7EpWGZwCYhzUbcJTHyFBihyfljCPIqTTxWF/zcctuhKhzsPzyhrKk18sbX0pBFO+/aubgwBQrow==
+coc-rust-analyzer@>=0.61.2:
+  version "0.61.2"
+  resolved "https://registry.yarnpkg.com/coc-rust-analyzer/-/coc-rust-analyzer-0.61.2.tgz#6a0e7be0c74add2ca3f0128d63c93eaa4e416fe9"
+  integrity sha512-qFVrmFNls2WsLtfgGlChm+mKpQc5lypxhjHgELslQbKBKSEZHpV4OfpknTpCjocSHpP0HFgIKiDVVwC2wsW0PA==
 
-coc-snippets@>=2.5.9:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/coc-snippets/-/coc-snippets-3.0.2.tgz#933b111d7162779c9c5c3d0e9e37afd034977ae8"
-  integrity sha512-AQslAPlptSdPE0kTlM146EFnpeS491MqJmYa/O/vmlhd30aQidJmC79wBgrmpGj8T5ergsetb59uFnE3iuW+GQ==
+coc-snippets@>=3.0.5:
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/coc-snippets/-/coc-snippets-3.0.8.tgz#ba5a440a3f94c8d84f2f2153ededda87be56bfbf"
+  integrity sha512-+9CpyQNMNQQCn3gGbH84/nuihfWzt0I/TXGVAj11AQL4ns4iAlQaaqqle7FmG1VTlvHYwZy5luN8YYWqKBx6uQ==
 
-coc-sqlfluff@>=0.6.2:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/coc-sqlfluff/-/coc-sqlfluff-0.7.0.tgz#2ba979bb4f747d1293a6d133b4994a4cc8b53fed"
-  integrity sha512-/BceG4SrzX0F1JpKDEnjL2R3LNZvSdUlT4tZ3N/T2guUOrfd0SOR3tJEQ75COjY6loF0pySQlcGz1Ps6O8oenA==
+coc-sqlfluff@>=0.7.1:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/coc-sqlfluff/-/coc-sqlfluff-0.7.2.tgz#484128a1aec11cf5c5fbce1f528c3653f3ee3d37"
+  integrity sha512-Vm5/aHzUCIAiDAnT/0BG9TjvxSTy1O26Z29UO8y6xQ/lXImFcHwqh4HIHB3EziQaprdn7bBLS5Iah9m5hcqvMQ==
 
 coc-swagger@>=0.0.3:
   version "0.0.3"
@@ -1193,7 +1193,7 @@ fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
   integrity sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==
 
-fast-glob@^3.2.5, fast-glob@^3.2.9:
+fast-glob@^3.2.11, fast-glob@^3.2.5:
   version "3.2.11"
   resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.2.11.tgz#a1172ad95ceb8a16e20caa5c5e56480e5129c1d9"
   integrity sha512-xrO3+1bxSo3ZVHAnqzyuewYT6aMFHRAd4Kcs92MAonjwQZLsK9d0SF1IyQ3k5PoirxTW0Oe/RqFgMQ6TcNE5Ew==
@@ -1376,17 +1376,16 @@ globals@^13.6.0, globals@^13.9.0:
   dependencies:
     type-fest "^0.20.2"
 
-globby@^11.0.4:
-  version "11.1.0"
-  resolved "https://registry.yarnpkg.com/globby/-/globby-11.1.0.tgz#bd4be98bb042f83d796f7e3811991fbe82a0d34b"
-  integrity sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g==
+globby@^13.1.1:
+  version "13.1.1"
+  resolved "https://registry.yarnpkg.com/globby/-/globby-13.1.1.tgz#7c44a93869b0b7612e38f22ed532bfe37b25ea6f"
+  integrity sha512-XMzoDZbGZ37tufiv7g0N4F/zp3zkwdFtVbV3EHsVl1KQr4RPLfNoT068/97RPshz2J5xYNEjLKKBKaGHifBd3Q==
   dependencies:
-    array-union "^2.1.0"
     dir-glob "^3.0.1"
-    fast-glob "^3.2.9"
+    fast-glob "^3.2.11"
     ignore "^5.2.0"
     merge2 "^1.4.1"
-    slash "^3.0.0"
+    slash "^4.0.0"
 
 graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0:
   version "4.2.9"
@@ -1842,9 +1841,9 @@ minimatch@^3.0.4:
     brace-expansion "^1.1.7"
 
 minimist@^1.1.0, minimist@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
-  integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
+  integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
 
 minipass@^3.0.0:
   version "3.1.6"
@@ -2412,10 +2411,10 @@ slash@^2.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-2.0.0.tgz#de552851a1759df3a8f206535442f5ec4ddeab44"
   integrity sha512-ZYKh3Wh2z1PpEXWr0MpSBZ0V6mZHAQfYevttO11c51CaWjGTaadiKZ+wVt1PbMlDV5qhMFslpZCemhwOK7C89A==
 
-slash@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
-  integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
+slash@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/slash/-/slash-4.0.0.tgz#2422372176c4c6c5addb5e2ada885af984b396a7"
+  integrity sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==
 
 slice-ansi@^4.0.0:
   version "4.0.0"

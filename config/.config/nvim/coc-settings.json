@@ -17,25 +17,4 @@
 		"haskell"
 	],
 	"coc.source.buffer.ignoreGitignore": true,
-	"rust-analyzer.enable": true,
-	"rust-analyzer.inlayHints.enable": true,
-	"rust-analyzer.diagnostics.disabled": [
-		"unresolved-proc-macro",
-		"unresolved-macro-call",
-		"macro-error",
-		"inactive-code"
-	],
-	"rust-analyzer.checkOnSave.command": "clippy",
-	"rust-analyzer.checkOnSave.enable": true,
-	"rust-analyzer.checkOnSave.allFeatures": false,
-	"rust-analyzer.cargo.allFeatures": false,
-	"rust-analyzer.cargo.features": [],
-	"rust-analyzer.rustfmt.extraArgs": [
-		"+nightly"
-	],
-	"rust.cfg_test": false,
-	"rust.clippy_preference": "on",
-	"rust.jobs": 8,
-	"rust-client.channel": "nightly",
-	"rust.racer_completion": false
 }

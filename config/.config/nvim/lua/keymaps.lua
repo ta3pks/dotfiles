@@ -40,11 +40,11 @@ local function map(mode, maps)
 	end
 	for k, v in pairs(maps) do
 		if type(v) == "string" then
-			utils.nmap(k, v)
+			mapfn(k, v)
 		elseif type(v) == "table" then
 			local cmd = v[1]
 			v[1] = nil
-			utils.nmap(k, cmd, v)
+			mapfn(k, cmd, v)
 		end
 	end
 end

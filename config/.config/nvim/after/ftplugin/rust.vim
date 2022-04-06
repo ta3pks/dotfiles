@@ -34,3 +34,7 @@ let g:rustfmt_fail_silently = 1
 setl makeprg="make"
 setl foldmethod=marker
 setl nowrap
+augroup __RustBufLocal
+	au! __RustBufLocal
+	au BufWritePre *.rs lua vim.lsp.buf.formatting_sync()
+augroup END

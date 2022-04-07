@@ -20,10 +20,12 @@ keymaps.n({
 		["<Leader>nt"] = ":NERDTreeToggle<cr>",
 		["<Leader>nf"] = ":NERDTreeFind<cr>",
 		["<Leader>gg"] = ":wa|:Git<cr>",
+		["<Leader>gs"] = ":Telescope git_commits<cr>",
 		["\\wt"] = ":WakaTimeToday<cr>",
 		["\\wo"]  = ":WakatimeOpen<cr>",
 		["<leader>pr"] = ":lua require'utils'.rerequire'plugins';print'plugins reloaded'<cr>",
 		["<leader>pd"] = ":NERDTree " .. lua_plugings_path .. "<cr>",
+		["<c-w><c-p>"] = ":tabnew " .. lua_plugings_path .. "/init.lua<cr>",
 	})
 -- packer config
 local fn = vim.fn
@@ -65,6 +67,7 @@ require('packer').startup(function(use)
 	use {
 		'neovim/nvim-lspconfig',
 	}
+	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 	use {
 		'hrsh7th/nvim-cmp',
 		'hrsh7th/cmp-nvim-lsp',
@@ -85,7 +88,7 @@ require "telescope".setup{
 				["<C-k>"] = "move_selection_previous",
 			}
 		}
-	}
+	},
 }
 vim.cmd([[ 
 	let g:scratch_insert_autohide = 0

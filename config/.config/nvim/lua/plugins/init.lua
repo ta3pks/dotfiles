@@ -25,7 +25,7 @@ keymaps.n({
 		["\\wo"]  = ":WakatimeOpen<cr>",
 		["<leader>pr"] = ":lua require'utils'.rerequire'plugins';print'plugins reloaded'<cr>",
 		["<leader>pd"] = ":NERDTree " .. lua_plugings_path .. "<cr>",
-		["<c-w><c-p>"] = ":tabnew " .. lua_plugings_path .. "/init.lua<cr>",
+		["<C-w><C-p>"] = ":tabnew " .. lua_plugings_path .. "/init.lua<cr>",
 	})
 -- packer config
 local fn = vim.fn
@@ -82,6 +82,13 @@ require('packer').startup(function(use)
 end)
 require "telescope".setup{
 	defaults={
+		layout_config = {
+			horizontal = {
+				width = 0.9,
+				preview_width = 0.6
+
+			}
+		},
 		mappings={
 			i = {
 				["<C-j>"] = "move_selection_next",

@@ -90,9 +90,13 @@ require "telescope".setup{
 			}
 		},
 		mappings={
+			n = {
+				["<a-x>"] = require('telescope.actions').delete_buffer
+			},
 			i = {
 				["<C-j>"] = "move_selection_next",
 				["<C-k>"] = "move_selection_previous",
+				["<a-x>"] = require('telescope.actions').delete_buffer
 			}
 		}
 	},

@@ -10,7 +10,7 @@ nnoremap <buffer> \t : call <SID>RUST_RUN("test --workspace -- --nocapture")<cr>
 nnoremap <buffer> \tc :call <SID>RUST_RUN("test ".expand("<cword>")." -- --nocapture")<cr>
 nnoremap <buffer> \ti :call <SID>RUST_RUN("test ".input("name of the test fn: ")." -- --nocapture")<cr>
 nnoremap <buffer> \mc :make check<cr>
-nnoremap <buffer> \c :call <SID>RUST_RUN("clippy  --workspace ".g:rust_params)<cr>
+nnoremap <buffer> \c :call <SID>RUST_RUN("check  --workspace ".g:rust_params)<cr>
 "nnoremap <buffer> <c-m-l> :RustFmt<cr>
 
 
@@ -34,7 +34,3 @@ let g:rustfmt_fail_silently = 1
 setl makeprg="make"
 setl foldmethod=marker
 setl nowrap
-augroup __RustBufLocal
-	au! __RustBufLocal
-	au BufWritePre *.rs lua vim.lsp.buf.formatting_sync()
-augroup END

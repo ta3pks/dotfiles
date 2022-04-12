@@ -1,3 +1,9 @@
+vim.cmd [[
+augroup __AutoFormatters
+	au! __AutoFormatters
+	au BufWritePre *.js,*.ts,*.rs lua vim.lsp.buf.formatting_sync()
+augroup END
+]]
 local keymaps = require("keymaps")
 
 -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
@@ -23,8 +29,8 @@ local on_attach = function(client, bufnr)
 end
 local servers = {'rust_analyzer'}
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-for _, lsp in pairs(servers) do
-  require('lspconfig')[lsp].setup {
+require("nvim-lsp-installer").on_server_ready(function(server)
+  server:setup {
     capabilities = capabilities,
     on_attach = on_attach,
     flags = {
@@ -42,7 +48,7 @@ for _, lsp in pairs(servers) do
           features = {}
         },
         checkOnSave={
-          command = "clippy",
+          command = "check",
           enable = true,
           allFeatures = false,
         },
@@ -63,4 +69,5 @@ for _, lsp in pairs(servers) do
       }
     }
   }
-end
+
+end)

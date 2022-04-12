@@ -30,6 +30,7 @@ keymaps.n({
 -- packer config
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local packer_bootstrap
 if fn.empty(fn.glob(install_path)) > 0 then
 	packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
@@ -66,6 +67,7 @@ require('packer').startup(function(use)
 	use  'wakatime/vim-wakatime'
 	use {
 		'neovim/nvim-lspconfig',
+		'williamboman/nvim-lsp-installer',
 	}
 	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 	use {
@@ -86,7 +88,6 @@ require "telescope".setup{
 			horizontal = {
 				width = 0.9,
 				preview_width = 0.6
-
 			}
 		},
 		mappings={

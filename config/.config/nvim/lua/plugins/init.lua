@@ -13,7 +13,7 @@ keymaps.n({
 	["<c-b>"]      = ":Telescope buffers<cr>",
 	["<leader>s"]  = ":Telescope live_grep<cr>",
 	["<c-\\>"]     = ":Telescope resume<cr>",
-	 ["<C-p>"]      = ":Telescope find_files<cr>",
+	["<C-p>"]      = ":Telescope find_files<cr>",
 	["<C-f>"]      = ":Telescope grep_string<cr>",
 	["<Leader>b"]  = ':exec "Tabularize/".input("enter regex: ")."/"<cr>',
 	["<Leader>nc"] = ":NERDTreeClose<cr>",
@@ -85,6 +85,9 @@ require('packer').startup(function(use)
 end)
 require "telescope".setup {
 	defaults = {
+		preview = {
+			hide_on_startup = true,
+		},
 		layout_config = {
 			horizontal = {
 				width = 0.9,
@@ -93,12 +96,14 @@ require "telescope".setup {
 		},
 		mappings = {
 			n = {
-				["<a-x>"] = require('telescope.actions').delete_buffer
+				["<a-x>"] = require('telescope.actions').delete_buffer,
+				["<a-p>"] = require('telescope.actions.layout').toggle_preview
 			},
 			i = {
 				["<C-j>"] = "move_selection_next",
 				["<C-k>"] = "move_selection_previous",
-				["<a-x>"] = require('telescope.actions').delete_buffer
+				["<a-x>"] = require('telescope.actions').delete_buffer,
+				["<a-p>"] = require('telescope.actions.layout').toggle_preview
 			}
 		}
 	},
@@ -108,6 +113,7 @@ vim.cmd([[
 	let g:airline_powerline_fonts = 1
 	let g:airline#extensions#whitespace#enabled = 0
 	let g:airline_theme='one'
+	"let g:airline_section_y = "%{bufnr('%')}" 
 	let NERDTreeWinSize = 30
 	let g:user_emmet_leader_key = "<m-e>"
 	colorscheme one

@@ -1,75 +1,76 @@
 local utils = require("utils")
 local keymaps = require("keymaps")
-require("plugins.lsp")
-require("plugins.cmp")
+utils.rerequire("plugins.lsp")
+utils.rerequire("plugins.cmp")
 --local plugings_path = utils.vimrc_dir() .. "plugin_config.vim"
 local lua_plugings_path = utils.vimrc_lua_dir() .. "plugins"
-vim.g.polyglot_disabled = {'go'}
-vim.g['rainbow#pairs'] = {{'(', ')'}, {'[', ']'} , {'{', '}'}}
-vim.g['rainbow#blacklist'] = {'#cc241d'}
+vim.g.polyglot_disabled = { 'go' }
+vim.g['rainbow#pairs'] = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
+vim.g['rainbow#blacklist'] = { '#cc241d' }
 -- vim.cmd("source " .. plugings_path)
 keymaps.n({
-		--	["<c-w><c-p>"] = ":tabnew " .. plugings_path .. "<cr>",
-		["<c-b>"] = ":Telescope buffers<cr>",
-		["<leader>s"] = ":Telescope live_grep<cr>",
-		["<c-\\>"] = ":Telescope resume<cr>",
-		["<C-p>"] = ":Telescope find_files<cr>",
-		["<C-f>"] = ":Telescope grep_string<cr>",
-		["<Leader>b"] = ':exec "Tabularize/".input("enter regex: ")."/"<cr>',
-		["<Leader>nc"] = ":NERDTreeClose<cr>",
-		["<Leader>nt"] = ":NERDTreeToggle<cr>",
-		["<Leader>nf"] = ":NERDTreeFind<cr>",
-		["<Leader>gg"] = ":wa|:Git<cr>",
-		["<Leader>gs"] = ":Telescope git_commits<cr>",
-		["\\wt"] = ":WakaTimeToday<cr>",
-		["\\wo"]  = ":WakatimeOpen<cr>",
-		["<leader>pr"] = ":lua require'utils'.rerequire'plugins';print'plugins reloaded'<cr>",
-		["<leader>pd"] = ":NERDTree " .. lua_plugings_path .. "<cr>",
-		["<C-w><C-p>"] = ":tabnew " .. lua_plugings_path .. "/init.lua<cr>",
-	})
+	--	["<c-w><c-p>"] = ":tabnew " .. plugings_path .. "<cr>",
+	["<c-b>"]      = ":Telescope buffers<cr>",
+	["<leader>s"]  = ":Telescope live_grep<cr>",
+	["<c-\\>"]     = ":Telescope resume<cr>",
+	 ["<C-p>"]      = ":Telescope find_files<cr>",
+	["<C-f>"]      = ":Telescope grep_string<cr>",
+	["<Leader>b"]  = ':exec "Tabularize/".input("enter regex: ")."/"<cr>',
+	["<Leader>nc"] = ":NERDTreeClose<cr>",
+	["<Leader>nt"] = ":NERDTreeToggle<cr>",
+	["<Leader>nf"] = ":NERDTreeFind<cr>",
+	["<Leader>gg"] = ":wa|:Git<cr>",
+	["<Leader>gs"] = ":Telescope git_commits<cr>",
+	["\\wt"]       = ":WakaTimeToday<cr>",
+	["\\wo"]       = ":WakatimeOpen<cr>",
+	["<leader>pr"] = ":lua require'utils'.rerequire'plugins';print'plugins reloaded'<cr>",
+	["<leader>pd"] = ":NERDTree " .. lua_plugings_path .. "<cr>",
+	["<C-w><C-p>"] = ":tabnew " .. lua_plugings_path .. "/init.lua<cr>",
+	["\\wp"]       = ":tabnew " .. lua_plugings_path .. "/lsp.lua<cr>",
+})
 -- packer config
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 local packer_bootstrap
 if fn.empty(fn.glob(install_path)) > 0 then
-	packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+	packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
 end
 
 require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
-	use  'airblade/vim-gitgutter'
-	use  'bling/vim-airline'
-	use  'vim-airline/vim-airline-themes'
-	use  'nvim-lua/plenary.nvim'
-	use  'nvim-telescope/telescope.nvim'
-	use  'nvim-treesitter/nvim-treesitter'
-	use  'tpope/vim-dadbod'
-	use  'kristijanhusak/vim-dadbod-ui'
-	use  'hsanson/vim-openapi'
-	use  'dNitro/vim-pug-complete'
-	use  'tomtom/tcomment_vim'
-	use  'dag/vim-fish'
-	use  'github/copilot.vim'
-	use  'godlygeek/tabular'
-	use  'gregsexton/MatchTag'
-	use  'jacoborus/tender.vim'
-	use  'mattn/emmet-vim'
-	use  'junegunn/rainbow_parentheses.vim'
-	use  'mmahnic/vim-flipwords'
-	use  'rakr/vim-one'
-	use  {
+	use 'airblade/vim-gitgutter'
+	use 'bling/vim-airline'
+	use 'vim-airline/vim-airline-themes'
+	use 'nvim-lua/plenary.nvim'
+	use 'nvim-telescope/telescope.nvim'
+	use 'nvim-treesitter/nvim-treesitter'
+	use 'tpope/vim-dadbod'
+	use 'kristijanhusak/vim-dadbod-ui'
+	use 'hsanson/vim-openapi'
+	use 'dNitro/vim-pug-complete'
+	use 'tomtom/tcomment_vim'
+	use 'dag/vim-fish'
+	use 'github/copilot.vim'
+	use 'godlygeek/tabular'
+	use 'gregsexton/MatchTag'
+	use 'jacoborus/tender.vim'
+	use 'mattn/emmet-vim'
+	use 'junegunn/rainbow_parentheses.vim'
+	use 'mmahnic/vim-flipwords'
+	use 'rakr/vim-one'
+	use {
 		'rust-lang/rust.vim',
 	}
-	use  'scrooloose/nerdtree'
-	use  'sheerun/vim-polyglot'
-	use  'tpope/vim-fugitive'
-	use  'tpope/vim-surround'
-	use  'wakatime/vim-wakatime'
+	use 'scrooloose/nerdtree'
+	use 'sheerun/vim-polyglot'
+	use 'tpope/vim-fugitive'
+	use 'tpope/vim-surround'
+	use 'wakatime/vim-wakatime'
 	use {
 		'neovim/nvim-lspconfig',
 		'williamboman/nvim-lsp-installer',
 	}
-	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 	use {
 		'hrsh7th/nvim-cmp',
 		'hrsh7th/cmp-nvim-lsp',
@@ -82,15 +83,15 @@ require('packer').startup(function(use)
 		require('packer').sync()
 	end
 end)
-require "telescope".setup{
-	defaults={
+require "telescope".setup {
+	defaults = {
 		layout_config = {
 			horizontal = {
 				width = 0.9,
 				preview_width = 0.6
 			}
 		},
-		mappings={
+		mappings = {
 			n = {
 				["<a-x>"] = require('telescope.actions').delete_buffer
 			},
@@ -104,7 +105,7 @@ require "telescope".setup{
 }
 vim.cmd([[ 
 	let g:scratch_insert_autohide = 0
-	let g:airline_powerline_fonts = 0
+	let g:airline_powerline_fonts = 1
 	let g:airline#extensions#whitespace#enabled = 0
 	let g:airline_theme='one'
 	let NERDTreeWinSize = 30
@@ -120,5 +121,5 @@ vim.cmd([[
 			set termguicolors
 			endif
 			autocmd VimEnter * RainbowParentheses
-			let g:airline#extensions#tabline#enabled = 0
+			"let g:airline#extensions#tabline#enabled = 0
 			]])

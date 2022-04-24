@@ -1,19 +1,19 @@
-local cmp = require"cmp"
+local cmp = require "cmp"
 
-cmp.setup{
+cmp.setup {
 	snippet = {
-		expand = function (args)
+		expand = function(args)
 			vim.fn["UltiSnips#Anon"](args.body)
 		end,
 	},
-	mapping={
+	mapping = cmp.mapping.preset.insert {
 		['<C-e>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
 		['<C-y>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
 		['<CR>'] = cmp.mapping.confirm({ select = true }),
 	},
-	sources =	{
-			{ name = 'nvim_lsp' },
-			{ name = 'ultisnips' }, 
-			{ name = 'nvim_lsp_signature_help' },
-		},
+	sources = {
+		{ name = 'nvim_lsp' },
+		{ name = 'ultisnips' },
+		{ name = 'nvim_lsp_signature_help' },
+	},
 }

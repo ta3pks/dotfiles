@@ -10,6 +10,27 @@ cmp.setup {
 		['<C-e>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
 		['<C-y>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
 		['<CR>'] = cmp.mapping.confirm({ select = true }),
+		['<C-c>'] = cmp.mapping.abort(),
+		['<C-j>'] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			else
+				fallback()
+			end
+		end),
+
+		['<C-k>'] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			else
+				fallback()
+			end
+		end)
+		,
+
+
+
+
 	},
 	sources = {
 		{ name = 'nvim_lsp' },

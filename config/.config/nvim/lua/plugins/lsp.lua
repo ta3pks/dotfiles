@@ -1,7 +1,7 @@
 vim.cmd [[
 augroup __AutoFormatters
 	au! __AutoFormatters
-	au BufWritePre *.js,*.ts,*.rs,*.lua lua vim.lsp.buf.formatting_sync()
+	au BufWritePre *.dart,*.js,*.ts,*.rs,*.lua lua vim.lsp.buf.formatting_sync()
 augroup END
 ]]
 local keymaps = require("keymaps")
@@ -23,7 +23,8 @@ local on_attach = function(client, bufnr)
     ["<leader>q"] = ":Telescope lsp_range_code_actions<cr>",
     ["<m-s>"] = ":Telescope lsp_workspace_symbols<cr>",
     ["<m-d>"] = ":Telescope diagnostics<cr>",
-    ["<m-.>"] = ":Telescope lsp_code_actions<cr>",
+    ["<m-.>"] = ":lua vim.lsp.buf.code_action()<cr>",
+    ["<m-,>"] = ":lua vim.lsp.buf.code_action({only={'quickfix'}})<cr>",
     ["<leader>r"] = ":lua vim.lsp.buf.rename()<cr>",
     ["<m-c-l>"] = ":lua vim.lsp.buf.formatting()<cr>",
   }
@@ -49,7 +50,8 @@ local ra_config = { --{{{
       "unresolved-proc-macro",
       "unresolved-macro-call",
       "macro-error",
-      "inactive-code"
+      "inactive-code",
+      "unlinked-file",
     }
   },
   inlayHints = {

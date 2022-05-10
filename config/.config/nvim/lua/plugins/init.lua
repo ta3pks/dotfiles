@@ -38,11 +38,14 @@ end
 
 require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
+	use 'thosakwe/vim-flutter'
 	use 'airblade/vim-gitgutter'
 	use 'bling/vim-airline'
 	use 'vim-airline/vim-airline-themes'
 	use 'nvim-lua/plenary.nvim'
-	use 'nvim-telescope/telescope.nvim'
+	use { 'nvim-telescope/telescope.nvim',
+		'nvim-telescope/telescope-ui-select.nvim'
+	}
 	use 'nvim-treesitter/nvim-treesitter'
 	use 'tpope/vim-dadbod'
 	use 'kristijanhusak/vim-dadbod-ui'
@@ -83,6 +86,7 @@ require('packer').startup(function(use)
 		require('packer').sync()
 	end
 end)
+require("telescope").load_extension("ui-select")
 require "telescope".setup {
 	defaults = {
 		preview = {

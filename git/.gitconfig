@@ -39,6 +39,6 @@
 [pull]
 	rebase = false
 [init]
-	defaultBranch = master
+	defaultbranch = main
 # [gpg]
 # 	program = gpg2

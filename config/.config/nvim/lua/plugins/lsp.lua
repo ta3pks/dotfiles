@@ -1,7 +1,7 @@
 vim.cmd [[
 augroup __AutoFormatters
 	au! __AutoFormatters
-	au BufWritePre *.dart,*.js,*.ts,*.rs,*.lua lua vim.lsp.buf.formatting_sync()
+	au BufWritePre *.html,*.toml,*.svelte,*.dart,*.js,*.json,*.ts*,*.rs,*.lua lua vim.lsp.buf.formatting_sync()
 augroup END
 ]]
 local keymaps = require("keymaps")
@@ -27,6 +27,7 @@ local on_attach = function(client, bufnr)
     ["<m-,>"] = ":lua vim.lsp.buf.code_action({only={'quickfix'}})<cr>",
     ["<leader>r"] = ":lua vim.lsp.buf.rename()<cr>",
     ["<m-c-l>"] = ":lua vim.lsp.buf.formatting()<cr>",
+    ["<m-o>"] = ":lua vim.lsp.buf.document_symbol()<cr>",
   }
 end
 local servers = { 'rust_analyzer' }
@@ -37,11 +38,11 @@ local ra_config = { --{{{
     extraArgs = { "+nightly" }
   },
   cargo = {
-    allFeatures = false,
+    allFeatures = true,
     features = {}
   },
   checkOnSave = {
-    command = "check",
+    command = "clippy",
     enable = true,
     allFeatures = false,
   },
@@ -76,6 +77,8 @@ require("nvim-lsp-installer").on_server_ready(function(server)
     cfg.init_options = {
       lint = true,
     }
+  elseif server.name == "emmet_ls" then
+    cfg.filetypes = { "html", "css", "typescriptreact", "javascriptreact", "svelte" }
   end
   server:setup(cfg)
 end)

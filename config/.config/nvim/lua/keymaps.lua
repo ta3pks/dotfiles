@@ -25,7 +25,6 @@ local keymaps = {
 	["<c-right>"] = ":call feedkeys('2zl')<cr>",
 	["<c-left>"] = ":call feedkeys('2zh')<cr>",
 	["<leader>d"] = { ":!date<cr>", silent = true },
-	["<m-o>"] = { ":CocOutline<cr>", silent = true },
 }
 
 vim.cmd("command! W :w")
@@ -48,24 +47,30 @@ local function map(mode, maps)
 		end
 	end
 end
+
 map("n", keymaps) --init default global keymaps
 local m = {}
 function m.reload_keymaps()
 	utils.rerequire("keymaps")
 	print("keymaps reloaded")
 end
-function m.n(keymaps)
-	map("n", keymaps)
+
+function m.n(kmaps)
+	map("n", kmaps)
 end
-function m.i(keymaps)
-	map("i", keymaps)
+
+function m.i(kmaps)
+	map("i", kmaps)
 end
+
 function m.open_keymap_file()
 	vim.cmd("tabnew " .. string.match(vim.env.MYVIMRC, ".*/") .. "/lua/keymaps.lua")
 end
+
 function m.open_utils_file()
 	vim.cmd("tabnew " .. string.match(vim.env.MYVIMRC, ".*/") .. "/lua/utils.lua")
 end
+
 function m.close_buffer()
 	if utils.num_active_bufs() == 1 then
 		vim.cmd("q")
@@ -73,4 +78,5 @@ function m.close_buffer()
 		vim.cmd("bd")
 	end
 end
+
 return m

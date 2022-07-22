@@ -6,11 +6,11 @@ if !exists('g:rust_run_params')
 endif
 nnoremap <buffer> \e :wa \| call <SID>RUST_RUN("run ".g:rust_run_params )<cr>
 nnoremap <buffer> \b : call <SID>RUST_RUN("build")<cr>
-nnoremap <buffer> \t : call <SID>RUST_RUN("test --workspace -- --nocapture")<cr>
+nnoremap <buffer> \t : call <SID>RUST_RUN("test --workspace -- --nocapture --test-threads=1")<cr>
 nnoremap <buffer> \tc :call <SID>RUST_RUN("test ".expand("<cword>")." -- --nocapture")<cr>
 nnoremap <buffer> \ti :call <SID>RUST_RUN("test ".input("name of the test fn: ")." -- --nocapture")<cr>
 nnoremap <buffer> \mc :make check<cr>
-nnoremap <buffer> \c :call <SID>RUST_RUN("check  --workspace ".g:rust_params)<cr>
+nnoremap <buffer> \c :call <SID>RUST_RUN("clippy --all-features  --workspace ".g:rust_params)<cr>
 "nnoremap <buffer> <c-m-l> :RustFmt<cr>
 
 

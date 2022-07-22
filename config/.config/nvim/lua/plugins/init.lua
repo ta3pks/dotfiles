@@ -14,7 +14,6 @@ keymaps.n({
 	["<leader>s"]  = ":Telescope live_grep<cr>",
 	["<c-\\>"]     = ":Telescope resume<cr>",
 	["<C-p>"]      = ":Telescope find_files<cr>",
-	["<C-f>"]      = ":Telescope grep_string<cr>",
 	["<Leader>b"]  = ':exec "Tabularize/".input("enter regex: ")."/"<cr>',
 	["<Leader>nc"] = ":NERDTreeClose<cr>",
 	["<Leader>nt"] = ":NERDTreeToggle<cr>",
@@ -28,6 +27,10 @@ keymaps.n({
 	["<C-w><C-p>"] = ":tabnew " .. lua_plugings_path .. "/init.lua<cr>",
 	["\\wp"]       = ":tabnew " .. lua_plugings_path .. "/lsp.lua<cr>",
 })
+keymaps.i {
+	["\\cc"] = "<c-o>:Copilot panel<cr>",
+}
+vim.cmd "command! -nargs=0 CP Copilot panel"
 -- packer config
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -43,6 +46,7 @@ require('packer').startup(function(use)
 	use 'bling/vim-airline'
 	use 'vim-airline/vim-airline-themes'
 	use 'nvim-lua/plenary.nvim'
+	use 'evanleck/vim-svelte'
 	use { 'nvim-telescope/telescope.nvim',
 		'nvim-telescope/telescope-ui-select.nvim'
 	}

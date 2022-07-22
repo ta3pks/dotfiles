@@ -249,6 +249,11 @@ _G.packer_plugins = {
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
   },
+  ["vim-svelte"] = {
+    loaded = true,
+    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-svelte",
+    url = "https://github.com/evanleck/vim-svelte"
+  },
   ["vim-wakatime"] = {
     loaded = true,
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-wakatime",

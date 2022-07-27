@@ -117,17 +117,19 @@ require "telescope".setup {
 	},
 }
 vim.cmd([[ 
+	
 	let g:scratch_insert_autohide = 0
 	let g:airline_powerline_fonts = 1
 	let g:airline#extensions#whitespace#enabled = 0
 	let g:airline_theme='one'
-	"let g:airline_section_y = "%{bufnr('%')}" 
 	let NERDTreeWinSize = 30
 	let g:user_emmet_leader_key = "<m-e>"
 	colorscheme one
 	autocmd BufReadPost *.tsx set ft=typescript.tsx
-	command! WakatimeOpen :silent !open https://wakatime.com<cr>
-	command! Gpull :Git pull<cr>
+	command! WakatimeOpen :silent !open https://wakatime.com
+	command! Gpull :Git pull
+	command! UpdatePlugins :PackerSync
+	command! LspUpdates :LspInstallInfo
 	if (has("nvim"))
 		let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 		endif
@@ -135,5 +137,4 @@ vim.cmd([[
 			set termguicolors
 			endif
 			autocmd VimEnter * RainbowParentheses
-			"let g:airline#extensions#tabline#enabled = 0
 			]])

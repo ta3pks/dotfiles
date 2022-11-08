@@ -1,4 +1,5 @@
-fish_vi_key_bindings
+ fish_default_key_bindings
+# fish_vi_key_bindings
 set -x DATABASE_URL "postgres://postgres:postgres@127.0.0.1/smm?sslmode=disable"
 set -ax PATH  ~/.cargo/bin ~/.cabal/bin ~/.ghcup/bin ~/.gem/ruby/2.6.0/bin /snap/bin ~/Android//Sdk/platform-tools ~/android-studio/bin ~/Android/Sdk/emulator
 set -ax PATH $HOME/.local/bin ~/.mybin ~/go/bin ~/bitcoin/bin/ ~/.gem/ruby/2.7.0/bin/ /usr/local/bin/ ~/adb-fastboot/current/ $JAVA_HOME/bin
@@ -76,3 +77,8 @@ source /opt/homebrew/opt/asdf/libexec/asdf.fish
 fish_add_path ~/.local/share/nvim/lsp_servers/rust
 fish_add_path ~/.local/share/nvim/lsp_servers/taplo/bin
 fish_add_path ~/.flutter_dir/bin/
+
+# pnpm
+set -gx PNPM_HOME "/Users/nikos/Library/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end

@@ -1,3 +1,5 @@
+[net]
+git-fetch-with-cli=true
 [alias]
 t = "test -- --nocapture --color always"
 [profile.dev]

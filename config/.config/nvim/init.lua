@@ -19,4 +19,4 @@ vim.o.numberwidth = 1 -- width of line numbers column on left
 vim.o.foldmethod = "marker"
 vim.o.termguicolors = true
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
-vim.o.mouse='a'
+vim.o.mouse = 'a'

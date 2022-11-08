@@ -1,7 +1,7 @@
 vim.cmd [[
 augroup __AutoFormatters
 	au! __AutoFormatters
-	au BufWritePre *.html,*.toml,*.svelte,*.dart,*.js,*.json,*.ts*,*.rs,*.lua lua vim.lsp.buf.formatting_sync()
+	au BufWritePre *.html,*.toml,*.svelte,*.dart,*.js,*.json,*.ts*,*.rs,*.lua lua vim.lsp.buf.format()
 augroup END
 ]]
 local keymaps = require("keymaps")
@@ -26,12 +26,12 @@ local on_attach = function(client, bufnr)
     ["<m-.>"] = ":lua vim.lsp.buf.code_action()<cr>",
     ["<m-,>"] = ":lua vim.lsp.buf.code_action({only={'quickfix'}})<cr>",
     ["<leader>r"] = ":lua vim.lsp.buf.rename()<cr>",
-    ["<m-c-l>"] = ":lua vim.lsp.buf.formatting()<cr>",
+    ["<m-c-l>"] = ":lua vim.lsp.buf.format{async=true}<cr>",
     ["<m-o>"] = ":lua vim.lsp.buf.document_symbol()<cr>",
   }
 end
 local servers = { 'rust_analyzer' }
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local ra_config = { --{{{
   enable = true,
   rustfmt = {
@@ -42,7 +42,7 @@ local ra_config = { --{{{
     features = {}
   },
   checkOnSave = {
-    command = "clippy",
+    command = "check",
     enable = true,
     allFeatures = false,
   },

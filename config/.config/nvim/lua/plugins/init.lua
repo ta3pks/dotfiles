@@ -57,7 +57,7 @@ require('packer').startup(function(use)
 	use 'dNitro/vim-pug-complete'
 	use 'tomtom/tcomment_vim'
 	use 'dag/vim-fish'
-	use 'github/copilot.vim'
+	-- use 'github/copilot.vim'
 	use 'godlygeek/tabular'
 	use 'gregsexton/MatchTag'
 	use 'jacoborus/tender.vim'
@@ -85,6 +85,7 @@ require('packer').startup(function(use)
 		'quangnguyen30192/cmp-nvim-ultisnips',
 		"hrsh7th/cmp-nvim-lsp-signature-help",
 	}
+	use 'github/copilot.vim'
 
 	if packer_bootstrap then
 		require('packer').sync()

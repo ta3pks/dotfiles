@@ -34,9 +34,9 @@ local servers = { 'rust_analyzer' }
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local ra_config = { --{{{
   enable = true,
-  rustfmt = {
-    extraArgs = { "+nightly" }
-  },
+  -- rustfmt = {
+  --   extraArgs = { "+nightly" }
+  -- },
   cargo = {
     allFeatures = true,
     features = {}

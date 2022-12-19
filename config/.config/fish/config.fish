@@ -1,6 +1,5 @@
  fish_default_key_bindings
 # fish_vi_key_bindings
-set -x DATABASE_URL "postgres://postgres:postgres@127.0.0.1/smm?sslmode=disable"
 set -ax PATH  ~/.cargo/bin ~/.cabal/bin ~/.ghcup/bin ~/.gem/ruby/2.6.0/bin /snap/bin ~/Android//Sdk/platform-tools ~/android-studio/bin ~/Android/Sdk/emulator
 set -ax PATH $HOME/.local/bin ~/.mybin ~/go/bin ~/bitcoin/bin/ ~/.gem/ruby/2.7.0/bin/ /usr/local/bin/ ~/adb-fastboot/current/ $JAVA_HOME/bin
 set -x LC_ALL en_US.UTF-8

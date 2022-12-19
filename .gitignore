@@ -91,3 +91,8 @@ config/.config/coc/suggest.txt
 config/.config/fish/functions/proxy_connecteds.fish
 config/.config/fish/functions/trp.fish
 /config/.config/nvim/plugin/packer_compiled.lua
+/config/.config/coc/extensions/coc-json-data/
+/config/.config/coc/extensions/coc-json-data/
+/config/.config/coc/extensions/coc-toml-data/
+/config/.config/coc/list_history.dat
+/config/.config/coc/memos.json

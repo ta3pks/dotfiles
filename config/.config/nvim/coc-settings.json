@@ -1,20 +1,25 @@
 {
 	"suggest.removeDuplicateItems": true,
-	"diagnostic.highlighLimit": 100,
 	"signature.enable": true,
-	"diagnostic.messageTarget": "echo",
+	"copilot.enable": true,
+	"copilot.kindLabel": " ",
+	"diagnostic.messageTarget": "float",
 	"diagnostic.virtualTextCurrentLineOnly": false,
-	"diagnostic.virtualText": true,
+	"coc.preferences.formatOnSave": true,
+	"diagnostic.virtualText": false,
 	"coc.preferences.useQuickfixForLocations": true,
-	"coc.preferences.formatOnSaveFiletypes": [
-		"html",
-		"rust",
-		"json",
-		"toml",
-		"javascript",
-		"typescript",
-		"typescriptreact",
-		"haskell"
-	],
+	"coc.preferences.enableMessageDialog": true,
+	// "coc.preferences.formatOnSaveFiletypes": [
+	// 	"html",
+	// 	"rust",
+	// 	"json",
+	// 	"toml",
+	// 	"javascript",
+	// 	"typescript",
+	// 	"typescriptreact",
+	// 	"haskell"
+	// ],
 	"coc.source.buffer.ignoreGitignore": true,
+	"rust-analyzer.checkOnSave.command": "clippy",
+	"rust-analyzer.checkOnSave.target": [],
 }

@@ -9,16 +9,10 @@ local keymaps = require("keymaps")
 
 -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
 -- or if the server is already installed).
-keymaps.n({
-  ["<c-k>"] = ":lua vim.diagnostic.goto_prev()<cr>",
-  ["<c-j>"] = ":lua vim.diagnostic.goto_next()<cr>",
-})
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   keymaps.n {
-    ["<c-]>"] = ":Telescope lsp_definitions<cr>",
-    ["K"] = { ":lua vim.lsp.buf.hover()<cr>" },
     ["<leader>lr"] = ":Telescope lsp_references<cr>",
     ["<leader>q"] = ":Telescope lsp_range_code_actions<cr>",
     ["<m-s>"] = ":Telescope lsp_workspace_symbols<cr>",
@@ -42,7 +36,7 @@ local ra_config = { --{{{
     features = {}
   },
   checkOnSave = {
-    command = "check",
+    command = "clippy",
     enable = true,
     allFeatures = false,
   },

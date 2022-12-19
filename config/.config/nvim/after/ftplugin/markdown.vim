@@ -11,3 +11,4 @@ nnoremap <buffer><C-c> :GrammarousCheck<cr>
 let b:ale_fixers=['remark-lint']
 let b:ale_linters=[]
 setlocal nofoldenable
+let b:copilot_enabled = 1

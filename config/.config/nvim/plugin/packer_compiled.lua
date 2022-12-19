@@ -79,25 +79,20 @@ _G.packer_plugins = {
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/MatchTag",
     url = "https://github.com/gregsexton/MatchTag"
   },
-  ["cmp-nvim-lsp"] = {
+  ["coc.nvim"] = {
     loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
-    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
-  },
-  ["cmp-nvim-lsp-signature-help"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp-signature-help",
-    url = "https://github.com/hrsh7th/cmp-nvim-lsp-signature-help"
-  },
-  ["cmp-nvim-ultisnips"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/cmp-nvim-ultisnips",
-    url = "https://github.com/quangnguyen30192/cmp-nvim-ultisnips"
+    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/coc.nvim",
+    url = "https://github.com/neoclide/coc.nvim"
   },
   ["copilot.vim"] = {
     loaded = true,
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/copilot.vim",
     url = "https://github.com/github/copilot.vim"
+  },
+  ["ctrlp.vim"] = {
+    loaded = true,
+    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/ctrlp.vim",
+    url = "https://github.com/ctrlpvim/ctrlp.vim"
   },
   ["emmet-vim"] = {
     loaded = true,
@@ -109,45 +104,15 @@ _G.packer_plugins = {
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/nerdtree",
     url = "https://github.com/scrooloose/nerdtree"
   },
-  ["nvim-cmp"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/nvim-cmp",
-    url = "https://github.com/hrsh7th/nvim-cmp"
-  },
-  ["nvim-lsp-installer"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
-    url = "https://github.com/williamboman/nvim-lsp-installer"
-  },
-  ["nvim-lspconfig"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
-    url = "https://github.com/neovim/nvim-lspconfig"
-  },
-  ["nvim-treesitter"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
-    url = "https://github.com/nvim-treesitter/nvim-treesitter"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
-  ["plenary.nvim"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/plenary.nvim",
-    url = "https://github.com/nvim-lua/plenary.nvim"
-  },
   ["rainbow_parentheses.vim"] = {
     loaded = true,
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/rainbow_parentheses.vim",
     url = "https://github.com/junegunn/rainbow_parentheses.vim"
-  },
-  ["rust.vim"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/rust.vim",
-    url = "https://github.com/rust-lang/rust.vim"
   },
   tabular = {
     loaded = true,
@@ -159,30 +124,10 @@ _G.packer_plugins = {
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/tcomment_vim",
     url = "https://github.com/tomtom/tcomment_vim"
   },
-  ["telescope-fzf-native.nvim"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
-    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
-  },
-  ["telescope-ui-select.nvim"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/telescope-ui-select.nvim",
-    url = "https://github.com/nvim-telescope/telescope-ui-select.nvim"
-  },
-  ["telescope.nvim"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/telescope.nvim",
-    url = "https://github.com/nvim-telescope/telescope.nvim"
-  },
   ["tender.vim"] = {
     loaded = true,
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/tender.vim",
     url = "https://github.com/jacoborus/tender.vim"
-  },
-  ultisnips = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/ultisnips",
-    url = "https://github.com/SirVer/ultisnips"
   },
   ["vim-airline"] = {
     loaded = true,
@@ -194,16 +139,6 @@ _G.packer_plugins = {
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-airline-themes",
     url = "https://github.com/vim-airline/vim-airline-themes"
   },
-  ["vim-dadbod"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-dadbod",
-    url = "https://github.com/tpope/vim-dadbod"
-  },
-  ["vim-dadbod-ui"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-dadbod-ui",
-    url = "https://github.com/kristijanhusak/vim-dadbod-ui"
-  },
   ["vim-fish"] = {
     loaded = true,
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-fish",
@@ -213,11 +148,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-flipwords",
     url = "https://github.com/mmahnic/vim-flipwords"
-  },
-  ["vim-flutter"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-flutter",
-    url = "https://github.com/thosakwe/vim-flutter"
   },
   ["vim-fugitive"] = {
     loaded = true,
@@ -234,30 +164,15 @@ _G.packer_plugins = {
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-one",
     url = "https://github.com/rakr/vim-one"
   },
-  ["vim-openapi"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-openapi",
-    url = "https://github.com/hsanson/vim-openapi"
-  },
   ["vim-polyglot"] = {
     loaded = true,
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-polyglot",
     url = "https://github.com/sheerun/vim-polyglot"
   },
-  ["vim-pug-complete"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-pug-complete",
-    url = "https://github.com/dNitro/vim-pug-complete"
-  },
   ["vim-surround"] = {
     loaded = true,
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
-  },
-  ["vim-svelte"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-svelte",
-    url = "https://github.com/evanleck/vim-svelte"
   },
   ["vim-wakatime"] = {
     loaded = true,

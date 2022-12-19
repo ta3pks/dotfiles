@@ -20,3 +20,13 @@ vim.o.foldmethod = "marker"
 vim.o.termguicolors = true
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 vim.o.mouse = 'a'
+vim.o.guifont = "FiraCode Nerd Font:h14"
+if vim.fn.exists("g:neovide") then
+	vim.g.neovide_hide_mouse_when_typing = true
+	vim.g.neovide_full_screen = true
+	vim.g.neovide_macos_option_as_alt = true
+	vim.g.neovide_input_macos_alt_is_meta = true
+	vim.g.neovide_cursor_animation_length = 0.05
+	vim.g.neovide_cursor_trail_size = 0.1
+	vim.g.neovide_cursor_vfx_mode = ""
+end

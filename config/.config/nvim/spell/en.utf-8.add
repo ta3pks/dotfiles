@@ -133,3 +133,6 @@ workflow
 FormData
 actix
 params
+GameType
+ErrorResponse
+EmptySuccessResponse

@@ -136,3 +136,5 @@ params
 GameType
 ErrorResponse
 EmptySuccessResponse
+WinTypeType
+WinType

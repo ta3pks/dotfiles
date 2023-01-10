@@ -14,6 +14,7 @@ local keymaps = {
 	["<d-d>"] = ":lua require('plugins.openterm').open_term(1)<cr>",
 	["<c-s-t>"] = ":tabnew<cr>",
 	["<d-w>"] = ":tabclose<cr>",
+	["<d-n>"] = ":!neovide<cr>",
 	["<d-1>"] = ":1tabn<cr>",
 	["<d-2>"] = ":2tabn<cr>",
 	["<d-3>"] = ":3tabn<cr>",

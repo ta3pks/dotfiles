@@ -1,6 +1,6 @@
 command! -nargs=0 CocMarket CocList marketplace
-let froot = fnamemodify(expand('$MYVIMRC'), ':p:h')..'/coc.vim'
-nnoremap <silent> <leader>wp :exe 'tabnew '..froot<CR>
+let coc_vim_settings_root = fnamemodify(expand('$MYVIMRC'), ':p:h')..'/coc.vim'
+nnoremap <silent> <leader>wp :exe 'tabnew '.. coc_vim_settings_root<CR>
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice.
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"

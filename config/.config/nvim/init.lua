@@ -8,6 +8,7 @@ vim.cmd([[
 	"osx specific settings
 	inoremap <d-v> <c-r>+
 	vnoremap <d-c> "+ygv
+	autocmd VimEnter * NERDTree
 ]])
 vim.o.inccommand = "split"
 vim.o.ignorecase = true
@@ -36,4 +37,5 @@ if vim.fn.exists("g:neovide") then
 	vim.g.neovide_no_idle = false
 	vim.g.neovide_refresh_rate_idle = 1
 	vim.g.neovide_transparency = 0.9
+	vim.g.NERDTreeShowBookmarks = 1
 end

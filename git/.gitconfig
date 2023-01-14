@@ -27,6 +27,7 @@
 	fap = fetch --all --prune
 	sp = stash pop
 	sl = stash list
+	hash = rev-parse HEAD
 # define command which will be used when "nvim" is set as a merge tool
 [mergetool "nvim"]
   cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
@@ -42,3 +43,8 @@
 	defaultbranch = main
 # [gpg]
 # 	program = gpg2
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

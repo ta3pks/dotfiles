@@ -4,7 +4,7 @@ _G.LoadSession = function()
 		vim.cmd("source " .. fname)
 	end
 end
-_G.LoadProjectConfig = function() 
+_G.LoadProjectConfig = function()
 	for _,file in pairs({".project.vim",".project.lua"}) do
 		if vim.fn.filereadable(file)==1 then
 			vim.cmd("source "..file)
@@ -24,4 +24,3 @@ augroup __mysettings
 	autocmd BufEnter todo.txt set filetype=TODO
 augroup END
 ]])
-vim.cmd ("autocmd __mysettings VimLeavePre * :mksession! "..fname)

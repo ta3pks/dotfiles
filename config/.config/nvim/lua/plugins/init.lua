@@ -5,7 +5,6 @@ vim.cmd "exe 'source '..fnamemodify(expand('$MYVIMRC'), ':p:h')..'/coc.vim'"
 -- utils.rerequire("plugins.cmp")
 --local plugings_path = utils.vimrc_dir() .. "plugin_config.vim"
 local lua_plugings_path = utils.vimrc_lua_dir() .. "plugins"
-vim.g.polyglot_disabled = { 'go' }
 vim.g['rainbow#pairs'] = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
 vim.g['rainbow#blacklist'] = { '#cc241d' }
 -- vim.cmd("source " .. plugings_path)
@@ -82,35 +81,29 @@ require('packer').startup(function(use)
 	use 'ctrlpvim/ctrlp.vim'
 	use 'bling/vim-airline'
 	use 'airblade/vim-gitgutter'
-	-- }
-	-- }
-	-- }
-	-- }
-	-- use { 'nvim-telescope/telescope.nvim',
-	-- use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-	-- use {
-	-- use {
-	-- use {
-	-- use 'tpope/vim-dadbod'
-	-- use 'thosakwe/vim-flutter'
-	-- use 'nvim-treesitter/nvim-treesitter'
-	-- use 'nvim-lua/plenary.nvim'
-	-- use 'kristijanhusak/vim-dadbod-ui'
-	-- use 'hsanson/vim-openapi'
-	-- use 'github/copilot.vim'
-	-- use 'evanleck/vim-svelte'
-	-- use 'dNitro/vim-pug-complete'
-	-- 	'williamboman/nvim-lsp-installer',
-	-- 	'rust-lang/rust.vim',
-	-- 	'quangnguyen30192/cmp-nvim-ultisnips',
-	-- 	'nvim-telescope/telescope-ui-select.nvim'
-	-- 	'neovim/nvim-lspconfig',
-	-- 	'hrsh7th/nvim-cmp',
-	-- 	'hrsh7th/cmp-nvim-lsp',
-	-- 	'SirVer/ultisnips',
-	-- 	"hrsh7th/cmp-nvim-lsp-signature-help",
-
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = function()
+			local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+			ts_update()
+		end,
+	}
 	if packer_bootstrap then
 		require('packer').sync()
 	end
 end)
+require "nvim-treesitter.configs".setup {
+	ensure_installed = {"help","lua","vim","rust","toml","typescript","javascript","svelte","yaml"},
+	additional_vim_regex_highlighting = false,
+	incremental_selection = {
+		enable = false,
+	},
+	highlight = {
+		enable = true,
+	},
+	indent = {
+		enable = true,
+	},
+
+}
+vim.cmd "set foldexpr=nvim_treesitter#foldexpr()"

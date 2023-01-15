@@ -13,9 +13,10 @@
     "coc-tsserver": ">=1.9.13",
     "coc-vetur": ">=1.2.5",
     "coc-vimlsp": ">=0.12.8",
-    "coc-pyright": ">=1.1.282"
+    "coc-pyright": ">=1.1.282",
+    "@softmotions/coc-svelte": ">=0.4.2"
   },
   "disabled": [],
   "locked": [],
-  "lastUpdate": 1673656874559
+  "lastUpdate": 1673747995619
 }

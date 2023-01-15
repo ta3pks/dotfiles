@@ -104,6 +104,11 @@ _G.packer_plugins = {
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/nerdtree",
     url = "https://github.com/scrooloose/nerdtree"
   },
+  ["nvim-treesitter"] = {
+    loaded = true,
+    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/packer.nvim",

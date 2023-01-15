@@ -23,4 +23,5 @@
 	"rust-analyzer.checkOnSave.command": "clippy",
   "rust-analyzer.checkOnSave.target": [],
   "coc.preferences.extensionUpdateCheck": "daily",
+  "svelte.enable-ts-plugin": true,
 }

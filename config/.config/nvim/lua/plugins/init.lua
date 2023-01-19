@@ -23,7 +23,46 @@ keymaps.n({
 	["<leader>pr"] = ":lua require'utils'.rerequire'plugins';print'plugins reloaded'<cr>",
 	["<leader>pd"] = ":NERDTree " .. lua_plugings_path .. "<cr>",
 	["<C-w><C-p>"] = ":tabnew " .. lua_plugings_path .. "/init.lua<cr>",
+	["<a-b>"] = ":lua OpenBookmark()<cr>",
 })
+function GetBookmarks()
+	local filename = vim.g.NERDTreeBookmarksFile
+	local f = io.open(filename, "r")
+	if f == nil then
+		print("No bookmarks file found")
+		return {}
+	end
+	local bookmarks = {}
+	for line in f:lines() do
+		local parts = vim.split(line, " ")
+		if parts[1] == nil or parts[1] == '' then
+			goto continue
+		end
+		table.insert(bookmarks, parts[1])
+		::continue::
+	end
+	f:close()
+	return bookmarks
+end
+function OpenBookmark()
+	local bookmarks = GetBookmarks()
+	for i, bookmark in ipairs(bookmarks) do
+		bookmarks[i] = i .. ": " .. bookmark
+	end
+	local choice = vim.fn.inputlist(bookmarks)
+	if choice == 0  then
+		return
+	elseif choice > #bookmarks then
+		print("Invalid choice")
+		return
+	end
+
+	local _,i = string.find(bookmarks[choice],": ")
+	choice = bookmarks[choice]:sub(i)
+	print(choice)
+	vim.cmd("NERDTreeFromBookmark " .. choice)
+	vim.cmd("normal cd")
+end
 keymaps.i {
 	["\\cc"] = "<c-o>:Copilot panel<cr>",
 }
@@ -92,6 +131,7 @@ require('packer').startup(function(use)
 		require('packer').sync()
 	end
 end)
+
 require "nvim-treesitter.configs".setup {
 	ensure_installed = {"help","lua","vim","rust","toml","typescript","javascript","svelte","yaml"},
 	additional_vim_regex_highlighting = false,

@@ -10,7 +10,7 @@ vim.cmd([[
 	vnoremap <d-c> "+ygv
 	tnoremap <expr> <d-v> '<C-\><C-N>"+pi'
 	tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
-	autocmd VimEnter * exe 'let NERDTreeShowBookmarks=1 | NERDTree $HOME | let NERDTreeShowBookmarks=0'
+	command! -bar -nargs=0 Ssrc source %
 ]])
 vim.o.inccommand = "split"
 vim.o.ignorecase = true

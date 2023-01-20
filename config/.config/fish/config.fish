@@ -76,6 +76,7 @@ source /opt/homebrew/opt/asdf/libexec/asdf.fish
 fish_add_path ~/.local/share/nvim/lsp_servers/rust
 fish_add_path ~/.local/share/nvim/lsp_servers/taplo/bin
 fish_add_path ~/.flutter_dir/bin/
+fish_add_path /opt/local/bin/
 
 # pnpm
 set -gx PNPM_HOME "/Users/nikos/Library/pnpm"

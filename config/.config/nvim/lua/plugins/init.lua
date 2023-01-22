@@ -18,6 +18,7 @@ keymaps.n({
 	["<Leader>nt"] = ":NERDTreeToggle<cr>",
 	["<Leader>nf"] = ":NERDTreeFind<cr>",
 	["<Leader>gg"] = ":wa|:Git<cr>",
+	["<Leader>gp"] = ":wa|:Git pull<cr>",
 	["\\wt"]       = ":WakaTimeToday<cr>",
 	["\\wo"]       = ":WakatimeOpen<cr>",
 	["<leader>pr"] = ":lua require'utils'.rerequire'plugins';print'plugins reloaded'<cr>",

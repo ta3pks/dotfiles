@@ -1,4 +1,4 @@
- fish_default_key_bindings
+#  fish_default_key_bindings
 # fish_vi_key_bindings
 set -ax PATH  ~/.cargo/bin ~/.cabal/bin ~/.ghcup/bin ~/.gem/ruby/2.6.0/bin /snap/bin ~/Android//Sdk/platform-tools ~/android-studio/bin ~/Android/Sdk/emulator
 set -ax PATH $HOME/.local/bin ~/.mybin ~/go/bin ~/bitcoin/bin/ ~/.gem/ruby/2.7.0/bin/ /usr/local/bin/ ~/adb-fastboot/current/ $JAVA_HOME/bin
@@ -11,12 +11,6 @@ set -x GOPATH ~/go
 set -x GOBIN $GOPATH/bin
 if test -f /opt/homebrew/bin/brew
 	eval (/opt/homebrew/bin/brew shellenv)
-end
-if test (which thefuck)
-	thefuck --alias | source
-	function f
-		fuck
-	end
 end
 # set -x http_proxy socks5://127.0.0.1:9050
 # set -x https_proxy socks5://127.0.0.1:9050

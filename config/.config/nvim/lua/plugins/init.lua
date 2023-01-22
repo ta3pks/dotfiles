@@ -17,7 +17,7 @@ keymaps.n({
 	["<Leader>nc"] = ":NERDTreeClose<cr>",
 	["<Leader>nt"] = ":NERDTreeToggle<cr>",
 	["<Leader>nf"] = ":NERDTreeFind<cr>",
-	["<Leader>gg"] = ":wa|:echo 'Running git push ...'| :Git<cr>",
+	["<Leader>gg"] = ":wa| :Git<cr>",
 	["<Leader>gp"] = ":wa|:echo 'Running git pull ...' | :Git pull<cr>",
 	["\\wt"]       = ":WakaTimeToday<cr>",
 	["\\wo"]       = ":WakatimeOpen<cr>",

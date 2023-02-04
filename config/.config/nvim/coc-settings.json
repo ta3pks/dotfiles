@@ -1,8 +1,6 @@
 {
 	"suggest.removeDuplicateItems": true,
 	"signature.enable": true,
-	"copilot.enable": true,
-	"copilot.kindLabel": " ",
 	"diagnostic.messageTarget": "float",
 	"diagnostic.virtualTextCurrentLineOnly": false,
 	"coc.preferences.formatOnSave": true,
@@ -20,8 +18,7 @@
 	// 	"haskell"
 	// ],
 	"coc.source.buffer.ignoreGitignore": true,
-	"rust-analyzer.checkOnSave.command": "clippy",
-  "rust-analyzer.checkOnSave.target": [],
-  "coc.preferences.extensionUpdateCheck": "daily",
-  "svelte.enable-ts-plugin": true,
+	"rust-analyzer.check.command": "clippy",
+	"coc.preferences.extensionUpdateCheck": "daily",
+	"svelte.enable-ts-plugin": true,
 }

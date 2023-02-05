@@ -26,6 +26,7 @@ keymaps.n({
 	["<C-w><C-p>"] = ":tabnew " .. lua_plugings_path .. "/init.lua<cr>",
 	["<a-b>"] = ":lua OpenBookmark()<cr>",
 })
+vim.cmd "command! -nargs=* Swap Flip <args>"
 function GetBookmarks()
 	local filename = vim.g.NERDTreeBookmarksFile
 	local f = io.open(filename, "r")

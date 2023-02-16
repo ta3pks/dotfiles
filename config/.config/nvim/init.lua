@@ -2,6 +2,7 @@ require("events")
 require("keymaps")
 require("plugins")
 -- local api = vim.api
+-- remove auto commenting on next line
 vim.cmd([[
 	syntax on
 	command! FixTrailing :%s/\s\+$//g
@@ -11,6 +12,7 @@ vim.cmd([[
 	tnoremap <expr> <d-v> '<C-\><C-N>"+pi'
 	tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 	command! -bar -nargs=0 Ssrc source %
+	autocmd BufEnter * set formatoptions-=cro
 ]])
 vim.o.inccommand = "split"
 vim.o.ignorecase = true
@@ -38,5 +40,5 @@ if vim.fn.exists("g:neovide") then
 	vim.g.neovide_cursor_vfx_mode = ""
 	vim.g.neovide_no_idle = false
 	vim.g.neovide_refresh_rate_idle = 1
-	vim.g.neovide_transparency = 0.9
+	vim.g.neovide_transparency = 0.95
 end

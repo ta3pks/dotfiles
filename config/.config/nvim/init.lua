@@ -12,6 +12,8 @@ vim.cmd([[
 	tnoremap <expr> <d-v> '<C-\><C-N>"+pi'
 	tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 	command! -bar -nargs=0 Ssrc source %
+	set foldlevel=20
+	setglobal foldmethod=indent
 	autocmd BufEnter * set formatoptions-=cro
 ]])
 vim.o.inccommand = "split"

@@ -33,5 +33,5 @@ command! -nargs=1 F vim /<args>/  ./**
 setlocal wildignore+=*/target/*,Cargo.lock,*/*test
 let g:rustfmt_fail_silently = 1
 setl makeprg="make"
-setl foldmethod=marker
 setl nowrap
+setl foldmethod=indent

@@ -5,6 +5,7 @@ require("plugins")
 -- remove auto commenting on next line
 vim.cmd([[
 	syntax on
+	highlight Folded guifg=#686363
 	command! FixTrailing :%s/\s\+$//g
 	"osx specific settings
 	inoremap <d-v> <c-r>+

@@ -1,8 +1,16 @@
 local utils = require("utils")
+function ToggleFold()
+	local currentLine = vim.fn.line(".")
+	if vim.fn.foldclosed(currentLine) == -1 then
+		vim.cmd("normal! za")
+	else
+		vim.cmd("normal! zv")
+	end
+end
 
 local keymaps = {
 	["Q"] = ":lua require'keymaps'.close_buffer()<cr>",
-	["<space>"] = "za",
+	["<space>"] = ":lua ToggleFold()",
 	["<c-w>r"] = ":source $MYVIMRC<bar>echo 'reloaded'<cr>",
 	["<c-w><c-s>"] = ":tabnew $MYVIMRC<cr>",
 	["<c-w><c-u>"] = ":lua require'keymaps'.open_utils_file()<cr>",

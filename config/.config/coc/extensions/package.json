@@ -14,9 +14,10 @@
     "coc-vetur": ">=1.2.5",
     "coc-vimlsp": ">=0.12.8",
     "coc-pyright": ">=1.1.282",
-    "@softmotions/coc-svelte": ">=0.4.2"
+    "@softmotions/coc-svelte": ">=0.4.2",
+    "coc-emmet": ">=1.1.6"
   },
   "disabled": [],
   "locked": [],
-  "lastUpdate": 1677445698092
+  "lastUpdate": 1678736809860
 }

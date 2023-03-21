@@ -2,9 +2,9 @@ local utils = require("utils")
 function ToggleFold()
 	local currentLine = vim.fn.line(".")
 	if vim.fn.foldclosed(currentLine) == -1 then
-		vim.cmd("normal! za")
+		vim.cmd("silent! normal! za")
 	else
-		vim.cmd("normal! zv")
+		vim.cmd("silent! normal! zv")
 	end
 end
 

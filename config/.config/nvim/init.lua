@@ -45,3 +45,10 @@ if vim.fn.exists("g:neovide") then
 	vim.g.neovide_refresh_rate_idle = 1
 	vim.g.neovide_transparency = 0.95
 end
+function Remove_old_manual_indents()
+	vim.cmd [[
+		set foldmethod=marker
+		normal! zE
+		set foldmethod=indent
+	]]
+end

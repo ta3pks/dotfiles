@@ -24,7 +24,7 @@ keymaps.n({
 	["<leader>pr"] = ":lua require'utils'.rerequire'plugins';print'plugins reloaded'<cr>",
 	["<leader>pd"] = ":NERDTree " .. lua_plugings_path .. "<cr>",
 	["<C-w><C-p>"] = ":tabnew " .. lua_plugings_path .. "/init.lua<cr>",
-	["<a-b>"] = ":lua OpenBookmark()<cr>",
+	["<a-b>"]      = ":lua OpenBookmark()<cr>",
 })
 vim.cmd "command! -nargs=* Swap Flip <args>"
 function GetBookmarks()
@@ -46,39 +46,42 @@ function GetBookmarks()
 	f:close()
 	return bookmarks
 end
+
 function OpenBookmark()
 	local bookmarks = GetBookmarks()
 	for i, bookmark in ipairs(bookmarks) do
 		bookmarks[i] = i .. ": " .. bookmark
 	end
 	local choice = vim.fn.inputlist(bookmarks)
-	if choice == 0  then
+	if choice == 0 then
 		return
 	elseif choice > #bookmarks then
 		print("Invalid choice")
 		return
 	end
 
-	local _,i = string.find(bookmarks[choice],": ")
+	local _, i = string.find(bookmarks[choice], ": ")
 	choice = bookmarks[choice]:sub(i)
 	print(choice)
 	vim.cmd("NERDTreeFromBookmark " .. choice)
 	vim.cmd("normal cd")
 end
+
 keymaps.i {
 	["\\cc"] = "<c-o>:Copilot panel<cr>",
 }
-vim.g.ctrlp_user_command= "git ls-files . --cached --exclude-standard --others"
+vim.g.ctrlp_user_command = "git ls-files . --cached --exclude-standard --others"
 vim.cmd "command! -nargs=0 CP Copilot panel"
 -- packer config
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 local packer_bootstrap
 if fn.empty(fn.glob(install_path)) > 0 then
-	packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+	packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+		install_path })
 end
 
-vim.cmd([[ 
+vim.cmd([[
 	
 	let g:scratch_insert_autohide = 0
 	let g:airline_powerline_fonts = 1
@@ -110,7 +113,7 @@ require('packer').startup(function(use)
 	use 'sheerun/vim-polyglot'
 	use 'scrooloose/nerdtree'
 	use 'rakr/vim-one'
-	use {'neoclide/coc.nvim',branch = 'release'}
+	use { 'neoclide/coc.nvim', branch = 'release' }
 	use 'mmahnic/vim-flipwords'
 	use 'mattn/emmet-vim'
 	use 'junegunn/rainbow_parentheses.vim'
@@ -135,7 +138,7 @@ require('packer').startup(function(use)
 end)
 
 require "nvim-treesitter.configs".setup {
-	ensure_installed = {"help","lua","vim","rust","toml","typescript","javascript","svelte","yaml"},
+	ensure_installed = { "help", "lua", "vim", "toml", "typescript", "javascript", "svelte", "yaml" },
 	additional_vim_regex_highlighting = false,
 	incremental_selection = {
 		enable = false,

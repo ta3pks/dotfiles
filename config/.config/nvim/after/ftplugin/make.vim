@@ -1,6 +1,6 @@
 nnoremap <buffer> mm :call <sid>run_make()<cr>
 function! s:run_make()
-	normal! "pyt:
+	normal! _"pyt:
 	vsp
 	exe 'terminal make ' . @p
 	normal! i

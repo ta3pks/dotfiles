@@ -8,14 +8,40 @@ function ToggleFold()
 	end
 end
 
+vim.cmd [[
+nnoremap <silent> <leader>zj :call NextClosedFold('j')<cr>
+nnoremap <silent> <leader>zk :call NextClosedFold('k')<cr>
+function! NextClosedFold(dir)
+    let cmd = 'norm!z'..a:dir
+    let view = winsaveview()
+    let [l0, l, open] = [0, view.lnum, 1]
+    while l != l0 && open
+        exe cmd
+        let [l0, l] = [l, line('.')]
+        let open = foldclosed(l) < 0
+    endwhile
+    if open
+        call winrestview(view)
+    endif
+endfunction
+function! RepeatCmd(cmd) range abort
+    let n = v:count < 1 ? 1 : v:count
+    while n > 0
+        exe a:cmd
+        let n -= 1
+    endwhile
+endfunction
+]]
 local keymaps = {
+	["zj"] = [[:call RepeatCmd('call NextClosedFold("j")')<cr>]],
+	["zk"] = [[:call RepeatCmd('call NextClosedFold("k")')<cr>]],
 	["Q"] = ":lua require'keymaps'.close_buffer()<cr>",
 	["<space>"] = ":lua ToggleFold()<cr>",
 	["<c-w>r"] = ":source $MYVIMRC<bar>echo 'reloaded'<cr>",
 	["<c-w><c-s>"] = ":tabnew $MYVIMRC<cr>",
 	["<c-w><c-u>"] = ":lua require'keymaps'.open_utils_file()<cr>",
 	["<leader>kr"] = ":lua require'keymaps'.reload_keymaps()<cr>",
-	["<leader>ko"] = ":lua require'keymaps'.open_keymap_file()<cr>",
+	["<c-w><c-k>"] = ":lua require'keymaps'.open_keymap_file()<cr>",
 	["<leader><cr>"] = ":lua require('plugins.openterm').open_term()<cr>",
 	["<d-e>"] = ":lua require('plugins.openterm').open_term()<cr>",
 	["<leader>]"] = ":lua require('plugins.openterm').open_term(1)<cr>",

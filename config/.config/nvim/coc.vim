@@ -60,6 +60,7 @@ nmap <a-,>  <Plug>(coc-fix-current)
 nmap <silent> <leader>r <Plug>(coc-codeaction-refactor)
 xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 nnoremap <silent><nowait> <m-d>  :<C-u>CocList diagnostics<cr>
+command! -nargs=0 Fmt :call CocAction('format')
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call ShowDocumentation()<CR>
 nnoremap <leader>s :exe "CocSearch -S -e "..input("search: ")<cr>

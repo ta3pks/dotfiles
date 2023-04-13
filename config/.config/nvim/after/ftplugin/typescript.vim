@@ -14,5 +14,5 @@ function! Rust_to_ts()
 	silent! %substitute/\<struct\> /export interface /g
 endfunction
 command! RustToTs :call Rust_to_ts()
-setl makeprg=yarn
+setl makeprg=make
 nnoremap \\e :make build<cr>

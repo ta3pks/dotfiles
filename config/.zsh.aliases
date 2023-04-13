@@ -18,3 +18,5 @@ makealias(){
 		esac
 	}
 alias mkals='makealias'
+alias psql='psql -h 127.0.0.1'
+alias sshcfg='nvim ~/.ssh/config'

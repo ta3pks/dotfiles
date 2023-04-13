@@ -1,0 +1,20 @@
+makealias(){
+	__usage="Usage: makealias [flags] <alias> <command>
+	if no flag  is specified, -s is assumed
+	valid flags are:
+	-s save alias to ~/.zsh.aliases and alias for the current shell
+	-d delete alias from ~/.zsh.aliases and unalias for the current shell
+	"
+	case $1 in
+		"") echo $__usage
+				 ;;
+		-s) shift; echo "alias $1='$2'" >> ~/.zsh.aliases && alias $1="$2" ;;
+		-d) shift; unalias $1 && sed "/alias $1=/d" ~/.zsh.aliases | sponge ~/.zsh.aliases ;;
+		-*) 
+			echo "invalid flag $1" 
+			echo $__usage
+			;;
+		*) makealias -s $1 $2 ;;
+		esac
+	}
+alias mkals='makealias'

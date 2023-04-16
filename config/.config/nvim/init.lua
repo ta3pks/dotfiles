@@ -16,6 +16,7 @@ vim.cmd([[
 	set foldlevel=20
 	setglobal foldmethod=indent
 	nnoremap z1 :set foldlevel=1<CR>
+	nnoremap z0 :set foldlevel=0<CR>
 	autocmd BufEnter * set formatoptions-=cro
 ]])
 vim.o.inccommand = "split"

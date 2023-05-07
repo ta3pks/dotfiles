@@ -94,11 +94,6 @@ _G.packer_plugins = {
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/ctrlp.vim",
     url = "https://github.com/ctrlpvim/ctrlp.vim"
   },
-  ["emmet-vim"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/emmet-vim",
-    url = "https://github.com/mattn/emmet-vim"
-  },
   nerdtree = {
     loaded = true,
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/nerdtree",
@@ -133,6 +128,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/tender.vim",
     url = "https://github.com/jacoborus/tender.vim"
+  },
+  ["vim-ai"] = {
+    loaded = true,
+    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-ai",
+    url = "https://github.com/madox2/vim-ai"
   },
   ["vim-airline"] = {
     loaded = true,

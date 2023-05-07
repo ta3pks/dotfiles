@@ -96,3 +96,4 @@ config/.config/fish/functions/trp.fish
 /config/.config/coc/extensions/coc-toml-data/
 /config/.config/coc/list_history.dat
 /config/.config/coc/memos.json
+/config/.config/coc/extensions/coc-go-data/

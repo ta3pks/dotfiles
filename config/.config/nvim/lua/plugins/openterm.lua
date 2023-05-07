@@ -1,11 +1,20 @@
 local m = {}
-function m.open_full_term()
-	vim.cmd('tabnew')
-	vim.cmd[[term
-	normal! i
-	]]
+local function do_open_term(prg)
+	if prg then
+		vim.cmd('term ' .. prg)
+		vim.cmd('normal! i')
+	else
+		vim.cmd [[term
+		normal! i
+		]]
+	end
 end
-function m.open_term(down)
+function m.open_full_term(prg)
+	vim.cmd('tabnew')
+	do_open_term(prg)
+end
+
+function m.open_term(down, prg)
 	local cmd
 	if down then
 		cmd = "sp"
@@ -13,8 +22,7 @@ function m.open_term(down)
 		cmd = "vsp"
 	end
 	vim.cmd(cmd)
-	vim.cmd[[term
-	normal! i
-	]]
+	do_open_term(prg)
 end
+
 return m

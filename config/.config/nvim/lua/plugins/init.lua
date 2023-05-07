@@ -88,7 +88,6 @@ vim.cmd([[
 	let g:airline#extensions#whitespace#enabled = 0
 	let g:airline_theme='one'
 	let NERDTreeWinSize = 30
-	let g:user_emmet_leader_key = "<m-e>"
 	colorscheme one
 	autocmd BufReadPost *.tsx set ft=typescript.tsx
 	command! WakatimeOpen :silent !open https://wakatime.com
@@ -115,7 +114,6 @@ require('packer').startup(function(use)
 	use 'rakr/vim-one'
 	use { 'neoclide/coc.nvim', branch = 'release' }
 	use 'mmahnic/vim-flipwords'
-	use 'mattn/emmet-vim'
 	use 'junegunn/rainbow_parentheses.vim'
 	use 'jacoborus/tender.vim'
 	use 'gregsexton/MatchTag'
@@ -125,6 +123,7 @@ require('packer').startup(function(use)
 	use 'ctrlpvim/ctrlp.vim'
 	use 'bling/vim-airline'
 	use 'airblade/vim-gitgutter'
+	use 'madox2/vim-ai'
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = function()

@@ -47,6 +47,7 @@ nnoremap <silent><nowait> <c-j>  <Plug>(coc-diagnostic-next)
 nnoremap <silent><nowait> <c-k>  <Plug>(coc-diagnostic-prev)
 " GoTo code navigation.
 nmap <silent> <c-]> <Plug>(coc-definition)
+nmap <silent> gd <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gi <Plug>(coc-implementation)
 " Symbol renaming.

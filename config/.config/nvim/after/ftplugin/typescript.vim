@@ -1,5 +1,6 @@
-nnoremap \e :exe "vsp \| term deno run -A % "\| normal! i<cr>
-nnoremap \c :vsp\|exe "term deno lint %" \|normal! i<cr>
+let g:deno_app_flags = ""
+nnoremap \e :exe "vsp \| term make run FLAGS='".g:deno_app_flags."'"\| normal! i<cr>
+nnoremap \c :vsp\|exe "term make check " \|normal! i<cr>
 setl wildignore=*/node_modules/*
 function! Rust_to_ts()
 	silent! global/#\[/d
@@ -16,3 +17,5 @@ endfunction
 command! RustToTs :call Rust_to_ts()
 setl makeprg=make
 nnoremap \\e :make build<cr>
+setl foldexpr=nvim_treesitter#foldexpr()
+setl foldmethod=expr

@@ -30,4 +30,16 @@
 	],
 	"coc.preferences.extensionUpdateCheck": "daily",
 	"svelte.enable-ts-plugin": true,
+	"languageserver": {
+		"elmLS": {
+			"command": "elm-language-server",
+			"filetypes": [
+				"elm"
+			],
+			"rootPatterns": [
+				"elm.json"
+			]
+		}
+	},
+	"codeLens.enable": true
 }

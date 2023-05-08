@@ -41,5 +41,5 @@
 			]
 		}
 	},
-	"codeLens.enable": true
+	// "codeLens.enable": true
 }

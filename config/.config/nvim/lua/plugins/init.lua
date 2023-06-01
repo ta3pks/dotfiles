@@ -26,7 +26,7 @@ keymaps.n({
 	["<C-w><C-p>"] = ":tabnew " .. lua_plugings_path .. "/init.lua<cr>",
 	["<a-b>"]      = ":lua OpenBookmark()<cr>",
 })
-vim.cmd "command! -nargs=* Swap Flip <args>"
+vim.cmd "command! FlipArgs Flip , )"
 function GetBookmarks()
 	local filename = vim.g.NERDTreeBookmarksFile
 	local f = io.open(filename, "r")
@@ -123,7 +123,6 @@ require('packer').startup(function(use)
 	use 'ctrlpvim/ctrlp.vim'
 	use 'bling/vim-airline'
 	use 'airblade/vim-gitgutter'
-	use 'madox2/vim-ai'
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = function()

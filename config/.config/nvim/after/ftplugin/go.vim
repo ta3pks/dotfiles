@@ -11,5 +11,5 @@ function!  s:RUNGO(cmd)
 	normal! i
 endfunction
 command! -buffer GoImports :CocCommand go.gopls.tidy
-command! -buffer -nargs=+ Gta :CocCommand go.tags.add <args>
-command! -buffer -nargs=+ Gtr :CocCommand go.tags.remove <args>
+command! -buffer -nargs=+ GoAddTag :CocCommand go.tags.add <args>
+command! -buffer -nargs=+ GoRmTag :CocCommand go.tags.remove <args>

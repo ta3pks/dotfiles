@@ -129,11 +129,6 @@ _G.packer_plugins = {
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/tender.vim",
     url = "https://github.com/jacoborus/tender.vim"
   },
-  ["vim-ai"] = {
-    loaded = true,
-    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-ai",
-    url = "https://github.com/madox2/vim-ai"
-  },
   ["vim-airline"] = {
     loaded = true,
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-airline",

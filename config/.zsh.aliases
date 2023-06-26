@@ -35,3 +35,6 @@ sayit(){
 	curl https://api.voiser.net/v2/limitless/ -X POST -H "Content-Type: Application/JSON" -d '{"authCode":"7852896127","articleText":"'+$1+'","configVoice":"Meryem","configLang":"tr-TR","configPitch":"0","configSpeed":"1"}' | jq '.'
 }
 alias gitmerge=''
+alias psql='psql -U postgres -h localhost'
+alias ls='gls'
+alias grep='rg'

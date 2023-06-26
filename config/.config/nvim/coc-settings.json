@@ -41,5 +41,8 @@
 			]
 		}
 	},
+	"emmet.includeLanguages": {
+		"html": "svelte",
+	}
 	// "codeLens.enable": true
 }

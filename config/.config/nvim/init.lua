@@ -18,6 +18,7 @@ vim.cmd([[
 	nnoremap z1 :set foldlevel=1<CR>
 	nnoremap z0 :set foldlevel=0<CR>
 	autocmd BufEnter * set formatoptions-=cro
+	command! Bufonly :%bd|e#
 ]])
 vim.o.inccommand = "split"
 vim.o.ignorecase = true

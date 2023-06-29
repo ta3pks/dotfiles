@@ -7,6 +7,10 @@ if test -f /opt/homebrew/opt/asdf/libexec/asdf.sh; then
 elif test -f ~/.asdf/asdf.sh; then
 	source ~/.asdf/asdf.sh
 fi
+if test -d $HOME/.deno; then
+	export DENO_INSTALL="$HOME/.deno"
+	export PATH="$DENO_INSTALL/bin:$PATH"
+fi
 if type brew &>/dev/null; then
 	fpath=($(brew --prefix)/share/zsh-completions ~/.zsh $fpath)
 	# append completions to fpath

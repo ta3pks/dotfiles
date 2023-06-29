@@ -3,6 +3,12 @@ require("keymaps")
 require("plugins")
 -- local api = vim.api
 -- remove auto commenting on next line
+function Exe_current_viml_line()
+	local line = vim.fn.getline(".")
+	print("executing " .. line)
+	vim.cmd(line)
+end
+
 vim.cmd([[
 	syntax on
 	highlight Folded guifg=#686363
@@ -18,7 +24,8 @@ vim.cmd([[
 	nnoremap z1 :set foldlevel=1<CR>
 	nnoremap z0 :set foldlevel=0<CR>
 	autocmd BufEnter * set formatoptions-=cro
-	command! Bufonly :%bd|e#
+	command! Bufonly :%bd|e#|bd#
+	cnoreabbr git !git
 ]])
 vim.o.inccommand = "split"
 vim.o.ignorecase = true

@@ -1,2 +1,2 @@
-nnoremap <buffer><silent> <Leader>r yy:@"<cr>
-vnoremap <buffer><silent> <Leader>r y:@"<cr>
+nnoremap <buffer><silent> <Leader>vle yy:@"<cr>
+vnoremap <buffer><silent> <Leader>ve y:@"<cr>

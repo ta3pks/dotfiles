@@ -9,6 +9,25 @@ function Exe_current_viml_line()
 	vim.cmd(line)
 end
 
+function Exe_current_lua_selection()
+	local line1 = vim.fn.getpos("'<")[2]
+	local line2 = vim.fn.getpos("'>")[2]
+	local lines = vim.fn.getline(line1, line2)
+	local lua_code = table.concat(lines, "\n")
+	print("executing " .. lua_code)
+	local fn = load(lua_code)
+	if fn then
+		fn()
+	end
+end
+
+function Cd_git_root_dir()
+	vim.cmd("cd " .. vim.fn.expand("%:p:h"))
+	local curr_dir = vim.fn.system("git rev-parse --show-toplevel")
+	vim.cmd("cd " .. curr_dir)
+	print("cd " .. curr_dir)
+end
+
 vim.cmd([[
 	syntax on
 	highlight Folded guifg=#686363
@@ -26,6 +45,8 @@ vim.cmd([[
 	autocmd BufEnter * set formatoptions-=cro
 	command! Bufonly :%bd|e#|bd#
 	cnoreabbr git !git
+	nnoremap <silent><leader>cd :lua Cd_git_root_dir()<CR>
+	nnoremap <leader>s :lua vim.cmd ('vim '..vim.fn.input("search: ")..' '.. string.gsub(vim.fn.system('git ls-files'),'\n',' '))<cr>
 ]])
 vim.o.inccommand = "split"
 vim.o.ignorecase = true

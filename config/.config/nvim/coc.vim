@@ -64,7 +64,6 @@ nnoremap <silent><nowait> <m-d>  :<C-u>CocList diagnostics<cr>
 command! -nargs=0 Fmt :call CocAction('format')
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call ShowDocumentation()<CR>
-nnoremap <leader>s :lua vim.cmd ('vim '..vim.fn.input("search: ")..' '.. string.gsub(vim.fn.system('git ls-files'),'\n',' '))<cr>
 nnoremap <a-s> :CocList symbols<cr>
 nnoremap <c-\><c-\> :TComment<cr>
 vnoremap <c-\><c-\> :TComment<cr>

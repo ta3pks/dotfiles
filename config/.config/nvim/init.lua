@@ -21,6 +21,16 @@ function Exe_current_lua_selection()
 	end
 end
 
+function Search_in_project_dir()
+	local search_term = vim.fn.input("search: ")
+	if search_term == "" then
+		print("no search term")
+		return
+	end
+	local search_cmd = "vim " .. search_term .. " " .. string.gsub(vim.fn.system("git ls-files"), "\n", " ")
+	vim.cmd(search_cmd)
+end
+
 function Cd_git_root_dir()
 	vim.cmd("cd " .. vim.fn.expand("%:p:h"))
 	local curr_dir = vim.fn.system("git rev-parse --show-toplevel")
@@ -45,8 +55,8 @@ vim.cmd([[
 	autocmd BufEnter * set formatoptions-=cro
 	command! Bufonly :%bd|e#|bd#
 	cnoreabbr git !git
-	nnoremap <silent><leader>cd :lua Cd_git_root_dir()<CR>
-	nnoremap <leader>s :lua vim.cmd ('vim '..vim.fn.input("search: ")..' '.. string.gsub(vim.fn.system('git ls-files'),'\n',' '))<cr>
+	nnoremap <silent><leader><leader>c :lua Cd_git_root_dir()<CR>
+	nnoremap <leader>s :lua Search_in_project_dir()<CR>
 ]])
 vim.o.inccommand = "split"
 vim.o.ignorecase = true

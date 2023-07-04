@@ -18,4 +18,4 @@ command! RustToTs :call Rust_to_ts()
 setl makeprg=make
 nnoremap \\e :make build<cr>
 setl foldexpr=nvim_treesitter#foldexpr()
-setl foldmethod=expr
+setl foldmethod=indent

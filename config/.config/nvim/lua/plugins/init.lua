@@ -122,7 +122,7 @@ require('packer').startup(function(use)
 	use 'dag/vim-fish'
 	use 'ctrlpvim/ctrlp.vim'
 	use 'bling/vim-airline'
-	use 'airblade/vim-gitgutter'
+	use { 'airblade/vim-gitgutter', branch = 'main' }
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = function()

@@ -94,6 +94,21 @@ _G.packer_plugins = {
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/ctrlp.vim",
     url = "https://github.com/ctrlpvim/ctrlp.vim"
   },
+  fzf = {
+    loaded = true,
+    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/fzf",
+    url = "https://github.com/junegunn/fzf"
+  },
+  ["fzf.vim"] = {
+    loaded = true,
+    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/fzf.vim",
+    url = "https://github.com/junegunn/fzf.vim"
+  },
+  ["marks.nvim"] = {
+    loaded = true,
+    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/marks.nvim",
+    url = "https://github.com/chentoast/marks.nvim"
+  },
   nerdtree = {
     loaded = true,
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/nerdtree",

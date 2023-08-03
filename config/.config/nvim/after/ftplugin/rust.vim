@@ -35,3 +35,8 @@ let g:rustfmt_fail_silently = 1
 setl makeprg="make"
 setl nowrap
 setl foldmethod=indent
+
+command! -buffer -nargs=+  Cadd :call <SID>RUST_RUN('add '.'<args>')
+command! -buffer -nargs=+  Crm :call <SID>RUST_RUN('rm ' . '<args>')
+command! -buffer -nargs=*  Cupdate :call <SID>RUST_RUN('update '.'<args>')
+command! -buffer -nargs=*  Cupgrade :call <SID>RUST_RUN('upgrade '.'<args>')

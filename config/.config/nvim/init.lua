@@ -54,7 +54,6 @@ vim.cmd([[
 	nnoremap z0 :set foldlevel=0<CR>
 	autocmd BufEnter * set formatoptions-=cro
 	command! Bufonly :%bd|e#|bd#
-	cnoreabbr git !git
 	nnoremap <silent><leader><leader>c :lua Cd_git_root_dir()<CR>
 	nnoremap <leader>s :lua Search_in_project_dir()<CR>
 ]])

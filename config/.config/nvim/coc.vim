@@ -68,4 +68,4 @@ nnoremap <a-s> :CocList symbols<cr>
 nnoremap <c-\><c-\> :TComment<cr>
 vnoremap <c-\><c-\> :TComment<cr>
 nnoremap <leader>o :CocOutline<cr>
-command! Coccfg :CocConfig
+nnoremap <leader><leader>r :CocRestart<cr>

@@ -1,6 +1,7 @@
 export LC_ALL=en_US.UTF-8
 autoload -Uz edit-command-line
 zle -N edit-command-line
+bindkey -e
 bindkey '\ee' edit-command-line
 if test -f /opt/homebrew/opt/asdf/libexec/asdf.sh; then
 	source /opt/homebrew/opt/asdf/libexec/asdf.sh
@@ -37,4 +38,3 @@ export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
-export DATABASE_URL="postgres://postgres:postgres@localhost:5432/aytar?sslmode=disable"

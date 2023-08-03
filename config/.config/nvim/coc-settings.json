@@ -5,6 +5,8 @@
 	"diagnostic.virtualTextCurrentLineOnly": false,
 	"coc.preferences.formatOnSave": true,
 	"diagnostic.virtualText": false,
+	"diagnostic.locationlistLevel": "error",
+	"diagnostic.locationlistUpdate": true,
 	"coc.preferences.useQuickfixForLocations": true,
 	"coc.preferences.enableMessageDialog": true,
 	// "coc.preferences.formatOnSaveFiletypes": [
@@ -43,6 +45,7 @@
 	},
 	"emmet.includeLanguages": {
 		"html": "svelte",
-	}
+	},
+	"zig.zls.path": "/Users/nikos/dotfiles/config/.config/coc/extensions/coc-zls-data/zls_install/zls"
 	// "codeLens.enable": true
 }

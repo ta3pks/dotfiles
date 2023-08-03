@@ -2,11 +2,18 @@
 git-fetch-with-cli=true
 [alias]
 t = "test -- --nocapture --color always"
+build-x86-linux-gnu = "build --target x86_64-unknown-linux-gnu"
 [profile.dev]
 opt-level = 0
-overflow-checks = false
+overflow-checks = true
 lto = "off"
 debug=true
+incremental=true
+[profile.release]
+opt-level = "s"
+debug = false
+strip = "symbols"
+lto = "fat"
 [build]
 # rustc-wrapper="sccache"
 [target.x86_64-unknown-linux-gnu]

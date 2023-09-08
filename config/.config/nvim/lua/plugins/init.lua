@@ -105,6 +105,7 @@ vim.cmd([[
 			]])
 require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
+	use 'rafcamlet/nvim-luapad'
 	use 'wakatime/vim-wakatime'
 	use 'vim-airline/vim-airline-themes'
 	use 'tpope/vim-surround'
@@ -136,6 +137,11 @@ require('packer').startup(function(use)
 
 	use 'junegunn/fzf'
 	use 'junegunn/fzf.vim'
+	use {
+		'xolox/vim-notes',
+		requires = { 'xolox/vim-misc' }
+
+	}
 	if packer_bootstrap then
 		require('packer').sync()
 	end
@@ -198,7 +204,7 @@ require "nvim-treesitter.configs".setup {
 			enable = true,
 			set_jumps = true, -- whether to set jumps in the jumplist
 			goto_next_start = {
-				["}"] = "@function.outer",
+				["<a-j>"] = "@function.outer",
 				["]]"] = { query = "@class.outer", desc = "Next class start" },
 				--
 				-- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
@@ -211,15 +217,15 @@ require "nvim-treesitter.configs".setup {
 				["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
 			},
 			goto_next_end = {
-				[">"] = "@function.outer",
+				["<a-s-j>"] = "@function.outer",
 				["]["] = "@class.outer",
 			},
 			goto_previous_start = {
-				["{"] = "@function.outer",
+				["<a-k>"] = "@function.outer",
 				["[["] = "@class.outer",
 			},
 			goto_previous_end = {
-				["<"] = "@function.outer",
+				["<a-s-k>"] = "@function.outer",
 				["[]"] = "@class.outer",
 			},
 			-- Below will go to either the start or the end, whichever is closer.
@@ -270,19 +276,10 @@ require 'marks'.setup {
 	},
 	mappings = {}
 }
-local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
-
--- Repeat movement with ; and ,
--- ensure ; goes forward and , goes backward regardless of the last direction
-vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
-vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
-
--- vim way: ; goes to the direction you were moving.
--- vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
--- vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
-
--- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
-vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
-vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
-vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
+vim.cmd [[
+inoremap <c-j> <Plug>(copilot-next)
+inoremap <c-k> <Plug>(copilot-previous)
+inoremap <c-\> <Plug>(copilot-suggest)
+inoremap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+]]

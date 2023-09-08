@@ -114,6 +114,11 @@ _G.packer_plugins = {
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/nerdtree",
     url = "https://github.com/scrooloose/nerdtree"
   },
+  ["nvim-luapad"] = {
+    loaded = true,
+    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/nvim-luapad",
+    url = "https://github.com/rafcamlet/nvim-luapad"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
@@ -178,6 +183,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-gitgutter",
     url = "https://github.com/airblade/vim-gitgutter"
+  },
+  ["vim-misc"] = {
+    loaded = true,
+    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-misc",
+    url = "https://github.com/xolox/vim-misc"
+  },
+  ["vim-notes"] = {
+    loaded = true,
+    path = "/Users/nikos/.local/share/nvim/site/pack/packer/start/vim-notes",
+    url = "https://github.com/xolox/vim-notes"
   },
   ["vim-one"] = {
     loaded = true,

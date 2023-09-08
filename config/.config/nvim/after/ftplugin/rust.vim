@@ -4,9 +4,12 @@ endif
 if !exists('g:rust_run_params')
 	let g:rust_run_params = ''
 endif
+if !exists('g:rust_test_params')
+	let g:rust_test_params = ''
+endif
 nnoremap <buffer> \e :wa \| call <SID>RUST_RUN("run ".g:rust_run_params )<cr>
 nnoremap <buffer> \b : call <SID>RUST_RUN("build")<cr>
-nnoremap <buffer> \t : call <SID>RUST_RUN("test --workspace -- --nocapture --test-threads=1")<cr>
+nnoremap <buffer> \t : call <SID>RUST_RUN("test --workspace ".g:rust_test_params." -- --nocapture")<cr>
 nnoremap <buffer> \tc :call <SID>RUST_RUN("test ".expand("<cword>")." -- --nocapture")<cr>
 nnoremap <buffer> \ti :call <SID>RUST_RUN("test ".input("name of the test fn: ")." -- --nocapture")<cr>
 nnoremap <buffer> \mc :make check<cr>
@@ -40,3 +43,7 @@ command! -buffer -nargs=+  Cadd :call <SID>RUST_RUN('add '.'<args>')
 command! -buffer -nargs=+  Crm :call <SID>RUST_RUN('rm ' . '<args>')
 command! -buffer -nargs=*  Cupdate :call <SID>RUST_RUN('update '.'<args>')
 command! -buffer -nargs=*  Cupgrade :call <SID>RUST_RUN('upgrade '.'<args>')
+command! -buffer -nargs=*	 Bump :!cargo bump <args>
+command! -buffer  MBump :!cargo bump minor
+command! -buffer  PBump :!cargo bump patch
+command! -buffer  VBump :!cargo bump major

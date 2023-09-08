@@ -32,13 +32,8 @@ $0
 ${1:Ok(${2:()})}
 })
 endsnippet
-snippet rasmove "async move" iA
-|${1:mut} r| async move {
-		$0
-}
-endsnippet
-snippet amove "async move" iA
-async move {
+snippet -=> "closure" iA
+${1:async} ${2:move} |${3:args}| {
 		$0
 }
 endsnippet

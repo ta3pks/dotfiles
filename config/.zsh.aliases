@@ -50,3 +50,11 @@ alias snvim='sudo nvim'
 alias cat='bat'
 alias tmuxcfg='nvim ~/.tmux.conf'
 alias todos='nvim ~/.todo.md'
+
+
+restartTiktok(){
+	for s in tiktok_sip{,2,3}
+	do
+		ssh $s -t tmux a
+	done
+}

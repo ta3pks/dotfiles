@@ -17,7 +17,7 @@ if type brew &>/dev/null; then
 	# append completions to fpath
 fi
 	fpath=(${ASDF_DIR}/completions $fpath)
-	autoload -Uz compinit promptinit
+	autoload -Uz compinit promptinit compgen
 	promptinit
 	compinit
 	source ~/.zsh/completions

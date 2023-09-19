@@ -282,4 +282,6 @@ inoremap <c-k> <Plug>(copilot-previous)
 inoremap <c-\> <Plug>(copilot-suggest)
 inoremap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
+command! -nargs=0 Todos :Note Todos
+nnoremap <leader><leader>t :Todos<cr>
 ]]

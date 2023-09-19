@@ -17,9 +17,10 @@
     "coc-deno": ">=3.11.0",
     "coc-tsdetect": ">=4.0.3",
     "coc-go": ">=1.3.14",
-    "coc-emmet": ">=1.1.6"
+    "coc-emmet": ">=1.1.6",
+    "coc-protobuf": ">=0.0.2"
   },
   "disabled": [],
   "locked": [],
-  "lastUpdate": 1694168876838
+  "lastUpdate": 1695146340669
 }

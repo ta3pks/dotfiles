@@ -56,10 +56,7 @@ vim.cmd([[
 	command! Bufonly :%bd|e#|bd#
 	nnoremap <silent><leader><leader>c :lua Cd_git_root_dir()<CR>
 	nnoremap <leader>s :lua Search_in_project_dir()<CR>
-	nnoremap <silent> j :<C-u>lua Movement_keys('j')<CR>
-	nnoremap <silent> k :<C-u>lua Movement_keys('k')<CR>
-	nnoremap <silent> l :<C-u>lua Movement_keys('l')<CR>
-	nnoremap <silent> h :<C-u>lua Movement_keys('h')<CR>
+	nnoremap <leader>tt O// TODO:<space>
 ]])
 function Movement_keys(key)
 	if vim.v.count == 0 then

@@ -1,1 +1,1 @@
-nnoremap <buffer> <leader>e :vsp\|exe 'term zsh -c "zig run main.zig"'\|normal! i<cr>
+nnoremap <buffer> <leader>e :vsp\|exe 'term zsh -c "zig build run"'\|normal! i<cr>

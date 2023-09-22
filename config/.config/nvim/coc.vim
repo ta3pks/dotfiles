@@ -69,3 +69,4 @@ nnoremap <c-\><c-\> :TComment<cr>
 vnoremap <c-\><c-\> :TComment<cr>
 nnoremap <leader>o :CocOutline<cr>
 nnoremap <leader><leader>r :CocRestart<cr>
+set formatexpr=CocAction('formatSelected')

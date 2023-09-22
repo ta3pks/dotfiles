@@ -42,10 +42,6 @@ vim.cmd([[
 	syntax on
 	highlight Folded guifg=#686363
 	command! FixTrailing :%s/\s\+$//g
-	"osx specific settings
-	inoremap <d-v> <c-r>+
-	vnoremap <d-c> "+ygv
-	tnoremap <expr> <d-v> '<C-\><C-N>"+pi'
 	tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 	command! -bar -nargs=0 Ssrc source %
 	set foldlevel=20

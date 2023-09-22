@@ -25,8 +25,6 @@ func! s:RUST_RUN(cmd)
 endfunction
 
 command! ToRawStr :norm! da"ir##<esc>P
-command! -nargs=+ CgAdd :!cargo add <args>
-
 let g:rustfmt_autosave = 0
 let g:rustfmt_command = 'rustfmt +nightly --edition=2018'
 command! -nargs=1 F vim /<args>/  ./**
@@ -39,6 +37,7 @@ setl makeprg="make"
 setl nowrap
 setl foldmethod=indent
 
+command! -buffer -nargs=*  Cfeat :call <SID>RUST_RUN('feature '.'<args>')
 command! -buffer -nargs=+  Cadd :call <SID>RUST_RUN('add '.'<args>')
 command! -buffer -nargs=+  Crm :call <SID>RUST_RUN('rm ' . '<args>')
 command! -buffer -nargs=*  Cupdate :call <SID>RUST_RUN('update '.'<args>')

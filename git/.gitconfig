@@ -29,6 +29,7 @@
 	sl = stash list
 	hash = rev-parse HEAD
 	cma = commit -am
+	loggone = log --oneline
 # define command which will be used when "nvim" is set as a merge tool
 [mergetool "nvim"]
   cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"

@@ -1,13 +1,24 @@
 local function is_tmux()
 	return vim.fn.exists('$TMUX') == 1
 end
-local function tmux_open_term_full(prg)
+local function current_filepath_dir()
+	return vim.fn.fnamemodify(vim.fn.resolve(vim.fn.expand('%')), ':p:h')
+end
+local function tmux_open_term_full(prg, open_tmux_current_filepath)
 	prg = prg or ""
+	if open_tmux_current_filepath then
+		local filepath = current_filepath_dir()
+		prg = '-c ' .. filepath .. ' ' .. prg
+	end
 	vim.cmd('silent !tmux new-window ' .. prg)
 end
-local function tmux_open_term_split(down, prg)
+local function tmux_open_term_split(down, prg, open_tmux_current_filepath)
 	local cmd = "split -h"
 	prg = prg or ""
+	if open_tmux_current_filepath then
+		local filepath = current_filepath_dir()
+		prg = '-c' .. filepath .. ' ' .. prg
+	end
 	if down then
 		cmd = "split -v"
 	end
@@ -21,18 +32,18 @@ local function open_nvim_term(prg)
 end
 
 local m = {}
-function m.open_full_term(prg)
+function m.open_full_term(prg, open_tmux_current_filepath)
 	if is_tmux() then
-		tmux_open_term_full(prg)
+		tmux_open_term_full(prg, open_tmux_current_filepath)
 	else
 		vim.cmd('tabnew')
 		open_nvim_term(prg)
 	end
 end
 
-function m.open_term(down, prg)
+function m.open_term(down, prg, open_tmux_current_filepath)
 	if is_tmux() then
-		tmux_open_term_split(down, prg)
+		tmux_open_term_split(down, prg, open_tmux_current_filepath)
 	else
 		local cmd = "vsp"
 		if down then

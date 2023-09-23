@@ -17,8 +17,8 @@ keymaps.n({
 	["<Leader>nc"] = ":NERDTreeClose<cr>",
 	["<Leader>nt"] = ":NERDTreeToggle<cr>",
 	["<Leader>nf"] = ":NERDTreeFind<cr>",
-	["<Leader>gg"] = ":wa| :Git<cr>",
-	["<Leader>gp"] = ":wa|:echo 'Running git pull ...' | :Git pull<cr>",
+	["<Leader>gg"] = ":wa|:lua require('plugins.openterm').open_full_term('lazygit',true)<cr>",
+	["<Leader>gp"] = ":wa|:echo 'Running git pull ...' | :!git pull<cr>",
 	["\\wt"]       = ":WakaTimeToday<cr>",
 	["\\wo"]       = ":WakatimeOpen<cr>",
 	["<leader>pr"] = ":lua require'utils'.rerequire'plugins';print'plugins reloaded'<cr>",
@@ -109,20 +109,16 @@ require('packer').startup(function(use)
 	use 'wakatime/vim-wakatime'
 	use 'vim-airline/vim-airline-themes'
 	use 'tpope/vim-surround'
-	use 'tpope/vim-fugitive'
 	use 'tomtom/tcomment_vim'
-	use 'sheerun/vim-polyglot'
+	-- use 'sheerun/vim-polyglot'
 	use 'scrooloose/nerdtree'
 	use 'rakr/vim-one'
 	use { 'neoclide/coc.nvim', branch = 'release' }
-	use 'chentoast/marks.nvim'
 	use 'mmahnic/vim-flipwords'
 	use 'junegunn/rainbow_parentheses.vim'
-	use 'jacoborus/tender.vim'
 	use 'gregsexton/MatchTag'
 	use 'godlygeek/tabular'
 	use 'github/copilot.vim'
-	use 'dag/vim-fish'
 	use 'ctrlpvim/ctrlp.vim'
 	use 'bling/vim-airline'
 	use { 'airblade/vim-gitgutter', branch = 'main' }

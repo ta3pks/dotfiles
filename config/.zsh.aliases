@@ -58,3 +58,4 @@ restartTiktok(){
 		ssh $s -t tmux a
 	done
 }
+alias ctags='/opt/homebrew/bin/ctags'

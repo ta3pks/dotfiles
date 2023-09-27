@@ -38,22 +38,6 @@ function Cd_git_root_dir()
 	print("cd " .. curr_dir)
 end
 
-vim.cmd([[
-	syntax on
-	highlight Folded guifg=#686363
-	command! FixTrailing :%s/\s\+$//g
-	tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
-	command! -bar -nargs=0 Ssrc source %
-	set foldlevel=20
-	setglobal foldmethod=indent
-	nnoremap z1 :set foldlevel=1<CR>
-	nnoremap z0 :set foldlevel=0<CR>
-	autocmd BufEnter * set formatoptions-=cro
-	command! Bufonly :%bd|e#|bd#
-	nnoremap <silent><leader><leader>c :lua Cd_git_root_dir()<CR>
-	nnoremap <leader>s :lua Search_in_project_dir()<CR>
-	nnoremap <leader>tt O// TODO:<space>
-]])
 function Movement_keys(key)
 	if vim.v.count == 0 then
 		-- run normal j key in 1 second with delay
@@ -100,3 +84,20 @@ end
 
 vim.g.notes_directories = { "~/Documents/notes_nvim" }
 vim.g.notes_suffix = ".md"
+vim.cmd([[
+	syntax on
+	highlight Folded guifg=#686363
+	command! FixTrailing :%s/\s\+$//g
+	tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+	command! -bar -nargs=0 Ssrc source %
+	set foldlevel=20
+	setglobal foldmethod=indent
+	nnoremap z1 :set foldlevel=1<CR>
+	nnoremap z0 :set foldlevel=0<CR>
+	autocmd BufEnter * set formatoptions-=cro
+	command! Bufonly :%bd|e#|bd#
+	nnoremap <silent><leader><leader>c :lua Cd_git_root_dir()<CR>
+	nnoremap <leader>s :lua Search_in_project_dir()<CR>
+	nnoremap <leader>tt O// TODO:<space>
+	nnoremap <c-t> :Tags<CR>
+]])

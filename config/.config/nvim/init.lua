@@ -84,13 +84,21 @@ end
 
 vim.g.notes_directories = { "~/Documents/notes_nvim" }
 vim.g.notes_suffix = ".md"
+function MakeTags(src_path)
+	if src_path == nil then
+		src_path = "."
+	end
+	vim.cmd("!ctags -R -f tags " .. src_path)
+end
+
 vim.cmd([[
 	syntax on
 	highlight Folded guifg=#686363
 	command! FixTrailing :%s/\s\+$//g
 	tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 	command! -bar -nargs=0 Ssrc source %
-	set foldlevel=20
+	command! -nargs=0 MakeTags :lua MakeTags()
+	set foldlevel=2
 	setglobal foldmethod=indent
 	nnoremap z1 :set foldlevel=1<CR>
 	nnoremap z0 :set foldlevel=0<CR>
@@ -100,4 +108,5 @@ vim.cmd([[
 	nnoremap <leader>s :lua Search_in_project_dir()<CR>
 	nnoremap <leader>tt O// TODO:<space>
 	nnoremap <c-t> :Tags<CR>
+	nnoremap <leader>to :tabonly<CR>
 ]])

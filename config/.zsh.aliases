@@ -59,3 +59,14 @@ restartTiktok(){
 	done
 }
 alias ctags='/opt/homebrew/bin/ctags'
+notify(){
+	if [ -z "$1" ]; then
+		echo "Usage: notify <message>"
+		return 1
+	fi
+	local channel=$2
+	if [ -z "$2" ]; then
+		channel="ta3pks"
+	fi
+	curl https://ntfy.sh/$channel -d "$1"
+}

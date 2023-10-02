@@ -125,7 +125,7 @@ require('packer').startup(function(use)
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = function()
-			local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+			local ts_update = require('nvim-treesitter.install').update({ with_sync = false })
 			ts_update()
 		end,
 	}
@@ -215,10 +215,13 @@ require "nvim-treesitter.configs".setup {
 			goto_next_end = {
 				["<a-s-j>"] = "@function.outer",
 				["]["] = "@class.outer",
+				["<a-]>"] = "@scope.outer",
 			},
 			goto_previous_start = {
 				["<a-k>"] = "@function.outer",
 				["[["] = "@class.outer",
+				["<a-[>"] = "@scope.outer",
+				["[s"] = { query = "@scope", query_group = "locals", desc = "Prev scope" },
 			},
 			goto_previous_end = {
 				["<a-s-k>"] = "@function.outer",
@@ -278,6 +281,6 @@ inoremap <c-k> <Plug>(copilot-previous)
 inoremap <c-\> <Plug>(copilot-suggest)
 inoremap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
-command! -nargs=0 Todos :Note Todos
+command! -nargs=0 Todos :ShowTaggedNotes
 nnoremap <leader><leader>t :Todos<cr>
 ]]

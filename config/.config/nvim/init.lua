@@ -97,7 +97,7 @@ vim.cmd([[
 	command! FixTrailing :%s/\s\+$//g
 	tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 	command! -bar -nargs=0 Ssrc source %
-	command! -nargs=0 MakeTags :lua MakeTags()
+	command! -nargs=? MakeTags :lua MakeTags(<q-args>)
 	set foldlevel=2
 	setglobal foldmethod=indent
 	nnoremap z1 :set foldlevel=1<CR>

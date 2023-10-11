@@ -46,6 +46,7 @@
 	"emmet.includeLanguages": {
 		"html": "svelte",
 	},
-	"zig.zls.path": "/Users/nikos/dotfiles/config/.config/coc/extensions/coc-zls-data/zls_install/zls"
-	// "codeLens.enable": true
+	"codeLens.enable": true,
+	"inlayHint.enable": true,
+	"inlayHint.display": true
 }

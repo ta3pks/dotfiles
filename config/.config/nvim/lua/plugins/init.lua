@@ -8,10 +8,21 @@ local lua_plugings_path = utils.vimrc_lua_dir() .. "plugins"
 vim.g['rainbow#pairs'] = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
 vim.g['rainbow#blacklist'] = { '#cc241d' }
 -- vim.cmd("source " .. plugings_path)
+function OpenFilesPanel()
+	-- if current file is in git directory use :GFiles otherwise use :Files
+	local git_dir = vim.fn.finddir(".git", ".;")
+	if git_dir ~= "" then
+		vim.cmd "GFiles"
+	else
+		vim.cmd "Files"
+	end
+end
+
 keymaps.n({
 	--	["<c-w><c-p>"] = ":tabnew " .. plugings_path .. "<cr>",
 	["<c-b>"]      = ":Buffers<cr>",
 	-- ["<leader>s"]  = ":Telescope live_grep<cr>",
+	["<C-p><C-p>"] = ":lua OpenFilesPanel()<cr>",
 	["<C-p>f"]     = ":Files<cr>",
 	["<C-p>g?"]    = ":GFiles?<cr>",
 	["<C-p>gg"]    = ":GFiles<cr>",

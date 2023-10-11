@@ -10,9 +10,15 @@ vim.g['rainbow#blacklist'] = { '#cc241d' }
 -- vim.cmd("source " .. plugings_path)
 keymaps.n({
 	--	["<c-w><c-p>"] = ":tabnew " .. plugings_path .. "<cr>",
-	["<c-b>"]      = ":CtrlPBuffer<cr>",
+	["<c-b>"]      = ":Buffers<cr>",
 	-- ["<leader>s"]  = ":Telescope live_grep<cr>",
-	["<C-p>"]      = ":CtrlP<cr>",
+	["<C-p>f"]     = ":Files<cr>",
+	["<C-p>g?"]    = ":GFiles?<cr>",
+	["<C-p>gg"]    = ":GFiles<cr>",
+	["<C-p>c"]     = ":Commits<cr>",
+	["<C-p>m"]     = ":Marks<cr>",
+	["<C-p>t"]     = ":Tags<cr>",
+	["<C-p>l"]     = ":Lines<cr>",
 	["<Leader>b"]  = ':exec "Tabularize/".input("enter regex: ")."/"<cr>',
 	["<Leader>nc"] = ":NERDTreeClose<cr>",
 	["<Leader>nt"] = ":NERDTreeToggle<cr>",
@@ -70,8 +76,8 @@ end
 keymaps.i {
 	["\\cc"] = "<c-o>:Copilot panel<cr>",
 }
-vim.g.ctrlp_user_command = "git ls-files . --cached --exclude-standard --others"
-vim.g.ctrlp_use_caching = 0
+-- vim.g.ctrlp_user_command = "git ls-files . --cached --exclude-standard --others"
+-- vim.g.ctrlp_use_caching = 0
 vim.cmd "command! -nargs=0 CP Copilot panel"
 -- packer config
 local fn = vim.fn
@@ -119,7 +125,7 @@ require('packer').startup(function(use)
 	use 'gregsexton/MatchTag'
 	use 'godlygeek/tabular'
 	use 'github/copilot.vim'
-	use 'ctrlpvim/ctrlp.vim'
+	-- use 'ctrlpvim/ctrlp.vim'
 	use 'bling/vim-airline'
 	use { 'airblade/vim-gitgutter', branch = 'main' }
 	use {
@@ -144,7 +150,7 @@ require('packer').startup(function(use)
 end)
 
 require "nvim-treesitter.configs".setup {
-	ensure_installed = {"lua", "vim", "toml", "typescript", "javascript", "svelte", "yaml" },
+	ensure_installed = { "lua", "vim", "toml", "typescript", "javascript", "svelte", "yaml" },
 	additional_vim_regex_highlighting = false,
 	incremental_selection = {
 		enable = true,

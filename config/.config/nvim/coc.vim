@@ -43,13 +43,13 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nnoremap <silent><nowait> <c-j>  <Plug>(coc-diagnostic-next)
-nnoremap <silent><nowait> <c-k>  <Plug>(coc-diagnostic-prev)
 " GoTo code navigation.
-nmap <silent> <c-]> <Plug>(coc-definition)
-nmap <silent> gd <Plug>(coc-type-definition)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gn <Plug>(coc-diagnostic-next)
+nnoremap <silent> gp <Plug>(coc-diagnostic-prev)
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gt <Plug>(coc-type-definition)
+nnoremap <silent> gr <Plug>(coc-references)
+nnoremap <silent> gi <Plug>(coc-implementation)
 " Symbol renaming.
 nmap <leader>lr <Plug>(coc-rename)
 

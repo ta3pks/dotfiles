@@ -46,3 +46,4 @@ command! -buffer -nargs=*	 Bump :!cargo bump <args>
 command! -buffer  MBump :!cargo bump minor
 command! -buffer  PBump :!cargo bump patch
 command! -buffer  VBump :!cargo bump major
+command! -buffer -nargs=1 RustUse :normal! mcggOuse <args>;<esc>`c

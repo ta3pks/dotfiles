@@ -144,7 +144,7 @@ require('packer').startup(function(use)
 end)
 
 require "nvim-treesitter.configs".setup {
-	ensure_installed = { "help", "lua", "vim", "toml", "typescript", "javascript", "svelte", "yaml" },
+	ensure_installed = {"lua", "vim", "toml", "typescript", "javascript", "svelte", "yaml" },
 	additional_vim_regex_highlighting = false,
 	incremental_selection = {
 		enable = true,

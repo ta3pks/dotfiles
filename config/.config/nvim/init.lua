@@ -23,12 +23,13 @@ end
 
 function Search_in_project_dir()
 	local search_term = vim.fn.input("search: ")
-	if search_term == "" then
-		print("no search term")
-		return
-	end
-	local search_cmd = "vim " .. search_term .. " " .. string.gsub(vim.fn.system("git ls-files"), "\n", " ")
-	vim.cmd(search_cmd)
+	vim.cmd("Rg " .. search_term)
+	-- if search_term == "" then
+	-- 	print("no search term")
+	-- 	return
+	-- end
+	-- local search_cmd = "vim " .. search_term .. " " .. string.gsub(vim.fn.system("git ls-files"), "\n", " ")
+	-- vim.cmd(search_cmd)
 end
 
 function Cd_git_root_dir()

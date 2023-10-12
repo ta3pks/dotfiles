@@ -46,7 +46,6 @@
 	"emmet.includeLanguages": {
 		"html": "svelte",
 	},
-	"codeLens.enable": true,
+	// "codeLens.enable": true,
 	"inlayHint.enable": true,
-	"inlayHint.display": true
 }

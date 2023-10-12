@@ -22,12 +22,19 @@ augroup __coc_group
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-function! ShowDocumentation()
+function! s:ShowDocumentation()
   if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
   else
     call feedkeys('K', 'in')
   endif
+endfunction
+function! s:GoToDefinition()
+	if CocHasProvider('definition') == 1
+		call CocActionAsync('jumpDefinition')
+	else
+		exe 'silent! tag '.expand('<cword>')
+	endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
@@ -44,9 +51,9 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
 endif
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 " GoTo code navigation.
-nnoremap <silent> gn <Plug>(coc-diagnostic-next)
-nnoremap <silent> gp <Plug>(coc-diagnostic-prev)
-nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> <c-j> <Plug>(coc-diagnostic-next)
+nnoremap <silent> <c-k> <Plug>(coc-diagnostic-prev)
+nnoremap <silent> <c-]> :call <sid>GoToDefinition()<CR>
 nnoremap <silent> gt <Plug>(coc-type-definition)
 nnoremap <silent> gr <Plug>(coc-references)
 nnoremap <silent> gi <Plug>(coc-implementation)
@@ -63,7 +70,7 @@ xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 nnoremap <silent><nowait> <m-d>  :<C-u>CocList diagnostics<cr>
 command! -nargs=0 Fmt :call CocAction('format')
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call ShowDocumentation()<CR>
+nnoremap <silent> K :call <sid>ShowDocumentation()<CR>
 nnoremap <a-s> :CocList symbols<cr>
 nnoremap <c-\><c-\> :TComment<cr>
 vnoremap <c-\><c-\> :TComment<cr>

@@ -1,4 +1,5 @@
 let g:deno_app_flags = ""
+nnoremap \ee :exe "vsp \| term deno run -A ". expand("%")\| normal! i<cr>
 nnoremap \e :exe "vsp \| term make run FLAGS='".g:deno_app_flags."'"\| normal! i<cr>
 nnoremap \c :vsp\|exe "term make check " \|normal! i<cr>
 setl wildignore=*/node_modules/*

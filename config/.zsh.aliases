@@ -4,12 +4,14 @@ makealias(){
 	valid flags are:
 	-s save alias to ~/.zsh.aliases and alias for the current shell
 	-d delete alias from ~/.zsh.aliases and unalias for the current shell
+	-o open ~/.zsh.aliases in \$EDITOR
 	"
 	case $1 in
 		"") echo $__usage
 				 ;;
 		-s) shift; echo "alias $1='$2'" >> ~/.zsh.aliases && alias $1="$2" ;;
 		-d) shift; unalias $1 && sed "/alias $1=/d" ~/.zsh.aliases | sponge ~/.zsh.aliases ;;
+		-o) $EDITOR ~/.zsh.aliases && source ~/.zsh.aliases ;;
 		-*) 
 			echo "invalid flag $1" 
 			echo $__usage
@@ -39,7 +41,6 @@ alias psql='psql -U postgres -h localhost'
 alias ls='gls'
 alias cp='gcp'
 alias ln='gln'
-alias rm='grm'
 alias mv='gmv'
 alias youtube-dl='yt-dlp'
 alias pip='/opt/homebrew/bin/pip3'
@@ -53,9 +54,9 @@ alias todos='nvim ~/.todo.md'
 
 
 restartTiktok(){
-	for s in tiktok_sip{,2,3}
+	for s in tiktok_sip{,2,3,4}
 	do
-		ssh $s -t tmux a
+		ssh $s "./restart.sh"
 	done
 }
 alias ctags='/opt/homebrew/bin/ctags'
@@ -70,3 +71,15 @@ notify(){
 	fi
 	curl https://ntfy.sh/$channel -d "$1"
 }
+alias cupdate='cargo update'
+alias cupgrade='cargo upgrade'
+alias notes='rg --files ~/Documents/notes_nvim/ | fzf | xargs nvim'
+rust_binname(){
+	local binname=$(basename $(pwd))
+	case $1 in
+	"-r" | "--release") print "./target/release/$binname" ;;
+	*) print "./target/debug/$binname" ;;
+	esac
+}
+alias shuttle='cargo shuttle'
+alias rust_repl='evcxr'

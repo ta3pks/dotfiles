@@ -1,6 +1,6 @@
 command! -nargs=0 CocMarket CocList marketplace
 let coc_vim_settings_root = fnamemodify(expand('$MYVIMRC'), ':p:h')..'/coc.vim'
-nnoremap <silent> <leader>wp :exe 'tabnew '.. coc_vim_settings_root<CR>
+nnoremap <silent> <leader>wc :exe 'tabnew '.. coc_vim_settings_root<CR>
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice.
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
@@ -72,8 +72,8 @@ command! -nargs=0 Fmt :call CocAction('format')
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <sid>ShowDocumentation()<CR>
 nnoremap <a-s> :CocList symbols<cr>
-nnoremap <c-\><c-\> :TComment<cr>
-vnoremap <c-\><c-\> :TComment<cr>
+nnoremap <a-/> :TComment<cr>
+vnoremap <a-/> :TComment<cr>
 nnoremap <leader>o :CocOutline<cr>
 nnoremap <leader><leader>r :CocRestart<cr>
 set formatexpr=CocAction('formatSelected')

@@ -42,13 +42,14 @@ end
 
 function utils.num_active_bufs()
 	local bufs = vim.api.nvim_list_bufs()
-	local loaded_bufs = {}
-	for bufid in pairs(bufs) do
-		if vim.fn.buflisted(bufid) == 1 then
-			table.insert(loaded_bufs, bufid)
+	local num_loaded_bufs = 0
+	for i, bufid in pairs(bufs) do
+		local valid = vim.fn.buflisted(bufid) == 1
+		if valid then
+			num_loaded_bufs = num_loaded_bufs + 1
 		end
 	end
-	return #loaded_bufs
+	return num_loaded_bufs
 end
 
 function Rerequire(name)
@@ -56,4 +57,5 @@ function Rerequire(name)
 	return require(name)
 end
 
+vim.g.utils = utils
 return utils

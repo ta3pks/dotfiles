@@ -13,7 +13,7 @@ nnoremap <buffer> \t : call <SID>RUST_RUN("test --all-features --workspace ".g:r
 nnoremap <buffer> \tc :call <SID>RUST_RUN("test --all-features --workspace ".expand("<cword>")." -- --nocapture  --test-threads=1")<cr>
 nnoremap <buffer> \ti :call <SID>RUST_RUN("test --all-features --workspace ".input("name of the test fn: ")." -- --nocapture --test-threads=1")<cr>
 nnoremap <buffer> \mc :make check<cr>
-nnoremap <buffer> \c :call <SID>RUST_RUN("clippy --all-features  --workspace ".g:rust_params)<cr>
+nnoremap <buffer> \c :call <SID>RUST_RUN("clippy --release --all-features  --workspace ".g:rust_params)<cr>
 "nnoremap <buffer> <c-m-l> :RustFmt<cr>
 
 

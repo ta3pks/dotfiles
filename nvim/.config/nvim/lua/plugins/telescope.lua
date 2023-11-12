@@ -1,0 +1,43 @@
+return {
+	{
+		'nvim-telescope/telescope.nvim',
+		tag = '0.1.4',
+		dependencies = { 'nvim-lua/plenary.nvim' },
+		lazy = true,
+		keys = { "<C-space>" },
+		cmd = { 'Telescope' },
+		init = function()
+			local telescope = require('telescope')
+			telescope.setup {
+				defaults = {
+					mappings = {
+						i = {
+							["<C-j>"] = "move_selection_next",
+							["<C-k>"] = "move_selection_previous",
+							["<c-d>"] = "delete_buffer",
+							["<C-\\>"] = "which_key",
+						},
+					},
+				},
+				pickers = {
+					find_files = {
+						-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+						find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+					},
+				},
+			}
+			local builtins = require('telescope.builtin')
+			vim.keymap.set('n', '<C-space>f', builtins.find_files)
+			vim.keymap.set('n', '<C-space>g', builtins.git_files)
+			vim.keymap.set('n', '<C-space>b', builtins.buffers)
+			vim.keymap.set('n', '<C-space>t', builtins.tags)
+			vim.keymap.set('n', '<C-space>r', builtins.resume)
+			vim.keymap.set('n', '<C-space>h', builtins.help_tags)
+			vim.keymap.set('n', '<C-space>s', builtins.live_grep)
+			vim.keymap.set('i', '<C-space>s', builtins.grep_string)
+			--vim.keymap.set('n', '<a-d>', builtins.diagnostics)
+			--vim.keymap.set('n', '<c-space>s', builtins.lsp_workspace_symbols)
+			--vim.keymap.set('n', '<c-space>r', builtins.lsp_references)
+		end,
+	}
+}

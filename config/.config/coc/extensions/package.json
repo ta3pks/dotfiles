@@ -18,9 +18,10 @@
     "coc-tsdetect": ">=4.0.3",
     "coc-go": ">=1.3.14",
     "coc-emmet": ">=1.1.6",
-    "coc-protobuf": ">=0.0.2"
+    "coc-protobuf": ">=0.0.2",
+    "coc-format-json": ">=0.2.3"
   },
   "disabled": [],
   "locked": [],
-  "lastUpdate": 1697144917010
+  "lastUpdate": 1699811539663
 }

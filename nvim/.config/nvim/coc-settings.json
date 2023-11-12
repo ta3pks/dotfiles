@@ -1,5 +1,6 @@
-
 {
+	"pullDiagnostic.onSave": true,
+	"pullDiagnostic.workspace": true,
 	"suggest.removeDuplicateItems": true,
 	"signature.enable": true,
 	"diagnostic.messageTarget": "float",
@@ -10,16 +11,6 @@
 	"diagnostic.locationlistUpdate": true,
 	"coc.preferences.useQuickfixForLocations": true,
 	"coc.preferences.enableMessageDialog": true,
-	// "coc.preferences.formatOnSaveFiletypes": [
-	// 	"html",
-	// 	"rust",
-	// 	"json",
-	// 	"toml",
-	// 	"javascript",
-	// 	"typescript",
-	// 	"typescriptreact",
-	// 	"haskell"
-	// ],
 	"coc.source.buffer.ignoreGitignore": true,
 	"rust-analyzer.check.command": "clippy",
 	"rust-analyzer.workspace.symbol.search.kind": "all_symbols",
@@ -27,9 +18,15 @@
 	"rust-analyzer.workspace.symbol.search.scope": "workspace_and_dependencies",
 	"rust-analyzer.cargo.features": "all",
 	"rust-analyzer.check.features": "all",
+	"rust-analyzer.cargo.buildScripts.enable": true,
+	"rust-analyzer.check.allTargets": true,
 	"rust-analyzer.procMacro.enable": true,
 	"rust-analyzer.diagnostics.disabled": [
 		"inactive-code"
+	],
+	"Lua.runtime.version": "LuaJIT",
+	"Lua.workspace.library": [
+		"/opt/homebrew/Cellar/neovim/0.9.4/share/nvim/runtime"
 	],
 	"coc.preferences.extensionUpdateCheck": "daily",
 	"svelte.enable-ts-plugin": true,
@@ -45,8 +42,8 @@
 		}
 	},
 	"emmet.includeLanguages": {
-		"html": "svelte",
+		"html": "svelte"
 	},
 	// "codeLens.enable": true,
-	"inlayHint.enable": true,
+	"inlayHint.enable": true
 }

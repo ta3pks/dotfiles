@@ -23,6 +23,9 @@ end
 
 function Search_in_project_dir()
 	local search_term = vim.fn.input("search: ")
+	if search_term == "" then
+		search_term = vim.fn.expand("<cword>")
+	end
 	vim.cmd("Rg " .. search_term)
 	-- if search_term == "" then
 	-- 	print("no search term")
@@ -87,7 +90,7 @@ vim.g.notes_directories = { "~/Documents/notes_nvim" }
 vim.g.notes_suffix = ".md"
 function MakeTags(src_path)
 	if src_path == nil then
-		src_path = "."
+		src_path = "src"
 	end
 	vim.cmd("!ctags -R -f tags " .. src_path)
 end
@@ -95,6 +98,7 @@ end
 vim.cmd([[
 	syntax on
 	highlight Folded guifg=#686363
+	nnoremap \mt :silent! MakeTags src/<CR>
 	command! FixTrailing :%s/\s\+$//g
 	tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 	command! -bar -nargs=0 Ssrc source %
@@ -111,3 +115,10 @@ vim.cmd([[
 	nnoremap <c-t> :Tags<CR>
 	nnoremap <leader>to :tabonly<CR>
 ]])
+vim.g["codi#interpreters"] = {
+	sh = {
+		bin = "sh",
+		prompt = "sh-3.2$",
+	},
+}
+vim.o.exrc = true

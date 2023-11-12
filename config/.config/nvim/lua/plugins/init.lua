@@ -10,12 +10,8 @@ vim.g['rainbow#blacklist'] = { '#cc241d' }
 -- vim.cmd("source " .. plugings_path)
 function OpenFilesPanel()
 	-- if current file is in git directory use :GFiles otherwise use :Files
-	local git_dir = vim.fn.finddir(".git", ".;")
-	if git_dir ~= "" then
-		vim.cmd "GFiles"
-	else
-		vim.cmd "Files"
-	end
+	local git_dir = vim.fn.fnamemodify(vim.fn.finddir(".git", ".;"), ":h");
+	vim.cmd("Files " .. git_dir)
 end
 
 keymaps.n({
@@ -30,59 +26,16 @@ keymaps.n({
 	["<C-p><c-m>"] = ":Marks<cr>",
 	["<C-p><c-t>"] = ":Tags<cr>",
 	["<C-p><c-l>"] = ":Lines<cr>",
+	["<C-p><c-k>"] = ":Maps<cr>",
 	["<Leader>b"]  = ':exec "Tabularize/".input("enter regex: ")."/"<cr>',
-	["<Leader>nc"] = ":NERDTreeClose<cr>",
-	["<Leader>nt"] = ":NERDTreeToggle<cr>",
-	["<Leader>nf"] = ":NERDTreeFind<cr>",
 	["<Leader>gg"] = ":wa|:lua require('plugins.openterm').open_full_term('lazygit',true)<cr>",
-	["<Leader>gp"] = ":wa|:echo 'Running git pull ...' | :!git pull<cr>",
 	["\\wt"]       = ":WakaTimeToday<cr>",
 	["\\wo"]       = ":WakatimeOpen<cr>",
 	["<leader>pr"] = ":lua require'utils'.rerequire'plugins';print'plugins reloaded'<cr>",
-	["<leader>pd"] = ":NERDTree " .. lua_plugings_path .. "<cr>",
 	["<C-w><C-p>"] = ":tabnew " .. lua_plugings_path .. "/init.lua<cr>",
-	["<a-b>"]      = ":lua OpenBookmark()<cr>",
 })
 vim.cmd "command! FlipArgs Flip , )"
-function GetBookmarks()
-	local filename = vim.g.NERDTreeBookmarksFile
-	local f = io.open(filename, "r")
-	if f == nil then
-		print("No bookmarks file found")
-		return {}
-	end
-	local bookmarks = {}
-	for line in f:lines() do
-		local parts = vim.split(line, " ")
-		if parts[1] == nil or parts[1] == '' then
-			goto continue
-		end
-		table.insert(bookmarks, parts[1])
-		::continue::
-	end
-	f:close()
-	return bookmarks
-end
 
-function OpenBookmark()
-	local bookmarks = GetBookmarks()
-	for i, bookmark in ipairs(bookmarks) do
-		bookmarks[i] = i .. ": " .. bookmark
-	end
-	local choice = vim.fn.inputlist(bookmarks)
-	if choice == 0 then
-		return
-	elseif choice > #bookmarks then
-		print("Invalid choice")
-		return
-	end
-
-	local _, i = string.find(bookmarks[choice], ": ")
-	choice = bookmarks[choice]:sub(i)
-	print(choice)
-	vim.cmd("NERDTreeFromBookmark " .. choice)
-	vim.cmd("normal cd")
-end
 
 keymaps.i {
 	["\\cc"] = "<c-o>:Copilot panel<cr>",
@@ -105,7 +58,6 @@ vim.cmd([[
 	let g:airline_powerline_fonts = 1
 	let g:airline#extensions#whitespace#enabled = 0
 	let g:airline_theme='one'
-	let NERDTreeWinSize = 30
 	colorscheme one
 	autocmd BufReadPost *.tsx set ft=typescript.tsx
 	command! WakatimeOpen :silent !open https://wakatime.com
@@ -122,13 +74,13 @@ vim.cmd([[
 			]])
 require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
+	use 'metakirby5/codi.vim'
 	use 'rafcamlet/nvim-luapad'
 	use 'wakatime/vim-wakatime'
 	use 'vim-airline/vim-airline-themes'
 	use 'tpope/vim-surround'
 	use 'tomtom/tcomment_vim'
 	-- use 'sheerun/vim-polyglot'
-	use 'scrooloose/nerdtree'
 	use 'rakr/vim-one'
 	use { 'neoclide/coc.nvim', branch = 'release' }
 	use 'mmahnic/vim-flipwords'
@@ -300,4 +252,5 @@ inoremap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
 command! -nargs=0 Todos :ShowTaggedNotes
 nnoremap <leader><leader>t :Todos<cr>
+let g:fzf_preview_window = ['', 'alt-/']
 ]]

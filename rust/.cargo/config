@@ -15,7 +15,7 @@ debug = false
 strip = "symbols"
 lto = "fat"
 [build]
-# rustc-wrapper="sccache"
+# rustc-wrapper=""
 [target.x86_64-unknown-linux-gnu]
 linker="x86_64-unknown-linux-gnu-gcc"
 # rustflags=[

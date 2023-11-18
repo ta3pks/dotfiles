@@ -81,5 +81,5 @@ rust_binname(){
 	*) print "./target/debug/$binname" ;;
 	esac
 }
-alias shuttle='cargo shuttle'
 alias rust_repl='evcxr'
+alias rm='grm'

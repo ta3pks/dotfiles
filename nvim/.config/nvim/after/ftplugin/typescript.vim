@@ -8,11 +8,11 @@ local client_id = vim.lsp.start({
 })
 vim.lsp.buf_attach_client(0, client_id)
 EOF
-command -nargs=* -buffer -bar Deno exe "lua require'openterm'.open_term('sh -c \"deno ".<q-args>.";read\"')"
+command -nargs=* -buffer -bar Deno exe "lua require'openterm'.open_term('sh -c \"deno " . <q-args> . "\"')"
 nnoremap <silent> <buffer> <leader>e :exe "Deno run ".expand("%")<CR>
 let s:codi_interpreter = {
 	\ 'bin': 'deno',
-	\ 'prompt': "^>\s$",
+	\ 'prompt': "> ",
 	\}
 let g:codi#interpreters = {
 			\'typescript': s:codi_interpreter,

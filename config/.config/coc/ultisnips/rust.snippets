@@ -37,3 +37,25 @@ ${1:async} ${2:move} |${3:args}| {
 		$0
 }
 endsnippet
+
+snippet !tests "module tests" b
+#[cfg(test)]
+mod tests {
+	use super::*;
+	#[test]
+	fn test_${1:name}() {
+		$0
+	}
+}
+endsnippet
+
+snippet !tokio_tests "module tests" b
+#[cfg(test)]
+mod tests {
+	use super::*;
+	#[tokio::test]
+	async fn test_${1:name}() {
+		$0
+	}
+}
+endsnippet

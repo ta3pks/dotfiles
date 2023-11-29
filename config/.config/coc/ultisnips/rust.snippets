@@ -38,7 +38,7 @@ ${1:async} ${2:move} |${3:args}| {
 }
 endsnippet
 
-snippet !tests "module tests" b
+snippet tests "module tests" b
 #[cfg(test)]
 mod tests {
 	use super::*;
@@ -49,7 +49,7 @@ mod tests {
 }
 endsnippet
 
-snippet !tokio_tests "module tests" b
+snippet tokio_tests "module tests" b
 #[cfg(test)]
 mod tests {
 	use super::*;
@@ -58,4 +58,39 @@ mod tests {
 		$0
 	}
 }
+endsnippet
+
+
+snippet db_impl_create_table "impl create table" b
+impl $1 {
+	pub(super) async fn create_table(cl: &clickhouse::Client) -> crate::Result<()> {
+		cl.query(
+			r#"
+			CREATE TABLE IF NOT EXISTS $2 (
+				$3
+			) $4
+		"#,
+		)
+		.execute()
+		.await
+		.map_err(Into::into)
+	}
+}
+endsnippet
+
+snippet now "now" w
+now().unix_secs().cast_as()
+endsnippet
+snippet datetime "datetime" w
+DateTime('Asia/Istanbul'),
+endsnippet
+snippet derive "derive" w
+#[derive(${1:Debug}, ${2:Clone}, ${3:serde::Serialize}, ${4:serde::Deserialize}${0:,})]
+endsnippet
+snippet deref "deref" w
+#[derive(Educe$0)]
+#[educe(Deref)]
+endsnippet
+snippet todo "todo comment" b
+// TODO: $0
 endsnippet

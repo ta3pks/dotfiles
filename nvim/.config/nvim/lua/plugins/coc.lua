@@ -131,7 +131,7 @@ return {
 			let col = col('.') - 1
 			return !col || getline('.')[col - 1]  =~# '\s'
 			endfunction
-
+			command! -bar -nargs=0 Snippets :CocCommand snippets.openSnippetFiles
 
 			]]
 	end

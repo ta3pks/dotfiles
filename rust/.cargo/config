@@ -1,5 +1,5 @@
 [net]
-git-fetch-with-cli=true
+git-fetch-with-cli = true
 [alias]
 t = "test -- --nocapture --color always"
 build-x86-linux-gnu = "build --target x86_64-unknown-linux-gnu"
@@ -7,17 +7,19 @@ build-x86-linux-gnu = "build --target x86_64-unknown-linux-gnu"
 opt-level = 0
 overflow-checks = true
 lto = "off"
-debug=true
-incremental=true
+debug = true
+incremental = true
 [profile.release]
 opt-level = "s"
 debug = false
 strip = "symbols"
 lto = "fat"
 [build]
-# rustc-wrapper=""
+rustc-wrapper = "sccache"
+incremental = true
+# target-dir = "~/.cargo_target"
 [target.x86_64-unknown-linux-gnu]
-linker="x86_64-unknown-linux-gnu-gcc"
+linker = "x86_64-unknown-linux-gnu-gcc"
 # rustflags=[
 # "-C","linker=mold","-C","link-arg=-fuse=mold"
 # ]
@@ -41,4 +43,3 @@ linker = "i686-linux-android26-clang"
 
 [target.x86_64-linux-android]
 linker = "x86_64-linux-android26-clang"
-

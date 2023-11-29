@@ -39,9 +39,9 @@ function! RepeatCmd(cmd) range abort
 endfunction
 command! -complete=file_in_path -nargs=1  RuntimeFile call Open_runtime_file(<f-args>)
 nnoremap <silent> <C-w><c-l> :exe "tabnew ".$MYVIMRC->fnamemodify(':p:h'). "/after/ftplugin/".&ft.".vim"<bar>lcd %:p:h<CR>
-nnoremap <silent> <C-w>l :exe "tabnew ".$MYVIMRC->fnamemodify(':p:h'). "/lsp.vim"<bar>lcd %:p:h<CR>
 nnoremap <silent> <C-w><c-s> :tabnew $MYVIMRC<bar>lcd %:p:h<CR>
 nnoremap <silent> <C-w><c-p> :exe "tabnew ".$MYVIMRC->fnamemodify(':p:h'). "/lua/plugins/"<bar>lcd %:p:h<bar>call search("init.lua")<CR>
+nnoremap <silent> <C-w><c-n> :tabnew<bar>call Open_runtime_file("nviminit.vim")<CR>
 nnoremap <silent> # <C-^>
 nnoremap <silent> <space> za
 nnoremap <silent> zj :<c-u>call RepeatCmd('call NextClosedFold("j")')<cr>
@@ -51,4 +51,6 @@ nnoremap <silent> z1 :set foldlevel=1<cr>
 nnoremap <silent> z2 :set foldlevel=2<cr>
 nnoremap <silent> z3 :set foldlevel=3<cr>
 nnoremap <silent> z4 :set foldlevel=4<cr>
+nnoremap <silent> <a-l> :cn<cr>
+nnoremap <silent> <a-h> :cp<cr>
 set statusline^=%f

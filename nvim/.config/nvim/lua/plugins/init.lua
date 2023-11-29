@@ -18,11 +18,6 @@ return {
 		"tpope/vim-repeat",
 	},
 	{
-		"tpope/vim-fugitive",
-		lazy = true,
-		cmd = { "Git", "Gdiffsplit", "Gdiff", "Gvdiffsplit", "Gvdiff", "Gwrite", "Gw" },
-	},
-	{
 		"rakr/vim-one",
 		init = function()
 			vim.o.background = "dark"
@@ -41,13 +36,6 @@ return {
 				vim.fn.feedkeys('gcgv')
 			end, { noremap = true, silent = true })
 		end
-	},
-	{
-		'metakirby5/codi.vim'
-		,
-		lazy = true
-		,
-		cmd = { "Codi", "CodiNew" }
 	},
 	{ 'wakatime/vim-wakatime',            event = "VeryLazy" },
 	{ 'junegunn/rainbow_parentheses.vim', event = "VeryLazy" },

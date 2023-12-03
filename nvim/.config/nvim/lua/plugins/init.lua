@@ -1,4 +1,9 @@
 return {
+	config = {
+		defaults = {
+			lazy = true,
+		}
+	},
 	{
 		"mmahnic/vim-flipwords",
 		lazy = true,

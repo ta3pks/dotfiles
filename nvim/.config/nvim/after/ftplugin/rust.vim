@@ -27,7 +27,9 @@ endfunction
 function! s:SetRustrunParams()
 	let g:rustrun_params = input('Run params: ')
 endfunction
-nnoremap <silent> <buffer> <leader>c :Cargo clippy --all-targets --all-features <CR>
+nnoremap <silent> <buffer> <leader>cc :Cargo clippy --all-targets --all-features <CR>
+nnoremap <silent> <buffer> <leader>cu :Cargo update<CR>
+nnoremap <silent> <buffer> <leader>cU :Cargo upgrade<CR>
 nnoremap <silent> <buffer> <leader>ee :exe 'Cargo run '.g:rustrun_params<CR>
 nnoremap <silent> <buffer> <leader>es :call <sid>SetRustrunParams()<CR>
 nnoremap <silent> <buffer> <leader>tt :exe 'Cargo test '.g:rusttest_params.' -- --test-threads=1 --nocapture'<CR>

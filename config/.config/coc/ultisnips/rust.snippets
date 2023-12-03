@@ -85,7 +85,7 @@ snippet datetime "datetime" w
 DateTime('Asia/Istanbul'),
 endsnippet
 snippet derive "derive" w
-#[derive(${1:Debug}, ${2:Clone}, ${3:serde::Serialize}, ${4:serde::Deserialize}${0:,})]
+#[derive(${1:Debug,} ${2:Clone,} ${3:serde::Serialize,} ${4:serde::Deserialize} $0)]
 endsnippet
 snippet deref "deref" w
 #[derive(Educe$0)]

@@ -43,6 +43,9 @@ return {
 
 			function Notes()
 				vim.ui.select(GetNoteList(), {}, function(selected)
+					if selected == nil then
+						return
+					end
 					vim.cmd("Note " .. selected)
 				end)
 			end

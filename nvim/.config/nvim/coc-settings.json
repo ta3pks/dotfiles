@@ -6,7 +6,7 @@
 	"diagnostic.messageTarget": "float",
 	"diagnostic.virtualTextCurrentLineOnly": false,
 	"coc.preferences.formatOnSave": true,
-	"diagnostic.virtualText": false,
+	"diagnostic.virtualText": true,
 	"diagnostic.locationlistLevel": "error",
 	"diagnostic.locationlistUpdate": true,
 	"coc.preferences.useQuickfixForLocations": true,

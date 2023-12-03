@@ -27,7 +27,8 @@ function! s:SetQfListFromTermOnQuit()
 			return
 		endif
 		if getqflist()->len()>0
-			copen
+			" copen
+			lua vim.notify('errors loaded into quickfix list', vim.log.levels.WARN)
 		endif
 	endfunction
 	call s:check_qf(l:term_buf)

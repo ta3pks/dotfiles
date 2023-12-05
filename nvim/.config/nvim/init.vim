@@ -1,5 +1,5 @@
 set splitbelow splitright number relativenumber smartcase smartindent ignorecase nohlsearch incsearch smartindent foldenable exrc
-set inccommand=split foldmethod=indent
+set inccommand=split foldmethod=indent foldcolumn=1 foldlevelstart=99 foldopen=all
 if has("termguicolors")
 	set termguicolors
 endif
@@ -51,6 +51,5 @@ nnoremap <silent> z1 :set foldlevel=1<cr>
 nnoremap <silent> z2 :set foldlevel=2<cr>
 nnoremap <silent> z3 :set foldlevel=3<cr>
 nnoremap <silent> z4 :set foldlevel=4<cr>
-nnoremap <silent> <a-l> :cn<cr>
-nnoremap <silent> <a-h> :cp<cr>
-set statusline^=%f
+nnoremap <silent> <a-l> :if getqflist()->len() == 1 <bar> cfirst <bar> else <bar> cnext <bar> endif<cr>
+nnoremap <silent> <a-h> :if getqflist()->len() == 1 <bar> cfirst <bar> else <bar> cprev <bar> endif<cr> 

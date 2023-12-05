@@ -1,5 +1,6 @@
 {
 	"pullDiagnostic.onSave": true,
+	"list.source.extensions.defaultAction": "toggle",
 	"pullDiagnostic.workspace": true,
 	"suggest.removeDuplicateItems": true,
 	"signature.enable": true,

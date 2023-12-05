@@ -32,7 +32,6 @@ return {
 				for _, note in ipairs(notes) do
 					local mtime = vim.fn.getftime(vim.fn.expand("~/Documents/notes_nvim/" ..
 						note .. ".md"))
-					print(mtime, note)
 					if mtime > last.time then
 						last.name = note
 						last.time = mtime

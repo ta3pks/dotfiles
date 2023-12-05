@@ -2,7 +2,7 @@ command! -bar -buffer -nargs=+ Cargo :exe "vsp | terminal cargo " . <q-args> | n
 command! -buffer -nargs=+ Cadd :Cargo add <args>
 command! -buffer -nargs=+ Crm :Cargo rm <args>
 command! -buffer -nargs=* Cupgrade :Cargo upgrade <args>
-command! -buffer -nargs=* Cupdate :Cargo update <args>
+command! -bar -buffer -nargs=* Cupdate :Cargo update <args>
 command! -buffer -nargs=* Ctest :Cargo test <args>
 
 function! s:RustAddUse(...)

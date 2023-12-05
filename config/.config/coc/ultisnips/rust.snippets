@@ -62,13 +62,21 @@ endsnippet
 
 
 snippet db_impl_create_table "impl create table" b
+use crate::Db;
+use crate::Result;
+use educe::Educe;
+
+pub struct $1 {
+	$0
+}
 impl $1 {
-	pub(super) async fn create_table(cl: &clickhouse::Client) -> crate::Result<()> {
+	pub(super) async fn create_table(cl: &clickhouse::Client) -> Result<()> {
 		cl.query(
 			r#"
 			CREATE TABLE IF NOT EXISTS $2 (
 				$3
-			) $4
+			) Engine = ${4:ReplacingMergeTree()}
+			Primary Key $5
 		"#,
 		)
 		.execute()
@@ -76,6 +84,9 @@ impl $1 {
 		.map_err(Into::into)
 	}
 }
+#[derive(Clone, Educe)]
+#[educe(Deref)]
+pub struct $1s(pub(crate) Db);
 endsnippet
 
 snippet now "now" w
@@ -88,7 +99,7 @@ snippet derive "derive" w
 #[derive(${1:Debug,} ${2:Clone,} ${3:serde::Serialize,} ${4:serde::Deserialize} $0)]
 endsnippet
 snippet deref "deref" w
-#[derive(Educe$0)]
+#[derive(Educe)]
 #[educe(Deref)]
 endsnippet
 snippet todo "todo comment" b

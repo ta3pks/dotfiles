@@ -8,8 +8,6 @@ return {
 	},
 	{ 'rafcamlet/nvim-luapad', cmd = { "Luapad" } },
 	{ 'wellle/targets.vim' },
-	{
-		'easymotion/vim-easymotion',
 		config = function()
 			vim.keymap.set("n", "<leader>", "<Plug>(easymotion-prefix)", { silent = true })
 		end,

@@ -4,7 +4,8 @@ return {
 		{ "<leader>gg", function()
 			require("FTerm").scratch({
 				auto_close = true,
-				cmd = "zsh -c lazygit",
+				border = "single",
+				cmd = "lazygit",
 				on_exit = function()
 					vim.fn.feedkeys("i")
 				end

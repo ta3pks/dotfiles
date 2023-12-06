@@ -3,6 +3,24 @@ return {
 		'xolox/vim-notes',
 		cmd = { "Note", "ShowTaggedNotes", "SearchNotes" },
 		dependencies = { 'xolox/vim-misc' },
+		keys = {
+			-- vim.keymap.set("n", "<leader><leader>tn", Notes, { noremap = true, silent = true });
+			-- vim.keymap.set("n", "<leader><leader>tt", function()
+			-- 	vim.cmd("Note " .. GetLastNote())
+			-- 	vim.fn.search("TODO")
+			-- end, { noremap = true, silent = true });
+			{ "<leader><leader>tn", Notes, noremap = true, silent = true },
+			{
+				"<leader><leader>tt",
+				function()
+					vim.cmd("Note " .. GetLastNote())
+					vim.fn.search("TODO")
+				end,
+				noremap = true,
+				silent = true
+			}
+
+		},
 		config = function()
 			vim.g.notes_directories = { "~/Documents/notes_nvim" }
 			vim.g.notes_suffix = ".md"
@@ -48,12 +66,6 @@ return {
 					vim.cmd("Note " .. selected)
 				end)
 			end
-
-			vim.keymap.set("n", "<leader><leader>tn", Notes, { noremap = true, silent = true });
-			vim.keymap.set("n", "<leader><leader>tt", function()
-				vim.cmd("Note " .. GetLastNote())
-				vim.fn.search("TODO")
-			end, { noremap = true, silent = true });
 
 			vim.cmd [[
 			command! Notes :lua Notes()

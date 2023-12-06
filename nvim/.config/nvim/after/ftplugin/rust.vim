@@ -6,6 +6,7 @@ function CargoFloatTerm(args)
 			vim.cmd[[
 			%s/--> //g
 			cgetbuffer
+			cfirst
 			]]
 			if #vim.fn.getqflist()>0 then
 				vim.notify('errors loaded into quickfix list', vim.log.levels.WARN)

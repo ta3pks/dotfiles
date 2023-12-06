@@ -1,13 +1,31 @@
 return {
 	{
+		'morhetz/gruvbox',
+		lazy = true,
+		-- init = function()
+		-- 	vim.o.background = "dark"
+		-- 	vim.cmd "colorscheme gruvbox"
+		-- end
+
+	},
+	{
+		"rakr/vim-one",
+		lazy = false,
+		init = function()
+			vim.o.background = "dark"
+			vim.cmd "colorscheme one"
+		end
+	},
+	{
 		"kana/vim-textobj-indent",
 		event = "VeryLazy",
 		dependencies = {
 			"kana/vim-textobj-user",
 		}
 	},
-	{ 'rafcamlet/nvim-luapad', cmd = { "Luapad" } },
-	{ 'wellle/targets.vim' },
+	{ 'rafcamlet/nvim-luapad',  cmd = { "Luapad" } },
+	{
+		'wellle/targets.vim',
 		config = function()
 			vim.keymap.set("n", "<leader>", "<Plug>(easymotion-prefix)", { silent = true })
 		end,
@@ -41,17 +59,10 @@ return {
 	{
 		"tpope/vim-surround",
 		event = "VeryLazy",
-		depedencies = { "tpope/vim-repeat" },
+		dependencies = { "tpope/vim-repeat" },
 	},
 	{
 		"tpope/vim-repeat",
-	},
-	{
-		"rakr/vim-one",
-		init = function()
-			vim.o.background = "dark"
-			vim.cmd "colorscheme one"
-		end
 	},
 	{
 		'stevearc/dressing.nvim',

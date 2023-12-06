@@ -15,6 +15,7 @@ return {
 	keys = {
 		{ "<c-space>p",     "<cmd>Telescope neovim-project<cr>",          noremap = true },
 		{ "<c-space><c-p>", "<cmd>Telescope neovim-project discover<cr>", noremap = true },
+		{ "<c-space>3",     "<cmd>NeovimProjectLoadRecent<cr>",           noremap = true },
 	},
 	dependencies = {
 		{ "nvim-lua/plenary.nvim" },

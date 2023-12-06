@@ -110,3 +110,9 @@ ${1:pub} ${2:async} fn ${3:name}($4) -> $5 {
 	$0
 }
 endsnippet
+snippet serde_case "serde case" b
+#[serde(rename = "${1:snake_case}")]
+endsnippet
+snippet oapi_case "oapi case" b
+#[oai(rename = "${1:snake_case}")]
+endsnippet

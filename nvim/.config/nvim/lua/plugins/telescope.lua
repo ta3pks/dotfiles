@@ -6,8 +6,9 @@ return {
 		lazy = true,
 		keys = { "<C-space>" },
 		cmd = { 'Telescope' },
-		init = function()
+		config = function()
 			local telescope = require('telescope')
+			vim.cmd "cnoreabbrev copen Telescope quickfix"
 			telescope.setup {
 				defaults = {
 					mappings = {
@@ -16,6 +17,8 @@ return {
 							["<C-k>"] = "move_selection_previous",
 							["<c-d>"] = "delete_buffer",
 							["<C-\\>"] = "which_key",
+							["<c-a>"] = "toggle_all",
+							["<c-]>"] = "send_selected_to_qflist",
 						},
 					},
 				},

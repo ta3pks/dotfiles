@@ -3,7 +3,7 @@ return {
 		'xolox/vim-notes',
 		cmd = { "Note", "ShowTaggedNotes", "SearchNotes" },
 		dependencies = { 'xolox/vim-misc' },
-		init = function()
+		config = function()
 			vim.g.notes_directories = { "~/Documents/notes_nvim" }
 			vim.g.notes_suffix = ".md"
 
@@ -57,9 +57,6 @@ return {
 
 			vim.cmd [[
 			command! Notes :lua Notes()
-			command! -bar -nargs=0 Todos :ShowTaggedNotes
-			nnoremap <leader><leader>td :Todos<bar>setlocal nofoldenable<cr>
-			nnoremap <leader><leader>ts :SearchNotes<space>
 			]]
 		end
 

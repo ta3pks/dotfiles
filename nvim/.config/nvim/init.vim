@@ -1,5 +1,5 @@
 set splitbelow splitright number relativenumber smartcase smartindent ignorecase nohlsearch incsearch smartindent foldenable exrc
-set inccommand=split foldmethod=indent foldcolumn=1 foldlevelstart=99 foldopen=all
+set inccommand=split foldmethod=indent foldcolumn=0 foldlevelstart=99
 if has("termguicolors")
 	set termguicolors
 endif

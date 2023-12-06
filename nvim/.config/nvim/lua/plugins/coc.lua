@@ -13,8 +13,6 @@ return {
 		vim.keymap.set("v", "<a-.>", "<Plug>(coc-codeaction-selected)", { noremap = true, silent = true })
 		vim.keymap.set("n", "<a-r>", "<Plug>(coc-codeaction-refactor)", { noremap = true, silent = true })
 		vim.keymap.set("n", "<leader>s", "<Plug>(coc-codeaction-source)", { noremap = true, silent = true })
-		vim.keymap.set("v", "<leader>f", "<Plug>(coc-format-selected)", { noremap = true, silent = true })
-		vim.keymap.set("n", "<leader>f", ":call CocActionAsync('format')<CR>", { noremap = true, silent = true })
 		vim.keymap.set("n", "<a-d>", ":CocList diagnostics<CR>", { noremap = true, silent = true })
 		vim.keymap.set("n", "<c-j>", "<plug>(coc-diagnostic-next)", { noremap = true, silent = true })
 		vim.keymap.set("n", "<c-k>", "<plug>(coc-diagnostic-prev)", { noremap = true, silent = true })

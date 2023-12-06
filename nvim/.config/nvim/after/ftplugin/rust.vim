@@ -1,9 +1,25 @@
+lua <<ENDLUA
+function CargoFloatTerm(args)
+		require"openterm".open_full_term("cargo ".. args ,true,function() 
+			vim.fn.setqflist({})
+			vim.o.modifiable = true
+			vim.cmd[[
+			%s/--> //g
+			cgetbuffer
+			]]
+			if #vim.fn.getqflist()>0 then
+				vim.notify('errors loaded into quickfix list', vim.log.levels.WARN)
+			end
+		end)
+end
+ENDLUA
 command! -bar -buffer -nargs=+ Cargo :exe "vsp | terminal cargo " . <q-args> | normal! G
-command! -buffer -nargs=+ Cadd :Cargo add <args>
-command! -buffer -nargs=+ Crm :Cargo rm <args>
-command! -buffer -nargs=* Cupgrade :Cargo upgrade <args>
-command! -bar -buffer -nargs=* Cupdate :Cargo update <args>
-command! -buffer -nargs=* Ctest :Cargo test <args>
+command! -bar -buffer -nargs=+ CargoFloat :lua CargoFloatTerm(<q-args>)<CR>
+command! -buffer -nargs=+ Cadd :CargoFloat add <args>
+command! -buffer -nargs=+ Crm :CargoFloat rm <args>
+command! -buffer -nargs=* Cupgrade :CargoFloat upgrade <args>
+command! -bar -buffer -nargs=* Cupdate :CargoFloat update <args>
+command! -buffer -nargs=* Ctest :CargoFloat test <args>
 
 function! s:RustAddUse(...)
 	if  a:0 == 0
@@ -27,12 +43,22 @@ endfunction
 function! s:SetRustrunParams()
 	let g:rustrun_params = input('Run params: ')
 endfunction
-nnoremap <silent> <buffer> <leader>cc :Cargo clippy --all-targets --all-features <CR>
-nnoremap <silent> <buffer> <leader>cu :Cargo update<CR>
-nnoremap <silent> <buffer> <leader>cU :Cargo upgrade<CR>
+nnoremap <silent> <buffer> <leader>cc :CargoFloat clippy --all-targets --all-features <CR>
+nnoremap <silent> <buffer> <leader>cu :CargoFloat update<CR>
+nnoremap <silent> <buffer> <leader>cU :CargoFloat upgrade<CR>
 nnoremap <silent> <buffer> <leader>ee :exe 'Cargo run '.g:rustrun_params<CR>
 nnoremap <silent> <buffer> <leader>es :call <sid>SetRustrunParams()<CR>
-nnoremap <silent> <buffer> <leader>tt :exe 'Cargo test '.g:rusttest_params.' -- --test-threads=1 --nocapture'<CR>
-nnoremap <silent> <buffer> <leader>tc :exe "Cargo test ".expand("<cword>") . " -- --nocapture"<CR>
+nnoremap <silent> <buffer> <leader>tt :exe 'CargoFloat test '.g:rusttest_params.' -- --test-threads=1 --nocapture'<CR>
+nnoremap <silent> <buffer> <leader>tc :exe "CargoFloat test ".expand("<cword>") . " -- --nocapture"<CR>
 nnoremap <silent> <buffer> <leader>ts :call <sid>SetRusttestParams()<CR>
+command! -bar -nargs=? -complete=customlist,RustcWrapperComplete  RustcWrapper :let $RUSTC_WRAPPER = <q-args>
+function! RustcWrapperComplete(...)
+	return ['sccache']
+endfunction
+cnoreabbrev <silent> <buffer> rw RustcWrapper
+cnoreabbrev <silent> <buffer> scc RustcWrapper sccache
+if !"g:rustc_wrapper_sccache_set"->exists()
+	let g:rustc_wrapper_sccache_set = 1
+	let $RUSTC_WRAPPER = 'sccache'
+endif
 autocmd BufWritePost *.rs silent! :silent! !ctags -R src/

@@ -4,6 +4,8 @@ return {
 		projects = { -- define project roots
 			"~/.projects/dedecta/*",
 			"~/.projects/*",
+			"~/contributing/*",
+			"~/dotfiles/",
 		},
 	},
 	init = function()
@@ -20,5 +22,5 @@ return {
 		{ "Shatur/neovim-session-manager" },
 	},
 	lazy = false,
-	priority = 100,
+	priority = 5,
 }

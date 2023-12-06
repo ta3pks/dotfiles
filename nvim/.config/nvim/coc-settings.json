@@ -26,6 +26,7 @@
 		"inactive-code"
 	],
 	"Lua.runtime.version": "LuaJIT",
+	"sumneko-lua.enableNvimLuaDev": true,
 	"Lua.workspace.library": [
 		"/opt/homebrew/Cellar/neovim/0.9.4/share/nvim/runtime"
 	],

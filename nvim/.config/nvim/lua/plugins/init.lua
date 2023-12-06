@@ -1,40 +1,39 @@
 return {
 	{
-		'nvimdev/dashboard-nvim',
-		event = 'VimEnter',
-		config = function()
-			require('dashboard').setup {
-				-- config
-			}
-		end,
-		dependencies = { 'nvim-tree/nvim-web-devicons' }
-	},
-	{ "glts/vim-magnum" },
-	{
-		'ggandor/leap.nvim',
+		"kana/vim-textobj-indent",
 		event = "VeryLazy",
-		config = function()
-			require('leap').add_default_mappings()
-			-- vim.keymap.set({ 'n', 'x', 'o' }, 'f', '<Plug>(leap-forward-to)', { noremap = false })
-			-- vim.keymap.set({ 'n', 'x', 'o' }, 'F', '<Plug>(leap-backward-to)', { noremap = false })
-			-- vim.keymap.set({ 'n', 'x', 'o' }, 't', '<Plug>(leap-forward-till)', { noremap = false })
-			-- vim.keymap.set({ 'n', 'x', 'o' }, 'T', '<Plug>(leap-backward-till)', { noremap = false })
-			-- vim.keymap.set({ 'n', 'x', 'o' }, 'gs', '<Plug>(leap-from-window)', { noremap = false })
-			-- require('leap').add_repeat_mappings(';', ',', {
-			-- 	relative_directions = true,
-			-- 	modes = { 'n', 'x', 'o' },
-			-- })
-		end
+		dependencies = {
+			"kana/vim-textobj-user",
+		}
 	},
+	{ 'rafcamlet/nvim-luapad', cmd = { "Luapad" } },
 	{ 'wellle/targets.vim' },
 	{
+		'easymotion/vim-easymotion',
+		config = function()
+			vim.keymap.set("n", "<leader>", "<Plug>(easymotion-prefix)", { silent = true })
+		end,
+		keys = {
+			"<leader>w",
+		},
+	},
+	{
 		"folke/todo-comments.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		}
+		dependencies = { "nvim-lua/plenary.nvim",
+			'nvim-telescope/telescope.nvim',
+		},
+		cmd =
+		{
+			"TodoTelescope",
+			"Todos",
+		},
+		keys = {
+			{ "<c-space>d", ":TodoTelescope <cr>", noremap = true, silent = true },
+		},
+		config = function(cfg)
+			require "todo-comments".setup(cfg)
+			vim.cmd [[command! Todos TodoTelescope]]
+		end
 	},
 	{
 		"mmahnic/vim-flipwords",
@@ -43,11 +42,6 @@ return {
 	},
 	{
 		"tpope/vim-surround",
-		event = "VeryLazy",
-		depedencies = { "tpope/vim-repeat" },
-	},
-	{
-		"glts/vim-radical",
 		event = "VeryLazy",
 		depedencies = { "tpope/vim-repeat" },
 	},
@@ -63,19 +57,26 @@ return {
 	},
 	{
 		'stevearc/dressing.nvim',
+		event = "VeryLazy",
 	},
 	{
 		"tomtom/tcomment_vim",
-		event = "VeryLazy",
-		init = function()
-			vim.keymap.set('n', '<c-\\>', ':TComment<cr>', { noremap = true, silent = true })
-			vim.keymap.set('v', '<c-\\>', function()
-				vim.fn.feedkeys('gcgv')
-			end, { noremap = true, silent = true })
-		end
+		keys = {
+			{
+				"<c-\\>", ":TComment<cr>", noremap = true, silent = true, mode = "n"
+			},
+			{
+				"<c-\\>",
+				function()
+					vim.fn.feedkeys('gcgv')
+				end,
+				noremap = true,
+				silent = true,
+				mode = "v"
+			},
+		},
 	},
-	{ 'wakatime/vim-wakatime',            event = "VeryLazy" },
-	{ 'junegunn/rainbow_parentheses.vim', event = "VeryLazy" },
-	{ 'airblade/vim-gitgutter',           event = "BufReadPost" },
+	{ 'wakatime/vim-wakatime',  event = "VeryLazy" },
+	{ 'airblade/vim-gitgutter', event = "BufReadPost" },
 
 }

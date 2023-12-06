@@ -5,7 +5,6 @@
     "coc-html": ">=1.6.1",
     "coc-html-css-support": ">=0.4.0",
     "coc-json": ">=1.7.0",
-    "coc-lua": ">=1.0.1",
     "coc-markdown-preview-enhanced": ">=0.4.2",
     "coc-marketplace": ">=1.9.0",
     "coc-rust-analyzer": ">=0.69.5",
@@ -20,9 +19,10 @@
     "coc-emmet": ">=1.1.6",
     "coc-protobuf": ">=0.0.2",
     "coc-format-json": ">=0.2.3",
-    "coc-toml": ">=1.2.5"
+    "coc-toml": ">=1.2.5",
+    "coc-sumneko-lua": ">=0.0.40"
   },
   "disabled": [],
   "locked": [],
-  "lastUpdate": 1701750587804
+  "lastUpdate": 1701837245416
 }

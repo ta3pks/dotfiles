@@ -35,12 +35,21 @@ local function open_nvim_term(prg, open_current_filepath)
 end
 
 local m = {}
-function m.open_full_term(prg, open_current_path)
+function m.open_full_term(prg, open_current_path, on_exit)
 	-- if is_tmux() then
 	-- 	tmux_open_term_full(prg, open_current_path)
 	-- else
-	vim.cmd('tabnew')
-	open_nvim_term(prg, open_current_path)
+	local is_ok, term = pcall(require, "FTerm")
+	if is_ok then
+		term.scratch({
+			cmd = prg,
+			on_exit = on_exit,
+		})
+		return
+	else
+		vim.cmd('tabnew')
+		open_nvim_term(prg, open_current_path)
+	end
 	-- end
 end
 

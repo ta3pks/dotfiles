@@ -17,3 +17,4 @@ function! s:AddTag(tag)
 endfunction
 nnoremap <silent><buffer> <leader>d :call <sid>SetState('TODO', 'DONE')<cr>
 nnoremap <silent><buffer> <leader>w :call <sid>AddTag('WIP')<cr>
+cnoreabbrev <buffer> wq w<bar>bd

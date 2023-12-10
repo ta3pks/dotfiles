@@ -20,7 +20,7 @@ command! -buffer -nargs=+ Cadd :CargoFloat add <args>
 command! -buffer -nargs=+ Crm :CargoFloat rm <args>
 command! -buffer -nargs=* Cupgrade :CargoFloat upgrade <args>
 command! -bar -buffer -nargs=* Cupdate :CargoFloat update <args>
-command! -buffer -nargs=* Ctest :CargoFloat test <args>
+command! -buffer -nargs=* Ctest :CargoFloat testf <args> -- --nocapture
 
 function! s:RustAddUse(...)
 	if  a:0 == 0
@@ -49,8 +49,8 @@ nnoremap <silent> <buffer> <leader>cu :CargoFloat update<CR>
 nnoremap <silent> <buffer> <leader>cU :CargoFloat upgrade<CR>
 nnoremap <silent> <buffer> <leader>ee :exe 'Cargo run '.g:rustrun_params<CR>
 nnoremap <silent> <buffer> <leader>es :call <sid>SetRustrunParams()<CR>
-nnoremap <silent> <buffer> <leader>tt :exe 'CargoFloat test '.g:rusttest_params.' -- --test-threads=1 --nocapture'<CR>
-nnoremap <silent> <buffer> <leader>tc :exe "CargoFloat test ".expand("<cword>") . " -- --nocapture"<CR>
+nnoremap <silent> <buffer> <leader>tt :exe 'Ctest '.g:rusttest_params<CR>
+nnoremap <silent> <buffer> <leader>tc :let g:rusttest_params=expand("<cword>")<bar>exe 'Ctest '.g:rusttest_params<CR>
 nnoremap <silent> <buffer> <leader>ts :call <sid>SetRusttestParams()<CR>
 command! -bar -nargs=? -complete=customlist,RustcWrapperComplete  RustcWrapper :let $RUSTC_WRAPPER = <q-args>
 function! RustcWrapperComplete(...)

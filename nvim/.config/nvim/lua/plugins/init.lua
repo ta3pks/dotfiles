@@ -1,14 +1,5 @@
 return {
 	{
-		'morhetz/gruvbox',
-		lazy = true,
-		-- init = function()
-		-- 	vim.o.background = "dark"
-		-- 	vim.cmd "colorscheme gruvbox"
-		-- end
-
-	},
-	{
 		"rakr/vim-one",
 		lazy = false,
 		init = function()

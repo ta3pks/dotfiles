@@ -43,6 +43,7 @@ function m.open_full_term(prg, open_current_path, on_exit)
 	if is_ok then
 		term.scratch({
 			cmd = prg,
+			border = "rounded",
 			on_exit = on_exit,
 		})
 		return

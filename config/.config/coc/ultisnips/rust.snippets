@@ -64,11 +64,16 @@ endsnippet
 snippet db_impl_create_table "impl create table" b
 use crate::Db;
 use crate::Result;
-use educe::Educe;
+use clickhouse::Row;
+use serde::Deserialize;
+use serde::Serialize;
 
+#[derive(Debug, Clone, Serialize, Deserialize, Row)]
+#[non_exhaustive]
 pub struct $1 {
 	$0
 }
+
 impl $1 {
 	pub(super) async fn create_table(cl: &clickhouse::Client) -> Result<()> {
 		cl.query(
@@ -84,8 +89,6 @@ impl $1 {
 		.map_err(Into::into)
 	}
 }
-#[derive(Clone, Educe)]
-#[educe(Deref)]
 pub struct $1s(pub(crate) Db);
 endsnippet
 
@@ -105,9 +108,9 @@ endsnippet
 snippet todo "todo comment" b
 // TODO: $0
 endsnippet
-snippet asyncfn "async fn" w 
-${1:pub} ${2:async} fn ${3:name}($4) -> $5 {
-	$0
+snippet fn "fn" w 
+${1:pub} ${2:async} fn ${3:name}(${4:&self${5:,}}) -> ${6:Result<()>} {
+	${0:unimplemented!()}
 }
 endsnippet
 snippet serde_case "serde case" b

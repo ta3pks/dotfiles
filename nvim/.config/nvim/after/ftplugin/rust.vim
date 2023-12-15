@@ -63,3 +63,8 @@ if !"g:rustc_wrapper_sccache_set"->exists()
 	let $RUSTC_WRAPPER = 'sccache'
 endif
 autocmd BufWritePost *.rs silent! :silent! !ctags -R src/
+
+function! MakeTokioTests(prefix="") range
+	let l:fn_names = getline(a:firstline,a:lastline)->filter({_,v -> v->match("async fn") > -1})->map({_,v -> v->matchstr("async fn \\zs\\w\\+")})
+	let l:fn_names = l:fn_names->map({_,v -> "#[tokio::test]" . "\n async fn " .a:prefix. v . "(){\nunimplemented!()\n}"})->join("\n")->setreg('')
+endfunction

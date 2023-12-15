@@ -1,12 +1,39 @@
 return {
+
+	-- {
+	-- 	"https://github.com/mkarmona/materialbox",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		vim.cmd [[
+	-- 		colorscheme materialbox
+	-- 		]]
+	-- 	end
+	-- },
 	{
-		"rakr/vim-one",
+		"https://github.com/rakr/vim-one",
 		lazy = false,
-		init = function()
-			vim.o.background = "dark"
-			vim.cmd "colorscheme one"
+		config = function()
+			vim.cmd [[
+			colorscheme one
+			]]
 		end
 	},
+	-- {
+	-- 	"joshdick/onedark.vim",
+	-- 	lazy = false,
+	-- 	init = function()
+	-- 		vim.o.background = "dark"
+	-- 		vim.cmd "colorscheme onedark"
+	-- 	end
+	-- },
+	-- {
+	-- 	"olimorris/onedarkpro.nvim",
+	-- 	lazy = false,
+	-- 	init = function()
+	-- 		vim.o.background = "dark"
+	-- 		vim.cmd "colorscheme onedark_vivid"
+	-- 	end
+	-- },
 	{
 		"kana/vim-textobj-indent",
 		event = "VeryLazy",

@@ -83,3 +83,4 @@ rust_binname(){
 }
 alias rust_repl='evcxr'
 alias rm='grm'
+alias ai='gh copilot suggest'

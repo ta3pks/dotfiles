@@ -8,9 +8,11 @@
 	"diagnostic.messageTarget": "float",
 	"diagnostic.virtualTextCurrentLineOnly": false,
 	"inlayHint.display": true,
+	"rust-analyzer.inlayHints.typeHints.hideNamedConstructor": true,
+	"rust-analyzer.inlayHints.closureStyle": "rust_analyzer",
 	"Lua.hint.arrayIndex": "Disable",
 	"inlayHint.enableParameter": true,
-	"inlayHint.refreshOnInsertMode": true,
+	"inlayHint.refreshOnInsertMode": false,
 	"rust-analyzer.inlayHints.typeHints.enable": true,
 	"rust-analyzer.imports.prefix": "crate",
 	"rust-analyzer.imports.merge.glob": true,
@@ -57,6 +59,5 @@
 	"emmet.includeLanguages": {
 		"html": "svelte"
 	},
-	// "codeLens.enable": true,
-	"inlayHint.enable": true
+	//"codeLens.enable": true,
 }

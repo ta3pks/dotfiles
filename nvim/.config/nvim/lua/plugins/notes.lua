@@ -9,7 +9,14 @@ return {
 			-- 	vim.cmd("Note " .. GetLastNote())
 			-- 	vim.fn.search("TODO")
 			-- end, { noremap = true, silent = true });
-			{ "<leader><leader>tn", Notes, noremap = true, silent = true },
+			{
+				"<leader><leader>tn",
+				function()
+					Notes()
+				end,
+				noremap = true,
+				silent = true
+			},
 			{
 				"<leader><leader>tt",
 				function()

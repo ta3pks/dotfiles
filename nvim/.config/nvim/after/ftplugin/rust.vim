@@ -13,7 +13,12 @@ function CargoFloatTerm(args)
 			end
 		end)
 end
+function CargoDeps()
+	local deps = vim.fn.systemlist('cargo tree --depth=1 --prefix=none')
+	vim.ui.select(deps,{},function(selected) end)
+end
 ENDLUA
+command! -bar -buffer CargoDeps :lua CargoDeps()
 command! -bar -buffer -nargs=+ Cargo :exe "vsp | terminal cargo " . <q-args> | normal! G
 command! -bar -buffer -nargs=+ CargoFloat :lua CargoFloatTerm(<q-args>)<CR>
 command! -buffer -nargs=+ Cadd :CargoFloat add <args>
@@ -48,6 +53,7 @@ nnoremap <silent> <buffer> <leader>cc :CargoFloat clippy --all-targets --all-fea
 nnoremap <silent> <buffer> <leader>cu :CargoFloat update<CR>
 nnoremap <silent> <buffer> <leader>cU :CargoFloat upgrade<CR>
 nnoremap <silent> <buffer> <leader>ee :exe 'Cargo run '.g:rustrun_params<CR>
+nnoremap <silent> <buffer> <leader>ef :exe 'CargoFloat run '.g:rustrun_params<CR>
 nnoremap <silent> <buffer> <leader>es :call <sid>SetRustrunParams()<CR>
 nnoremap <silent> <buffer> <leader>tt :exe 'Ctest '.g:rusttest_params<CR>
 nnoremap <silent> <buffer> <leader>tc :let g:rusttest_params=expand("<cword>")<bar>exe 'Ctest '.g:rusttest_params<CR>
@@ -68,3 +74,10 @@ function! MakeTokioTests(prefix="") range
 	let l:fn_names = getline(a:firstline,a:lastline)->filter({_,v -> v->match("async fn") > -1})->map({_,v -> v->matchstr("async fn \\zs\\w\\+")})
 	let l:fn_names = l:fn_names->map({_,v -> "#[tokio::test]" . "\n async fn " .a:prefix. v . "(){\nunimplemented!()\n}"})->join("\n")->setreg('')
 endfunction
+function! s:WrapType(ty)
+	call feedkeys('b"pdw')
+	call feedkeys("i".a:ty."<".@p.">")
+	return ""
+endfunction
+inoreabbrev <silent> <buffer><expr> _opt <SID>WrapType("Option")
+inoreabbrev <silent> <buffer><expr> _vec <SID>WrapType("Vec")

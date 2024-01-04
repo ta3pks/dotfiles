@@ -4,6 +4,7 @@ return {
 		projects = { -- define project roots
 			"~/.projects/dedecta/*",
 			"~/.projects/*",
+			"~/.projects/tbls/*",
 			"~/contributing/*",
 			"~/dotfiles/",
 		},

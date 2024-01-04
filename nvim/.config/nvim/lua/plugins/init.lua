@@ -15,6 +15,7 @@ return {
 		config = function()
 			vim.cmd [[
 			colorscheme one
+			highlight Folded guifg=#4A4948 guibg=bg
 			]]
 		end
 	},

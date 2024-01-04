@@ -78,7 +78,7 @@ impl $1 {
 	pub(super) async fn create_table(cl: &clickhouse::Client) -> Result<()> {
 		cl.query(
 			r#"
-			CREATE TABLE IF NOT EXISTS $2 (
+			CREATE TABLE IF NOT EXISTS $1s (
 				$3
 			) Engine = ${4:ReplacingMergeTree()}
 			Primary Key $5

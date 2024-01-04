@@ -53,3 +53,11 @@ nnoremap <silent> z3 :set foldlevel=3<cr>
 nnoremap <silent> z4 :set foldlevel=4<cr>
 nnoremap <silent> <a-l> :if getqflist()->len() == 1 <bar> cfirst <bar> else <bar> cnext <bar> endif<cr>
 nnoremap <silent> <a-h> :if getqflist()->len() == 1 <bar> cfirst <bar> else <bar> cprev <bar> endif<cr> 
+function! ToSnakeCase()
+	let l:cword = expand("<cword>")
+	let l:snake_case = substitute(l:cword, '\(\u\)', '_\l\1', 'gI')->substitute("^_", "", "")
+	echo l:snake_case
+	let @v = l:snake_case
+	normal! viw"vp
+endfunction
+inoreabbrev todo: <c-r>=printf(&commentstring, " TODO:")<cr>

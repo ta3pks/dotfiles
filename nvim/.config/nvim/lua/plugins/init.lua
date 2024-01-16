@@ -1,4 +1,12 @@
 return {
+	{
+		"folke/zen-mode.nvim",
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		}
+	},
 
 	-- {
 	-- 	"https://github.com/mkarmona/materialbox",
@@ -9,15 +17,25 @@ return {
 	-- 		]]
 	-- 	end
 	-- },
+	-- {
+	-- 	"https://github.com/rakr/vim-one",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		vim.cmd [[
+	-- 		colorscheme one
+	-- 		highlight Folded guifg=#4A4948 guibg=bg
+	-- 		]]
+	-- 	end
+	-- },
 	{
-		"https://github.com/rakr/vim-one",
+		"rebelot/kanagawa.nvim",
 		lazy = false,
 		config = function()
 			vim.cmd [[
-			colorscheme one
-			highlight Folded guifg=#4A4948 guibg=bg
+			colorscheme kanagawa
 			]]
 		end
+
 	},
 	-- {
 	-- 	"joshdick/onedark.vim",

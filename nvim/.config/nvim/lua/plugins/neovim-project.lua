@@ -5,6 +5,7 @@ return {
 			"~/.projects/dedecta/*",
 			"~/.projects/*",
 			"~/.projects/tbls/*",
+			"~/.learn/*",
 			"~/contributing/*",
 			"~/dotfiles/",
 		},

@@ -1,5 +1,6 @@
 {
 	"pullDiagnostic.onSave": true,
+	"tailwindCSS.enable": true,
 	"list.source.extensions.defaultAction": "toggle",
 	"pullDiagnostic.workspace": true,
 	"rust-analyzer.inlayHints.chainingHints.enable": true,
@@ -57,7 +58,9 @@
 		}
 	},
 	"emmet.includeLanguages": {
-		"html": "svelte"
-	},
+		"svelte": "html",
+		"javascript": "javascriptreact",
+		"rust": "html"
+	}
 	//"codeLens.enable": true,
 }

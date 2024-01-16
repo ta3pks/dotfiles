@@ -33,8 +33,8 @@ ${1:Ok(${2:()})}
 })
 endsnippet
 snippet -=> "closure" iA
-${1:async} ${2:move} |${3:args}| {
-		$0
+|${3:args}| {
+	$0
 }
 endsnippet
 
@@ -118,4 +118,16 @@ snippet serde_case "serde case" b
 endsnippet
 snippet oapi_case "oapi case" b
 #[oai(rename_all = "${1:snake_case}")]
+endsnippet
+snippet moduse "declare a module and immediately pub use its contents" b
+mod $1;
+pub use $1::*;
+endsnippet
+snippet fromimpl "implement from trait for a type" b
+impl From<$1> for $2 {
+	fn from(ty: $1) -> Self {
+		$0
+	}
+}
+
 endsnippet

@@ -2,6 +2,7 @@
 git-fetch-with-cli = true
 [alias]
 t = "test -- --nocapture --color always"
+lw = "leptos watch"
 build-x86-linux-gnu = "build --target x86_64-unknown-linux-gnu"
 [profile.dev]
 opt-level = 0
@@ -15,7 +16,7 @@ debug = false
 strip = "symbols"
 lto = "fat"
 [build]
-rustc-wrapper = "sccache"
+# rustc-wrapper = "sccache"
 incremental = true
 # target-dir = "~/.cargo_target"
 [target.x86_64-unknown-linux-gnu]

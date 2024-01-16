@@ -1,5 +1,5 @@
 set splitbelow splitright number relativenumber smartcase smartindent ignorecase nohlsearch incsearch smartindent foldenable exrc
-set inccommand=split foldmethod=indent foldcolumn=0 foldlevelstart=99
+set inccommand=split foldmethod=indent foldcolumn=0 foldlevelstart=99 conceallevel=1 concealcursor=nv
 if has("termguicolors")
 	set termguicolors
 endif
@@ -60,4 +60,16 @@ function! ToSnakeCase()
 	let @v = l:snake_case
 	normal! viw"vp
 endfunction
-inoreabbrev todo: <c-r>=printf(&commentstring, " TODO:")<cr>
+inoreabbrev todo: <c-r>=printf(&commentstring, "TODO:")<cr>
+if exists("g:neovide")
+	let g:neovide_cursor_vfx_mode = ""
+	let g:neovide_transparency = 0.9
+	let g:neovide_scroll_animation_length = 0.1
+	let g:neovide_refresh_rate = 15
+	let g:neovide_refresh_rate_idle = 1
+	let g:neovide_fullscreen = v:true
+	let g:neovide_input_macos_alt_is_meta = v:true
+	let g:neovide_cursor_animation_length = 0.02
+	let g:neovide_cursor_trail_size = 0.1
+
+endif

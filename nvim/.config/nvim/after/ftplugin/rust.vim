@@ -25,7 +25,7 @@ command! -buffer -nargs=+ Cadd :CargoFloat add <args>
 command! -buffer -nargs=+ Crm :CargoFloat rm <args>
 command! -buffer -nargs=* Cupgrade :CargoFloat upgrade <args>
 command! -bar -buffer -nargs=* Cupdate :CargoFloat update <args>
-command! -buffer -nargs=* Ctest :CargoFloat testf <args> -- --nocapture
+command! -buffer -nargs=* Ctest :CargoFloat test <args> -- --nocapture
 
 function! s:RustAddUse(...)
 	if  a:0 == 0
@@ -52,8 +52,8 @@ endfunction
 nnoremap <silent> <buffer> <leader>cc :CargoFloat clippy --all-targets --all-features <CR>
 nnoremap <silent> <buffer> <leader>cu :CargoFloat update<CR>
 nnoremap <silent> <buffer> <leader>cU :CargoFloat upgrade<CR>
-nnoremap <silent> <buffer> <leader>ee :exe 'Cargo run '.g:rustrun_params<CR>
-nnoremap <silent> <buffer> <leader>ef :exe 'CargoFloat run '.g:rustrun_params<CR>
+nnoremap <silent> <buffer> <leader>er :exe 'Cargo run '.g:rustrun_params<CR>
+nnoremap <silent> <buffer> <leader>ee :exe 'CargoFloat run '.g:rustrun_params<CR>
 nnoremap <silent> <buffer> <leader>es :call <sid>SetRustrunParams()<CR>
 nnoremap <silent> <buffer> <leader>tt :exe 'Ctest '.g:rusttest_params<CR>
 nnoremap <silent> <buffer> <leader>tc :let g:rusttest_params=expand("<cword>")<bar>exe 'Ctest '.g:rusttest_params<CR>
@@ -64,20 +64,17 @@ function! RustcWrapperComplete(...)
 endfunction
 cnoreabbrev <silent> <buffer> rw RustcWrapper
 cnoreabbrev <silent> <buffer> scc RustcWrapper sccache
-if !"g:rustc_wrapper_sccache_set"->exists()
-	let g:rustc_wrapper_sccache_set = 1
-	let $RUSTC_WRAPPER = 'sccache'
-endif
 autocmd BufWritePost *.rs silent! :silent! !ctags -R src/
 
-function! MakeTokioTests(prefix="") range
+function! MakeTokioTests(prefix="test_") range
 	let l:fn_names = getline(a:firstline,a:lastline)->filter({_,v -> v->match("async fn") > -1})->map({_,v -> v->matchstr("async fn \\zs\\w\\+")})
 	let l:fn_names = l:fn_names->map({_,v -> "#[tokio::test]" . "\n async fn " .a:prefix. v . "(){\nunimplemented!()\n}"})->join("\n")->setreg('')
 endfunction
 function! s:WrapType(ty)
-	call feedkeys('b"pdw')
-	call feedkeys("i".a:ty."<".@p.">")
+	call feedkeys('"pdb')
+	call feedkeys("i".a:ty."<\<c-o>\"pp>")
 	return ""
 endfunction
-inoreabbrev <silent> <buffer><expr> _opt <SID>WrapType("Option")
-inoreabbrev <silent> <buffer><expr> _vec <SID>WrapType("Vec")
+inoreabbrev <silent> <buffer><expr> _opt> <SID>WrapType("Option")
+inoreabbrev <silent> <buffer><expr> _vec> <SID>WrapType("Vec")
+cnoreabbrev <silent> <buffer> reload CocCommand rust-analyzer.reloadWorkspace

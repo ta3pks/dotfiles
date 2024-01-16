@@ -34,7 +34,7 @@ return {
 			vim.keymap.set('n', '<C-space>g', builtins.git_files)
 			vim.keymap.set('n', '<C-space>b', builtins.buffers)
 			vim.keymap.set('n', '<C-space>t', builtins.tags)
-			vim.keymap.set('n', '<C-space>r', builtins.resume)
+			vim.keymap.set('n', '<C-space>r', builtins.registers)
 			vim.keymap.set('n', '<C-space>h', builtins.help_tags)
 			vim.keymap.set('n', '<C-space>s', builtins.live_grep)
 			vim.keymap.set('i', '<C-space>s', builtins.grep_string)

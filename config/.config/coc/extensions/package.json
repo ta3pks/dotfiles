@@ -3,7 +3,7 @@
     "@yaegassy/coc-nginx": ">=0.3.4",
     "coc-fish": ">=1.0.11",
     "coc-html": ">=1.6.1",
-    "coc-html-css-support": ">=0.4.0",
+    "coc-html-css-support": ">=0.5.2",
     "coc-json": ">=1.7.0",
     "coc-markdown-preview-enhanced": ">=0.4.2",
     "coc-marketplace": ">=1.9.0",
@@ -20,9 +20,11 @@
     "coc-protobuf": ">=0.0.2",
     "coc-format-json": ">=0.2.3",
     "coc-toml": ">=1.2.5",
-    "coc-sumneko-lua": ">=0.0.40"
+    "coc-sumneko-lua": ">=0.0.40",
+    "@vim-geek/coc-tailwind-intellisense": ">=0.6.2",
+    "coc-tailwindcss": ">=0.7.0"
   },
   "disabled": [],
   "locked": [],
-  "lastUpdate": 1704291108217
+  "lastUpdate": 1705392492114
 }

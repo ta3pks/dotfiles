@@ -7,6 +7,21 @@ return {
 			-- refer to the configuration section below
 		}
 	},
+	{
+		"sainnhe/everforest",
+		lazy = false,
+		config = function()
+			vim.cmd [[
+			let g:everforest_enable_italic = 1
+			let g:everforest_background = 'soft'
+			let g:everforest_sign_column_background = 'grey'
+			let g:everforest_ui_contrast = 'high'
+			colorscheme everforest
+			]]
+		end
+
+	},
+
 
 	-- {
 	-- 	"https://github.com/mkarmona/materialbox",
@@ -27,16 +42,16 @@ return {
 	-- 		]]
 	-- 	end
 	-- },
-	{
-		"rebelot/kanagawa.nvim",
-		lazy = false,
-		config = function()
-			vim.cmd [[
-			colorscheme kanagawa
-			]]
-		end
-
-	},
+	-- {
+	-- 	"rebelot/kanagawa.nvim",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		vim.cmd [[
+	-- 		colorscheme kanagawa
+	-- 		]]
+	-- 	end
+	--
+	-- },
 	-- {
 	-- 	"joshdick/onedark.vim",
 	-- 	lazy = false,

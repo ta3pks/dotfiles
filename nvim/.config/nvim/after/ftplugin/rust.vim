@@ -25,7 +25,8 @@ command! -buffer -nargs=+ Cadd :CargoFloat add <args>
 command! -buffer -nargs=+ Crm :CargoFloat rm <args>
 command! -buffer -nargs=* Cupgrade :CargoFloat upgrade <args>
 command! -bar -buffer -nargs=* Cupdate :CargoFloat update <args>
-command! -buffer -nargs=* Ctest :CargoFloat test <args> -- --nocapture
+command! -buffer -nargs=* Ctest :CargoFloat nextest run <args> 
+"-- --nocapture
 
 function! s:RustAddUse(...)
 	if  a:0 == 0

@@ -1,5 +1,5 @@
 set splitbelow splitright number relativenumber smartcase smartindent ignorecase nohlsearch incsearch smartindent foldenable exrc
-set inccommand=split foldmethod=indent foldcolumn=0 foldlevelstart=99 conceallevel=1 concealcursor=nv
+set inccommand=split foldmethod=indent foldcolumn=0 foldlevelstart=99 conceallevel=2 concealcursor=nv
 if has("termguicolors")
 	set termguicolors
 endif
@@ -44,8 +44,8 @@ nnoremap <silent> <C-w><c-p> :exe "tabnew ".$MYVIMRC->fnamemodify(':p:h'). "/lua
 nnoremap <silent> <C-w><c-n> :tabnew<bar>call Open_runtime_file("nviminit.vim")<CR>
 nnoremap <silent> # <C-^>
 nnoremap <silent> <space> za
-nnoremap <silent> zj :<c-u>call RepeatCmd('call NextClosedFold("j")')<cr>
-nnoremap <silent> zk :<c-u>call RepeatCmd('call NextClosedFold("k")')<cr>
+nnoremap <silent> zj :<c-u>call RepeatCmd('call NextClosedFold("J")')<cr>
+nnoremap <silent> zk :<c-u>call RepeatCmd('call NextClosedFold("K")')<cr>
 nnoremap <silent> z0 :set foldlevel=0<cr>
 nnoremap <silent> z1 :set foldlevel=1<cr>
 nnoremap <silent> z2 :set foldlevel=2<cr>

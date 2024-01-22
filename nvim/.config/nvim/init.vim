@@ -1,4 +1,4 @@
-set splitbelow splitright number relativenumber smartcase smartindent ignorecase nohlsearch incsearch smartindent foldenable exrc
+set splitbelow splitright number relativenumber smartcase smartindent ignorecase incsearch smartindent foldenable exrc
 set inccommand=split foldmethod=indent foldcolumn=0 foldlevelstart=99 conceallevel=2 concealcursor=nv
 if has("termguicolors")
 	set termguicolors

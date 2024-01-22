@@ -1,6 +1,6 @@
 include ./theme.conf
-# active_tab_background #333
-# inactive_tab_background #222
+active_tab_background #333
+inactive_tab_background #222
 tab_title_template "{title.split(" ")[0]}"
 scrollback_pager nvim -c 'set ft=man' -
 enabled_layouts splits:split_axis=horizontal
@@ -27,9 +27,3 @@ map cmd+shift+u kitten hints --type=url --program=-
 map cmd+shift+enter launch --location=hsplit
 map cmd+[ previous_window
 map cmd+] next_window
-
-
-# BEGIN_KITTY_THEME
-# Tomorrow Night
-include current-theme.conf
-# END_KITTY_THEME

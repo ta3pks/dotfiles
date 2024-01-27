@@ -60,6 +60,7 @@ function! ToSnakeCase()
 	let @v = l:snake_case
 	normal! viw"vp
 endfunction
+vnoremap <c-c> "+ygv
 inoreabbrev todo: <c-r>=printf(&commentstring, "TODO:")<cr>
 if exists("g:neovide")
 	let g:neovide_cursor_vfx_mode = ""
@@ -73,3 +74,4 @@ if exists("g:neovide")
 	let g:neovide_cursor_trail_size = 0.1
 
 endif
+

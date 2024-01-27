@@ -25,7 +25,7 @@ command! -buffer -nargs=+ Cadd :CargoFloat add <args>
 command! -buffer -nargs=+ Crm :CargoFloat rm <args>
 command! -buffer -nargs=* Cupgrade :CargoFloat upgrade <args>
 command! -bar -buffer -nargs=* Cupdate :CargoFloat update <args>
-command! -buffer -nargs=* Ctest :CargoFloat nextest run --workspace --success-output=immediate --config-file=$HOME/.cargo/nextest.toml <args> 
+command! -buffer -nargs=* Ctest :CargoFloat nextest run --success-output=immediate --config-file=$HOME/.cargo/nextest.toml <args> 
 "-- --nocapture
 
 function! s:RustAddUse(...)

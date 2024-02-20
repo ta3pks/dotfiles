@@ -1,0 +1,90 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet todo "todo" b
+
+TODO: $1
+
+endsnippet
+
+snippet rustmake "common makefile for rust projects" b
+CARGO_TARGET_DIR?=target
+SRC=$(shell find . -name "*.rs" -or -name "*.toml")
+SSH=${1:ssh_host}
+APP_NAME=${2:app_name}
+export X86_64_UNKNOWN_LINUX_GNU_OPENSSL_DIR?=$(HOME)/.x86_64-unknown-linux-gnu-openssl
+TARGET=x86_64-unknown-linux-gnu
+.PHONY: deploy deployService logs restart stop
+
+/tmp/openssl.tar.gz:
+	curl https://github.com/ta3pks/openssl_prebuilt/raw/main/aarch64-apple-darwin-x86_64-linux-openssl.tar.gz -Lo $@
+	$(X86_64_UNKNOWN_LINUX_GNU_OPENSSL_DIR): /tmp/openssl.tar.gz
+	mkdir -p $(X86_64_UNKNOWN_LINUX_GNU_OPENSSL_DIR)
+	tar -xzf $< -C $(X86_64_UNKNOWN_LINUX_GNU_OPENSSL_DIR) 
+$(CARGO_TARGET_DIR)/$(TARGET)/release/$(APP_NAME): $(SRC) $(X86_64_UNKNOWN_LINUX_GNU_OPENSSL_DIR)
+	cargo build --release --target=$(TARGET)
+
+deploy: $(CARGO_TARGET_DIR)/$(TARGET)/release/$(APP_NAME)
+	rsync -vahurz --progress $< $(SSH):/usr/local/bin/
+
+deployService: $(APP_NAME).service
+	rsync -vahurz --progress $< $(SSH):/etc/systemd/system/
+	ssh $(SSH) systemctl daemon-reload
+	ssh $(SSH) systemctl enable $(APP_NAME)
+	ssh $(SSH) systemctl start $(APP_NAME)
+	ssh $(SSH) systemctl status $(APP_NAME)
+restart:
+	ssh $(SSH) systemctl restart $(APP_NAME)
+stop:
+	ssh $(SSH) systemctl stop $(APP_NAME)
+logs:
+	ssh $(SSH) journalctl -fu $(APP_NAME)
+serverBinaryVersion:
+	ssh $(SSH) /usr/local/bin/$(APP_NAME) --version
+deployNginx: $(shell find . -name "*.nginx.conf")
+	rsync -vahurz --progress $< $(SSH):/etc/nginx/sites-available/
+	ssh $(SSH) ln -s /etc/nginx/sites-available/$< /etc/nginx/sites-enabled/$<
+	ssh $(SSH) nginx -t
+	ssh $(SSH) nginx -s reload
+endsnippet
+snippet systemd_unit "systemd service file" b
+[Unit]
+Description=${1:app_name}
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/$1
+Restart=always
+RestartSec=3
+LimitNOFILE=999999
+
+[Install]
+WantedBy=multi-user.target
+endsnippet
+
+snippet -[] "mdtodo" b
+- [ ] $1
+endsnippet

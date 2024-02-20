@@ -9,7 +9,7 @@ return {
 		end,
 		init = function()
 			require "nvim-treesitter.configs".setup {
-				ensure_installed = { "rust", "lua", "vim", "toml", "typescript", "javascript", "svelte",
+				ensure_installed = { "rust", "lua", "vim", "toml", "svelte", "javascript",
 					"yaml",
 					"json" },
 				additional_vim_regex_highlighting = false,

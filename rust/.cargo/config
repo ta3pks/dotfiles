@@ -9,15 +9,15 @@ opt-level = 0
 overflow-checks = true
 lto = "off"
 debug = true
-incremental = true
+incremental = false
 [profile.release]
 opt-level = "s"
 debug = false
 strip = "symbols"
 lto = "fat"
 [build]
-# rustc-wrapper = "sccache"
-incremental = true
+rustc-wrapper = "sccache"
+incremental = false
 # target-dir = "~/.cargo_target"
 [target.x86_64-unknown-linux-gnu]
 linker = "x86_64-unknown-linux-gnu-gcc"

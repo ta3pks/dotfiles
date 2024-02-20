@@ -1,10 +1,18 @@
 return {
 	{
-		"folke/zen-mode.nvim",
+		'MarcHamamji/runner.nvim',
+		dependencies = {
+			'nvim-telescope/telescope.nvim',
+			dependencies = { 'nvim-lua/plenary.nvim' }
+		},
+		config = function()
+			require('runner').setup()
+		end
+	},
+	{
+		"folke/neodev.nvim",
 		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
+			library = { plugins = { "neotest" }, types = true }
 		}
 	},
 	{
@@ -22,53 +30,6 @@ return {
 		end
 
 	},
-
-
-	-- {
-	-- 	"https://github.com/mkarmona/materialbox",
-	-- 	lazy = false,
-	-- 	config = function()
-	-- 		vim.cmd [[
-	-- 		colorscheme materialbox
-	-- 		]]
-	-- 	end
-	-- },
-	-- {
-	-- 	"https://github.com/rakr/vim-one",
-	-- 	lazy = false,
-	-- 	config = function()
-	-- 		vim.cmd [[
-	-- 		colorscheme one
-	-- 		highlight Folded guifg=#4A4948 guibg=bg
-	-- 		]]
-	-- 	end
-	-- },
-	-- {
-	-- 	"rebelot/kanagawa.nvim",
-	-- 	lazy = false,
-	-- 	config = function()
-	-- 		vim.cmd [[
-	-- 		colorscheme kanagawa
-	-- 		]]
-	-- 	end
-	--
-	-- },
-	-- {
-	-- 	"joshdick/onedark.vim",
-	-- 	lazy = false,
-	-- 	init = function()
-	-- 		vim.o.background = "dark"
-	-- 		vim.cmd "colorscheme onedark"
-	-- 	end
-	-- },
-	-- {
-	-- 	"olimorris/onedarkpro.nvim",
-	-- 	lazy = false,
-	-- 	init = function()
-	-- 		vim.o.background = "dark"
-	-- 		vim.cmd "colorscheme onedark_vivid"
-	-- 	end
-	-- },
 	{
 		"kana/vim-textobj-indent",
 		event = "VeryLazy",
@@ -125,10 +86,10 @@ return {
 		"tomtom/tcomment_vim",
 		keys = {
 			{
-				"<c-\\>", ":TComment<cr>", noremap = true, silent = true, mode = "n"
+				"<a-:>", ":TComment<cr>", noremap = true, silent = true, mode = "n"
 			},
 			{
-				"<c-\\>",
+				"<a-:>",
 				function()
 					vim.fn.feedkeys('gcgv')
 				end,

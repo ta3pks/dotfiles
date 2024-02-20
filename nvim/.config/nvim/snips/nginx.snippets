@@ -1,0 +1,9 @@
+snippet config "barebones nginx config" bA
+server{
+	listen 80;
+	server_name ${1:example.com};
+	location / {
+		proxy_pass http://${2:127.0.0.1:8080};
+	}
+}
+endsnippet

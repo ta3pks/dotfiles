@@ -37,7 +37,7 @@ return {
 			vim.keymap.set('n', '<C-space>r', builtins.registers)
 			vim.keymap.set('n', '<C-space>h', builtins.help_tags)
 			vim.keymap.set('n', '<C-space>s', builtins.live_grep)
-			vim.keymap.set('i', '<C-space>s', builtins.grep_string)
+			-- vim.keymap.set('i', '<C-space>s', builtins.grep_string)
 			--vim.keymap.set('n', '<a-d>', builtins.diagnostics)
 			--vim.keymap.set('n', '<c-space>s', builtins.lsp_workspace_symbols)
 			--vim.keymap.set('n', '<c-space>r', builtins.lsp_references)

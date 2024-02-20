@@ -64,7 +64,7 @@ vnoremap <c-c> "+ygv
 inoreabbrev todo: <c-r>=printf(&commentstring, "TODO:")<cr>
 if exists("g:neovide")
 	let g:neovide_cursor_vfx_mode = ""
-	let g:neovide_transparency = 0.9
+	let g:neovide_transparency = 0.96
 	let g:neovide_scroll_animation_length = 0.1
 	let g:neovide_refresh_rate = 15
 	let g:neovide_refresh_rate_idle = 1
@@ -74,4 +74,22 @@ if exists("g:neovide")
 	let g:neovide_cursor_trail_size = 0.1
 
 endif
-
+noremap <M-Space> <cr>
+noremap! <M-Space> <cr>
+noremap <c-;> :
+noremap! <c-;> :
+nnoremap <M-=> /
+inoremap <M-j> (
+inoremap <M-k> )
+inoremap <M-u> {
+inoremap <M-i> }
+inoremap <M-h> <BS>
+inoremap <M-:> ;
+onoremap <M-j> (
+onoremap <M-k> )
+onoremap <M-u> {
+onoremap <M-i> }
+nnoremap <M-a> A
+nnoremap <M-s> S
+nnoremap <M-c> C
+nnoremap <M-i> I

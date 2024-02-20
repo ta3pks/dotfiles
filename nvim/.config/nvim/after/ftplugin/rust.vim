@@ -25,7 +25,7 @@ command! -buffer -nargs=+ Cadd :CargoFloat add <args>
 command! -buffer -nargs=+ Crm :CargoFloat rm <args>
 command! -buffer -nargs=* Cupgrade :CargoFloat upgrade <args>
 command! -bar -buffer -nargs=* Cupdate :CargoFloat update <args>
-command! -buffer -nargs=* Ctest :CargoFloat nextest run --success-output=immediate --config-file=$HOME/.cargo/nextest.toml <args> 
+command! -buffer -nargs=* Ctest :exe "CargoFloat nextest run --success-output=immediate --config-file=$HOME/.cargo/nextest.toml <args> ".g:rusttest_params
 "-- --nocapture
 
 function! s:RustAddUse(...)
@@ -79,3 +79,4 @@ endfunction
 inoreabbrev <silent> <buffer><expr> _opt> <SID>WrapType("Option")
 inoreabbrev <silent> <buffer><expr> _vec> <SID>WrapType("Vec")
 cnoreabbrev <silent> <buffer> reload CocCommand rust-analyzer.reloadWorkspace
+command! -bar -buffer LeptosFmt :silent !leptosfmt %

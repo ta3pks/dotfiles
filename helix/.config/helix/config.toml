@@ -1,0 +1,32 @@
+theme="onedark"
+[editor]
+idle-timeout = 50
+line-number="relative"
+statusline = {left =["mode", "spinner", "file-name","version-control"] }
+lsp= { display-inlay-hints=true }
+file-picker = { hidden = false }
+[keys.normal."C-w"]
+C-o = ":o ~/.config/helix/languages.toml"
+C-s = ":config-open" 
+C-r = ":config-reload"
+[keys.insert]
+"C-." = "signature_help"
+#[keys.normal."\\"]
+#g = ":sh tmux neww lazygit"
+#"ret" = ":sh tmux split -h"
+#"]" = ":sh tmux split"
+#f = ":sh tmux neww ranger"
+#c = ":sh tmux split -h 'cargo check --workspace ;read '"
+#t =  ":sh tmux split -h 'cargo test --workspace -- --nocapture ;read '"
+#[keys.normal]
+#Q = ":buffer-close"
+#C-p = "file_picker"
+#"space" = { "space" = "command_palette"}
+#C-b = "buffer_picker"
+#g = { t = "goto_type_definition" }
+#"#" = "goto_last_accessed_file"
+#"G" = "goto_last_line"
+#C-j = "goto_next_diag"
+#C-k = "goto_prev_diag"
+#[keys.insert]
+#"C-space" = "completion"

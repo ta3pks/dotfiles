@@ -22,11 +22,11 @@ diagnostics.disabled = ["inactive-code"]
 command = "simple-completion-language-server"
 
 [language-server.scls.config]
-max_completion_items = 20     
-snippets_first = true         
-feature_words = true          
-feature_snippets = true       
-feature_unicode_input = false 
+max_completion_items = 20
+snippets_first = true
+feature_words = true
+feature_snippets = true
+feature_unicode_input = false
 
 [language-server.scls.environment]
 RUST_LOG = "info,simple-completion-langauge-server=info"
@@ -38,15 +38,19 @@ args = ["--stdio"]
 [[language]]
 name = "html"
 roots = [".git"]
-language-servers = ["emmet-lsp"]
+language-servers = ["scls"]
 
 [[language]]
 name = "rust"
-language-servers = [ "scls", "rust-analyzer","emmet-lsp" ]
+language-servers = ["scls", "rust-analyzer"]
 
 [[language]]
 name = "git-commit"
-language-servers = [ "scls" ]
+language-servers = ["scls"]
+
+[[language]]
+name="toml"
+language-servers = ["taplo", "scls"]
 
 
 [[language]]
@@ -56,4 +60,4 @@ file-types = []
 shebangs = []
 roots = []
 auto-format = false
-language-servers = [ "scls" ]
+language-servers = ["scls"]

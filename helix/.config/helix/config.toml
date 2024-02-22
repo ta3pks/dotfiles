@@ -1,13 +1,28 @@
-theme="onedark"
+theme = "onedark"
 [editor]
-idle-timeout = 50
-line-number="relative"
-statusline = {left =["mode", "spinner", "file-name","version-control"] }
-lsp= { display-inlay-hints=true }
-file-picker = { hidden = false }
+idle-timeout = 100
+line-number = "relative"
+auto-save = true
+file-picker = { hidden = false, git-exclude = false }
+cursor-shape = { insert = "bar", normal = "block" }
+color-modes = true
+indent-guides = { render = true }
+[editor.gutters]
+line-numbers = { min-width = 1 }
+[editor.lsp]
+display-inlay-hints = true
+display-messages = true
+[editor.statusline]
+right = [
+  "version-control",
+  "workspace-diagnostics",
+  "position",
+  "position-percentage",
+  "register",
+]
 [keys.normal."C-w"]
 C-o = ":o ~/.config/helix/languages.toml"
-C-s = ":config-open" 
+C-s = ":config-open"
 C-r = ":config-reload"
 [keys.insert]
 "C-." = "signature_help"

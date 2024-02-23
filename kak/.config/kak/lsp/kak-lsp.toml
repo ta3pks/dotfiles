@@ -340,17 +340,8 @@ command = "rnix-lsp"
 [language_server.rust-analyzer]
 filetypes = ["rust"]
 roots = ["Cargo.toml"]
-command = "sh"
-args = [
-    "-c",
-    """
-        if path=$(rustup which rust-analyzer 2>/dev/null); then
-            "$path"
-        else
-            rust-analyzer
-        fi
-    """,
-]
+command = "rust-analyzer"
+args = []
 [language_server.rust-analyzer.settings.rust-analyzer]
 check.command = "clippy"
 inlayHints.chainingHints.enable = true
@@ -362,7 +353,6 @@ imports.group.enable = true
 imports.merge.glob = true
 imports.prefix = "crate"
 check.allTargets = true
-check.command = "clippy"
 checkOnSave = true
 workspace.symbol.search.kind = "all_symbols"
 workspace.symbol.search.limit = 128

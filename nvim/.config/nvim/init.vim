@@ -93,3 +93,4 @@ nnoremap <M-a> A
 nnoremap <M-s> S
 nnoremap <M-c> C
 nnoremap <M-i> I
+command! Lazygit :TermHere lazygit

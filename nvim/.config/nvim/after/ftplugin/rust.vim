@@ -19,13 +19,13 @@ function CargoDeps()
 end
 ENDLUA
 command! -bar -buffer CargoDeps :lua CargoDeps()
-command! -bar -buffer -nargs=+ Cargo :exe "vsp | terminal cargo " . <q-args> | normal! G
-command! -bar -buffer -nargs=+ CargoFloat :lua CargoFloatTerm(<q-args>)<CR>
-command! -buffer -nargs=+ Cadd :CargoFloat add <args>
-command! -buffer -nargs=+ Crm :CargoFloat rm <args>
-command! -buffer -nargs=* Cupgrade :CargoFloat upgrade <args>
-command! -bar -buffer -nargs=* Cupdate :CargoFloat update <args>
-command! -buffer -nargs=* Ctest :exe "CargoFloat nextest run --success-output=immediate --config-file=$HOME/.cargo/nextest.toml <args> ".g:rusttest_params
+command! -bar -buffer -nargs=+ Cargo :VTerm cargo <args>
+command! -bar -buffer -nargs=+ CargoRun :Cargo <args>
+command! -buffer -nargs=+ Cadd :CargoRun add <args>
+command! -buffer -nargs=+ Crm :CargoRun rm <args>
+command! -buffer -nargs=* Cupgrade :CargoRun upgrade <args>
+command! -bar -buffer -nargs=* Cupdate :CargoRun update <args>
+command! -buffer -nargs=* Ctest :exe "CargoRun nextest run --success-output=immediate --config-file=$HOME/.cargo/nextest.toml <args> ".g:rusttest_params
 "-- --nocapture
 
 function! s:RustAddUse(...)
@@ -50,11 +50,11 @@ endfunction
 function! s:SetRustrunParams()
 	let g:rustrun_params = input('Run params: ')
 endfunction
-nnoremap <silent> <buffer> <leader>cc :CargoFloat clippy --all-targets --all-features <CR>
-nnoremap <silent> <buffer> <leader>cu :CargoFloat update<CR>
-nnoremap <silent> <buffer> <leader>cU :CargoFloat upgrade<CR>
+nnoremap <silent> <buffer> <leader>cc :CargoRun clippy --all-targets --all-features <CR>
+nnoremap <silent> <buffer> <leader>cu :CargoRun update<CR>
+nnoremap <silent> <buffer> <leader>cU :CargoRun upgrade<CR>
 nnoremap <silent> <buffer> <leader>er :exe 'Cargo run '.g:rustrun_params<CR>
-nnoremap <silent> <buffer> <leader>ee :exe 'CargoFloat run '.g:rustrun_params<CR>
+nnoremap <silent> <buffer> <leader>ee :exe 'CargoRun run '.g:rustrun_params<CR>
 nnoremap <silent> <buffer> <leader>es :call <sid>SetRustrunParams()<CR>
 nnoremap <silent> <buffer> <leader>tt :exe 'Ctest '.g:rusttest_params<CR>
 nnoremap <silent> <buffer> <leader>tc :let g:rusttest_params=expand("<cword>")<bar>exe 'Ctest '.g:rusttest_params<CR>

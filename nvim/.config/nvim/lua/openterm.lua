@@ -67,5 +67,13 @@ function m.open_term(prg, down, open_current_path)
 end
 
 -- end
+vim.cmd([[
+command! -nargs=? -complete=shellcmd -bar Term lua require('openterm').open_full_term(<q-args>, false)
+command! -nargs=? -complete=shellcmd -bar VTerm lua require('openterm').open_term(<q-args>, false, false)
+command! -nargs=? -complete=shellcmd -bar HTerm lua require('openterm').open_term(<q-args>, true,false)
+command! -nargs=? -complete=shellcmd -bar TermHere lua require('openterm').open_full_term(<q-args>, true)
+command! -nargs=? -complete=shellcmd -bar VTermHere lua require('openterm').open_term(<q-args>, false, true)
+command! -nargs=? -complete=shellcmd -bar HTermHere lua require('openterm').open_term(<q-args>, true, true)
+]])
 
 return m

@@ -1,0 +1,16 @@
+colorscheme solarized-dark
+source "%val[config]/plugins.kak"
+add-highlighter global/ number-lines -relative
+add-highlighter global/ show-matching
+set-option global scrolloff 8,3
+map global normal <esc> ";,"
+map -docstring "delete buffer" global user q ":db<ret>"
+map -docstring "copy to system pboard" global user y "<a-|> pbcopy<ret>"
+map -docstring "execute selection kak script" global user e ':eval "%val[selection]"<ret>'
+hook global InsertCompletionShow .* %[
+	map global insert <tab> <c-n>
+]
+hook global InsertCompletionHide .* %[
+	unmap global insert <tab>
+]
+hook global ModeChange pop:insert:.* "exec ':w<ret>'"

@@ -42,7 +42,7 @@ language-servers = ["scls"]
 
 [[language]]
 name = "rust"
-language-servers = ["scls", "rust-analyzer"]
+language-servers = ["scls", "rust-analyzer","emmet-lsp"]
 
 [[language]]
 name = "git-commit"

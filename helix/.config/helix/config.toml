@@ -20,6 +20,8 @@ right = [
   "position-percentage",
   "register",
 ]
+[keys.normal]
+C-T = ":o todo.md"
 [keys.normal."C-w"]
 C-o = ":o ~/.config/helix/languages.toml"
 C-s = ":config-open"

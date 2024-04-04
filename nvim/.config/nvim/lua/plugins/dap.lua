@@ -1,0 +1,107 @@
+return {
+	'mfussenegger/nvim-dap',
+	lazy = true,
+	ft = { 'rust', "typescript" },
+	dependencies = {
+		"rcarriga/nvim-dap-ui",
+		"jay-babu/mason-nvim-dap.nvim",
+		"nvim-neotest/nvim-nio",
+		'theHamsta/nvim-dap-virtual-text'
+	},
+	config = function(self)
+		require("nvim-dap-virtual-text").setup()
+		vim.keymap.set('n', '<F5>', function()
+			require('dap').continue()
+			require('dapui').open()
+		end)
+		vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
+		vim.keymap.set('n', '<F11>', function() require('dap').step_into() end)
+		vim.keymap.set('n', '<F12>', function() require('dap').step_out() end)
+		vim.keymap.set('n', '<f2>', function() require('dap').toggle_breakpoint() end)
+		vim.keymap.set('n', '<M-F2>', function() require('dap').clear_breakpoints() end)
+		vim.keymap.set('n', '<f6>', function()
+			require "dap".terminate()
+			require "dapui".close()
+		end)
+		vim.keymap.set('n', '<f3>', function()
+			vim.ui.input({ prompt = "condition:" }, function(c)
+				if c == '' then
+					c = nil
+				end
+				require('dap').set_breakpoint(c)
+			end)
+		end)
+		vim.keymap.set('n', '<F4>', function() require('dapui').toggle() end)
+		local dap = require('dap')
+		require('dapui').setup {
+			layouts = { {
+				elements = {
+					{
+						id = "watches",
+						size = 0.80
+					}, {
+					id = "breakpoints",
+					size = 0.10
+				}, {
+					id = "stacks",
+					size = 0.10
+				}, },
+				position = "left",
+				size = 50
+			}, {
+				elements = { {
+					id = "repl",
+					size = 0.5
+				}, {
+					id = "console",
+					size = 0.5
+				} },
+				position = "bottom",
+				size = 20
+			} },
+		}
+		dap.configurations.rust = { {
+			type = 'codelldb',
+			request = 'launch',
+			name = "Cargo Debug",
+			program = function()
+				vim.fn.execute('!cargo build')
+				local target = './target/debug/${workspaceFolderBasename}'
+				if vim.env.CARGO_TARGET_DIR ~= nil then
+					target = vim.env.CARGO_TARGET_DIR ..
+					    '/debug/${workspaceFolderBasename}'
+				end
+				return target
+			end,
+			args = function()
+				if vim.g.rustrun_params and vim.g.rustrun_params ~= '' then
+					return { vim.g.rustrun_params }
+				else
+					return nil
+				end
+			end
+		},
+			{
+				type = 'codelldb',
+				request = 'launch',
+				name = "Cargo Test",
+				program = function()
+					local out = vim.fn.execute('!cargo test --no-run')
+					local target = vim.fn.matchstr(out, "(\\zs/.\\{-}\\ze)")
+					print(target)
+					return target
+				end,
+				args = function()
+					if vim.g.rusttest_params and vim.g.rusttest_params ~= '' then
+						return { vim.g.rusttest_params }
+					else
+						return nil
+					end
+				end
+			}
+		}
+		require('mason-nvim-dap').setup {
+			handlers = {}
+		}
+	end,
+}

@@ -1,0 +1,54 @@
+[user]
+	name = nikos efthias
+	email = nikos@mugsoft.io
+[github]
+	user = nikos@mugsoft.io
+[core]
+	excludesfile = /Users/nikos/.gitignore_global
+	ignoreCase = false
+	autocrlf = input
+[push]
+	default = current
+# [url "git@github.com:"]
+# 	insteadOf = https://github.com
+#  [url "git@gitlab.mugsoft.io:"]
+#  	insteadOf = https://gitlab.mugsoft.io/
+[commit]
+	gpgsign = true
+[alias]
+	c = checkout
+	d = branch -d
+	bla = branch -la
+	s = status
+	f = fetch -p
+	p = push
+	prn = fetch --all --prune
+	tl = tag -l
+	fap = fetch --all --prune
+	sp = stash pop
+	sl = stash list
+	hash = rev-parse HEAD
+	cma = commit -am
+	loggone = log --oneline
+# define command which will be used when "nvim" is set as a merge tool
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+# set "nvim" as tool for merging
+[merge]
+  tool = nvim
+# automatically launch merge tool without displaying a prompt
+[mergetool]
+  prompt = false
+[pull]
+	rebase = false
+[init]
+	defaultbranch = main
+# [gpg]
+# 	program = gpg2
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[maintenance]
+	repo = /Users/nikos/.projects/yib/yib_sys

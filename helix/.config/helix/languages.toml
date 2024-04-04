@@ -1,0 +1,63 @@
+[language-server.rust-analyzer.config]
+inlayHints.chainingHints.enable = true
+inlayHints.typeHints.hideTypeConstructors = true
+inlayHints.typeHints.enable = true
+imports.granularity.enforce = true
+imports.granularity.group = "crate"
+imports.group.enable = true
+imports.merge.glob = true
+imports.prefix = "crate"
+check.allTargets = true
+check.command = "clippy"
+checkOnSave = true
+workspace.symbol.search.kind = "all_symbols"
+workspace.symbol.search.limit = 128
+workspace.symbol.search.scope = "workspace_and_dependencies"
+cargo.buildScripts.enable = true
+cargo.features = "all"
+procMacro.enable = true
+procMacro.ignored.leptos_macro = ["component"]
+diagnostics.disabled = ["inactive-code"]
+[language-server.scls]
+command = "simple-completion-language-server"
+
+[language-server.scls.config]
+max_completion_items = 20
+snippets_first = true
+feature_words = true
+feature_snippets = true
+feature_unicode_input = false
+
+[language-server.scls.environment]
+RUST_LOG = "info,simple-completion-langauge-server=info"
+LOG_FILE = "/tmp/completion.log"
+[language-server.emmet-lsp]
+command = "emmet-language-server"
+args = ["--stdio"]
+
+[[language]]
+name = "html"
+roots = [".git"]
+language-servers = ["scls", "gpt"]
+
+[[language]]
+name = "rust"
+language-servers = ["scls", "rust-analyzer", "emmet-lsp", "gpt"]
+
+[[language]]
+name = "git-commit"
+language-servers = ["scls", "gpt"]
+
+[[language]]
+name = "toml"
+language-servers = ["taplo", "scls", "gpt"]
+
+
+[[language]]
+name = "stub"
+scope = "text.stub"
+file-types = []
+shebangs = []
+roots = []
+auto-format = false
+language-servers = ["scls"]

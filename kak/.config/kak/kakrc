@@ -1,0 +1,22 @@
+# colorscheme solarized-dark
+source "%val[config]/plugins.kak"
+add-highlighter global/ number-lines -relative
+add-highlighter global/ show-matching
+set-option global scrolloff 8,3
+map global normal <esc> ";,"
+map -docstring "delete buffer" global user q ":db<ret>"
+map -docstring "copy to system pboard" global user y "<a-|> pbcopy<ret>"
+set global ui_options terminal_assistant=none
+hook global BufCreate .*kak(rc)? %{
+    map -docstring "execute selection kak script" buffer user e ':eval "%val[selection]"<ret>'
+}
+hook global ModeChange pop:insert:.* "exec ':w<ret>'"
+
+declare-user-mode kak_config
+map -docstring "comment line" global insert <c-c> ":comment-line<ret>"
+map -docstring "comment line" global insert <c-c> ":comment-line<ret>"
+
+map global user c ":enter-user-mode kak_config<ret>" -docstring "enter config mode mappings"
+map global kak_config o ":e %val{config}/kakrc<ret>" -docstring "open config file"
+map global kak_config l ":e %val{config}/lsp/kak-lsp.toml<ret>" -docstring "open lsp config file"
+map global kak_config p ":e %val{config}/plugins.kak<ret>" -docstring "open plugins config file"

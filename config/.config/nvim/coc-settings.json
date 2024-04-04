@@ -1,0 +1,52 @@
+
+{
+	"suggest.removeDuplicateItems": true,
+	"signature.enable": true,
+	"diagnostic.messageTarget": "float",
+	"diagnostic.virtualTextCurrentLineOnly": false,
+	"coc.preferences.formatOnSave": true,
+	"diagnostic.virtualText": false,
+	"diagnostic.locationlistLevel": "error",
+	"diagnostic.locationlistUpdate": true,
+	"coc.preferences.useQuickfixForLocations": true,
+	"coc.preferences.enableMessageDialog": true,
+	// "coc.preferences.formatOnSaveFiletypes": [
+	// 	"html",
+	// 	"rust",
+	// 	"json",
+	// 	"toml",
+	// 	"javascript",
+	// 	"typescript",
+	// 	"typescriptreact",
+	// 	"haskell"
+	// ],
+	"coc.source.buffer.ignoreGitignore": true,
+	"rust-analyzer.check.command": "clippy",
+	"rust-analyzer.workspace.symbol.search.kind": "all_symbols",
+	"rust-analyzer.workspace.symbol.search.limit": 128,
+	"rust-analyzer.workspace.symbol.search.scope": "workspace_and_dependencies",
+	"rust-analyzer.cargo.features": "all",
+	"rust-analyzer.check.features": "all",
+	"rust-analyzer.procMacro.enable": true,
+	"rust-analyzer.diagnostics.disabled": [
+		"inactive-code"
+	],
+	"coc.preferences.extensionUpdateCheck": "daily",
+	"svelte.enable-ts-plugin": true,
+	"languageserver": {
+		"elmLS": {
+			"command": "elm-language-server",
+			"filetypes": [
+				"elm"
+			],
+			"rootPatterns": [
+				"elm.json"
+			]
+		}
+	},
+	"emmet.includeLanguages": {
+		"html": "svelte",
+	},
+	// "codeLens.enable": true,
+	"inlayHint.enable": true,
+}

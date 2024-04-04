@@ -1,0 +1,90 @@
+makealias(){
+	__usage="Usage: makealias [flags] <alias> <command>
+	if no flag  is specified, -s is assumed
+	valid flags are:
+	-s save alias to ~/.zsh.aliases and alias for the current shell
+	-d delete alias from ~/.zsh.aliases and unalias for the current shell
+	-o open ~/.zsh.aliases in \$EDITOR
+	"
+	case $1 in
+		"") echo $__usage
+				 ;;
+		-s) shift; echo "alias $1='$2'" >> ~/.zsh.aliases && alias $1="$2" ;;
+		-d) shift; unalias $1 && sed "/alias $1=/d" ~/.zsh.aliases | sponge ~/.zsh.aliases ;;
+		-o) $EDITOR ~/.zsh.aliases && source ~/.zsh.aliases ;;
+		-*) 
+			echo "invalid flag $1" 
+			echo $__usage
+			;;
+		*) makealias -s $1 $2 ;;
+		esac
+	}
+alias mkals='makealias'
+alias psql='psql -h 127.0.0.1'
+alias sshcfg='nvim ~/.ssh/config'
+mergegit(){
+	if [ -z "$1" ]; then
+		echo "Usage: mergegit <branch>"
+		return 1
+	fi
+	git checkout $1 && git merge - && git push && git checkout -
+}
+sayit(){
+	if [ -z "$1" ]; then
+		echo "Usage: sayit <text>"
+		return 1
+	fi
+	curl https://api.voiser.net/v2/limitless/ -X POST -H "Content-Type: Application/JSON" -d '{"authCode":"7852896127","articleText":"'+$1+'","configVoice":"Meryem","configLang":"tr-TR","configPitch":"0","configSpeed":"1"}' | jq '.'
+}
+alias gitmerge=''
+alias psql='psql -U postgres -h localhost'
+alias ls='gls --color=auto'
+alias cp='gcp'
+alias ln='gln'
+alias mv='gmv'
+alias youtube-dl='yt-dlp'
+alias pip='/opt/homebrew/bin/pip3'
+alias python='/opt/homebrew/bin/python3'
+alias alacrittycfg='nvim ~/.config/alacritty/alacritty.yml'
+alias fnvim='fzf | xargs nvim'
+alias snvim='sudo nvim'
+alias cat='bat'
+alias tmuxcfg='nvim ~/.tmux.conf'
+alias todos='nvim ~/.todo.md'
+
+
+restartTiktok(){
+	for s in tiktok_sip{,2,3,4}
+	do
+		ssh $s "./restart.sh"
+	done
+}
+alias ctags='/opt/homebrew/bin/ctags'
+notify(){
+	if [ -z "$1" ]; then
+		echo "Usage: notify <message>"
+		return 1
+	fi
+	local channel=$2
+	if [ -z "$2" ]; then
+		channel="ta3pks"
+	fi
+	curl https://ntfy.sh/$channel -d "$1"
+}
+alias cupdate='cargo update'
+alias cupgrade='cargo upgrade'
+alias notes='rg --files ~/Documents/notes_nvim/ | fzf | xargs nvim'
+rust_binname(){
+	local binname=$(basename $(pwd))
+	case $1 in
+	"-r" | "--release") print "./target/release/$binname" ;;
+	*) print "./target/debug/$binname" ;;
+	esac
+}
+alias rust_repl='evcxr'
+alias rm='grm'
+alias ai='gh copilot suggest'
+alias weather='curl wttr.in'
+alias kssh='kitten ssh'
+alias icat='kitty +kitten icat'
+alias less="nvim -R"

@@ -1,0 +1,3 @@
+evdev:name:Logitech MX Keys*
+ KEYBOARD_KEY_70064=grave
+ KEYBOARD_KEY_70035=102nd

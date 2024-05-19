@@ -5,9 +5,12 @@ function CargoDeps()
 	vim.ui.select(deps,{},function(selected) end)
 end
 ENDLUA
+runtime chords/rust.vim
 command! -bar -buffer CargoDeps :lua CargoDeps()
 command! -bar -buffer -nargs=+ Cargo :VTerm cargo <args>
+command! -bar -buffer -nargs=+ CargoInline :TermInPlace cargo <args>
 command! -bar -buffer -nargs=+ CargoRun :Cargo <args>
+command! -bar -buffer -nargs=+ CargoRunInPlace :CargoInline <args>
 command! -buffer -nargs=+ Cadd :CargoRun add <args>
 command! -buffer -nargs=+ Crm :CargoRun rm <args>
 command! -buffer -nargs=* Cupgrade :CargoRun upgrade <args>
@@ -46,7 +49,7 @@ function! s:CurrentFuncName() abort
 	return l:func_name
 endfunction
 command! -bar -buffer FnName :echo <SID>CurrentFuncName()
-nnoremap <silent> <buffer> <leader>cc :CargoRun clippy --all-targets --all-features <CR>
+nnoremap <silent> <buffer> <leader>cc :CargoRunInPlace clippy --all-targets --all-features <CR>
 nnoremap <silent> <buffer> <leader>cu :CargoRun update<CR>
 nnoremap <silent> <buffer> <leader>cU :CargoRun upgrade<CR>
 nnoremap <silent> <buffer> <leader>er :exe 'Cargo run '.g:rustrun_params<CR>
@@ -74,6 +77,5 @@ function! s:WrapType(ty)
 endfunction
 inoreabbrev <silent> <buffer><expr> _opt> <SID>WrapType("Option")
 inoreabbrev <silent> <buffer><expr> _vec> <SID>WrapType("Vec")
-cnoreabbrev <silent> <buffer> reload CocCommand rust-analyzer.reloadWorkspace
 command! -bar -buffer LeptosFmt :silent !leptosfmt %
 command! -bar CargoFmt :silent exe "!cargo fmt -- %"<bar>edit

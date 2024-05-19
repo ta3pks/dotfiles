@@ -12,19 +12,19 @@ opt-level = 0
 overflow-checks = true
 lto = "off"
 debug = true
-incremental = false
+#incremental = true
 [profile.release]
 opt-level = "s"
 debug = false
 strip = "symbols"
 lto = "fat"
-incremental = false
+#incremental = false
 [build]
 # rustc-wrapper = "sccache"
-incremental = false
+#incremental = true
 # target-dir = "~/.cargo_target"
 [target.aarch64-apple-darwin]
-rustflags = ["-C", "link-arg=-fuse-ld=/usr/local/bin/ld64.mold"]
+#rustflags = ["-C", "link-arg=-fuse-ld=/usr/local/bin/ld64.mold"]
 # rustflags=[
 # "-C","linker=mold","-C","link-arg=-fuse=mold"
 # ]

@@ -31,7 +31,6 @@
 	"inlayHint.enableParameter": true,
 	"inlayHint.refreshOnInsertMode": false,
 	"rust-analyzer.inlayHints.typeHints.enable": true,
-	"rust-analyzer.rust.analyzerTargetDir": true,
 	"rust-analyzer.imports.prefix": "crate",
 	"rust-analyzer.imports.merge.glob": true,
 	"rust-analyzer.imports.group.enable": true,
@@ -84,5 +83,9 @@
 		"javascript": "javascriptreact",
 		"rust": "html",
 	},
+	"clangd.checkUpdates": true,
+	"clangd.fallbackFlags": [
+		"-I/opt/homebrew/include",
+	]
 	//	"codeLens.enable": true,
 }

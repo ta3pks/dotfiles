@@ -87,4 +87,4 @@ alias ai='gh copilot suggest'
 alias weather='curl wttr.in'
 alias kssh='kitten ssh'
 alias icat='kitty +kitten icat'
-alias less="nvim -R"
+alias chatgpt='nvim "+au user VeryLazy ChatGPT"'

@@ -8,7 +8,7 @@ command! -nargs=? -complete=shellcmd -bar VTermHere lua require('openterm').open
 command! -nargs=? -complete=shellcmd -bar HTermHere lua require('openterm').open_term(<q-args>, true, true)
 command! Lgit :TermHere lazygit
 nnoremap <leader>gg :Lgit<CR>
-nnoremap <m-CR> :Term<CR>
+nnoremap <m-CR> :TermInPlace<CR>
 nnoremap <c-CR> :VTerm<CR>
 tnoremap <c-:><c-:><c-:> <C-\><C-n><c-w>h
 tnoremap <c-"><c-"><c-"> <C-\><C-n>g<Tab>

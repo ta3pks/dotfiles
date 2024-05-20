@@ -21,7 +21,7 @@
 	wrk (layer-add workman)
 	rwrk (layer-rem workman)
 	met (tap-hold 200 ret lmet)
-	fna (multi-tap 200 fn 200 (layer-add function) fn)
+	fna (multi-tap 300 fn 300 (layer-add function) fn)
 	fnr (layer-rem function)
 )
 (deflayer default

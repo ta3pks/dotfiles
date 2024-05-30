@@ -5,7 +5,6 @@ function CargoDeps()
 	vim.ui.select(deps,{},function(selected) end)
 end
 ENDLUA
-runtime chords/rust.vim
 command! -bar -buffer CargoDeps :lua CargoDeps()
 command! -bar -buffer -nargs=+ Cargo :VTerm cargo <args>
 command! -bar -buffer -nargs=+ CargoInline :TermInPlace cargo <args>

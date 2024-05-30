@@ -28,9 +28,11 @@
     "@yaegassy/coc-pug": ">=0.1.2",
     "coc-sql": ">=0.11.0",
     "coc-zig": ">=0.6.1",
-    "coc-clangd": ">=0.30.2"
+    "coc-clangd": ">=0.30.2",
+    "@yaegassy/coc-volar": ">=0.35.6",
+    "coc-nix": ">=0.0.2"
   },
   "disabled": [],
   "locked": [],
-  "lastUpdate": 1716157027676
+  "lastUpdate": 1717012856809
 }

@@ -15,15 +15,14 @@
 )
 (defalias 
 	esc (multi-tap 200 (layer-add workman) 200 (cmd-button "sudo -u nikos yabai --restart-service") XX)
-	spc (tap-hold 200 spc lsft)
+	spc (tap-next-release spc lsft)
 	caps (tap-next esc lctl)
 ;;	chars_mod (tap-next lmet (layer-toggle chars))
 	wrk (layer-add workman)
 	rwrk (layer-rem workman)
-	met (tap-hold 200 ret lmet)
-	fna (multi-tap 300 fn 300 (layer-add function) fn)
-	fnr (layer-rem function)
-    fnc (multi-tap 200 ret 200 lmet (layer-toggle function))
+	met (tap-next ret lmet)
+    fnr (tap-next-release (layer-rem function) lalt)
+    fnc (tap-next-release (layer-add function) lalt)
 )
 (deflayer default
 @esc   f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
@@ -31,15 +30,15 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
 @caps  _    _    _    _    _    _    _    _    _    _    _    XX
   _    _    _    _    _    _    _    _    _    _    _    _    _
- @fna  _    _ @fnc            @spc          @fnc    _    _    _    _
+  _    _   @fnc @met          @spc          @met    _    _    _    _
 )
 (deflayer function
   _    brdn brup lp   mctl bldn blup prev pp   next mute vold volu  
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    1    2    3    4    5    _    _
-  _    _    _    _    _    _    _    6    7    8    9    0    _
-  _    _    _    _    _    _  bspc down   up  left rght  _    _
-@fnr   _    _    _              _              _    _    _    _    _
+  _    _    _    _    _    _   bspc  6    7    8    9    0    _
+  _    _    _    _    _    _   down  up  left rght  _    _    _
+  _    _  @fnr   _              _              _    _    _    _    _
 )
 (deflayer workman
 @rwrk  _    _    _    _    _    _    _    _    _    _    _    _    

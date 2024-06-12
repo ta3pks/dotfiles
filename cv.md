@@ -62,3 +62,43 @@ ABI under the repo).
 In addition to these, I have acquired many skills such as Haskell, Elm,
 PHP, as well as technologies like PostgreSQL, MongoDB, ZeroMQ, Redis,
 KeyDB (my preferred Redis alternative), ClickHouse, MeiliSearch, etc.
+
+# Experience 
+## Databases
+- [MongoDB](https://www.mongodb.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Redis](https://redis.io/)
+- [KeyDB](https://keydb.dev/)
+- [ClickHouse](https://clickhouse.com/)
+- [MeiliSearch](https://www.meilisearch.com/)
+- [ZeroMQ](https://zeromq.org/)
+- [RabbitMQ](https://www.rabbitmq.com/)
+
+## Web
+- JS/TS
+    - [Express](https://expressjs.com/)
+    - [Next.js](https://nextjs.org/)
+    - [React](https://reactjs.org/)
+    - [Vue](https://vuejs.org/)
+    - [Svelte](https://svelte.dev/)
+    - [trpc](https://trpc.io/)
+    - [Deno](https://deno.land/)
+
+- Golang
+    - [Gin](https://gin-gonic.com/)
+    - [GORM](https://gorm.io/)
+
+## DevOps
+- [Docker](https://www.docker.com/)
+- [CircleCI](https://circleci.com/)
+- [GitHub Actions](https://github.com/features/actions)
+- [Podman](https://podman.io/)
+- [Git](https://git-scm.com/)
+- [Ansible](https://www.ansible.com/)
+- [Nix](https://nixos.org/)
+
+## Misc
+- [Rust](https://www.rust-lang.org/)
+- [Leptos](https://leptos.dev/)
+- [Flutter](https://flutter.dev/)
+- [Android](https://developer.android.com/)

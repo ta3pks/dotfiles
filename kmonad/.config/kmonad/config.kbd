@@ -14,7 +14,7 @@
   fn   lctl lalt lmet           spc            rmet ralt left down rght
 )
 (defalias 
-	esc (multi-tap 200 (layer-add workman) 200 (cmd-button "sudo -u nikos yabai --restart-service") XX)
+	esc (multi-tap 200 (layer-add workman) 200 (cmd-button "sudo -u nikos launchctl kickstart -k gui/501/com.mylocal.kmonad") XX)
 	spc (tap-next-release spc lsft)
 	caps (tap-next esc lctl)
 ;;	chars_mod (tap-next lmet (layer-toggle chars))
@@ -36,9 +36,9 @@
   _    brdn brup lp   mctl bldn blup prev pp   next mute vold volu  
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    1    2    3    4    5    _    _
-  _    _    _    _    _    _   bspc  6    7    8    9    0    _
-  _    _    _    _    _    _   down  up  left rght  _    _    _
-  _    _  @fnr   _              _              _    _    _    _    _
+  _    _    _    _    _    _   bspc down up   left right 0    _
+  _    _    _    _    _    _     6   7    8    9    _    _    _
+  _    _  @fnr   _              _             rmet  _    _    _    _
 )
 (deflayer workman
 @rwrk  _    _    _    _    _    _    _    _    _    _    _    _    

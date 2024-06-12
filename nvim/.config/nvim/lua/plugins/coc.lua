@@ -54,7 +54,7 @@ return {
         end
         -- set statusline+=%=%{coc#status()}%{get(b:,'coc_current_function','')}
         vim.o.statusline = "%f" ..
-            vim.o.statusline .. "%=%{coc#status()}%{get(b:,'coc_current_function','')} %{strftime('%H:%M:%S')}"
+        vim.o.statusline .. "%=%{coc#status()}%{get(b:,'coc_current_function','')} %{strftime('%H:%M:%S')} %y"
 
         vim.cmd [[
 			inoremap <silent><expr> <TAB>

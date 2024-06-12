@@ -11,7 +11,8 @@ ctrl + cmd - 0x21 : yabai -m window --focus west
 ctrl + cmd - q 	  : yabai -m space --destroy
 ctrl + cmd - c 	  : yabai -m space --create; yabai -m space --focus next
 # send window to monitor and follow focus
-# ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
+ctrl + alt - j  :  yabai -m display --focus next
+ctrl + alt - k  :  yabai -m display --focus prev
 # ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
 
 # move floating window

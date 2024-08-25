@@ -1,21 +1,28 @@
-(defcfg
-  input (iokit-name)
-  output (kext)
-  fallthrough true
-  allow-cmd true
+(defcfg input (device-file "/dev/input/by-id/usb-SteelSeries_SteelSeries_Apex_3_TKL-event-kbd")
+output (uinput-sink "My KMonad output")
+fallthrough true
+allow-cmd true
 )
 
+;;(defsrc
+;;  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+;;  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+;;  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+;;  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+;;  lsft z    x    c    v    b    n    m    ,    .    /    rsft up
+;;  fn   lctl lalt lmet           spc            rmet ralt left down rght
+;;)
+;;steelseries
 (defsrc
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft up
-  fn   lctl lalt lmet           spc            rmet ralt left down rght
+  lsft z    x    c    v    b    n    m    ,    .    /         rsft            up
+  lctl lmet lalt                 spc                ralt rmet rctrl     left down rght
 )
 (defalias 
-	;; esc (multi-tap 200 (layer-add workman) 200 (cmd-button "sudo -u nikos launchctl kickstart -k gui/501/com.mylocal.kmonad") XX)
-	esc (multi-tap 200 XX 200 (cmd-button "sudo -u nikos launchctl kickstart -k gui/501/com.mylocal.kmonad") XX)
+	esc (multi-tap 200 (layer-add workman) XX)
 	spc (tap-next-release spc lsft)
 	caps (tap-hold 200 esc lctl)
     ;; chars_mod (tap-next lmet (layer-toggle chars))
@@ -26,20 +33,20 @@
     fnc (tap-next-release (layer-add function) lalt)
 )
 (deflayer default
-@esc   f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
 @caps  _    _    _    _    _    _    _    _    _    _    _    XX
   _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _   @fnc @met          @spc          @met    _    _    _    _
+  _   @fnc @met          @spc          @met    _    _    _    _  _
 )
 (deflayer function
-  _    brdn brup lp   mctl bldn blup prev pp   next mute vold volu  
+  _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    1    2    3    4    5    _    _
   _    _    _    _    _    _   bspc down up   left right 0    _
   _    _    _    _    _    _     6   7    8    9    _    _    _
-  _    _  @fnr   _              _             rmet  _    _    _    _
+  _  @fnr   _    _              _             rmet  _    _    _    _
 )
 ;; (deflayer workman
 ;; @rwrk  _    _    _    _    _    _    _    _    _    _    _    _    

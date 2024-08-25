@@ -70,6 +70,7 @@
         "svelte": "html",
         "javascript": "javascriptreact",
         "rust": "html",
+        "vue": "html"
     },
     "clangd.checkUpdates": true,
     "clangd.fallbackFlags": [

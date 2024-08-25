@@ -96,3 +96,4 @@ config/.config/fish/functions/trp.fish
 /config/.config/coc/extensions/*
 !/config/.config/coc/extensions/package.json
 nvim/.config/nvim/lazy-lock.json
+nvim/.config/nvim/usage_data.json

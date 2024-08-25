@@ -14,13 +14,14 @@
   fn   lctl lalt lmet           spc            rmet ralt left down rght
 )
 (defalias 
-	esc (multi-tap 200 (layer-add workman) 200 (cmd-button "sudo -u nikos launchctl kickstart -k gui/501/com.mylocal.kmonad") XX)
+	;; esc (multi-tap 200 (layer-add workman) 200 (cmd-button "sudo -u nikos launchctl kickstart -k gui/501/com.mylocal.kmonad") XX)
+	esc (multi-tap 200 XX 200 (cmd-button "sudo -u nikos launchctl kickstart -k gui/501/com.mylocal.kmonad") XX)
 	spc (tap-next-release spc lsft)
-	caps (tap-next esc lctl)
-;;	chars_mod (tap-next lmet (layer-toggle chars))
-	wrk (layer-add workman)
-	rwrk (layer-rem workman)
-	met (tap-next ret lmet)
+	caps (tap-hold 200 esc lctl)
+    ;; chars_mod (tap-next lmet (layer-toggle chars))
+	;; wrk (layer-add workman)
+	;; rwrk (layer-rem workman)
+	met (tap-hold 200 ret lmet)
     fnr (tap-next-release (layer-rem function) lalt)
     fnc (tap-next-release (layer-add function) lalt)
 )
@@ -40,11 +41,11 @@
   _    _    _    _    _    _     6   7    8    9    _    _    _
   _    _  @fnr   _              _             rmet  _    _    _    _
 )
-(deflayer workman
-@rwrk  _    _    _    _    _    _    _    _    _    _    _    _    
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    q    d    r    w    b    j    f    u    p    ;    [    ]    \
-  _    a    s    h    t    g    y    n    e    o    i    '    _
-  _    z    x    m    c    v    k    l    ,    .    /    _    _
-  _    _    _    _              _              _    _    _    _    _
-  )
+;; (deflayer workman
+;; @rwrk  _    _    _    _    _    _    _    _    _    _    _    _    
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    q    d    r    w    b    j    f    u    p    ;    [    ]    \
+;;   _    a    s    h    t    g    y    n    e    o    i    '    _
+;;   _    z    x    m    c    v    k    l    ,    .    /    _    _
+;;   _    _    _    _              _              _    _    _    _    _
+;;   )

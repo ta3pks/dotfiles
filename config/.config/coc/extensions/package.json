@@ -20,8 +20,6 @@
     "coc-format-json": ">=0.2.3",
     "coc-toml": ">=1.2.5",
     "coc-sumneko-lua": ">=0.0.40",
-    "@vim-geek/coc-tailwind-intellisense": ">=0.6.2",
-    "coc-tailwindcss": ">=0.7.0",
     "coc-json": ">=1.9.2",
     "coc-xml": ">=1.14.1",
     "friendly-snippets": "https://github.com/rafamadriz/friendly-snippets@main",
@@ -30,9 +28,13 @@
     "coc-zig": ">=0.6.1",
     "coc-clangd": ">=0.30.2",
     "@yaegassy/coc-volar": ">=0.35.6",
-    "coc-nix": ">=0.0.2"
+    "coc-nix": ">=0.0.2",
+    "coc-phpls": ">=2.2.4",
+    "coc-hls": ">=0.0.2",
+    "coc-css": ">=2.1.0",
+    "@yaegassy/coc-tailwindcss3": ">=0.5.11"
   },
   "disabled": [],
   "locked": [],
-  "lastUpdate": 1718136432549
+  "lastUpdate": 1724126185083
 }

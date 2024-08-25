@@ -5,6 +5,7 @@ return {
         'nvim-lua/plenary.nvim',
         'MunifTanjim/nui.nvim',
     },
+    cmd = { "Chat" },
     config = function()
         -- vim.g["codegpt_global_commands_defaults"] = {
         -- model = "gpt-4o",

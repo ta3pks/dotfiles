@@ -1,0 +1,226 @@
+matches:
+  - trigger: thn
+    replace: then
+    word: true
+  - trigger: bcs
+    replace: because
+    word: true
+  - trigger: abt
+    replace: about
+    word: true
+  - trigger: int
+    replace: into
+    word: true
+  - trigger: ovr
+    replace: over
+    word: true
+  - trigger: aft
+    replace: after
+    word: true
+  - trigger: wto
+    replace: without
+    word: true
+  - trigger: ur.
+    replace: your
+    word: true
+  - trigger: urs
+    replace: yours
+    word: true
+  - trigger: yor
+    replace: your
+    word: true
+  - trigger: hm.
+    replace: him
+    word: true
+  - trigger: thy
+    replace: they
+    word: true
+  - trigger: thr
+    replace: their
+    word: true
+  - trigger: thm
+    replace: them
+    word: true
+  - trigger: whc
+    replace: which
+    word: true
+  - trigger: whn
+    replace: when
+    word: true
+  - trigger: wht
+    replace: what
+    word: true
+  - trigger: whr
+    replace: where
+    word: true
+  - trigger: r
+    replace: are
+    word: true
+  - trigger: wre
+    replace: were
+    word: true
+  - trigger: hve
+    replace: have
+    word: true
+  - trigger: wll
+    replace: will
+    word: true
+  - trigger: cld
+    replace: could
+    word: true
+  - trigger: wld 
+    replace: would
+    word: true
+  - trigger: sld
+    replace: should
+    word: true
+  - trigger: lke
+    replace: like
+    word: true
+  - trigger: mde
+    replace: made
+    word: true
+  - trigger: mke
+    replace: make
+    word: true
+  - trigger: wrk
+    replace: work
+    word: true
+  - trigger: knw
+    replace: know
+    word: true
+  - trigger: tke
+    replace: take
+    word: true
+  - trigger: cme
+    replace: come
+    word: true
+  - trigger: thk
+    replace: think
+    word: true
+  - trigger: wnt
+    replace: want
+    word: true
+  - trigger: giv
+    replace: give
+    word: true
+  - trigger: cnt
+    replace: cannot
+    word: true
+  - trigger: des
+    replace: does
+    word: true
+  - trigger: sem
+    replace: seem
+    word: true
+  - trigger: cll
+    replace: call
+    word: true
+  - trigger: thk
+    replace: thank
+    word: true
+  - trigger: imm
+    replace: I’m
+    word: true
+  - trigger: tht
+    replace: that
+    word: true
+  - trigger: ths
+    replace: this
+    word: true
+  - trigger: thes
+    replace: these
+    word: true
+  - trigger: mre
+    replace: more
+    word: true
+  - trigger: thr
+    replace: there
+    word: true
+  - trigger: tme
+    replace: time
+    word: true
+  - trigger: sme
+    replace: some
+    word: true
+  - trigger: jst
+    replace: just
+    word: true
+  - trigger: odr.
+    replace: other
+    word: true
+  - trigger: ppl
+    replace: people
+    word: true
+  - trigger: mst
+    replace: most
+    word: true
+  - trigger: mny
+    replace: many
+    word: true
+  - trigger: fst
+    replace: first
+    word: true
+  - trigger: vry
+    replace: very
+    word: true
+  - trigger: evn
+    replace: even
+    word: true
+  - trigger: gd.
+    replace: good
+    word: true
+  - trigger: yre
+    replace: year
+    word: true
+  - trigger: bck
+    replace: back
+    word: true
+  - trigger: qtn
+    replace: question
+    word: true
+  - trigger: scn
+    replace: second
+    word: true
+  - trigger: thg
+    replace: thing
+    word: true
+  - trigger: cnt
+    replace: can’t
+    word: true
+  - trigger: dnt
+    replace: don’t
+    word: true
+  - trigger: dft
+    replace: different
+    word: true
+  - trigger: dfc
+    replace: difference
+    word: true
+  - trigger: tho
+    replace: though
+    word: true
+  - trigger: tru
+    replace: through
+    word: true
+  - trigger: sry
+    replace: sorry
+    word: true
+  - trigger: mve
+    replace: move
+    word: true
+  - trigger: drtn
+    replace: direction
+    word: true
+  - trigger: nxt
+    replace: next
+    word: true
+  - trigger: sme
+    replace: same
+    word: true
+  - trigger: mnt
+    replace: month
+    word: true
+  - trigger: vr.
+    replace: over
+    word: true

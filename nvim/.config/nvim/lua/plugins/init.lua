@@ -66,28 +66,30 @@ return {
     },
     {
         "tomtom/tcomment_vim",
-        keys = {
-            {
-                "<c-/>", ":TComment<cr>", noremap = true, silent = true, mode = "n"
-            },
-            {
-                --insert mode
-                "<c-/>",
-                "<c-o>:TComment<cr>",
-                noremap = true,
-                silent = true,
-                mode = "i"
-            },
-            {
-                "<c-/>",
-                function()
-                    vim.fn.feedkeys('gcgv')
-                end,
-                noremap = true,
-                silent = true,
-                mode = "v"
-            },
-        },
+        -- keys = {
+        --     {
+        --         "<c-_>", ":TComment<cr>", noremap = true, silent = true, mode = "n", nowait = true
+        --     },
+        --     {
+        --         --insert mode
+        --         "<c-_>",
+        --         "<c-o>:TComment<cr>",
+        --         noremap = true,
+        --         silent = true,
+        --         mode = "i",
+        --         nowait = true
+        --     },
+        --     {
+        --         "<c-_>",
+        --         function()
+        --             vim.fn.feedkeys('gcgv')
+        --         end,
+        --         noremap = true,
+        --         silent = true,
+        --         mode = "v",
+        --         nowait = true
+        --     },
+        -- },
     },
     { 'wakatime/vim-wakatime',  event = "VeryLazy" },
     { 'airblade/vim-gitgutter', event = "BufReadPost" },

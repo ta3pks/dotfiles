@@ -29,19 +29,19 @@ lto = "fat"
 # "-C","linker=mold","-C","link-arg=-fuse=mold"
 # ]
 [target.x86_64-unknown-linux-gnu]
-linker = "x86_64-unknown-linux-gnu-gcc"
+# linker = "x86_64-unknown-linux-gnu-gcc"
 # rustflags=[
 # "-C","linker=mold","-C","link-arg=-fuse=mold"
 # ]
 [target.x86_64-unknown-linux-musl]
-linker = "x86_64-unknown-linux-musl-gcc"
+# linker = "x86_64-unknown-linux-musl-gcc"
 [target.armv7-unknown-linux-gnueabihf]
 linker = "arm-linux-gnueabihf-gcc"
 [target.aarch64-unknown-linux-gnu]
 linker = "aarch64-unknown-linux-gnu-gcc"
 [target.aarch64-unknown-linux-musl]
-linker = "aarch64-unknown-linux-musl-gcc"
-rustflags = ["-C", "target-feature=+crt-static", "-C", "link-arg=-lgcc"]
+# linker = "aarch64-unknown-linux-musl-gcc"
+# rustflags = ["-C", "target-feature=+crt-static", "-C", "link-arg=-lgcc"]
 [target.armv7-linux-androideabi]
 linker = "armv7a-linux-androideabi26-clang"
 

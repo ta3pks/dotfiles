@@ -7,10 +7,10 @@ return {
         -- vim.keymap.set("n", "<leader><leader>r", "<cmd>CocRestart<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>r", "<Plug>(coc-rename)", { noremap = true, silent = true })
         vim.keymap.set("n", "<a-,>", "<Plug>(coc-fix-current)", { noremap = true, silent = true })
-        vim.keymap.set("n", "<c-.>", "<Plug>(coc-codeaction-cursor)", { noremap = true, silent = true })
-        vim.keymap.set("i", "<c-.>", function() vim.fn.CocAction('showSignatureHelp') end,
+        vim.keymap.set("n", "<a-.>", "<Plug>(coc-codeaction-cursor)", { noremap = true, silent = true })
+        vim.keymap.set("i", "<a-.>", function() vim.fn.CocAction('showSignatureHelp') end,
             { noremap = true, silent = true, })
-        vim.keymap.set("v", "<c-.>", "<Plug>(coc-codeaction-selected)", { noremap = true, silent = true })
+        vim.keymap.set("v", "<a-.>", "<Plug>(coc-codeaction-selected)", { noremap = true, silent = true })
         vim.keymap.set("n", "<a-r>", "<Plug>(coc-codeaction-refactor)", { noremap = true, silent = true })
         vim.keymap.set("n", "<m-s>", "<Plug>(coc-codeaction-source)", { noremap = true, silent = true })
         vim.keymap.set("n", "<a-d>", ":CocList diagnostics<CR>", { noremap = true, silent = true })
@@ -54,7 +54,7 @@ return {
         end
         -- set statusline+=%=%{coc#status()}%{get(b:,'coc_current_function','')}
         vim.o.statusline = "%f" ..
-        vim.o.statusline .. "%=%{coc#status()}%{get(b:,'coc_current_function','')} %{strftime('%H:%M:%S')} %y"
+            vim.o.statusline .. "%=%{coc#status()}%{get(b:,'coc_current_function','')} %{strftime('%H:%M:%S')} %y"
 
         vim.cmd [[
 			inoremap <silent><expr> <TAB>

@@ -1,0 +1,11 @@
+[Unit]
+Description=Kmonad Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/nikos/.nix-profile/bin/kmonad /home/nikos/.config/kmonad/config.kbd
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

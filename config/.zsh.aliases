@@ -36,30 +36,17 @@ sayit(){
 	fi
 	curl https://api.voiser.net/v2/limitless/ -X POST -H "Content-Type: Application/JSON" -d '{"authCode":"7852896127","articleText":"'+$1+'","configVoice":"Meryem","configLang":"tr-TR","configPitch":"0","configSpeed":"1"}' | jq '.'
 }
-alias gitmerge=''
 alias psql='psql -U postgres -h localhost'
 alias ls='gls --color=auto'
 alias cp='gcp'
 alias ln='gln'
 alias mv='gmv'
-alias youtube-dl='yt-dlp'
-alias pip='/opt/homebrew/bin/pip3'
-alias python='/opt/homebrew/bin/python3'
-alias alacrittycfg='nvim ~/.config/alacritty/alacritty.yml'
 alias fnvim='fzf | xargs nvim'
 alias snvim='sudo nvim'
 alias cat='bat'
 alias tmuxcfg='nvim ~/.tmux.conf'
-alias todos='nvim ~/.todo.md'
 
 
-restartTiktok(){
-	for s in tiktok_sip{,2,3,4}
-	do
-		ssh $s "./restart.sh"
-	done
-}
-alias ctags='/opt/homebrew/bin/ctags'
 notify(){
 	if [ -z "$1" ]; then
 		echo "Usage: notify <message>"
@@ -87,4 +74,3 @@ alias ai='gh copilot suggest'
 alias weather='curl wttr.in'
 alias kssh='kitten ssh'
 alias icat='kitty +kitten icat'
-alias chatgpt='nvim "+au user VeryLazy ChatGPT"'

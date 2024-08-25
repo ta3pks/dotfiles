@@ -1,0 +1,17 @@
+imports:
+  - _en.yaml
+matches:
+- trigger: ";ip."
+  replace: "{{output}}"
+  vars:
+  - name: output
+    type: shell
+    params:
+      cmd: "curl 'https://api.ipify.org'"
+- trigger: ";locip."
+  replace: "{{output}}"
+  vars:
+  - name: output
+    type: shell
+    params:
+      cmd: "ip a | grep 'inet 192' | awk '{ split ($2,val,\"/\");print val[1];}'"

@@ -1,13 +1,9 @@
 set splitbelow splitright number relativenumber smartcase smartindent ignorecase incsearch smartindent foldenable exrc
-set inccommand=split foldmethod=indent foldcolumn=0 foldlevelstart=99 conceallevel=0 concealcursor=nv ts=4 sw=4 expandtab
+set inccommand=split foldmethod=indent foldcolumn=0 foldlevelstart=99 conceallevel=0 concealcursor= ts=4 expandtab shiftwidth=4
 if has("termguicolors")
 	set termguicolors
 endif
 nnoremap <space>q :bd<cr>
-vnoremap ; :
-vnoremap : ;
-nnoremap ; :
-nnoremap : ;
 command! Ssrc source %
 command! Time :echo strftime("%c")
 if has("nvim") 

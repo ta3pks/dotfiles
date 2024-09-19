@@ -1,0 +1,4 @@
+[profile.default]
+fail-fast = true
+slow-timeout = "5s"
+retries = 2

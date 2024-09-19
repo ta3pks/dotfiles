@@ -20,6 +20,7 @@ strip = "symbols"
 lto = "fat"
 #incremental = false
 [build]
+target-dir = "~/.rust_build"
 # rustc-wrapper = "sccache"
 #incremental = true
 # target-dir = "~/.cargo_target"

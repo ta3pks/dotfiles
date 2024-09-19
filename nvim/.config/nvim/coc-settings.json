@@ -1,8 +1,17 @@
 {
+    "volar.enable": true,
+    "vue.codeLens.enabled": true,
     "snippet.highlight": true,
     "pullDiagnostic.onSave": true,
     "sql.database": "postgresql",
     "tailwindCSS.enable": true,
+    "tailwindCSS.includeLanguages": {
+        "eelixir": "html",
+        "elixir": "html",
+        "eruby": "html",
+        "html.twig": "html",
+        "vue": "html",
+    },
     "zig.path": "/opt/homebrew/bin/zig",
     "css.lint.unknownAtRules": "ignore",
     "list.source.extensions.defaultAction": "toggle",

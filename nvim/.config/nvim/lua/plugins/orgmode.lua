@@ -30,7 +30,7 @@ return {
 		require('orgmode').setup({
 			org_agenda_files = {
 				-- '~/Documents/notes/**/*.org',
-				"~/Documents/notes/*.org", "./*.org"
+				"~/Documents/notes/*.org", "./*.org","../*.org",
 			},
 			org_default_notes_file = '~/Documents/notes/index.org',
 			org_todo_keywords = { 'TODO(t)', 'WIP(w)', "NEXT(n)", '|', 'DONE(d)' },

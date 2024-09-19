@@ -1,1 +1,5 @@
-{}
+{
+  "@yaegassy/coc-volar|/home/nikos/.projects/community-inviter/dashboard-ui": {
+    "coc-volar-tsdk-path": "/home/nikos/dotfiles/coc/.config/coc/extensions/node_modules/@yaegassy/coc-volar/node_modules/typescript/lib"
+  }
+}

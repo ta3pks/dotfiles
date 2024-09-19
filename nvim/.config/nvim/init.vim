@@ -98,3 +98,6 @@ onoremap is i"
 onoremap as a"
 onoremap ia i<
 onoremap aa a<
+nnoremap <leader>gp :VTerm tgpt -i<cr>
+command Wsudo w !SUDO_ASKPASS=`which ssh-askpass` sudo tee % > /dev/null
+cnoreabbrev wsudo Wsudo

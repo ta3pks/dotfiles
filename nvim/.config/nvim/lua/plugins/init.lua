@@ -1,5 +1,9 @@
 return {
     {
+'nvim-tree/nvim-web-devicons',
+        event = "VeryLazy",
+    },
+    {
         'MarcHamamji/runner.nvim',
         dependencies = {
             'nvim-telescope/telescope.nvim',

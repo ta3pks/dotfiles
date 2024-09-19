@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@gera2ld/format-json':
+        specifier: ^0.3.0
+        version: 0.3.0
       '@softmotions/coc-svelte':
         specifier: ^0.4.2
         version: 0.4.2(postcss@8.4.41)(sass@1.77.8)(svelte@3.59.2)
@@ -17,9 +20,6 @@ importers:
       '@yaegassy/coc-pug':
         specifier: ^0.1.2
         version: 0.1.2
-      '@yaegassy/coc-tailwindcss3':
-        specifier: ^0.5.13
-        version: 0.5.13
       '@yaegassy/coc-volar':
         specifier: ^0.32.4
         version: 0.32.4
@@ -186,6 +186,9 @@ packages:
   '@gera2ld/format-json@0.2.5':
     resolution: {integrity: sha512-hgA6Rou87pf6Kx1lCYotf53aW3MEhYahGKJ3gR/3noeKu39fzPAiyG8oNEUfAHn4AaTqEg1PE2CS3T34EqVJ8A==}
 
+  '@gera2ld/format-json@0.3.0':
+    resolution: {integrity: sha512-gVCb8PpGGnmfH3nCHkj4G1UHV0L4bs8kG5eB2D7eYQFTffGaEU9RaJnYvUGjZ+l0qoszxYuf6AXg0uky7F8oEQ==}
+
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
@@ -301,11 +304,6 @@ packages:
   '@softmotions/coc-svelte@0.4.2':
     resolution: {integrity: sha512-TVxZlol+EgiDQSagbCN/vJH6EobTJH3fdisPe44j7dQsS1AFssnC7Gk4tI5n3H0nFjflH8sLBuW+/ChJBemAog==}
     engines: {coc: ^0.0.77}
-
-  '@tailwindcss/language-server@0.0.22':
-    resolution: {integrity: sha512-DFMljwBlSKTpR0nMgJKE+YAOr4mlBqrNcLt1WWjb8byb6sLVW4u7oc28G/9ctPU4019SH0ptzxnxZerbvQZIzA==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
 
   '@taplo/lsp@0.2.4':
     resolution: {integrity: sha512-/FcGQVvXAslhiC9aMG5gxKXJctg8N7XLZrP+wYrFTFccWEPZd/Xon5y7jUXpKOVSOFEA1MOKZKbPuK4ET5/T8Q==}
@@ -477,10 +475,6 @@ packages:
 
   '@yaegassy/coc-pug@0.1.2':
     resolution: {integrity: sha512-unbRb2dYdJUhXsoffaXrxy2BNLM2BbTtnDEC4n03kNDJAmEI+xK6l4U/3Mdvt0iuXqbNjL/ALc8pl3nP69oIKA==}
-    engines: {coc: ^0.0.80}
-
-  '@yaegassy/coc-tailwindcss3@0.5.13':
-    resolution: {integrity: sha512-oA5RAcNbDPUfT/85YruVl6INMSnXmuXHVj60jz90BWdGoa6v6OOEopv9eVnIA55IteA2NmKV9VYrYyGE/rSvxQ==}
     engines: {coc: ^0.0.80}
 
   '@yaegassy/coc-volar@0.32.4':
@@ -1233,10 +1227,6 @@ packages:
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
 
-  minimatch@5.1.6:
-    resolution: {integrity: sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==}
-    engines: {node: '>=10'}
-
   minimatch@9.0.1:
     resolution: {integrity: sha512-0jWhJpD/MdhPXwPuiRkCbfYfSKp2qnn2eOc279qI7f+osl/l+prKSrvhg157zSYvx/1nmgn2NqdT6k2Z7zSH9w==}
     engines: {node: '>=16 || 14 >=14.17'}
@@ -1469,10 +1459,6 @@ packages:
 
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
-
-  rustywind@0.7.1:
-    resolution: {integrity: sha512-Vog/sEMN7trzcHXTs4MSfAJWs5Of6gG7C/VpW0re/EdfYdlAOYuiwOS9xmC7swqkQR/hV7YDkvDqzSWa+yTpbA==}
-    hasBin: true
 
   safe-buffer@5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
@@ -2013,6 +1999,10 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.4
 
+  '@gera2ld/format-json@0.3.0':
+    dependencies:
+      '@babel/runtime': 7.25.4
+
   '@isaacs/cliui@8.0.2':
     dependencies:
       string-width: 5.1.2
@@ -2139,8 +2129,6 @@ snapshots:
       - stylus
       - sugarss
       - svelte
-
-  '@tailwindcss/language-server@0.0.22': {}
 
   '@taplo/lsp@0.2.4': {}
 
@@ -2400,13 +2388,6 @@ snapshots:
       '@volar/language-server': 1.8.3
       '@volar/pug-language-server': 1.1.2
       typescript: 5.0.4
-
-  '@yaegassy/coc-tailwindcss3@0.5.13':
-    dependencies:
-      '@tailwindcss/language-server': 0.0.22
-      minimatch: 5.1.6
-      normalize-path: 3.0.0
-      rustywind: 0.7.1
 
   '@yaegassy/coc-volar@0.32.4':
     dependencies:
@@ -3170,10 +3151,6 @@ snapshots:
     dependencies:
       brace-expansion: 1.1.11
 
-  minimatch@5.1.6:
-    dependencies:
-      brace-expansion: 2.0.1
-
   minimatch@9.0.1:
     dependencies:
       brace-expansion: 2.0.1
@@ -3411,8 +3388,6 @@ snapshots:
   run-parallel@1.2.0:
     dependencies:
       queue-microtask: 1.2.3
-
-  rustywind@0.7.1: {}
 
   safe-buffer@5.2.1: {}
 

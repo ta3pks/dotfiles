@@ -1,10 +1,9 @@
 {
   "dependencies": {
+    "@gera2ld/format-json": "^0.3.0",
     "@softmotions/coc-svelte": "^0.4.2",
     "@yaegassy/coc-nginx": "^0.4.1",
     "@yaegassy/coc-pug": "^0.1.2",
-    "@yaegassy/coc-tailwindcss3": "^0.5.13",
-    "@yaegassy/coc-volar": "^0.32.4",
     "coc-clangd": "^0.31.0",
     "coc-css": "^2.1.0",
     "coc-deno": "^3.15.0",
@@ -17,7 +16,7 @@
     "coc-html-css-support": "^0.5.3",
     "coc-json": "^1.9.2",
     "coc-markdown-preview-enhanced": "^0.0.2",
-    "coc-marketplace": "^1.9.0",
+    "coc-marketplace": ">=1.9.0",
     "coc-nix": "^0.0.2",
     "coc-phpls": "^2.2.4",
     "coc-protobuf": "^0.0.2",
@@ -36,6 +35,6 @@
   },
   "disabled": [],
   "locked": [],
-  "lastUpdate": 1724608688807,
+  "lastUpdate": 1724614963911,
   "packageManager": "pnpm@9.8.0+sha512.8e4c3550fb500e808dbc30bb0ce4dd1eb614e30b1c55245f211591ec2cdf9c611cabd34e1364b42f564bd54b3945ed0f49d61d1bbf2ec9bd74b866fcdc723276"
 }

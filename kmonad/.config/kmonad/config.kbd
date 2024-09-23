@@ -1,4 +1,4 @@
-(defcfg input (device-file "/dev/input/by-id/current")
+(defcfg input (device-file "/dev/input/by-id/usb-Logitech_USB_Receiver-if02-event-mouse")
 output (uinput-sink "My KMonad output")
 fallthrough true
 allow-cmd true

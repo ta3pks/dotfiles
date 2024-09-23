@@ -10,6 +10,8 @@ do
         echo "linking /dev/input/$__DEVICE to /dev/input/by-id/current"
         ln -svf /dev/input/$__DEVICE /dev/input/by-id/current
         exit 0
+    else
+        echo "$__DEVICE"
     fi
 done
 #not found at this point

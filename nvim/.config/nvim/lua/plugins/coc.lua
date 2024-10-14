@@ -5,7 +5,7 @@ return {
         vim.keymap.set("n", "<leader>o", "<cmd>CocOutline<CR>", { noremap = true, silent = true })
         vim.o.tagfunc = "CocTagFunc"
         -- vim.keymap.set("n", "<leader><leader>r", "<cmd>CocRestart<CR>", { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>r", "<Plug>(coc-rename)", { noremap = true, silent = true })
+        vim.keymap.set("n", "rn", "<Plug>(coc-rename)", { noremap = true, silent = true })
         vim.keymap.set("n", "<a-,>", "<Plug>(coc-fix-current)", { noremap = true, silent = true })
         vim.keymap.set("n", "<a-.>", "<Plug>(coc-codeaction-cursor)", { noremap = true, silent = true })
         vim.keymap.set("i", "<a-.>", function() vim.fn.CocAction('showSignatureHelp') end,
@@ -13,10 +13,12 @@ return {
         vim.keymap.set("v", "<a-.>", "<Plug>(coc-codeaction-selected)", { noremap = true, silent = true })
         vim.keymap.set("n", "<a-r>", "<Plug>(coc-codeaction-refactor)", { noremap = true, silent = true })
         vim.keymap.set("n", "<m-s>", "<Plug>(coc-codeaction-source)", { noremap = true, silent = true })
-        vim.keymap.set("n", "<a-d>", ":CocList diagnostics<CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "<leader>d", ":CocList diagnostics<CR>", { noremap = true, silent = true })
         vim.keymap.set("i", "<cr>", function()
             if vim.fn["coc#pum#visible"]() == 1 then
                 return vim.fn["coc#_select_confirm"]()
+            elseif vim.opt.ft:get() == "org" then
+                return require("orgmode").action("org_mappings.meta_return")
             else
                 return "<cr>"
             end

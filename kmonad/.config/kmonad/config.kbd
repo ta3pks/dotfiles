@@ -1,4 +1,4 @@
-(defcfg input (device-file "/dev/input/by-id/usb-Logitech_USB_Receiver-if02-event-mouse")
+(defcfg input (device-file "/dev/input/by-id/mx-keys")
 output (uinput-sink "My KMonad output")
 fallthrough true
 allow-cmd true
@@ -29,7 +29,7 @@ allow-cmd true
     ;; chars_mod (tap-next lmet (layer-toggle chars))
 	 wrk (layer-add workman)
 	 rwrk (layer-rem workman)
-	met (tap-hold 200 ret lmet)
+	met (tap-next-release ret lmet)
     fnr (tap-next-release (layer-rem function) lalt)
     fnc (tap-next-release (layer-add function) lalt)
 )

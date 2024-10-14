@@ -9,9 +9,10 @@ command! -nargs=? -complete=shellcmd -bar HTermHere lua require('openterm').open
 command! Lgit :TermHere lazygit
 nnoremap <leader>gg :Lgit<CR>
 nnoremap <m-CR> :TermInPlace<CR>
-nnoremap <c-CR> :VTerm<CR>
+nnoremap <leader><CR> :VTerm<CR>
 tnoremap <c-:><c-:><c-:> <C-\><C-n><c-w>h
 tnoremap <c-"><c-"><c-"> <C-\><C-n>g<Tab>
+tnoremap <c-v><c-v><c-v> <C-\><C-o>p
 "init lazy.nvim for plugins
 let s:lazypath = stdpath("data").."/lazy/lazy.nvim"
 if !s:lazypath->isdirectory()

@@ -30,6 +30,7 @@
 	hash = rev-parse HEAD
 	cma = commit -am
 	loggone = log --oneline
+	rshd = reset --hard HEAD
 # define command which will be used when "nvim" is set as a merge tool
 [mergetool "nvim"]
   cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
@@ -52,3 +53,9 @@
 	smudge = git-lfs smudge -- %f
 [maintenance]
 	repo = /Users/nikos/.projects/yib/yib_sys
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/nikos/.nix-profile/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/nikos/.nix-profile/bin/gh auth git-credential

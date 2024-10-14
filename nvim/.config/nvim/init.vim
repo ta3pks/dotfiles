@@ -3,6 +3,7 @@ set inccommand=split foldmethod=indent foldcolumn=0 foldlevelstart=99 conceallev
 if has("termguicolors")
 	set termguicolors
 endif
+let g:mapleader = "\<space>"
 nnoremap <space>q :bd<cr>
 command! Ssrc source %
 command! Time :echo strftime("%c")
@@ -98,6 +99,6 @@ onoremap is i"
 onoremap as a"
 onoremap ia i<
 onoremap aa a<
-nnoremap <leader>gp :VTerm tgpt -i<cr>
+nnoremap <leader>gp :VTerm tgpt -m <cr>
 command Wsudo w !SUDO_ASKPASS=`which ssh-askpass` sudo tee % > /dev/null
 cnoreabbrev wsudo Wsudo

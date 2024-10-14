@@ -1,0 +1,1 @@
+ATTRS{name}=="Logitech MX Keys", SYMLINK+="/input/by-id/mx-keys"

@@ -1,0 +1,12 @@
+[Unit]
+Description=Kmonad Service
+After=network.target
+
+[Service]
+Type=simple
+#ExecStartPre=/bin/sh /home/nikos/.config/kmonad/bluetooth_kbd.sh
+ExecStart=/home/nikos/.nix-profile/bin/kmonad /home/nikos/.config/kmonad/apple_keyboard.kbd
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

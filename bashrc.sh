@@ -19,7 +19,7 @@ fi
 if [ -f "$HOME/.bash_aliases" ]; then
     . "$HOME/.bash_aliases"
 fi
-ts() {
+unix_ts() {
     date --date="@$1"
 }
 # set completion-ignore-case On

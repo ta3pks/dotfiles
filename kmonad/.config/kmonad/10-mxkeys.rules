@@ -1,1 +1,2 @@
 ATTRS{name}=="Logitech MX Keys", SYMLINK+="/input/by-id/mx-keys"
+ATTRS{name}=="nikos' keyboard", SYMLINK+="/input/by-id/nikos-keyboard"

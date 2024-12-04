@@ -36,8 +36,11 @@ return {
 			org_default_notes_file = '~/.todos/notes.org',
 			org_todo_keywords = { 'TODO(t)', 'WIP(w)', "NEXT(n)", '|', 'DONE(d)' },
 		})
-		vim.cmd([[
-                 set statusline+=%#v:lua.orgmode.statusline()#
-             ]])
+		-- vim.cmd([[
+                -- function! OrgStatus()
+                --     lua orgmode.statusline()
+                -- endfunction
+                --  set statusline+='%{OrgStatus()}'
+             -- ]])
 	end,
 }

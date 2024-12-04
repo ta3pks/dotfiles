@@ -39,6 +39,9 @@ endfunction
 function! s:SetRustrunParams()
 	let g:rustrun_params = input('Run params: ')
 endfunction
+function! s:SetRunExample()
+	let g:rustrun_params = " --example ".input('example name and params: ',expand('%:t:r'))
+endfunction
 function! s:CurrentFuncName() abort
 	let l:view = winsaveview()
 	call search("fn \\zs\\w\\+\\ze(","b")
@@ -48,12 +51,14 @@ function! s:CurrentFuncName() abort
 	return l:func_name
 endfunction
 command! -bar -buffer FnName :echo <SID>CurrentFuncName()
-nnoremap <silent> <buffer> <leader>cc :CargoRunInPlace clippy --all-targets --all-features <CR>
+nnoremap <silent> <buffer> <leader>cf :CargoRunInPlace clippy --all-targets --all-features <CR>
+nnoremap <silent> <buffer> <leader>cc :CargoRun clippy --all-targets --all-features <CR>
 nnoremap <silent> <buffer> <leader>cu :CargoRun update<CR>
 nnoremap <silent> <buffer> <leader>cU :CargoRun upgrade<CR>
 nnoremap <silent> <buffer> <leader>er :exe 'Cargo run '.g:rustrun_params<CR>
 nnoremap <silent> <buffer> <leader>ee :exe 'CargoRun run '.g:rustrun_params<CR>
 nnoremap <silent> <buffer> <leader>es :call <sid>SetRustrunParams()<CR>
+nnoremap <silent> <buffer> <leader>ex :call <sid>SetRunExample()<CR>
 nnoremap <silent> <buffer> <leader>tt :Ctest<CR>
 nnoremap <silent> <buffer> <leader>tc :let g:rusttest_params=<SID>CurrentFuncName()<bar>Ctest<CR>
 nnoremap <silent> <buffer> <leader>ts :call <sid>SetRusttestParams()<CR>

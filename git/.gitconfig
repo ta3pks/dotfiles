@@ -31,6 +31,7 @@
 	cma = commit -am
 	loggone = log --oneline
 	rshd = reset --hard HEAD
+	vup = commit -am 'dep updates'
 # define command which will be used when "nvim" is set as a merge tool
 [mergetool "nvim"]
   cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"

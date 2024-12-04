@@ -1,0 +1,9 @@
+[alacritty]
+default_features = true
+features = []
+respect_binaries = true
+
+[all]
+default_features = true
+features = []
+respect_binaries = true

@@ -1,9 +1,11 @@
 {
     "volar.enable": true,
+    "rust-analyzer.cargo.noDefaultFeatures": false,
     "vue.codeLens.enabled": true,
     "snippet.highlight": true,
+    "coc-codellama.model": "codellama:code",
+    "coc-codellama.enabled": false,
     "pullDiagnostic.onSave": true,
-    "sql.database": "postgresql",
     "tailwindCSS.enable": true,
     "tailwindCSS.includeLanguages": {
         "eelixir": "html",
@@ -11,8 +13,8 @@
         "eruby": "html",
         "html.twig": "html",
         "vue": "html",
+        "rust": "html"
     },
-    "zig.path": "/opt/homebrew/bin/zig",
     "css.lint.unknownAtRules": "ignore",
     "list.source.extensions.defaultAction": "toggle",
     "pullDiagnostic.workspace": true,
@@ -24,7 +26,6 @@
     "inlayHint.display": true,
     "rust-analyzer.inlayHints.typeHints.hideNamedConstructor": true,
     "rust-analyzer.inlayHints.closureStyle": "rust_analyzer",
-    "Lua.hint.arrayIndex": "Disable",
     "inlayHint.enableParameter": true,
     "inlayHint.refreshOnInsertMode": false,
     "rust-analyzer.inlayHints.typeHints.enable": true,
@@ -35,12 +36,13 @@
     "rust-analyzer.imports.granularity.enforce": true,
     "coc.preferences.formatOnSave": true,
     "diagnostic.virtualText": true,
-    "diagnostic.locationlistLevel": "error",
+    "diagnostic.locationlistLevel": "hint",
     "diagnostic.locationlistUpdate": true,
     "coc.preferences.useQuickfixForLocations": true,
     "coc.preferences.enableMessageDialog": true,
     "coc.source.buffer.ignoreGitignore": true,
     "rust-analyzer.check.command": "clippy",
+    //"rust-analyzer.check.command": "check",
     "rust-analyzer.checkOnSave": true,
     "rust-analyzer.workspace.symbol.search.kind": "all_symbols",
     "rust-analyzer.workspace.symbol.search.limit": 128,
@@ -54,17 +56,10 @@
         "inactive-code",
         "needless_return",
     ],
-    "Lua.runtime.version": "LuaJIT",
-    "sumneko-lua.enableNvimLuaDev": true,
-    "Lua.workspace.library": [
-        "/opt/homebrew/Cellar/neovim/0.9.4/share/nvim/runtime",
-        "/Users/nikos/.hammerspoon/Spoons/EmmyLua.spoon/annotations",
-    ],
     "coc.preferences.extensionUpdateCheck": "daily",
     "svelte.enable-ts-plugin": true,
     "svelte.ask-to-enable-ts-plugin": true,
     "suggest.insertMode": "insert",
-    "vimlsp.suggest.fromRuntimepath": true,
     "languageserver": {
         "elmLS": {
             "command": "elm-language-server",
@@ -74,6 +69,15 @@
             "rootPatterns": [
                 "elm.json"
             ]
+        },
+        "openscad": {
+            "command": "openscad-lsp",
+            "args": [
+                "--stdio"
+            ],
+            "filetypes": [
+                "openscad"
+            ]
         }
     },
     "emmet.includeLanguages": {
@@ -82,10 +86,7 @@
         "rust": "html",
         "vue": "html"
     },
-    "clangd.checkUpdates": true,
-    "clangd.fallbackFlags": [
-        "-I/opt/homebrew/include",
-    ],
-    "snippets.ultisnips.pythonPrompt": false
+    "snippets.ultisnips.pythonPrompt": false,
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/18.1.3/clangd_18.1.3/bin/clangd"
     //	"codeLens.enable": true,
 }

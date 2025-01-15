@@ -40,7 +40,12 @@ function! s:SetRustrunParams()
 	let g:rustrun_params = input('Run params: ')
 endfunction
 function! s:SetRunExample()
-	let g:rustrun_params = " --example ".input('example name and params: ',expand('%:t:r'))
+    let l:example_name = input('example name and params: ',expand('%:t:r'))
+    if l:example_name != ''
+        let g:rustrun_params = " --example ".l:example_name
+    else
+        let g:rustrun_params = ""
+    endif
 endfunction
 function! s:CurrentFuncName() abort
 	let l:view = winsaveview()

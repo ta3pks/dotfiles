@@ -32,7 +32,7 @@ return {
             local builtins = require('telescope.builtin')
             vim.keymap.set('n', '<space>f', builtins.find_files)
             vim.keymap.set('n', '<space>b', builtins.buffers)
-            vim.keymap.set('n', '<space>t', builtins.tags)
+            vim.keymap.set('n', '<space>t', "<cmd>TodoTelescope<cr>")
             vim.keymap.set('n', '<space>r', builtins.registers)
             vim.keymap.set('n', '<space>h', builtins.grep_string)
             vim.keymap.set('n', '<space>s', builtins.live_grep)

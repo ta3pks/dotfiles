@@ -1,5 +1,7 @@
 [net]
 git-fetch-with-cli = true
+[http]
+# proxy = "http://localhost:6080"
 [alias]
 t = "test -- --nocapture --color always"
 lw = "leptos watch"
@@ -12,7 +14,7 @@ opt-level = 0
 overflow-checks = true
 lto = "off"
 debug = true
-#incremental = true
+incremental = true
 [profile.release]
 opt-level = "s"
 debug = false
@@ -21,10 +23,10 @@ lto = "fat"
 # incremental = false
 [build]
 target-dir = "~/.rust_build"
-rustc-wrapper = "sccache"
+# rustc-wrapper = "sccache"
 #incremental = true
 # target-dir = "~/.cargo_target"
-rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+# rustflags = ["-C", "link-arg=-fuse-ld=mold"]
 [target.aarch64-apple-darwin]
 #rustflags = ["-C", "link-arg=-fuse-ld=/usr/local/bin/ld64.mold"]
 # rustflags=[

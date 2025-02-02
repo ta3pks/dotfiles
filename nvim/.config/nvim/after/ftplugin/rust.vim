@@ -58,6 +58,7 @@ endfunction
 command! -bar -buffer FnName :echo <SID>CurrentFuncName()
 nnoremap <silent> <buffer> <leader>cf :CargoRunInPlace clippy --all-targets --all-features <CR>
 nnoremap <silent> <buffer> <leader>cc :CargoRun clippy --all-targets --all-features <CR>
+nnoremap <silent> <buffer> <leader>cr :CocCommand rust-analyzer.runFlycheck<CR>
 nnoremap <silent> <buffer> <leader>cu :CargoRun update<CR>
 nnoremap <silent> <buffer> <leader>cU :CargoRun upgrade<CR>
 nnoremap <silent> <buffer> <leader>er :exe 'Cargo run '.g:rustrun_params<CR>
@@ -86,5 +87,6 @@ function! s:WrapType(ty)
 endfunction
 inoreabbrev <silent> <buffer><expr> _opt> <SID>WrapType("Option")
 inoreabbrev <silent> <buffer><expr> _vec> <SID>WrapType("Vec")
-command! -bar -buffer LeptosFmt :silent !leptosfmt %
+command! -bar -buffer LeptosFmt :w<bar>silent !leptosfmt %<bar>w
+command! W :LeptosFmt
 command! -bar CargoFmt :silent exe "!cargo fmt -- %"<bar>edit

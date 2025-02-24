@@ -39,6 +39,14 @@ endfunction
 function! s:SetRustrunParams()
 	let g:rustrun_params = input('Run params: ')
 endfunction
+function! s:SetRunExample()
+    let l:example_name = input('example name and params: ',expand('%:t:r'))
+    if l:example_name != ''
+        let g:rustrun_params = " --example ".l:example_name
+    else
+        let g:rustrun_params = ""
+    endif
+endfunction
 function! s:CurrentFuncName() abort
 	let l:view = winsaveview()
 	call search("fn \\zs\\w\\+\\ze(","b")
@@ -48,12 +56,15 @@ function! s:CurrentFuncName() abort
 	return l:func_name
 endfunction
 command! -bar -buffer FnName :echo <SID>CurrentFuncName()
-nnoremap <silent> <buffer> <leader>cc :CargoRunInPlace clippy --all-targets --all-features <CR>
+nnoremap <silent> <buffer> <leader>cf :CargoRunInPlace clippy --all-targets --all-features <CR>
+nnoremap <silent> <buffer> <leader>cc :CargoRun clippy --all-targets --all-features <CR>
+nnoremap <silent> <buffer> <leader>cr :CocCommand rust-analyzer.runFlycheck<CR>
 nnoremap <silent> <buffer> <leader>cu :CargoRun update<CR>
 nnoremap <silent> <buffer> <leader>cU :CargoRun upgrade<CR>
 nnoremap <silent> <buffer> <leader>er :exe 'Cargo run '.g:rustrun_params<CR>
 nnoremap <silent> <buffer> <leader>ee :exe 'CargoRun run '.g:rustrun_params<CR>
 nnoremap <silent> <buffer> <leader>es :call <sid>SetRustrunParams()<CR>
+nnoremap <silent> <buffer> <leader>ex :call <sid>SetRunExample()<CR>
 nnoremap <silent> <buffer> <leader>tt :Ctest<CR>
 nnoremap <silent> <buffer> <leader>tc :let g:rusttest_params=<SID>CurrentFuncName()<bar>Ctest<CR>
 nnoremap <silent> <buffer> <leader>ts :call <sid>SetRusttestParams()<CR>
@@ -76,5 +87,6 @@ function! s:WrapType(ty)
 endfunction
 inoreabbrev <silent> <buffer><expr> _opt> <SID>WrapType("Option")
 inoreabbrev <silent> <buffer><expr> _vec> <SID>WrapType("Vec")
-command! -bar -buffer LeptosFmt :silent !leptosfmt %
+command! -bar -buffer LeptosFmt :w<bar>silent !leptosfmt %<bar>w
+command! W :LeptosFmt
 command! -bar CargoFmt :silent exe "!cargo fmt -- %"<bar>edit

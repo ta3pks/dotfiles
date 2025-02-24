@@ -1,12 +1,13 @@
-# unstable_features = true
-# imports_layout = "HorizontalVertical"
+unstable_features = true
+imports_layout = "HorizontalVertical"
 # hard_tabs = true
 # reorder_imports = true
-# imports_granularity = "Crate"
+imports_granularity = "Crate"
 # brace_style = "AlwaysNextLine"
 # force_multiline_blocks = true
 # reorder_impl_items     = true
-# indent_style           = "Block"
+indent_style = "Visual"
+array_width = 100
 # empty_item_single_line = false
 # fn_single_line = true
 # fn_args_density = "compressed"

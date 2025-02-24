@@ -3,6 +3,7 @@ return {
 'nvim-tree/nvim-web-devicons',
         event = "VeryLazy",
     },
+    { 'mistweaverco/kulala.nvim', opts = {} },
     {
         'MarcHamamji/runner.nvim',
         dependencies = {

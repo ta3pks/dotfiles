@@ -14,8 +14,8 @@ command! -buffer -nargs=+ Cadd :CargoRun add <args>
 command! -buffer -nargs=+ Crm :CargoRun rm <args>
 command! -buffer -nargs=* Cupgrade :CargoRun upgrade <args>
 command! -bar -buffer -nargs=* Cupdate :CargoRun update <args>
-command! -buffer -nargs=* Ctest :exe "CargoRun nextest run --success-output=immediate --config-file=$HOME/.cargo/nextest.conf.toml <args> ".g:rusttest_params
-"-- --nocapture
+" command! -buffer -nargs=* Ctest :exe "CargoRun nextest run --success-output=immediate --config-file=$HOME/.cargo/nextest.conf.toml <args> ".g:rusttest_params
+command! -buffer -nargs=* Ctest :exe "CargoRun test  <args> ".g:rusttest_params ." -- --nocapture"
 
 function! s:RustAddUse(...)
 	if  a:0 == 0

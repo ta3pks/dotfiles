@@ -55,8 +55,9 @@
     "rust-analyzer.diagnostics.disabled": [
         "inactive-code",
         "needless_return",
+        "unlinked_file",
     ],
-    "coc.preferences.extensionUpdateCheck": "daily",
+    "extensions.updateCheck": "daily",
     "svelte.enable-ts-plugin": true,
     "svelte.ask-to-enable-ts-plugin": true,
     "suggest.insertMode": "insert",

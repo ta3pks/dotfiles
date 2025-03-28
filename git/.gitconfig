@@ -42,7 +42,7 @@
 [mergetool]
   prompt = false
 [pull]
-	rebase = false
+	rebase = true
 [init]
 	defaultbranch = main
 # [gpg]

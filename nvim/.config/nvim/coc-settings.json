@@ -55,7 +55,7 @@
     "rust-analyzer.diagnostics.disabled": [
         "inactive-code",
         "needless_return",
-        "unlinked_file",
+        "unlinked-file",
     ],
     "extensions.updateCheck": "daily",
     "svelte.enable-ts-plugin": true,

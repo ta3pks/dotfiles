@@ -1,7 +1,7 @@
 [net]
 git-fetch-with-cli = true
 [http]
-# proxy = "http://localhost:6080"
+# proxy = "socks5://localhost:6080"
 [alias]
 t = "test -- --nocapture --color always"
 lw = "leptos watch"

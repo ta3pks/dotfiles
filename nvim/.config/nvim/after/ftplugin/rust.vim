@@ -47,6 +47,14 @@ function! s:SetRunExample()
         let g:rustrun_params = ""
     endif
 endfunction
+function! s:SetRunBin()
+    let l:bin_name = input('bin name and params: ',expand('%:t:r'))
+    if l:bin_name != ''
+        let g:rustrun_params = " --bin ".l:bin_name
+    else
+        let g:rustrun_params = ""
+    endif
+endfunction
 function! s:CurrentFuncName() abort
 	let l:view = winsaveview()
 	call search("fn \\zs\\w\\+\\ze(","b")
@@ -55,6 +63,7 @@ function! s:CurrentFuncName() abort
 	call luaeval("vim.notify('current: ".l:func_name."')")
 	return l:func_name
 endfunction
+nnoremap <buffer> <leader>s :exe 'vim /'.input('search: ').'/ src/**/**'<CR>
 command! -bar -buffer FnName :echo <SID>CurrentFuncName()
 nnoremap <silent> <buffer> <leader>cf :CargoRunInPlace clippy --all-targets --all-features <CR>
 nnoremap <silent> <buffer> <leader>cc :CargoRun clippy --all-targets --all-features <CR>
@@ -65,6 +74,7 @@ nnoremap <silent> <buffer> <leader>er :exe 'Cargo run '.g:rustrun_params<CR>
 nnoremap <silent> <buffer> <leader>ee :exe 'CargoRun run '.g:rustrun_params<CR>
 nnoremap <silent> <buffer> <leader>es :call <sid>SetRustrunParams()<CR>
 nnoremap <silent> <buffer> <leader>ex :call <sid>SetRunExample()<CR>
+nnoremap <silent> <buffer> <leader>eb :call <sid>SetRunBin()<CR>
 nnoremap <silent> <buffer> <leader>tt :Ctest<CR>
 nnoremap <silent> <buffer> <leader>tc :let g:rusttest_params=<SID>CurrentFuncName()<bar>Ctest<CR>
 nnoremap <silent> <buffer> <leader>ts :call <sid>SetRusttestParams()<CR>

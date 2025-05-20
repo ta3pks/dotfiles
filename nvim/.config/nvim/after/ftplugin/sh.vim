@@ -1,1 +1,1 @@
-nnoremap <leader>ee :VTermHere sh %<CR>
+nnoremap <leader>ee :VTermHere sh %:p<CR>

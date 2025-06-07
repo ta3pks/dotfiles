@@ -15,9 +15,12 @@ return {
     enabled = false,
   },
   {
-    "folke/flash.nvim",
-    enabled = false,
+    "mmahnic/vim-flipwords",
   },
+  -- {
+  --   "folke/flash.nvim",
+  --   enabled = false,
+  -- },
   {
     --neotest nocapture for rust
     "nvim-neotest/neotest",

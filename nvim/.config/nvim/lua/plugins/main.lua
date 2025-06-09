@@ -16,7 +16,7 @@ return {
   },
   {
     "mmahnic/vim-flipwords",
-    cmd = { "FlipWords" },
+    cmd = { "Flip" },
   },
   {
     "wakatime/vim-wakatime",

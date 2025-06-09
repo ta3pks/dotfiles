@@ -4,6 +4,7 @@ git-fetch-with-cli = true
 # proxy = "socks5://localhost:6080"
 [alias]
 t = "test -- --nocapture --color always"
+x = "run --example"
 lw = "leptos watch"
 bump = "set-version --bump minor"
 bump_patch = "set-version --bump patch"

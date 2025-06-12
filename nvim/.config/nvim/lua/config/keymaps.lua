@@ -14,6 +14,6 @@ vim.cmd([[
   command W w
   command Wq wq
 ]])
-vim.keymap.set("n", "<c-/>", function()
-  Snacks.terminal(nil, { cwd = LazyVim.root(), win = { position = "right", width = 0.4 } })
-end, { desc = "Terminal (Root Dir)" })
+-- vim.keymap.set("n", "<c-/>", function()
+--   Snacks.terminal(nil, { cwd = LazyVim.root(), win = { position = "right", width = 0.8 } })
+-- end, { desc = "Terminal (Root Dir)" })

@@ -5,7 +5,14 @@ return {
   opts = {
     -- add any opts here
     -- for example
-    provider = "copilot",
+    provider = "claude",
+    providers = {
+      claude = {
+        provider = "claude",
+        model = "claude-3-7-sonnet-latest",
+        proxy = nil,
+      },
+    },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",

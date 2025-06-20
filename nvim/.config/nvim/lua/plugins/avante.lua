@@ -10,7 +10,7 @@ return {
       claude = {
         provider = "claude",
         model = "claude-3-7-sonnet-latest",
-        proxy = nil,
+        proxy = "http://127.0.0.1:6080",
       },
     },
   },
@@ -23,7 +23,7 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,
-    "zbirenbaum/copilot.lua", -- for providers='copilot'
+    -- "zbirenbaum/copilot.lua", -- for providers='copilot'
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",

@@ -10,6 +10,15 @@ return {
       colorscheme = "onedark",
     },
   },
+  -- {
+  --   "ta3pks/LuaSnip-snippets.nvim",
+  --   dependencies = {
+  --     "L3MON4D3/LuaSnip",
+  --   },
+  --   config = function()
+  --     require("luasnip").add_snippets(nil,   require("luasnip_snippets").load_snippets())
+  --   end,
+  -- },
   {
     "akinsho/bufferline.nvim",
     enabled = false,

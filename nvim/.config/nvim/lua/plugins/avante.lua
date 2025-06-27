@@ -3,10 +3,14 @@ return {
   event = "VeryLazy",
   version = false, -- Never set this value to "*"! Never!
   opts = {
-    -- add any opts here
-    -- for example
-    provider = "claude",
+    -- provider = "claude",
+    provider = "copilot",
     providers = {
+      copilot = {
+        provider = "copilot",
+        -- model = "github-copilot-latest",
+        proxy = "http://127.0.0.1:6080",
+      },
       claude = {
         provider = "claude",
         model = "claude-3-7-sonnet-latest",

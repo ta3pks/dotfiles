@@ -73,6 +73,10 @@ return {
                 diagnostics = {
                   disabled = { "inactive-code" },
                 },
+                cargo = {
+                  allFeatures = true,
+                  features = "all",
+                },
               },
             },
           },

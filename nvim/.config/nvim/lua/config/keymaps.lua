@@ -2,6 +2,8 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+vim.keymap.del("n", "<m-j>")
+vim.keymap.del("n", "<m-k>")
 vim.cmd([[
   map <c-j> ]d
   map <c-k> [d
@@ -14,6 +16,3 @@ vim.cmd([[
   command W w
   command Wq wq
 ]])
--- vim.keymap.set("n", "<c-/>", function()
---   Snacks.terminal(nil, { cwd = LazyVim.root(), win = { position = "right", width = 0.8 } })
--- end, { desc = "Terminal (Root Dir)" })

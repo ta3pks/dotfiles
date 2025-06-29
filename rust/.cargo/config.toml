@@ -3,6 +3,7 @@ git-fetch-with-cli = true
 [http]
 # proxy = "socks5://localhost:6080"
 [alias]
+f = "clippy --fix --allow-dirty"
 t = "test --lib -- --nocapture --color always"
 x = "run --example"
 lw = "leptos watch"

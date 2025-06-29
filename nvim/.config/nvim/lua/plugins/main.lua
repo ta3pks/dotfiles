@@ -10,6 +10,23 @@ return {
       colorscheme = "onedark",
     },
   },
+  {
+    "L3MON4D3/LuaSnip",
+    --   lazy = false,
+    config = function()
+      require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/luasnip" } })
+      require("luasnip").config.setup({
+        update_events = "TextChanged,TextChangedI",
+        enable_autosnippets = true,
+      })
+      vim.api.nvim_create_user_command("Snippets", function()
+        require("luasnip.loaders").edit_snippet_files()
+      end, { desc = "Edit LuaSnip snippets" })
+      vim.api.nvim_create_user_command("LsLog", function()
+        require("luasnip").log.open()()
+      end, { desc = "open luasnip logs" })
+    end,
+  },
   -- {
   --   "ta3pks/LuaSnip-snippets.nvim",
   --   dependencies = {

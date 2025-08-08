@@ -19,11 +19,21 @@ function! RunRustTest(no_ask) abort
     let g:rust_test_name = input('Test name: ', g:rust_test_name)
   endif
   
-  execute 'vsp term://cargo t ' . g:rust_test_name . '|normal! i'
+  execute 'vsp term://cargo t ' . g:rust_test_name
+endfunction
+function! RunRustRemoteTest(no_ask) abort
+  if !a:no_ask
+    " Get test name from input, using existing value as default
+    let g:rust_test_name = input('Test name: ', g:rust_test_name)
+  endif
+  
+  execute 'vsp term://~/.local/bin/remote_test.sh ' . g:rust_test_name
 endfunction
 
 " Map leader+rt to run the test function which asks for the name
 nnoremap <buffer> <leader>tn :call RunRustTest(0)<CR>
 " Map leader+rrt to rerun the last test without asking for input
 nnoremap <buffer> <leader>tt :call RunRustTest(1)<CR>
+nnoremap <buffer> <leader>trr :call RunRustRemoteTest(1)<CR>
 nnoremap <buffer> <leader>tc :let g:rust_test_name=expand("<cword>")<bar>call RunRustTest(1)<CR>
+nnoremap <buffer> <leader>trc :let g:rust_test_name=expand("<cword>")<bar>call RunRustRemoteTest(1)<CR>

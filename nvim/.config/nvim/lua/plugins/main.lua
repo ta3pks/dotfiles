@@ -11,6 +11,15 @@ return {
     },
   },
   {
+    "kassio/neoterm",
+    keys = {
+      { "<c-t><c-t>", "<cmd>vert Ttoggle<cr>", desc = "Toggle Neoterm" },
+      { "<c-s>", "<cmd>TREPLSendFile<cr>", desc = "Send file" },
+      { "<c-l>", "<cmd>TREPLSendLine<cr>", desc = "send current line" },
+      { "<c-s>", "<cmd>TREPLSendSelection<cr>", mode = "v", desc = "send selection" },
+    },
+  },
+  {
     "L3MON4D3/LuaSnip",
     --   lazy = false,
     config = function()
@@ -27,15 +36,9 @@ return {
       end, { desc = "open luasnip logs" })
     end,
   },
-  -- {
-  --   "ta3pks/LuaSnip-snippets.nvim",
-  --   dependencies = {
-  --     "L3MON4D3/LuaSnip",
-  --   },
-  --   config = function()
-  --     require("luasnip").add_snippets(nil,   require("luasnip_snippets").load_snippets())
-  --   end,
-  -- },
+  {
+    "rafcamlet/nvim-luapad",
+  },
   {
     "akinsho/bufferline.nvim",
     enabled = false,
@@ -47,24 +50,6 @@ return {
   {
     "wakatime/vim-wakatime",
     event = "VeryLazy",
-  },
-  -- {
-  --   "folke/flash.nvim",
-  --   enabled = false,
-  -- },
-  {
-    --neotest nocapture for rust
-    "nvim-neotest/neotest",
-    dependencies = {
-      "rouge8/neotest-rust",
-    },
-    opts = {
-      adapters = {
-        ["neotest-rust"] = {
-          args = { "--no-capture" },
-        },
-      },
-    },
   },
   --disable mini surround
   {
@@ -104,7 +89,7 @@ return {
   {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = {
-      { "tpope/vim-dadbod", lazy = true },
+      { "tpope/vim-dadbod", lazy = true, commit = "d3082402655dfd634d744db6d040e2d636afcb41" },
       { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true }, -- Optional
     },
     cmd = {

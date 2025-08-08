@@ -3,18 +3,34 @@ return {
   event = "VeryLazy",
   version = false, -- Never set this value to "*"! Never!
   opts = {
-    -- provider = "claude",
-    provider = "copilot",
+    -- behaviour = {
+    --   enable_fastapply = true, -- Enable Fast Apply feature
+    -- },
+    -- provider = "ollama",
+    provider = "openrouter",
     providers = {
+      openrouter = {
+        __inherited_from = "openai",
+        endpoint = "https://openrouter.ai/api/v1",
+        api_key_name = "OPENROUTER_API_KEY",
+        -- model = "agentica-org/deepcoder-14b-preview",
+        -- model = "qwen/qwen3-coder",
+        model = "google/gemini-2.5-flash",
+      },
+      morph = {
+        model = "auto",
+      },
+      ollama = {
+        endpoint = "http://localhost:11434",
+        model = "deepcoder",
+      },
       copilot = {
         provider = "copilot",
         -- model = "github-copilot-latest",
-        proxy = "http://127.0.0.1:6080",
       },
       claude = {
         provider = "claude",
         model = "claude-3-7-sonnet-latest",
-        proxy = "http://127.0.0.1:6080",
       },
     },
   },

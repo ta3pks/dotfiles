@@ -21,11 +21,30 @@ local conds = require("luasnip.extras.conditions")
 local conds_expand = require("luasnip.extras.conditions.expand")
 
 ls.add_snippets("rust", {
-  s({ trig = "ifn", snippetType = "autosnippet" }, {
-    t("|"),
-    i(1),
-    t("|{"),
-    i(0),
-    t("}"),
-  }),
+  ls.parser.parse_snipmate(
+    { trig = "ifn", snippetType = "autosnippet" },
+    [[
+    |${1:_}|{
+      $0
+    }
+    ]]
+  ),
+  ls.parser.parse_snipmate(
+    { trig = "asfn", snippetType = "autosnippet" },
+    [[
+  ${1:pub} async fn ${2:name}(${3:args}) -> ${4:ReturnType} {
+    $0
+    }
+  ]]
+  ),
+  -- tokio test
+  ls.parser.parse_snipmate(
+    { trig = "tokiotest", snippetType = "autosnippet" },
+    [[
+    #[tokio::test]
+    async fn ${1:test_name}() {
+        $0
+    }
+    ]]
+  ),
 })

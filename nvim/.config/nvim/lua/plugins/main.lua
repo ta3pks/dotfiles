@@ -14,9 +14,9 @@ return {
     "kassio/neoterm",
     keys = {
       { "<c-t><c-t>", "<cmd>vert Ttoggle<cr>", desc = "Toggle Neoterm" },
-      { "<c-s>", "<cmd>TREPLSendFile<cr>", desc = "Send file" },
-      { "<c-l>", "<cmd>TREPLSendLine<cr>", desc = "send current line" },
-      { "<c-s>", "<cmd>TREPLSendSelection<cr>", mode = "v", desc = "send selection" },
+      { "<m-s>", "<cmd>TREPLSendFile<cr>", desc = "Send file" },
+      { "<m-l>", "<cmd>TREPLSendLine<cr>", desc = "send current line" },
+      { "<m-s>", "<cmd>TREPLSendSelection<cr>", mode = "v", desc = "send selection" },
     },
   },
   {

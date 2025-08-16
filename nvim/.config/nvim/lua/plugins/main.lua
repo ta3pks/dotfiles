@@ -78,6 +78,8 @@ return {
                 cargo = {
                   allFeatures = true,
                   features = "all",
+                  allTargets = true,
+                  buildScripts = true,
                 },
               },
             },

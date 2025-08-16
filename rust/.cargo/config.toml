@@ -3,7 +3,7 @@ git-fetch-with-cli = true
 [http]
 # proxy = "socks5://localhost:6080"
 [alias]
-f = "clippy --fix --allow-dirty"
+f = "clippy --fix --allow-dirty --all-features --all-targets"
 t = "test  -- --nocapture --color always"
 x = "run --example"
 b = "run --bin"

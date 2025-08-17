@@ -1,4 +1,8 @@
-nnoremap <buffer> <leader>re :vsp term://cargo run<bar>normal! G<CR>
+if !exists('g:rust_run_params')
+  let g:rust_run_params = ''
+endif
+nnoremap <buffer> <leader>re :call RustRun(g:rust_run_params)<CR>
+nnoremap <buffer> <leader>rs :call SetRustRunParams()<CR>
 nnoremap <buffer> <leader>rc :e term://cargo clippy --all-targets --all-features<bar>normal! G<CR>
 nnoremap <buffer> <leader>cu :vsp term://cargo update<bar>normal! G<CR>
 nnoremap <buffer> <leader>cU :vsp term://cargo upgrade<bar>normal! G<CR>
@@ -10,6 +14,14 @@ command -buffer -bar -nargs=* Crm :vsp term://cargo remove <args><bar>normal! i<
 if !exists('g:rust_test_name')
   let g:rust_test_name = ''
 endif
+" make this fn buffer only
+function! RustRun(args)
+  execute 'vsp term://cargo run ' . a:args
+  normal! G
+endfunction
+function! SetRustRunParams()
+  let g:rust_run_params = input('Run params: ', g:rust_run_params)
+endfunction
 
 " Function to run a specific test with a variable name
 " Parameter no_ask: if true, skips the input prompt and uses the existing test name

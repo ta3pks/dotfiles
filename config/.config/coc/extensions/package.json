@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "coc-rust-analyzer": ">=0.81.0"
-  },
-  "lastUpdate": 1740384968556
-}

@@ -1,0 +1,17 @@
+[Unit]
+Description=SSH to REDACTED_PROJECT
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ssh REDACTED_PROJECT 'while true; do sleep 1;echo alive; done'
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
+
+
+# To start: systemctl --user start REDACTED_PROJECT
+# To enable on boot: systemctl --user enable REDACTED_PROJECT
+# To check status: systemctl --user status REDACTED_PROJECT

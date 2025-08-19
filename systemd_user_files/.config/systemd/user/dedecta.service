@@ -1,0 +1,17 @@
+[Unit]
+Description=SSH to dedecta
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ssh dedecta 'while true; do sleep 1;echo alive; done'
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
+
+
+# To start: systemctl --user start dedecta
+# To enable on boot: systemctl --user enable dedecta
+# To check status: systemctl --user status dedecta

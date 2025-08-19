@@ -1,0 +1,16 @@
+[Unit]
+Description=ydtoold service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/ydotoold
+Restart=on-failure
+
+# Consider adding user and group directives for security:
+# User=yourusername
+# Group=yourgroup
+
+[Install]
+WantedBy=default.target
+
+

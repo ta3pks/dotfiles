@@ -126,3 +126,4 @@ case ":$PATH:" in
 esac
 # pnpm end
 export PATH="$HOME/.asdf/shims:$PATH"
+alias dnf='sudo dnf'

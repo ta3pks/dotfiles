@@ -1,7 +1,7 @@
 dark-mode: true
-model: openrouter/google/gemini-2.5-flash
+# model: openrouter/google/gemini-2.5-flash
 # model: ollama_chat/mistral
-# model: openrouter/google/gemini-2.0-flash-001
+model: openrouter/google/gemini-2.0-flash-001
 weak-model: openrouter/qwen/qwen3-235b-a22b:free
 editor-model: openrouter/google/gemini-2.0-flash-001
 pretty: true

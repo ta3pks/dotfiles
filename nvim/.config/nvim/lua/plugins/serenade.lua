@@ -1,3 +1,4 @@
 return {
-  "charlespascoe/vim-serenade",
+  -- "charlespascoe/vim-serenade",
+  -- setup = function() end,
 }

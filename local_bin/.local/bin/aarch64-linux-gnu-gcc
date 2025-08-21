@@ -1,0 +1,2 @@
+#!/bin/bash
+zig cc -target aarch64-linux-gnu $@

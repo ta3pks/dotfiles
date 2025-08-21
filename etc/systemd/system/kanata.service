@@ -1,0 +1,12 @@
+[Unit]
+Description=Kanata keyboard remapper
+After=systemd-user-sessions.service
+
+[Service]
+ExecStart=/home/nikos/.cargo/bin/kanata -c /home/nikos/.kanata.conf
+User=root
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

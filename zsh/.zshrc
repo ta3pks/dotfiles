@@ -74,7 +74,7 @@ ZSH_THEME="robbyrussell"
 export ZSH_TMUX_AUTOSTART=true
 export ZSH_TMUX_UNICODE=true
 export PATH="/nix/bin:$HOME/.local/bin:$PATH"
-plugins=(tmux git asdf zoxide direnv encode64 fzf rust procs qrcode systemd thefuck vi-mode zsh-interactive-cd docker-compose)
+plugins=(tmux git asdf zoxide direnv encode64 fzf rust procs qrcode systemd thefuck vi-mode zsh-interactive-cd docker-compose jq)
 
 source $HOME/dotfiles/bashrc.sh
 source $ZSH/oh-my-zsh.sh

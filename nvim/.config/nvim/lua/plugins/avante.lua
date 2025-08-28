@@ -23,7 +23,8 @@ return {
       },
       ollama = {
         endpoint = "http://localhost:11434",
-        model = "deepcoder",
+        model = "starcoder",
+        -- model = "deepseek-coder-v2",
       },
       copilot = {
         provider = "copilot",

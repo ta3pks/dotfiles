@@ -1,4 +1,6 @@
 alias REDACTED_PROJECTdb="clickhouse client -u default --password REDACTED_PASSWORD -d REDACTED_PROJECT"
+alias bash_aliases="nvim ~/.bash_aliases && source ~/.bash_aliases"
+alias rustcfg="nvim ~/.cargo/config.toml"
 alias REDACTED_PROJECTdbcli="clickhouse-cli --vi-mode -u default --arg-password REDACTED_PASSWORD --database REDACTED_PROJECT"
 alias pbcopy="xclip -selection clipboard"
 alias cupdate="cargo update"

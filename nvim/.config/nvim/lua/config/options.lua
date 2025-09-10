@@ -4,3 +4,4 @@
 vim.opt.clipboard = ""
 -- vim.opt.smoothscroll = false
 vim.g.snacks_animate = false
+vim.opt_global.wrap = true

@@ -1,4 +1,5 @@
 alias dedectadb="clickhouse client -u default --password atlas123 -d dedecta"
+alias dedectacluster="clickhouse client -d dedecta --port 9001"
 alias bash_aliases="nvim ~/.bash_aliases && source ~/.bash_aliases"
 alias rustcfg="nvim ~/.cargo/config.toml"
 alias dedectadbcli="clickhouse-cli --vi-mode -u default --arg-password atlas123 --database dedecta"

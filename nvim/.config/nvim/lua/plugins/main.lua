@@ -53,7 +53,7 @@ return {
   },
   --disable mini surround
   {
-    "echasnovski/mini.surround",
+    "mini_surround/mini.surround",
     enabled = false,
   },
   --install usual surround vim plugin

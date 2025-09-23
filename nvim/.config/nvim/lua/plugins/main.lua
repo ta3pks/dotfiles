@@ -105,4 +105,16 @@ return {
       vim.g.db_ui_use_nerd_fonts = 1
     end,
   },
+  {
+    "saghen/blink.cmp",
+    opts = {
+      completion = {
+        sources = {
+          per_file_type = {
+            codecompanion = { "codecompanion" },
+          },
+        },
+      },
+    },
+  },
 }

@@ -8,9 +8,6 @@ alias cupdate="cargo update"
 alias cupgrade="cargo upgrade"
 alias apt="sudo apt"
 alias mdp="make deploy restart logs"
-meili() {
-	curl -H 'Authorization: Bearer dab30af9e7e72b49760fcd453a983a08' http://localhost:7700/$@
-}
 alias gpt="ollama run mistral"
 alias gvp="git vup"
 alias snvim="sudo /opt/nvim-linux64/bin/nvim"
@@ -19,7 +16,7 @@ alias fnvim="fzf | xargs nvim"
 alias psql="sudo -u postgres psql"
 alias px_psql="sudo -u postgres psql -d proxy"
 ipi() {
-	curl -L https://ipapi.co/$1/json
+	curl -L "https://ipapi.co/json"
 }
 export PX="http://localhost:6080"
 set_proxy() {
@@ -33,7 +30,7 @@ unset_proxy() {
 	unset HTTPS_PROXY
 }
 deploy_build() {
-	rsync -vahurz --progress ~/.rust_build/x86_64-unknown-linux-gnu/$1 dedecta:/usr/local/bin/
+	rsync -vahurz --progress ~/.rust_build/x86_64-unknown-linux-gnu/"$1" dedecta:/usr/local/bin/
 }
 alias codex='HTTPS_PROXY=$PX HTTP_PROXY=$PX ALL_PROXY=$PX command codex'
 alias dedecta="ssh dedecta -t tmux a"
@@ -74,25 +71,12 @@ cluster_ip() {
 		echo "using random cluster ip $selected_ip"
 	fi
 }
-dccl() {
-	cluster_ip $@
-	if [[ -z "$selected_ip" ]]; then
-		echo "No cluster IP selected"
-		return 1
-	fi
-	clickhouse client --host $selected_ip -d dedecta "${@:2}"
-}
 dccli() {
-	cluster_ip $@
-	if [[ -z "$selected_ip" ]]; then
-		echo "No cluster IP selected"
-		return 1
-	fi
-	clickhouse-cli --vi-mode --host $selected_ip -d dedecta "${@:2}"
+	clickhouse-cli --vi-mode --host localhost --port 8124 -d dedecta "${@:2}"
 }
 dssh() {
-	cluster_ip $@
-	ssh root@$selected_ip
+	cluster_ip "$@"
+	ssh root@"$selected_ip"
 }
 add_rm_current_ip_to_cluster() {
 	if [[ "$1" == "rm" ]]; then
@@ -132,3 +116,5 @@ ask_claude() {
 		--header "content-type: application/json" \
 		--data "{ \"model\": \"claude-3-7-sonnet-20250219\", \"max_tokens\": 1024, \"messages\": [ {\"role\": \"user\", \"content\": \"$1\" }]}"
 }
+alias o="opencode"
+alias or="opencode run"

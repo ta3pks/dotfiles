@@ -74,6 +74,9 @@ cluster_ip() {
 dccli() {
 	clickhouse-cli --vi-mode --host localhost --port 8124 -d dedecta "${@:2}"
 }
+dccl() {
+	clickhouse client --host localhost --port 8124 -d dedecta "${@:2}"
+}
 dssh() {
 	cluster_ip "$@"
 	ssh root@"$selected_ip"

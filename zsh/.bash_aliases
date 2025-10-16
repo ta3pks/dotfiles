@@ -32,7 +32,6 @@ unset_proxy() {
 deploy_build() {
 	rsync -vahurz --progress ~/.rust_build/x86_64-unknown-linux-gnu/"$1" dedecta:/usr/local/bin/
 }
-alias codex='HTTPS_PROXY=$PX HTTP_PROXY=$PX ALL_PROXY=$PX command codex'
 alias dedecta="ssh dedecta -t tmux a"
 alias ap=ansible-playbook
 CLUSTER_IPS=(

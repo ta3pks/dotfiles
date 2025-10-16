@@ -127,3 +127,8 @@ esac
 # pnpm end
 export PATH="$HOME/.asdf/shims:$PATH"
 alias dnf='sudo dnf'
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/nikos/.lmstudio/bin"
+# End of LM Studio CLI section
+

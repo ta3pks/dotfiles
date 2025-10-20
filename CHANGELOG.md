@@ -349,3 +349,9 @@
 ### 🔧 chore
 
 - Update shell configs: remove codex alias, add LM Studio CLI (nikos efthias)
+
+## 2025-10-21
+
+### ✨ feat
+
+- Add ghostty configuration (nikos efthias)

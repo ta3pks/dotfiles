@@ -1,0 +1,13 @@
+- if any of these operation fails show errors and stop progressing to next task
+- run cargo update
+- run cargo upgrade
+- if there are incompatible dependencies ask user whether to run cargo upgrade -i again
+- run cargo fmt
+- run cargo clippy --all-targets --all-features -- -D warnings
+- update changelog file if one exists
+- if cargo toml or lock files changed add and commit along with changelog
+- make sure nothing left uncommitted if worktree is dirty add and commit things
+- push everything
+- run gh pr merge --squash --delete-branch
+- switch to main branch if not there already
+- run git pull

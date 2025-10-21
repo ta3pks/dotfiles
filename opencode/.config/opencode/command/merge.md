@@ -6,6 +6,7 @@
 - run cargo clippy --all-targets --all-features -- -D warnings
 - update changelog file if one exists
 - if cargo toml or lock files changed add and commit along with changelog
+- make sure to build the project and commit and push new lockfile
 - make sure nothing left uncommitted if worktree is dirty add and commit things
 - push everything
 - run gh pr merge --squash --delete-branch

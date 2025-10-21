@@ -21,6 +21,34 @@
     "gh_grep": {
       "type": "remote",
       "url": "https://mcp.grep.app"
+    },
+    "pipedream": {
+      "type": "local",
+      "command": ["bunx", "mcp-remote", "https://mcp.pipedream.net/v2"]
+    },
+    "dedectadb": {
+      "type": "local",
+      "command": ["mcp-clickhouse"],
+      "environment": {
+        "CLICKHOUSE_PASSWORD": "atlas123",
+        "CLICKHOUSE_USER": "default",
+        "CLICKHOUSE_HOST": "localhost",
+        "CLICKHOUSE_PORT": "8123",
+        "CLICKHOUSE_SECURE": "false",
+        "CLICKHOUSE_DATABASE": "dedecta"
+      }
+    },
+    "cluster": {
+      "type": "local",
+      "command": ["mcp-clickhouse"],
+      "environment": {
+        "CLICKHOUSE_PASSWORD": "atlas123",
+        "CLICKHOUSE_USER": "",
+        "CLICKHOUSE_HOST": "",
+        "CLICKHOUSE_PORT": "8124",
+        "CLICKHOUSE_SECURE": "false",
+        "CLICKHOUSE_DATABASE": "dedecta"
+      }
     }
   }
 }

@@ -34,6 +34,7 @@ deploy_build() {
 }
 alias dedecta="ssh dedecta -t tmux a"
 alias ap=ansible-playbook
+alias gmain="git merge main"
 CLUSTER_IPS=(
 	# 178.162.244.146
 	# 178.162.244.147

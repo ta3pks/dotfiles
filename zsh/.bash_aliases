@@ -34,6 +34,7 @@ deploy_build() {
 }
 alias REDACTED_PROJECT="ssh REDACTED_PROJECT -t tmux a"
 alias ap=ansible-playbook
+alias gmain="git merge main"
 CLUSTER_IPS=(
 	# REDACTED_IP
 	# REDACTED_IP

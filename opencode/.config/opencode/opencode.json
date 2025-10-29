@@ -14,6 +14,7 @@
     "context7": {
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",
+      "enabled": false,
       "headers": {
         "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
       }
@@ -50,6 +51,14 @@
         "CLICKHOUSE_PORT": "8124",
         "CLICKHOUSE_SECURE": "false",
         "CLICKHOUSE_DATABASE": "dedecta"
+      }
+    },
+    "nvim": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-neovim-server"],
+      "environment": {
+        "ALLOW_SHELL_COMMANDS": "true",
+        "NVIM_SOCKET_PATH": "/tmp/nvim"
       }
     }
   }

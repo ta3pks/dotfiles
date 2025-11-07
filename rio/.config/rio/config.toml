@@ -1,0 +1,10 @@
+#theme = "dracula"
+title.content = ''
+
+[editor]
+program = "vi"
+
+[window]
+mode = "Maximized"
+opacity = 0.6
+decorations = "Disabled"

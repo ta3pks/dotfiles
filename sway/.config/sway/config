@@ -79,7 +79,7 @@ exec /home/nikos/dotfiles/local_bin/.local/bin/cycle_background.sh /home/nikos/d
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $met+p exec /home/nikos/.local/bin/hints
+    bindsym $met+semicolon exec /home/nikos/.local/bin/hints
     bindsym $met+Space exec $menu
     
     # Switch between keyboard layouts

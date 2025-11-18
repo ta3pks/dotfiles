@@ -243,6 +243,12 @@ bindsym $mod+r mode "resize"
     
     # Screenshot with flameshot
     bindsym $mod+minus exec $HOME/.local/bin/flameshot gui
+    
+    # Notification Daemon
+    exec swaync
+    
+    # Toggle control center
+    bindsym $mod+Shift+n exec swaync-client -t -sw
 
 #
 # Status Bar:

@@ -20,6 +20,12 @@ set $menu ulauncher
 set $met Ctrl+Alt+Super+Shift
 set $meh Ctrl+Alt+Shift
 
+# Input configuration
+input * {
+    xkb_layout tr,ru
+    xkb_variant alt,phonetic
+}
+
 # Disable builtin display if external displays are connected
 # You can get output names with: swaymsg -t get_outputs
 # Example for eDP-1 (common builtin display name):
@@ -73,7 +79,11 @@ exec /home/nikos/dotfiles/local_bin/.local/bin/cycle_background.sh /home/nikos/d
     bindsym $mod+q kill
 
     # Start your launcher
+    bindsym $met+p exec /home/nikos/.local/bin/hints
     bindsym $met+Space exec $menu
+    
+    # Switch between keyboard layouts
+    bindsym $mod+space exec swaymsg input '*' xkb_switch_layout next
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -124,9 +134,8 @@ exec /home/nikos/dotfiles/local_bin/.local/bin/cycle_background.sh /home/nikos/d
     bindsym $mod+7 workspace number 7
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
-    bindsym $mod+0 workspace number 10
-    bindsym $met+j exec /home/nikos/dotfiles/local_bin/.local/bin/get_current_workspace.sh next | xargs -I {} swaymsg workspace number {}
-    bindsym $met+k exec /home/nikos/dotfiles/local_bin/.local/bin/get_current_workspace.sh prev | xargs -I {} swaymsg workspace number {}
+    bindsym $meh+j exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh focus prev
+    bindsym $meh+k exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh focus next
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
@@ -139,13 +148,21 @@ exec /home/nikos/dotfiles/local_bin/.local/bin/cycle_background.sh /home/nikos/d
     bindsym $meh+p exec /home/nikos/dotfiles/local_bin/.local/bin/toggle_builtin_display.sh
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
-    bindsym $meh+j exec /home/nikos/dotfiles/local_bin/.local/bin/get_current_workspace.sh next | xargs -I {} swaymsg workspace number {}
-    bindsym $meh+k exec /home/nikos/dotfiles/local_bin/.local/bin/get_current_workspace.sh prev | xargs -I {} swaymsg workspace number {}
-
+    bindsym $met+j exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh move prev
+    bindsym $met+k exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh move next
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
-#
-# Layout stuff:
+# Remove titlebars and borders
+default_border none
+default_floating_border none
+# Remove borders from existing windows
+for_window [class=".*"] border none
+
+# Make floating windows appear on all workspaces
+for_window [floating] floating enable, sticky enable
+
+# Make pip windows sticky on all workspaces and position at top right
+for_window [title="Picture in picture"] exec /home/nikos/dotfiles/local_bin/.local/bin/position-pip.sh
 #
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
@@ -165,7 +182,7 @@ exec /home/nikos/dotfiles/local_bin/.local/bin/cycle_background.sh /home/nikos/d
     bindsym $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    # bindsym $mod+space focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
@@ -176,11 +193,11 @@ exec /home/nikos/dotfiles/local_bin/.local/bin/cycle_background.sh /home/nikos/d
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+    # bindsym $mod+Shift+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+    # bindsym $mod+minus scratchpad show
 #
 # Resizing containers:
 #
@@ -218,6 +235,14 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
     bindsym Print exec grim
+    
+    # Custom shortcuts from GNOME
+    # DSNote voice recognition
+    bindsym $mod+backslash exec dsnote --action start-listening-active-window
+    bindsym XF86Launch3 exec dsnote --action start-listening-active-window
+    
+    # Screenshot with flameshot
+    bindsym $mod+minus exec $HOME/.local/bin/flameshot gui
 
 #
 # Status Bar:
@@ -226,9 +251,7 @@ bindsym $mod+r mode "resize"
 bar {
     position top
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    status_command while true; do $HOME/dotfiles/local_bin/.local/bin/waybar.sh; sleep 1; done
 
     colors {
         statusline #ffffff

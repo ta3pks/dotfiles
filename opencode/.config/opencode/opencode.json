@@ -9,7 +9,7 @@
     "jira": {
       "type": "local",
       "command": ["bunx", "mcp-remote", "https://mcp.atlassian.com/v1/sse"],
-      "enabled": true
+      "enabled": false
     },
     "context7": {
       "type": "remote",

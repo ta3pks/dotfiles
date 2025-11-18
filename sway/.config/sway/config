@@ -26,6 +26,8 @@ input * {
     xkb_variant alt,phonetic
 }
 
+focus_on_window_activation focus
+
 # Disable builtin display if external displays are connected
 # You can get output names with: swaymsg -t get_outputs
 # Example for eDP-1 (common builtin display name):

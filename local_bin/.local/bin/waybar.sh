@@ -63,6 +63,71 @@ else
     network_status="❌ No Connection"
 fi
 
+# Network speed monitoring
+if [ -n "$conn_device" ]; then
+    # Get current network stats
+    stats_file="/tmp/netstats_${conn_device}"
+    current_rx=$(cat /sys/class/net/$conn_device/statistics/rx_bytes 2>/dev/null || echo 0)
+    current_tx=$(cat /sys/class/net/$conn_device/statistics/tx_bytes 2>/dev/null || echo 0)
+    current_time_epoch=$(date +%s)
+    
+    if [ -f "$stats_file" ]; then
+        # Read previous stats (format: rx:tx:time)
+        prev_data=$(cat "$stats_file")
+        prev_rx=$(echo "$prev_data" | cut -d':' -f1)
+        prev_tx=$(echo "$prev_data" | cut -d':' -f2)
+        prev_time=$(echo "$prev_data" | cut -d':' -f3)
+        
+        # Calculate speeds (bytes per second)
+        time_diff=$((current_time_epoch - prev_time))
+        if [ $time_diff -gt 0 ]; then
+            rx_diff=$((current_rx - prev_rx))
+            tx_diff=$((current_tx - prev_tx))
+            
+            # Handle negative values (interface reset, etc.)
+            if [ $rx_diff -lt 0 ]; then rx_diff=0; fi
+            if [ $tx_diff -lt 0 ]; then tx_diff=0; fi
+            
+            # Convert to human readable format
+            rx_speed=$((rx_diff / time_diff))
+            tx_speed=$((tx_diff / time_diff))
+            
+            # Convert to bits per second for speed test compatibility
+            rx_speed_bits=$((rx_speed * 8))
+            tx_speed_bits=$((tx_speed * 8))
+            
+            # Format download speed (in bits)
+            if [ $rx_speed_bits -gt 1048576 ]; then
+                rx_display=$(awk "BEGIN {printf \"%.1f\", $rx_speed_bits/1048576}")Mbps
+            elif [ $rx_speed_bits -gt 1024 ]; then
+                rx_display=$(awk "BEGIN {printf \"%.0f\", $rx_speed_bits/1024}")Kbps
+            else
+                rx_display="${rx_speed_bits}bps"
+            fi
+            
+            # Format upload speed (in bits)
+            if [ $tx_speed_bits -gt 1048576 ]; then
+                tx_display=$(awk "BEGIN {printf \"%.1f\", $tx_speed_bits/1048576}")Mbps
+            elif [ $tx_speed_bits -gt 1024 ]; then
+                tx_display=$(awk "BEGIN {printf \"%.0f\", $tx_speed_bits/1024}")Kbps
+            else
+                tx_display="${tx_speed_bits}bps"
+            fi
+            
+            network_speed="↓$rx_display ↑$tx_display"
+        else
+            network_speed="↓0bps ↑0bps"
+        fi
+    else
+        network_speed="↓0bps ↑0bps"
+    fi
+    
+    # Save current stats for next iteration (format: rx:tx:time)
+    echo "${current_rx}:${current_tx}:${current_time_epoch}" > "$stats_file"
+else
+    network_speed="↓0bps ↑0bps"
+fi
+
 # Keep ping as backup connectivity check
 ping=$(ping -c 1 www.google.com 2>/dev/null | tail -1 | awk '{print $4}' | cut -d '/' -f 2 | cut -d '.' -f 1)
 if [ -z "$ping" ]; then
@@ -93,4 +158,4 @@ else
 	battery_pluggedin='⚡'
 fi
 
-echo "$network_status | Ping: $ping ms | $current_layout | 🏋 $loadavg_1min/$loadavg_5min | 🖥️ $cpu_usage | 💾 $memory_usage | $battery_pluggedin $battery_charge | ($week_number) $date_and_week $day_name 🕘 $current_time"
+echo "$network_status $network_speed | Ping: $ping ms | $current_layout | 🏋 $loadavg_1min/$loadavg_5min | 🖥️ $cpu_usage | 💾 $memory_usage | $battery_pluggedin $battery_charge | ($week_number) $date_and_week $day_name 🕘 $current_time"

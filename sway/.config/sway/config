@@ -24,6 +24,7 @@ set $meh Ctrl+Alt+Shift
 input * {
     xkb_layout tr,ru
     xkb_variant alt,phonetic
+    natural_scroll enabled
 }
 
 focus_on_window_activation focus
@@ -34,6 +35,7 @@ focus_on_window_activation focus
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # Auto-cycle backgrounds (commented out - enable if desired)
 exec /home/nikos/dotfiles/local_bin/.local/bin/cycle_background.sh /home/nikos/dotfiles/bg_images 10
+exec hintsd
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
@@ -76,6 +78,7 @@ exec /home/nikos/dotfiles/local_bin/.local/bin/cycle_background.sh /home/nikos/d
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+    bindsym Alt+r exec rofi -show run
 
     # Kill focused window
     bindsym $mod+q kill
@@ -165,6 +168,7 @@ for_window [floating] floating enable, sticky enable
 
 # Make pip windows sticky on all workspaces and position at top right
 for_window [title="Picture in picture"] exec /home/nikos/dotfiles/local_bin/.local/bin/position-pip.sh
+bindsym Alt+Space exec rofi -show window
 #
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
@@ -244,7 +248,7 @@ bindsym $mod+r mode "resize"
     bindsym XF86Launch3 exec dsnote --action start-listening-active-window
     
     # Screenshot with flameshot
-    bindsym $mod+minus exec $HOME/.local/bin/flameshot gui
+    bindsym $mod+minus exec flameshot gui
     
     # Notification Daemon
     exec swaync

@@ -168,6 +168,7 @@ for_window [floating] floating enable, sticky enable
 
 # Make pip windows sticky on all workspaces and position at top right
 for_window [title="Picture in picture"] exec /home/nikos/dotfiles/local_bin/.local/bin/position-pip.sh
+for_window [app_id="mpv"] exec /home/nikos/dotfiles/local_bin/.local/bin/position-pip.sh
 bindsym Alt+Space exec rofi -show window
 #
     # You can "split" the current object of your focus with

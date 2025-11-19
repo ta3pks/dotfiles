@@ -5,7 +5,7 @@ pip_output=$(swaymsg -t get_tree | jq -r '.. | objects | select(.name? and (.nam
 
 # If pip window not found, use focused output
 if [ "$pip_output" = "null" ] || [ -z "$pip_output" ]; then
-    pip_output=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name' | head -1)
+	pip_output=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name' | head -1)
 fi
 
 # Get screen width and scale factor for the pip window's output
@@ -23,4 +23,6 @@ position=$(echo "scale=0; $effective_width - $window_width - $margin" | bc)
 echo "Output: $pip_output, Screen width: $screen_width, Scale: $scale, Effective width: $effective_width, Position: $position"
 
 # Apply to pip window with absolute positioning
+# Apply to pip window with absolute positioning
 swaymsg '[title="Picture in picture"] floating enable, sticky enable, resize set 500 280, move absolute position '"$position"' 100'
+swaymsg '[app_id="mpv"] floating enable, sticky enable, resize set 500 280, move absolute position '"$position"' 100'

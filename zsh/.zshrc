@@ -132,3 +132,4 @@ alias dnf='sudo dnf'
 export PATH="$PATH:/home/nikos/.lmstudio/bin"
 # End of LM Studio CLI section
 
+export SUDO_ASKPASS=/home/nikos/.local/bin/askpass

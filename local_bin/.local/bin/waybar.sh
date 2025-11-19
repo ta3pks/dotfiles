@@ -19,10 +19,55 @@ battery_status=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "
 
 # Audio and multimedia
 
-# Network
-# interface_easyname grabs the "old" interface name before systemd renamed it
-# interface_easyname=$(dmesg | grep $network | grep renamed | awk 'NF>1{print $NF}')
-ping=$(ping -c 1 www.google.com | tail -1 | awk '{print $4}' | cut -d '/' -f 2 | cut -d '.' -f 1)
+# Network connection status using nmcli
+active_connection=$(nmcli -t -f NAME,TYPE,DEVICE connection show --active | head -1)
+if [ -n "$active_connection" ]; then
+    conn_name=$(echo "$active_connection" | cut -d':' -f1)
+    conn_type=$(echo "$active_connection" | cut -d':' -f2)
+    conn_device=$(echo "$active_connection" | cut -d':' -f3)
+    
+    case $conn_type in
+        "802-11-wireless")
+            # WiFi connection
+            signal=$(nmcli -t -f SIGNAL device wifi | head -1)
+            local_ip=$(ip -4 addr show $conn_device 2>/dev/null | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | head -1)
+            if [ -n "$signal" ] && [ -n "$local_ip" ]; then
+                network_status="📶 ${conn_name} ${local_ip} (${signal}%)"
+            elif [ -n "$local_ip" ]; then
+                network_status="📶 ${conn_name} ${local_ip}"
+            else
+                network_status="📶 ${conn_name}"
+            fi
+            ;;
+        "802-3-ethernet")
+            # Ethernet connection - show local IP
+            local_ip=$(ip -4 addr show $conn_device 2>/dev/null | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | head -1)
+            if [ -n "$local_ip" ]; then
+                network_status="🌐 ${local_ip}"
+            else
+                network_status="🌐 ${conn_name}"
+            fi
+            ;;
+        *)
+            # Other connection types - show local IP
+            local_ip=$(ip -4 addr show $conn_device 2>/dev/null | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | head -1)
+            if [ -n "$local_ip" ]; then
+                network_status="🔗 ${local_ip}"
+            else
+                network_status="🔗 ${conn_name}"
+            fi
+            ;;
+    esac
+else
+    # No active connection
+    network_status="❌ No Connection"
+fi
+
+# Keep ping as backup connectivity check
+ping=$(ping -c 1 www.google.com 2>/dev/null | tail -1 | awk '{print $4}' | cut -d '/' -f 2 | cut -d '.' -f 1)
+if [ -z "$ping" ]; then
+    ping="N/A"
+fi
 
 # Others
 loadavg_1min=$(cat /proc/loadavg | awk -F ' ' '{print $1}')
@@ -48,4 +93,4 @@ else
 	battery_pluggedin='⚡'
 fi
 
-echo "🌐 $current_layout | Ping: $ping ms | 🏋 $loadavg_1min/$loadavg_5min | 🖥️ $cpu_usage | 💾 $memory_usage | $battery_pluggedin $battery_charge | ($week_number) $date_and_week $day_name 🕘 $current_time"
+echo "$network_status | Ping: $ping ms | $current_layout | 🏋 $loadavg_1min/$loadavg_5min | 🖥️ $cpu_usage | 💾 $memory_usage | $battery_pluggedin $battery_charge | ($week_number) $date_and_week $day_name 🕘 $current_time"

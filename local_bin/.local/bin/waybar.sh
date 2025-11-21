@@ -136,8 +136,6 @@ if [ -z "$ping" ]; then
 fi
 
 # Others
-loadavg_1min=$(cat /proc/loadavg | awk -F ' ' '{print $1}')
-loadavg_5min=$(cat /proc/loadavg | awk -F ' ' '{print $2}')
 cpu_usage=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}')
 memory_usage=$(free -h | awk '/^Mem:/ {used=$3; total=$2; gsub(/Gi/, "", used); gsub(/Gi/, "", total); printf "%.0f%% (%s/%sG)", $3/$2 * 100.0, used, total}')
 
@@ -159,4 +157,4 @@ else
 	battery_pluggedin='⚡'
 fi
 
-echo "$network_status $network_speed | Ping: $ping ms | $current_layout | 🏋 $loadavg_1min/$loadavg_5min | 🖥️ $cpu_usage | 💾 $memory_usage | $battery_pluggedin $battery_charge ${battery_power}W | ($week_number) $date_and_week $day_name 🕘 $current_time"
+echo "$network_status $network_speed | Ping: $ping ms | $current_layout | 🖥️ $cpu_usage | 💾 $memory_usage | $battery_pluggedin $battery_charge ${battery_power}W | ($week_number) $date_and_week $day_name 🕘 $current_time"

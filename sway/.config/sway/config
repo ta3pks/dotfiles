@@ -36,6 +36,8 @@ focus_on_window_activation focus
 # Auto-cycle backgrounds (commented out - enable if desired)
 exec /home/nikos/dotfiles/local_bin/.local/bin/cycle_background.sh /home/nikos/dotfiles/bg_images 10
 exec /home/nikos/.local/bin/hintsd
+# Touch gesture service for virtual keyboard
+exec /home/nikos/dotfiles/local_bin/.local/bin/touch-gesture-service.sh start
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
@@ -256,6 +258,9 @@ bindsym $mod+r mode "resize"
     
     # Toggle control center
     bindsym $mod+Shift+n exec swaync-client -t -sw
+    
+    # Toggle virtual keyboard
+    bindsym $mod+Ctrl+k exec /home/nikos/dotfiles/local_bin/.local/bin/toggle-keyboard.sh
 
 #
 # Status Bar:

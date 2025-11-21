@@ -1,0 +1,22 @@
+# Fusuma configuration for virtual keyboard toggle
+swipe:
+  3:
+    up:
+      command: "/home/nikos/dotfiles/local_bin/.local/bin/toggle-keyboard.sh"
+    down:
+      command: "/home/nikos/dotfiles/local_bin/.local/bin/toggle-keyboard.sh"
+
+# Global settings
+threshold:
+  swipe: 0.1
+interval:
+  swipe: 0.5
+
+# Plugin specific settings
+plugin:
+  filters:
+    libinput_device_filter:
+      exclude_devices:
+        - "Virtual"
+        - "ydotoold"
+        - "Hints"

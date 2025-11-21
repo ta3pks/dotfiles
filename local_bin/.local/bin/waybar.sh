@@ -17,6 +17,16 @@ current_time=$(date "+%H:%M")
 battery_charge=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "percentage" | awk '{print $2}')
 battery_status=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "state" | awk '{print $2}')
 battery_power=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "energy-rate" | awk '{printf "%.2f", $2}')
+battery_time_raw=$(upower --show-info $(upower --enumerate | grep 'BAT') | grep -E "time to" | awk '{print $4}')
+if [[ $battery_time_raw =~ ^([0-9]+)\.([0-9]+) ]]; then
+    hours=${BASH_REMATCH[1]}
+    minutes=$((${BASH_REMATCH[2]} * 6))
+    battery_time=$(printf "%02d:%02d" $hours $minutes)
+elif [[ $battery_time_raw =~ ^([0-9]+) ]]; then
+    battery_time=$(printf "%02d:00" ${BASH_REMATCH[1]})
+else
+    battery_time="00:00"
+fi
 
 # Audio and multimedia
 
@@ -157,4 +167,4 @@ else
 	battery_pluggedin='⚡'
 fi
 
-echo "$network_status $network_speed | Ping: $ping ms | $current_layout | 🖥️ $cpu_usage | 💾 $memory_usage | $battery_pluggedin $battery_charge ${battery_power}W | ($week_number) $date_and_week $day_name 🕘 $current_time"
+echo "$network_status $network_speed | Ping: $ping ms | $current_layout | 🖥️ $cpu_usage | 💾 $memory_usage | $battery_pluggedin $battery_charge ($battery_time) ${battery_power}W | ($week_number) $date_and_week $day_name 🕘 $current_time"

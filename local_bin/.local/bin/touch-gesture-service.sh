@@ -1,42 +1,47 @@
 #!/bin/bash
 
-# Background touch gesture service
-# This script runs the touch gesture monitor in the background
+# Background touch gesture service with proper process management
+# This script runs touch gesture monitor in background
 
 SCRIPT_DIR="/home/nikos/dotfiles/local_bin/.local/bin"
-TOUCH_MONITOR="$SCRIPT_DIR/touch-gesture.sh"
+TOUCH_MONITOR="$SCRIPT_DIR/gesture_recognition.sh"
 PID_FILE="/tmp/touch-gesture.pid"
+LOCK_FILE="/tmp/touch-gesture.lock"
 
 start_monitor() {
-    if [ -f "$PID_FILE" ] && kill -0 $(cat "$PID_FILE") 2>/dev/null; then
-        echo "Touch gesture monitor is already running (PID: $(cat $PID_FILE))"
+    # Check if already running using lock file
+    if [ -f "$LOCK_FILE" ]; then
+        echo "Touch gesture monitor is already running"
         return 0
     fi
     
+    # Create lock file
+    touch "$LOCK_FILE"
+    
     echo "Starting touch gesture monitor..."
-    nohup "$TOUCH_MONITOR" > /dev/null 2>&1 &
-    echo $! > "$PID_FILE"
-    echo "Touch gesture monitor started (PID: $(cat $PID_FILE))"
+    # Run without nohup to avoid extra processes
+    "$TOUCH_MONITOR" > /dev/null 2>&1 &
+    local pid=$!
+    echo "$pid" > "$PID_FILE"
+    echo "Touch gesture monitor started (PID: $pid)"
 }
 
 stop_monitor() {
-    if [ -f "$PID_FILE" ]; then
-        PID=$(cat "$PID_FILE")
-        if kill -0 "$PID" 2>/dev/null; then
-            kill "$PID"
-            echo "Touch gesture monitor stopped (PID: $PID)"
-        else
-            echo "Touch gesture monitor was not running"
-        fi
-        rm -f "$PID_FILE"
-    else
-        echo "No PID file found - monitor may not be running"
-    fi
+    # Kill all gesture recognition processes
+    pkill -f "gesture_recognition" 2>/dev/null
+    
+    # Remove lock and PID files
+    rm -f "$LOCK_FILE"
+    rm -f "$PID_FILE"
+    echo "Touch gesture monitor stopped"
 }
 
 status_monitor() {
-    if [ -f "$PID_FILE" ] && kill -0 $(cat "$PID_FILE") 2>/dev/null; then
-        echo "Touch gesture monitor is running (PID: $(cat $PID_FILE))"
+    if [ -f "$LOCK_FILE" ]; then
+        echo "Touch gesture monitor is running"
+        if [ -f "$PID_FILE" ]; then
+            echo "PID: $(cat $PID_FILE)"
+        fi
     else
         echo "Touch gesture monitor is not running"
     fi

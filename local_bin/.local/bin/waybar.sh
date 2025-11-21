@@ -16,6 +16,7 @@ current_time=$(date "+%H:%M")
 # Battery or charger
 battery_charge=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "percentage" | awk '{print $2}')
 battery_status=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "state" | awk '{print $2}')
+battery_power=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "energy-rate" | awk '{printf "%.2f", $2}')
 
 # Audio and multimedia
 
@@ -158,4 +159,4 @@ else
 	battery_pluggedin='⚡'
 fi
 
-echo "$network_status $network_speed | Ping: $ping ms | $current_layout | 🏋 $loadavg_1min/$loadavg_5min | 🖥️ $cpu_usage | 💾 $memory_usage | $battery_pluggedin $battery_charge | ($week_number) $date_and_week $day_name 🕘 $current_time"
+echo "$network_status $network_speed | Ping: $ping ms | $current_layout | 🏋 $loadavg_1min/$loadavg_5min | 🖥️ $cpu_usage | 💾 $memory_usage | $battery_pluggedin $battery_charge ${battery_power}W | ($week_number) $date_and_week $day_name 🕘 $current_time"

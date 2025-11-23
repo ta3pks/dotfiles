@@ -147,12 +147,26 @@ detect_swipe_direction() {
     fi
 }
 
+# Auto-detect touchscreen device
+get_touchscreen_device() {
+    libinput list-devices | grep -A 5 "Device:.*ELAN9008" | grep "Kernel:" | head -1 | awk '{print $2}'
+}
+
 monitor_touch() {
     local finger_count=0
     local gesture_active=false
     local motion_counter=0
     
-    libinput debug-events --device /dev/input/event8 2>/dev/null | \
+    # Auto-detect touchscreen device
+    local touchscreen_device=$(get_touchscreen_device)
+    if [ -z "$touchscreen_device" ]; then
+        echo "No touchscreen device found"
+        exit 1
+    fi
+    
+    echo "Using touchscreen device: $touchscreen_device"
+    
+    libinput debug-events --device "$touchscreen_device" 2>/dev/null | \
     while read -r line; do
         if [[ "$line" =~ TOUCH_DOWN ]]; then
             # Start new gesture if not active

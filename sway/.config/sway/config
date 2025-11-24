@@ -248,6 +248,13 @@ bindsym $mod+r mode "resize"
     # Special key to take a screenshot with grim
     bindsym Print exec grim
     
+    # Multimedia controls using playerctl
+    bindsym --locked XF86AudioPlay exec playerctl play-pause
+    bindsym --locked XF86AudioPause exec playerctl pause
+    bindsym --locked XF86AudioNext exec playerctl next
+    bindsym --locked XF86AudioPrev exec playerctl previous
+    bindsym --locked XF86AudioStop exec playerctl stop
+    
     # Custom shortcuts from GNOME
     # DSNote voice recognition
     bindsym $mod+backslash exec dsnote --action start-listening-active-window

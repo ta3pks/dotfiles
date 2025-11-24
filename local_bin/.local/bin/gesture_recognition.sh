@@ -2,11 +2,8 @@
 
 # Clean single-instance gesture recognition script
 
-# Prevent multiple instances
-# if pgrep -f "gesture_recognition" > /dev/null; then
-#     echo "Gesture recognition already running"
-#     exit 1
-# fi
+# Add timestamp to log for debugging
+echo "$(date): Gesture recognition script started" >> /tmp/touch-gesture.log
 
 TOUCH_COUNT_FILE="/tmp/touch_count"
 TOUCH_POSITIONS_FILE="/tmp/touch_positions"
@@ -166,8 +163,11 @@ monitor_touch() {
     
     echo "Using touchscreen device: $touchscreen_device"
     
-    libinput debug-events --device "$touchscreen_device" 2>/dev/null | \
-    while read -r line; do
+    # Main loop with restart capability
+    while true; do
+        echo "Starting libinput monitor..."
+        libinput debug-events --device "$touchscreen_device" 2>/dev/null | \
+        while read -r line; do
         if [[ "$line" =~ TOUCH_DOWN ]]; then
             # Start new gesture if not active
             if [ "$gesture_active" = false ]; then
@@ -249,6 +249,10 @@ monitor_touch() {
                 sleep 0.3  # Prevent multiple triggers
             fi
         fi
+        done
+        
+        echo "$(date): libinput monitor died, restarting in 2 seconds..." >> /tmp/touch-gesture.log
+        sleep 2
     done
 }
 

@@ -19,8 +19,8 @@ start_monitor() {
     touch "$LOCK_FILE"
     
     echo "Starting touch gesture monitor..."
-    # Run without nohup to avoid extra processes
-    "$TOUCH_MONITOR" > /dev/null 2>&1 &
+    # Run with logging to help debug issues
+    "$TOUCH_MONITOR" >> /tmp/touch-gesture.log 2>&1 &
     local pid=$!
     echo "$pid" > "$PID_FILE"
     echo "Touch gesture monitor started (PID: $pid)"

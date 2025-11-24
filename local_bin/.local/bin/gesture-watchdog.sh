@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Watchdog script to ensure touch gesture service stays running
+
+SERVICE_SCRIPT="/home/nikos/dotfiles/local_bin/.local/bin/touch-gesture-service.sh"
+LOCK_FILE="/tmp/touch-gesture.lock"
+LOG_FILE="/tmp/touch-gesture.log"
+CHECK_INTERVAL=30  # Check every 30 seconds
+
+log_message() {
+    echo "$(date): $1" >> "$LOG_FILE"
+}
+
+check_service() {
+    if [ ! -f "$LOCK_FILE" ]; then
+        log_message "Touch gesture service not running, restarting..."
+        "$SERVICE_SCRIPT" start
+        return 1
+    fi
+    
+    # Check if the process is actually alive
+    if [ -f "/tmp/touch-gesture.pid" ]; then
+        local pid=$(cat "/tmp/touch-gesture.pid")
+        if ! kill -0 "$pid" 2>/dev/null; then
+            log_message "Touch gesture process (PID: $pid) died, cleaning up and restarting..."
+            rm -f "$LOCK_FILE" "/tmp/touch-gesture.pid"
+            "$SERVICE_SCRIPT" start
+            return 1
+        fi
+    fi
+    
+    return 0
+}
+
+log_message "Gesture watchdog started"
+
+while true; do
+    check_service
+    sleep "$CHECK_INTERVAL"
+done

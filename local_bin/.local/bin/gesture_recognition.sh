@@ -208,7 +208,10 @@ monitor_touch() {
                 direction=$(detect_swipe_direction "$TOUCH_POSITIONS_FILE" | tail -1)
                 
                 if [ "$finger_count" -eq 2 ]; then
-                    # 2-finger swipe for workspace navigation
+                    # 2-finger swipe disabled
+                    :
+                elif [ "$finger_count" -eq 3 ]; then
+                    # 3-finger swipe for workspace navigation (moved from 2-finger)
                     case "$direction" in
                         "left")
                             workspace_prev
@@ -217,8 +220,8 @@ monitor_touch() {
                             workspace_next
                             ;;
                     esac
-                elif [ "$finger_count" -eq 3 ]; then
-                    # 3-finger swipe for window movement or keyboard toggle
+                elif [ "$finger_count" -eq 4 ]; then
+                    # 4-finger swipe for window movement and app launcher
                     case "$direction" in
                         "left")
                             move_window_prev
@@ -226,15 +229,11 @@ monitor_touch() {
                         "right")
                             move_window_next
                             ;;
-                        "up"|"down")
-                            toggle_keyboard
-                            ;;
-                    esac
-                elif [ "$finger_count" -eq 4 ]; then
-                    # 4-finger swipe for ulauncher
-                    case "$direction" in
-                        "up"|"down")
+                        "up")
                             launch_ulauncher
+                            ;;
+                        "down")
+                            toggle_keyboard
                             ;;
                     esac
                 fi

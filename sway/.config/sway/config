@@ -35,7 +35,7 @@ focus_on_window_activation focus
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 # Output scaling configuration
-output * scale 1.5
+output eDP-1 mode 1920x1200@180Hz scale 1
 # Auto-cycle backgrounds (commented out - enable if desired)
 exec /home/nikos/dotfiles/local_bin/.local/bin/cycle_background.sh /home/nikos/dotfiles/bg_images 10
 exec /home/nikos/.local/bin/hintsd

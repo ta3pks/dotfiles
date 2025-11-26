@@ -76,7 +76,8 @@ move_window_prev() {
 }
 
 launch_ulauncher() {
-    ulauncher
+    # Launch ulauncher in background to avoid blocking gesture service
+    ulauncher &
 }
 
 toggle_keyboard() {

@@ -24,6 +24,7 @@ set $meh Ctrl+Alt+Shift
 input * {
     xkb_layout tr,ru
     xkb_variant alt,phonetic
+    xkb_options ctrl:nocaps
     natural_scroll enabled
 }
 

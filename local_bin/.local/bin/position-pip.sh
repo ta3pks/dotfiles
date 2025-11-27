@@ -18,7 +18,7 @@ effective_width=$(echo "scale=0; $screen_width / $scale" | bc)
 # Calculate position: right edge - 30px - window_width
 window_width=700
 window_height=400
-margin=30
+margin=50
 position=$(echo "scale=0; $effective_width - $window_width - $margin" | bc)
 
 echo "Output: $pip_output, Screen width: $screen_width, Scale: $scale, Effective width: $effective_width, Position: $position"

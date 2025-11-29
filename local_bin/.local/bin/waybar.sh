@@ -29,6 +29,23 @@ else
 fi
 
 # Audio and multimedia
+# Get current volume level and mute status
+volume_info=$(pactl get-sink-volume @DEFAULT_SINK@ 2>/dev/null)
+mute_status=$(pactl get-sink-mute @DEFAULT_SINK@ 2>/dev/null)
+
+if [ -n "$volume_info" ]; then
+    # Extract volume percentage (takes the left channel volume)
+    volume_percent=$(echo "$volume_info" | grep -o '[0-9]\+%' | head -1 | sed 's/%//')
+    
+    # Check if muted
+    if echo "$mute_status" | grep -q "Mute: yes"; then
+        sound_level="🔇 ${volume_percent}%"
+    else
+        sound_level="🔊 ${volume_percent}%"
+    fi
+else
+    sound_level="🔇 N/A"
+fi
 
 # Network connection status using nmcli
 active_connection=$(nmcli -t -f NAME,TYPE,DEVICE connection show --active | head -1)
@@ -167,4 +184,4 @@ else
 	battery_pluggedin='⚡'
 fi
 
-echo "$network_status $network_speed | Ping: $ping ms | $current_layout | 🖥️ $cpu_usage | 💾 $memory_usage | $battery_pluggedin $battery_charge ($battery_time) ${battery_power}W | ($week_number) $date_and_week $day_name 🕘 $current_time"
+echo "$network_status $network_speed | Ping: $ping ms | $current_layout | 🖥️ $cpu_usage | 💾 $memory_usage | $battery_pluggedin $battery_charge ($battery_time) ${battery_power}W | $sound_level | ($week_number) $date_and_week $day_name 🕘 $current_time"

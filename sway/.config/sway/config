@@ -26,6 +26,7 @@ input * {
     xkb_variant alt,phonetic
     xkb_options ctrl:nocaps
     natural_scroll enabled
+    tap enabled
 }
 
 focus_on_window_activation focus

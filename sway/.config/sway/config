@@ -41,6 +41,7 @@ output eDP-1 mode 1920x1200@180Hz scale 1
 # Auto-cycle backgrounds (commented out - enable if desired)
 exec /home/nikos/dotfiles/local_bin/.local/bin/cycle_background.sh /home/nikos/dotfiles/bg_images 10
 exec /home/nikos/.local/bin/hintsd
+exec copyq
 # Touch gesture service for virtual keyboard with watchdog
 exec /home/nikos/dotfiles/local_bin/.local/bin/gesture-watchdog.sh
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
@@ -86,6 +87,7 @@ exec /home/nikos/dotfiles/local_bin/.local/bin/gesture-watchdog.sh
     # Start a terminal
     bindsym $mod+Return exec $term
     bindsym Alt+r exec rofi -show run
+    bindsym Alt+v exec copyq show
 
     # Kill focused window
     bindsym $mod+q kill

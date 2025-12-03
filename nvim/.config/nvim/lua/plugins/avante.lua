@@ -15,8 +15,8 @@ return {
         api_key_name = "OPENROUTER_API_KEY",
         -- model = "agentica-org/deepcoder-14b-preview",
         -- model = "qwen/qwen3-coder",
-        model = "qwen/qwen3-235b-a22b-2507",
-        -- model = "google/gemini-2.5-flash",
+        -- model = "qwen/qwen3-235b-a22b-2507",
+        model = "google/gemini-2.5-flash",
       },
       morph = {
         model = "auto",

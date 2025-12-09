@@ -25,13 +25,25 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "openrouter",
+          adapter = {
+            name = "opencode",
+            model = "openrouter/kwaipilot/kat-coder-pro:free",
+          },
         },
+        -- chat = {
+        --   adapter = "openrouter",
+        -- },
         inline = {
-          adapter = "openrouter",
+          adapter = {
+            name = "opencode",
+            model = "openrouter/kwaipilot/kat-coder-pro:free",
+          },
         },
         cmd = {
-          adapter = "openrouter",
+          adapter = {
+            name = "opencode",
+            model = "openrouter/kwaipilot/kat-coder-pro:free",
+          },
         },
       },
     },

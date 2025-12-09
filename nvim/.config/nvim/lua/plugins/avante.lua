@@ -7,7 +7,13 @@ return {
     --   enable_fastapply = true, -- Enable Fast Apply feature
     -- },
     -- provider = "ollama",
-    provider = "openrouter",
+    provider = "opencode",
+    acp_providers = {
+      ["opencode"] = {
+        command = "opencode",
+        args = { "acp" },
+      },
+    },
     providers = {
       openrouter = {
         __inherited_from = "openai",

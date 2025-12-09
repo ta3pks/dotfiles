@@ -16,14 +16,13 @@ scale=$(swaymsg -t get_outputs | jq -r ".[] | select(.name==\"$pip_output\") | .
 effective_width=$(echo "scale=0; $screen_width / $scale" | bc)
 
 # Calculate position: right edge - 30px - window_width
-window_width=700
-window_height=400
+window_width=${1:-700}
+window_height=${2:-400}
 margin=50
 position=$(echo "scale=0; $effective_width - $window_width - $margin" | bc)
 
 echo "Output: $pip_output, Screen width: $screen_width, Scale: $scale, Effective width: $effective_width, Position: $position"
 
-# Apply to pip window with absolute positioning
 # Apply to pip window with absolute positioning
 swaymsg '[title="Picture in picture"] floating enable, sticky enable, resize set '"$window_width"' '"$window_height"', move absolute position '"$position"' 100'
 swaymsg '[app_id="mpv"] floating enable, sticky enable, resize set '"$window_width"' '"$window_height"', move absolute position '"$position"' 100'

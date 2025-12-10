@@ -173,7 +173,7 @@ default_floating_border none
 for_window [class=".*"] border none
 
 # Make floating windows appear on all workspaces
-for_window [floating] floating enable, sticky enable
+for_window [floating] exec /home/nikos/dotfiles/local_bin/.local/bin/position-pip.sh 800 600
 
 # Make pip windows sticky on all workspaces and position at top right
 for_window [title="Picture in picture"] exec /home/nikos/dotfiles/local_bin/.local/bin/position-pip.sh 800 600

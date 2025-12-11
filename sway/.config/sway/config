@@ -269,6 +269,7 @@ bindsym $mod+r mode "resize"
     
     # Position PiP with Cmd+P
     bindsym $mod+p exec /home/nikos/dotfiles/local_bin/.local/bin/position-pip.sh 800 600
+    bindsym $mod+Shift+p exec /home/nikos/dotfiles/local_bin/.local/bin/position-pip.sh 600 400
     
     # Notification Daemon
     exec swaync

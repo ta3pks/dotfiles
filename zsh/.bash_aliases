@@ -1,9 +1,7 @@
-alias dedectadb="clickhouse client -u default --password atlas123 -d dedecta"
+alias dedectadb="clickhouse-cli  -u default --arg-password atlas123 --database dedecta"
 alias open='xdg-open'
-alias dedectacluster="clickhouse client -d dedecta --port 9001"
 alias bash_aliases="nvim ~/.bash_aliases && source ~/.bash_aliases"
 alias rustcfg="nvim ~/.cargo/config.toml"
-alias dedectadbcli="clickhouse-cli --vi-mode -u default --arg-password atlas123 --database dedecta"
 alias pbcopy="xclip -selection clipboard"
 alias cupdate="cargo update"
 alias cupgrade="cargo upgrade"

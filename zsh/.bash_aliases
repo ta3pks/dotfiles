@@ -1,9 +1,7 @@
-alias REDACTED_PROJECTdb="clickhouse client -u default --password REDACTED_PASSWORD -d REDACTED_PROJECT"
+alias REDACTED_PROJECTdb="clickhouse-cli  -u default --arg-password REDACTED_PASSWORD --database REDACTED_PROJECT"
 alias open='xdg-open'
-alias REDACTED_PROJECTcluster="clickhouse client -d REDACTED_PROJECT --port 9001"
 alias bash_aliases="nvim ~/.bash_aliases && source ~/.bash_aliases"
 alias rustcfg="nvim ~/.cargo/config.toml"
-alias REDACTED_PROJECTdbcli="clickhouse-cli --vi-mode -u default --arg-password REDACTED_PASSWORD --database REDACTED_PROJECT"
 alias pbcopy="xclip -selection clipboard"
 alias cupdate="cargo update"
 alias cupgrade="cargo upgrade"

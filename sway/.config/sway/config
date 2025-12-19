@@ -279,6 +279,9 @@ bindsym $mod+r mode "resize"
     
     # Toggle virtual keyboard
     bindsym $mod+Ctrl+k exec /home/nikos/dotfiles/local_bin/.local/bin/toggle-keyboard.sh
+    
+    # Lock screen with current wallpaper
+    bindsym $mod+Escape exec swaylock -i $(find /home/nikos/dotfiles/bg_images -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.bmp" -o -iname "*.webp" \) | shuf -n 1)
 
 #
 # Status Bar:

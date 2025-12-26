@@ -1,5 +1,14 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "openrouter": {
+      "models": {
+        "xiaomi/mimo-v2-flash:free": {
+          "name": "mimo-v2-flash"
+        }
+      }
+    }
+  },
   "mcp": {
     "browserOS_nikos": {
       "type": "remote",

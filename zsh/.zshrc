@@ -135,3 +135,5 @@ export PATH="$PATH:/home/nikos/.lmstudio/bin"
 export SUDO_ASKPASS=/home/nikos/.local/bin/askpass
 export URNETWORK_PROVIDER_INSTALL="/home/nikos/.local/share/urnetwork-provider"
 export PATH="$PATH:$URNETWORK_PROVIDER_INSTALL/bin"
+
+[ -f "/home/nikos/.ghcup/env" ] && . "/home/nikos/.ghcup/env" # ghcup-env

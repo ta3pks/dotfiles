@@ -1,4 +1,4 @@
-alias REDACTED_PROJECTdb="clickhouse-cli  -u default --arg-password REDACTED_PASSWORD --database REDACTED_PROJECT"
+alias REDACTED_PROJECTdb="clickhouse-cli  -u default --arg-password REDACTED_PASSWORD --database REDACTED_PROJECT --vi-mode"
 alias open='xdg-open'
 alias bash_aliases="nvim ~/.bash_aliases && source ~/.bash_aliases"
 alias rustcfg="nvim ~/.cargo/config.toml"

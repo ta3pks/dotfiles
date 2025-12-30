@@ -1,4 +1,4 @@
-alias dedectadb="clickhouse-cli  -u default --arg-password atlas123 --database dedecta"
+alias dedectadb="clickhouse-cli  -u default --arg-password atlas123 --database dedecta --vi-mode"
 alias open='xdg-open'
 alias bash_aliases="nvim ~/.bash_aliases && source ~/.bash_aliases"
 alias rustcfg="nvim ~/.cargo/config.toml"

@@ -71,7 +71,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-export ZSH_TMUX_AUTOSTART=true
+export ZSH_TMUX_AUTOSTART=false
 export ZSH_TMUX_UNICODE=true
 export PATH="/nix/bin:$HOME/.local/bin:$PATH"
 plugins=(tmux git asdf zoxide direnv encode64 fzf rust procs qrcode systemd thefuck vi-mode zsh-interactive-cd docker-compose jq wakatime)
@@ -79,6 +79,11 @@ plugins=(tmux git asdf zoxide direnv encode64 fzf rust procs qrcode systemd thef
 source $HOME/dotfiles/bashrc.sh
 source $ZSH/oh-my-zsh.sh
 source $HOME/.ssh/secret_env
+
+# Only start tmux if no active attached sessions exist
+if ! tmux ls 2>/dev/null | grep -q "attached"; then
+    exec tmux
+fi
 
 # User configuration
 

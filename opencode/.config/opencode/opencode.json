@@ -95,7 +95,7 @@
         "Z_AI_MODE": "ZAI"
       }
     },
-    "zai-web-search": {
+    "zwebsearch": {
       "type": "local",
       "command": ["npx", "-y", "@z_ai/mcp-server"],
       "environment": {
@@ -103,7 +103,7 @@
         "Z_AI_MODE": "WEB_SEARCH"
       }
     },
-    "zai-web-reader": {
+    "zwebreader": {
       "type": "remote",
       "url": "https://api.z.ai/api/mcp/web_reader/mcp",
 

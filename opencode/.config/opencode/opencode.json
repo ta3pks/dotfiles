@@ -1,6 +1,23 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "gpt-oss:latest": {
+          "tools": true
+        },
+        "gpt-oss:20b": {
+          "tools": true
+        },
+        "gpt-oss:120b-cloud": {
+          "tools": true
+        }
+      }
+    },
     "openrouter": {
       "models": {
         "xiaomi/mimo-v2-flash:free": {

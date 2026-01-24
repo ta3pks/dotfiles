@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/ssh dedecta 'while true; do sleep 1;echo alive; done'
+ExecStart=/usr/bin/ssh proxy 'while true; do sleep 1;echo alive; done'
 Restart=on-failure
 RestartSec=5
 

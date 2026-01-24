@@ -94,7 +94,9 @@ exec /home/nikos/dotfiles/local_bin/.local/bin/gesture-watchdog.sh
 
     # Start your launcher
     bindsym $met+semicolon exec /home/nikos/.local/bin/hints
+    bindsym Alt+backslash exec /home/nikos/.local/bin/hints
     bindsym $met+Space exec $menu
+    bindsym Ctrl+Alt+space exec $menu
     
     # Switch between keyboard layouts
     bindsym $mod+space exec swaymsg input '*' xkb_switch_layout next
@@ -150,6 +152,8 @@ exec /home/nikos/dotfiles/local_bin/.local/bin/gesture-watchdog.sh
     bindsym $mod+9 workspace number 9
     bindsym $meh+j exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh focus prev
     bindsym $meh+k exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh focus next
+    bindsym Ctrl+Alt+j exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh focus prev
+    bindsym Ctrl+Alt+k exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh focus next
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
@@ -164,6 +168,8 @@ exec /home/nikos/dotfiles/local_bin/.local/bin/gesture-watchdog.sh
     bindsym $mod+Shift+0 move container to workspace number 10
     bindsym $met+j exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh move prev
     bindsym $met+k exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh move next
+    bindsym Ctrl+Alt+Super+j exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh move prev
+    bindsym Ctrl+Alt+Super+k exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh move next
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 # Remove titlebars and borders
@@ -265,6 +271,7 @@ bindsym $mod+r mode "resize"
     # DSNote voice recognition
     bindsym $mod+backslash exec dsnote --action start-listening-active-window
     bindsym XF86Launch3 exec dsnote --action start-listening-active-window
+    bindsym Super+Alt+backslash exec dsnote --action start-listening-active-window
     
     # Screenshot with flameshot
     bindsym $mod+minus exec flameshot gui

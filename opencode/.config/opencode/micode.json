@@ -1,0 +1,49 @@
+{
+  "agents": {
+    "commander": {
+      "model": "zai-coding-plan/glm-4.7"
+    },
+    "brainstormer": {
+      "model": "zai-coding-plan/glm-4.7"
+    },
+    "bootstrapper": {
+      "model": "zai-coding-plan/glm-4.7"
+    },
+    "codebase-locator": {
+      "model": "zai-coding-plan/glm-4.7"
+    },
+    "codebase-analyzer": {
+      "model": "zai-coding-plan/glm-4.7"
+    },
+    "pattern-finder": {
+      "model": "zai-coding-plan/glm-4.7"
+    },
+    "planner": {
+      "model": "zai-coding-plan/glm-4.7"
+    },
+    "implementer": {
+      "model": "zai-coding-plan/glm-4.7"
+    },
+    "reviewer": {
+      "model": "zai-coding-plan/glm-4.7"
+    },
+    "executor": {
+      "model": "zai-coding-plan/glm-4.7"
+    },
+    "project-initializer": {
+      "model": "zai-coding-plan/glm-4.7"
+    },
+    "ledger-creator": {
+      "model": "zai-coding-plan/glm-4.7"
+    },
+    "artifact-searcher": {
+      "model": "zai-coding-plan/glm-4.7"
+    },
+    "octto": {
+      "model": "zai-coding-plan/glm-4.7"
+    },
+    "probe": {
+      "model": "zai-coding-plan/glm-4.7"
+    }
+  }
+}

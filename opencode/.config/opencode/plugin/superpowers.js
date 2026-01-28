@@ -1,1 +1,0 @@
-/home/nikos/.config/opencode/superpowers/.opencode/plugin/superpowers.js

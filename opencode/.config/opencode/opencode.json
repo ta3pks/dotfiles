@@ -1,8 +1,13 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "model": "zai-coding-plan/glm-4.7",
   "plugin": [
     "@mohak34/opencode-notifier@latest",
-    "oh-my-opencode"
+    "@zenobius/opencode-background",
+    // "@tarquinen/opencode-dcp@latest",
+    "opencode-mem",
+    "opencode-wakatime",
+    "micode"
   ],
   "permission": {
     "external_directory": {
@@ -38,11 +43,7 @@
     },
     "jira": {
       "type": "local",
-      "command": [
-        "bunx",
-        "mcp-remote",
-        "https://mcp.atlassian.com/v1/sse"
-      ],
+      "command": ["bunx", "mcp-remote", "https://mcp.atlassian.com/v1/sse"],
       "enabled": false
     },
     "context7": {
@@ -60,18 +61,12 @@
     },
     "pipedream": {
       "type": "local",
-      "command": [
-        "bunx",
-        "mcp-remote",
-        "https://mcp.pipedream.net/v2"
-      ],
+      "command": ["bunx", "mcp-remote", "https://mcp.pipedream.net/v2"],
       "enabled": false
     },
     "dedectadb": {
       "type": "local",
-      "command": [
-        "mcp-clickhouse"
-      ],
+      "command": ["mcp-clickhouse"],
       "environment": {
         "CLICKHOUSE_PASSWORD": "atlas123",
         "CLICKHOUSE_USER": "default",
@@ -83,9 +78,7 @@
     },
     "cluster": {
       "type": "local",
-      "command": [
-        "mcp-clickhouse"
-      ],
+      "command": ["mcp-clickhouse"],
       "environment": {
         "CLICKHOUSE_PASSWORD": "atlas123",
         "CLICKHOUSE_USER": "",
@@ -97,11 +90,7 @@
     },
     "nvim": {
       "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "mcp-neovim-server"
-      ],
+      "command": ["npx", "-y", "mcp-neovim-server"],
       "environment": {
         "ALLOW_SHELL_COMMANDS": "true",
         "NVIM_SOCKET_PATH": "/tmp/nvim"
@@ -109,11 +98,7 @@
     },
     "zai-vision": {
       "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@z_ai/mcp-server"
-      ],
+      "command": ["npx", "-y", "@z_ai/mcp-server"],
       "environment": {
         "Z_AI_API_KEY": "{env:ZAI_API_KEY}",
         "Z_AI_MODE": "ZAI"
@@ -121,11 +106,7 @@
     },
     "zwebsearch": {
       "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@z_ai/mcp-server"
-      ],
+      "command": ["npx", "-y", "@z_ai/mcp-server"],
       "environment": {
         "Z_AI_API_KEY": "{env:ZAI_API_KEY}",
         "Z_AI_MODE": "WEB_SEARCH"
@@ -144,6 +125,20 @@
       "headers": {
         "Authorization": "Bearer {env:ZAI_API_KEY}"
       }
+    },
+    "serena": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "ide",
+        "--project-from-cwd"
+      ],
+      "enabled": true
     }
   }
 }

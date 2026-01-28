@@ -3,8 +3,7 @@
   "model": "zai-coding-plan/glm-4.7",
   "plugin": [
     "@mohak34/opencode-notifier@latest",
-    "@zenobius/opencode-background",
-    // "@tarquinen/opencode-dcp@latest",
+    "@tarquinen/opencode-dcp@latest",
     "opencode-mem",
     "opencode-wakatime",
     "micode"
@@ -16,6 +15,11 @@
     }
   },
   "provider": {
+    "zai-coding-plan": {
+      "models": {
+        "glm-4.7": {}
+      }
+    },
     "ollama": {
       "npm": "@ai-sdk/openai-compatible",
       "options": {

@@ -1,0 +1,16 @@
+#!/bin/bash
+# Redis CLI wrapper using podman
+# This wrapper runs redis-cli from a container with host network access
+
+# Image to use
+REDIS_IMAGE="docker.io/library/redis:latest"
+
+# Check if image exists, if not try to pull it
+if ! podman image inspect "$REDIS_IMAGE" &>/dev/null; then
+    echo "Redis image not found, pulling $REDIS_IMAGE..."
+    podman pull "$REDIS_IMAGE"
+fi
+
+# Run redis-cli with host network access
+# All arguments passed to this script are forwarded to redis-cli
+podman run --rm -it --network host "$REDIS_IMAGE" redis-cli "$@"

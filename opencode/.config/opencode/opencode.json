@@ -68,28 +68,15 @@
       "command": ["bunx", "mcp-remote", "https://mcp.pipedream.net/v2"],
       "enabled": false
     },
-    "dedectadb": {
+    "clickhouse": {
       "type": "local",
       "command": ["mcp-clickhouse"],
       "environment": {
-        "CLICKHOUSE_PASSWORD": "atlas123",
+        "CLICKHOUSE_PASSWORD": "",
         "CLICKHOUSE_USER": "default",
         "CLICKHOUSE_HOST": "localhost",
         "CLICKHOUSE_PORT": "8123",
-        "CLICKHOUSE_SECURE": "false",
-        "CLICKHOUSE_DATABASE": "dedecta"
-      }
-    },
-    "cluster": {
-      "type": "local",
-      "command": ["mcp-clickhouse"],
-      "environment": {
-        "CLICKHOUSE_PASSWORD": "atlas123",
-        "CLICKHOUSE_USER": "",
-        "CLICKHOUSE_HOST": "",
-        "CLICKHOUSE_PORT": "8124",
-        "CLICKHOUSE_SECURE": "false",
-        "CLICKHOUSE_DATABASE": "dedecta"
+        "CLICKHOUSE_SECURE": "false"
       }
     },
     "nvim": {

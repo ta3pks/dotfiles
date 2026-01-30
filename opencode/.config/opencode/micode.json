@@ -1,4 +1,5 @@
 {
+  "compactionThreshold": 0.9,
   "agents": {
     "commander": {
       "model": "zai-coding-plan/glm-4.7"

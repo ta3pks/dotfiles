@@ -4,3 +4,6 @@
 [submodule "tmux/.tmux/plugins/tpm"]
 	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "opencode/.config/opencode/superpowers"]
+	path = opencode/.config/opencode/superpowers
+	url = https://github.com/obra/superpowers

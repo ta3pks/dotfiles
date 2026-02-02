@@ -5,8 +5,8 @@
     "@mohak34/opencode-notifier@latest",
     "@tarquinen/opencode-dcp@latest",
     "opencode-mem",
-    "opencode-wakatime",
-    "micode"
+    "opencode-wakatime"
+    // "micode"
   ],
   "permission": {
     "external_directory": {

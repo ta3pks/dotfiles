@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(npm install:*)",
+      "Bash(nc:*)",
+      "Bash(test:*)",
+      "Bash(node:*)",
+      "Bash(npm run dev)",
+      "Bash(cargo test:*)",
+      "Bash(curl:*)",
+      "Bash(npm run test:*)",
+      "mcp__web-search-prime__webSearchPrime",
+      "mcp__web-reader__webReader",
+      "Bash(cargo install:*)",
+      "Bash(mdbook build:*)",
+      "Bash(npm run check:*)",
+      "Bash(npm run build:*)",
+      "Bash(git status:*)",
+      "Bash(pkill:*)"
+    ],
+    "defaultMode": "plan"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "superpowers@superpowers-marketplace": true,
+    "claude-notifications-go@claude-notifications-go": true,
+    "claude-mem@thedotmack": true,
+    "claude-code-wakatime@wakatime": true
+  },
+  "autoUpdatesChannel": "stable",
+  "minimumVersion": "2.1.5"
+}

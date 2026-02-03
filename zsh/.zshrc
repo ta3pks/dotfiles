@@ -120,7 +120,7 @@ alias gpl="git pull"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$BUN_INSTALL/bin:$BUN_INSTALL/install/global/node_modules/.bin:$PATH"
 export APP_ENV=production
 
 # pnpm

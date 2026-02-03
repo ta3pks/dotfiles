@@ -127,7 +127,8 @@
         "start-mcp-server",
         "--context",
         "ide",
-        "--project-from-cwd"
+        "--project-from-cwd",
+        "--enable-web-dashboard=false"
       ],
       "enabled": true
     }

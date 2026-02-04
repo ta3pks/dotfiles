@@ -143,9 +143,3 @@ export PATH="$PATH:$URNETWORK_PROVIDER_INSTALL/bin:/snap/bin"
 
 [ -f "/home/nikos/.ghcup/env" ] && . "/home/nikos/.ghcup/env" # ghcup-env
 
-# Task Master aliases added on 1/23/2026
-alias tm='task-master'
-alias taskmaster='task-master'
-alias hamster='task-master'
-alias ham='task-master'
-alias claude=" claude --allow-dangerously-skip-permissions"

@@ -31,7 +31,6 @@ unset_proxy() {
 deploy_build() {
 	rsync -vahurz --progress ~/.rust_build/x86_64-unknown-linux-gnu/"$1" dedecta:/usr/local/bin/
 }
-alias dedecta="ssh dedecta -t tmux a"
 alias ap=ansible-playbook
 alias gmain="git merge main"
 CLUSTER_IPS=(
@@ -118,5 +117,6 @@ ask_claude() {
 		--header "content-type: application/json" \
 		--data "{ \"model\": \"claude-3-7-sonnet-20250219\", \"max_tokens\": 1024, \"messages\": [ {\"role\": \"user\", \"content\": \"$1\" }]}"
 }
+alias claude="claude --dangerously-skip-permissions "
 alias o="opencode"
 alias or="opencode run"

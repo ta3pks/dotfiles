@@ -266,7 +266,6 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86AudioNext exec playerctl next
     bindsym --locked XF86AudioPrev exec playerctl previous
     bindsym --locked XF86AudioStop exec playerctl stop
-    
     # Custom shortcuts from GNOME
     # DSNote voice recognition
     bindsym $mod+backslash exec dsnote --action start-listening-active-window

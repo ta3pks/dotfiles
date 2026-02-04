@@ -73,7 +73,6 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 export ZSH_TMUX_AUTOSTART=false
 export ZSH_TMUX_UNICODE=true
-export PATH="/nix/bin:$HOME/.local/bin:$PATH"
 plugins=(tmux git asdf zoxide direnv encode64 fzf rust procs qrcode systemd thefuck vi-mode zsh-interactive-cd docker-compose jq wakatime)
 
 source $HOME/dotfiles/bashrc.sh
@@ -120,26 +119,27 @@ alias gpl="git pull"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$BUN_INSTALL/install/global/node_modules/.bin:$PATH"
 export APP_ENV=production
 
 # pnpm
 export PNPM_HOME="/home/nikos/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-export PATH="$HOME/.asdf/shims:$PATH"
 alias dnf='sudo dnf'
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/home/nikos/.lmstudio/bin"
-# End of LM Studio CLI section
 
 export SUDO_ASKPASS=/home/nikos/.local/bin/askpass
 export URNETWORK_PROVIDER_INSTALL="/home/nikos/.local/share/urnetwork-provider"
-export PATH="$PATH:$URNETWORK_PROVIDER_INSTALL/bin:/snap/bin"
+
+# Unified PATH
+export PATH="\
+$HOME/.local/bin:\
+$HOME/.asdf/shims:\
+/nix/bin:\
+$BUN_INSTALL/bin:\
+$BUN_INSTALL/install/global/node_modules/.bin:\
+$PNPM_HOME:\
+$PATH:\
+$HOME/.lmstudio/bin:\
+$URNETWORK_PROVIDER_INSTALL/bin:\
+/snap/bin"
 
 [ -f "/home/nikos/.ghcup/env" ] && . "/home/nikos/.ghcup/env" # ghcup-env
 

@@ -165,4 +165,4 @@ From `CHANGELOG.md`:
 - **Containerization**: Podman is preferred (see redis-cli wrapper)
 - **Testing**: Remote testing support for Rust projects via dedicated script
 - **AI Development**: Heavy integration with AI tools - OpenCode, Aider, Ollama local models
-- **Memory system**: Uses `claude-mem` for activity tracking and context preservation across sessions
+- **Memory system**: Uses `claude-memory-plugin` for local semantic memory with graph linking

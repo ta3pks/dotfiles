@@ -294,17 +294,7 @@ bindsym $mod+r mode "resize"
 #
 # Status Bar:
 #
-# Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
-
-    status_command while true; do $HOME/dotfiles/local_bin/.local/bin/waybar.sh; sleep 1; done
-
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
-}
+# Using waybar for better performance and event-driven updates
+exec_always killall -q waybar; waybar
 
 include /etc/sway/config.d/*

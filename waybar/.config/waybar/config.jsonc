@@ -1,0 +1,116 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+    "spacing": 4,
+
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode"
+    ],
+    "modules-center": [],
+    "modules-right": [
+        "network",
+        "custom/ping",
+        "sway/language",
+        "cpu",
+        "memory",
+        "battery",
+        "pulseaudio",
+        "clock",
+        "tray"
+    ],
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 8
+    },
+
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "format": "{name}"
+    },
+
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "sway/language": {
+        "format": "{short}",
+        "tooltip-format": "{long}",
+        "on-click": "swaymsg input '*' xkb_switch_layout next"
+    },
+
+    "network": {
+        "interval": 1,
+        "format-wifi": "{icon} {essid} {ipaddr} ({signalStrength}%) {bandwidthDownBytes} {bandwidthUpBytes}",
+        "format-ethernet": " {ipaddr} {bandwidthDownBytes} {bandwidthUpBytes}",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": " No Connection",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}\nGateway: {gwaddr}\n {bandwidthDownBits}\n {bandwidthUpBits}"
+    },
+
+    "custom/ping": {
+        "exec": "timeout 2 ping -c 1 -W 1 1.1.1.1 2>/dev/null | awk -F'/' '/^rtt/{printf \"%.0f\", $5}' || echo 'N/A'",
+        "interval": 5,
+        "format": "Ping: {} ms",
+        "tooltip": "Latency to 1.1.1.1"
+    },
+
+    "cpu": {
+        "interval": 2,
+        "format": " {usage}%",
+        "tooltip-format": "CPU: {usage}%\n{avg_frequency} GHz"
+    },
+
+    "memory": {
+        "interval": 5,
+        "format": " {percentage}% ({used}/{total})",
+        "tooltip-format": "RAM: {used}/{total} ({percentage}%)\nSwap: {swapUsed}/{swapTotal}"
+    },
+
+    "battery": {
+        "interval": 10,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}% ({time}) {power:.1f}W",
+        "format-charging": " {capacity}% ({time}) {power:.1f}W",
+        "format-plugged": " {capacity}% {power:.1f}W",
+        "format-full": " {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "format-time": "{H}:{M}",
+        "tooltip-format": "{timeTo}\n{capacity}% - {power}W"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " {volume}%",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "tooltip-format": "{desc}: {volume}%"
+    },
+
+    "clock": {
+        "interval": 1,
+        "format": "(w{:%V) %Y/%m/%d %a  %H:%M}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "weeks-pos": "left",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'>{}</span>",
+                "weeks": "<span color='#99ffdd'>W{}</span>",
+                "weekdays": "<span color='#ffcc66'>{}</span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        }
+    }
+}

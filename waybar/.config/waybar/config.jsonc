@@ -5,21 +5,52 @@
     "spacing": 4,
 
     "modules-left": [
+        "custom/prev-workspace",
         "sway/workspaces",
+        "custom/new-workspace",
         "sway/mode"
     ],
     "modules-center": [],
     "modules-right": [
+        "custom/wifi-toggle",
         "network",
+        "custom/netspeed",
         "custom/ping",
         "sway/language",
         "cpu",
         "memory",
         "battery",
         "pulseaudio",
-        "clock",
+        "clock#date",
+        "clock#time",
         "tray"
     ],
+
+    "custom/wifi-toggle": {
+        "exec": "nmcli radio wifi | grep -q enabled && echo '📶' || echo '📵'",
+        "interval": 2,
+        "tooltip": "Toggle WiFi (click to toggle)",
+        "on-click": "nmcli radio wifi $(nmcli radio wifi | grep -q enabled && echo off || echo on)"
+    },
+
+    "custom/netspeed": {
+        "exec": "~/.local/bin/netspeed.sh",
+        "interval": 1,
+        "tooltip": "Network speed"
+    },
+
+    "custom/prev-workspace": {
+        "exec": "min=$(swaymsg -t get_workspaces | jq '[.[].num] | min'); [ $min -gt 1 ] && echo '-' || echo ''",
+        "interval": 1,
+        "tooltip": "Create workspace before first",
+        "on-click": "swaymsg workspace number $(swaymsg -t get_workspaces | jq '[.[].num] | min - 1')"
+    },
+
+    "custom/new-workspace": {
+        "format": "+",
+        "tooltip": "Create new workspace",
+        "on-click": "swaymsg workspace number $(swaymsg -t get_workspaces | jq '[.[].num] | max + 1')"
+    },
 
     "tray": {
         "icon-size": 18,
@@ -44,12 +75,12 @@
 
     "network": {
         "interval": 1,
-        "format-wifi": "{icon} {essid} {ipaddr} ({signalStrength}%) {bandwidthDownBytes} {bandwidthUpBytes}",
-        "format-ethernet": " {ipaddr} {bandwidthDownBytes} {bandwidthUpBytes}",
-        "format-linked": " {ifname} (No IP)",
-        "format-disconnected": " No Connection",
-        "format-icons": ["", "", "", "", ""],
-        "tooltip-format": "{ifname}: {ipaddr}/{cidr}\nGateway: {gwaddr}\n {bandwidthDownBits}\n {bandwidthUpBits}"
+        "format-wifi": "{essid} {ipaddr} ({signalStrength}%)",
+        "format-ethernet": "{ipaddr}",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "No Connection",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}\nGateway: {gwaddr}\n↓ {bandwidthDownBits}  ↑ {bandwidthUpBits}",
+        "on-click": "~/.local/bin/wifi-menu.sh"
     },
 
     "custom/ping": {
@@ -97,10 +128,29 @@
         "tooltip-format": "{desc}: {volume}%"
     },
 
-    "clock": {
-        "interval": 1,
-        "format": "(w{:%V) %Y/%m/%d %a  %H:%M}",
+    "clock#date": {
+        "interval": 60,
+        "format": "(w{:%V) %Y/%m/%d %a}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "on-click": "gnome-calendar",
+        "calendar": {
+            "mode": "month",
+            "weeks-pos": "left",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'>{}</span>",
+                "weeks": "<span color='#99ffdd'>W{}</span>",
+                "weekdays": "<span color='#ffcc66'>{}</span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+
+    "clock#time": {
+        "interval": 1,
+        "format": "{:%H:%M}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "on-click": "gnome-calendar",
         "calendar": {
             "mode": "month",
             "weeks-pos": "left",

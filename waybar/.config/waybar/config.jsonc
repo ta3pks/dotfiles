@@ -42,13 +42,13 @@
     "custom/prev-workspace": {
         "format": "-",
         "tooltip": "Create workspace before first (if min > 1)",
-        "on-click": "min=$(swaymsg -t get_workspaces | jq '[.[].num] | min'); [ $min -gt 1 ] && swaymsg workspace number $((min - 1))"
+        "on-click": "min=$(swaymsg -t get_workspaces | jq '[.[].num] | min // 1'); [ $min -gt 1 ] && swaymsg workspace number $((min - 1))"
     },
 
     "custom/new-workspace": {
         "format": "+",
         "tooltip": "Create new workspace",
-        "on-click": "swaymsg workspace number $(swaymsg -t get_workspaces | jq '[.[].num] | max + 1')"
+        "on-click": "swaymsg workspace number $(swaymsg -t get_workspaces | jq '[.[].num] | max // 0 | . + 1')"
     },
 
     "tray": {
@@ -91,13 +91,13 @@
 
     "cpu": {
         "interval": 2,
-        "format": " {usage}%",
+        "format": "🖥️ {usage}%",
         "tooltip-format": "CPU: {usage}%\n{avg_frequency} GHz"
     },
 
     "memory": {
         "interval": 5,
-        "format": " {percentage}% ({used}/{total})",
+        "format": "💾 {percentage}% ({used}/{total})",
         "tooltip-format": "RAM: {used}/{total} ({percentage}%)\nSwap: {swapUsed}/{swapTotal}"
     },
 
@@ -108,19 +108,19 @@
             "critical": 15
         },
         "format": "{icon} {capacity}% ({time}) {power:.1f}W",
-        "format-charging": " {capacity}% ({time}) {power:.1f}W",
-        "format-plugged": " {capacity}% {power:.1f}W",
-        "format-full": " {capacity}%",
-        "format-icons": ["", "", "", "", ""],
+        "format-charging": "🔌 {capacity}% ({time}) {power:.1f}W",
+        "format-plugged": "🔌 {capacity}% {power:.1f}W",
+        "format-full": "🔋 {capacity}%",
+        "format-icons": ["🪫", "🔋", "🔋", "🔋", "🔋"],
         "format-time": "{H}:{M}",
         "tooltip-format": "{timeTo}\n{capacity}% - {power}W"
     },
 
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-muted": " {volume}%",
+        "format-muted": "🔇 {volume}%",
         "format-icons": {
-            "default": ["", "", ""]
+            "default": ["🔈", "🔉", "🔊"]
         },
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "on-click-right": "pavucontrol",
@@ -129,7 +129,7 @@
 
     "clock#date": {
         "interval": 60,
-        "format": "(w%V) %Y/%m/%d %a",
+        "format": "{:(w%V) %Y/%m/%d %a}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "on-click": "gnome-calendar",
         "calendar": {

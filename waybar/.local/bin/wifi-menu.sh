@@ -35,8 +35,8 @@ chosen=$(echo -e "$formatted" | rofi -dmenu -i -p "WiFi" -theme-str 'window {wid
 # Extract SSID (everything before the first double space)
 ssid=$(echo "$chosen" | sed 's/  .*//')
 
-# Get saved connections (single nmcli call)
-saved_connections=$(nmcli -t -f NAME,ACTIVE connection show)
+# Get saved wifi connections (single nmcli call, filter wifi only)
+saved_connections=$(nmcli -t -f NAME,ACTIVE,TYPE connection show | grep ':802-11-wireless$' | cut -d: -f1,2)
 current=$(echo "$saved_connections" | awk -F: '$2=="yes" {print $1; exit}')
 
 if [ "$current" = "$ssid" ]; then

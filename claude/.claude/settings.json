@@ -31,7 +31,8 @@
     "superpowers@superpowers-marketplace": true,
     "claude-notifications-go@claude-notifications-go": true,
     "claude-code-wakatime@wakatime": true,
-    "claude-memory-plugin@enhance": true
+    "claude-memory-plugin@enhance": true,
+    "double-shot-latte@superpowers-marketplace": true
   },
   "autoUpdatesChannel": "stable",
   "minimumVersion": "2.1.5"

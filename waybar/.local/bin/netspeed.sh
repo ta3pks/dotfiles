@@ -7,7 +7,7 @@ iface=$(ip route | awk '/default/ {print $5; exit}')
 stats_file="/dev/shm/netspeed_$iface"
 
 # Check if interface is up, clean stale stats if not
-if ! ip link show "$iface" 2>/dev/null | grep -q "state UP"; then
+if ! ip link show "$iface" 2>/dev/null | grep -qE "state (UP|UNKNOWN)"; then
     echo "↓ ------ ↑ ------"
     rm -f "$stats_file" 2>/dev/null
     exit 0

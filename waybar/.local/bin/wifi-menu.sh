@@ -35,15 +35,17 @@ chosen=$(echo -e "$formatted" | rofi -dmenu -i -p "WiFi" -theme-str 'window {wid
 # Extract SSID (everything before the first double space)
 ssid=$(echo "$chosen" | sed 's/  .*//')
 
-# Check if already connected
-current=$(nmcli -t -f NAME connection show --active | head -1)
+# Get saved connections (single nmcli call)
+saved_connections=$(nmcli -t -f NAME,ACTIVE connection show)
+current=$(echo "$saved_connections" | awk -F: '$2=="yes" {print $1; exit}')
+
 if [ "$current" = "$ssid" ]; then
     notify "Already connected to $ssid"
     exit 0
 fi
 
 # Check if we have a saved connection
-if nmcli -t -f NAME connection show | grep -q "^${ssid}$"; then
+if echo "$saved_connections" | cut -d: -f1 | grep -q "^${ssid}$"; then
     notify "Connecting to $ssid..."
     nmcli connection up "$ssid" && notify "Connected to $ssid" || notify "Failed to connect to $ssid"
     exit 0

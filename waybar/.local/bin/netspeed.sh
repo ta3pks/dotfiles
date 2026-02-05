@@ -5,6 +5,13 @@ iface=$(ip route | awk '/default/ {print $5; exit}')
 [ -z "$iface" ] && echo "↓ ------ ↑ ------" && exit 0
 
 stats_file="/dev/shm/netspeed_$iface"
+
+# Check if interface is up, clean stale stats if not
+if ! ip link show "$iface" 2>/dev/null | grep -q "state UP"; then
+    echo "↓ ------ ↑ ------"
+    rm -f "$stats_file" 2>/dev/null
+    exit 0
+fi
 rx=$(cat /sys/class/net/$iface/statistics/rx_bytes 2>/dev/null || echo 0)
 tx=$(cat /sys/class/net/$iface/statistics/tx_bytes 2>/dev/null || echo 0)
 now=$(date +%s)

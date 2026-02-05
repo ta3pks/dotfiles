@@ -112,6 +112,12 @@ tooltip label {
     padding: 0 4px;
 }
 
+/* Network speed */
+#custom-netspeed {
+    padding: 0 8px;
+    min-width: 130px;
+}
+
 /* Network status colors */
 #network.disconnected {
     color: #eb4d4b;

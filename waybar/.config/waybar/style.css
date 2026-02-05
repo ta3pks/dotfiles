@@ -56,6 +56,18 @@ tooltip label {
     color: #ffffff;
 }
 
+#custom-prev-workspace,
+#custom-new-workspace {
+    padding: 0 8px;
+    color: #5c5c5c;
+}
+
+#custom-prev-workspace:hover,
+#custom-new-workspace:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
 /* Right side modules */
 #network,
 #custom-ping,
@@ -69,9 +81,35 @@ tooltip label {
     color: #ffffff;
 }
 
+/* Fixed widths to prevent shifting */
+#cpu {
+    min-width: 0;
+}
+
+#memory {
+    min-width: 130px;
+}
+
+#battery {
+    min-width: 150px;
+}
+
+#pulseaudio {
+    min-width: 50px;
+}
+
+#custom-ping {
+    min-width: 85px;
+}
+
 /* Module separators via margin */
 #network {
     margin-left: 4px;
+}
+
+/* Wifi toggle */
+#custom-wifi-toggle {
+    padding: 0 4px;
 }
 
 /* Network status colors */

@@ -41,7 +41,7 @@
 
     "custom/prev-workspace": {
         "exec": "min=$(swaymsg -t get_workspaces | jq '[.[].num] | min'); [ $min -gt 1 ] && echo '-' || echo ''",
-        "interval": 1,
+        "interval": 5,
         "tooltip": "Create workspace before first",
         "on-click": "swaymsg workspace number $(swaymsg -t get_workspaces | jq '[.[].num] | min - 1')"
     },
@@ -130,7 +130,7 @@
 
     "clock#date": {
         "interval": 60,
-        "format": "(w{:%V) %Y/%m/%d %a}",
+        "format": "(w%V) %Y/%m/%d %a",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "on-click": "gnome-calendar",
         "calendar": {

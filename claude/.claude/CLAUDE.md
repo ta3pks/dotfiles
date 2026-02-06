@@ -27,3 +27,11 @@
 - When facing 2+ independent tasks, use the Task tool to dispatch parallel agents
 - Maximize concurrent execution for independent operations (file reads, searches, API calls)
 - Only serialize operations that have true dependencies
+
+## Container Runtime
+
+**Always use `podman` instead of `docker`.**
+
+- Use `podman` for all container operations
+- Use `podman-compose` instead of `docker-compose`
+- Testcontainers work with podman via `DOCKER_HOST=unix:///run/user/1000/podman/podman.sock`

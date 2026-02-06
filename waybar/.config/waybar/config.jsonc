@@ -19,6 +19,8 @@
         "sway/language",
         "cpu",
         "memory",
+        "temperature#cpu",
+        "temperature#gpu",
         "battery",
         "pulseaudio",
         "clock#date",
@@ -99,6 +101,26 @@
         "interval": 5,
         "format": "💾 {percentage}% ({used}/{total})",
         "tooltip-format": "RAM: {used}/{total} ({percentage}%)\nSwap: {swapUsed}/{swapTotal}"
+    },
+
+    "temperature#cpu": {
+        "interval": 2,
+        "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+        "input-filename": "temp1_input",
+        "format": "🌡️ {temperatureC}°C",
+        "critical-threshold": 90,
+        "format-critical": "🔥 {temperatureC}°C",
+        "tooltip-format": "CPU: {temperatureC}°C"
+    },
+
+    "temperature#gpu": {
+        "interval": 2,
+        "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:08.1/0000:c4:00.0/hwmon",
+        "input-filename": "temp1_input",
+        "format": "🎮 {temperatureC}°C",
+        "critical-threshold": 85,
+        "format-critical": "🔥 {temperatureC}°C",
+        "tooltip-format": "GPU: {temperatureC}°C"
     },
 
     "battery": {

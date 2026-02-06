@@ -36,7 +36,7 @@
     },
 
     "custom/netspeed": {
-        "exec": "~/.local/bin/netspeed.sh",
+        "exec": "~/.local/bin/waybar.sh speed",
         "interval": 1,
         "tooltip": "Network speed"
     },

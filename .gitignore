@@ -100,3 +100,4 @@ nvim/.config/nvim/usage_data.json
 rust/.cargo/credentials.toml
 helix/.config/helix/runtime/grammars
 /.claude/
+/.serena/

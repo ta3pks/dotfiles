@@ -184,4 +184,9 @@ else
 	battery_pluggedin='⚡'
 fi
 
-echo "$network_status $network_speed | Ping: $ping ms | $current_layout | 🖥️ $cpu_usage | 💾 $memory_usage | $battery_pluggedin $battery_charge ($battery_time) ${battery_power}W | $sound_level | ($week_number) $date_and_week $day_name 🕘 $current_time"
+# Output format based on argument
+if [ "$1" = "speed" ]; then
+    echo "$network_speed"
+else
+    echo "$network_status $network_speed | Ping: $ping ms | $current_layout | 🖥️ $cpu_usage | 💾 $memory_usage | $battery_pluggedin $battery_charge ($battery_time) ${battery_power}W | $sound_level | ($week_number) $date_and_week $day_name 🕘 $current_time"
+fi

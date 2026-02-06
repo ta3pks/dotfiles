@@ -295,6 +295,6 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 # Using waybar for better performance and event-driven updates
-exec_always killall -q waybar; waybar
+exec waybar
 
 include /etc/sway/config.d/*

@@ -8,32 +8,28 @@
         "custom/prev-workspace",
         "sway/workspaces",
         "custom/new-workspace",
-        "sway/mode"
+        "sway/mode",
+        "custom/netspeed"
     ],
-    "modules-center": [],
+    "modules-center": ["clock#date", "clock#time"],
     "modules-right": [
         "custom/wifi-toggle",
         "network",
-        "custom/netspeed",
-        "custom/ping",
         "sway/language",
         "cpu",
         "memory",
-        "temperature#cpu",
-        "temperature#gpu",
-        "battery",
+        "custom/temp",
         "pulseaudio",
-        "clock#date",
-        "clock#time",
+        "battery",
         "tray",
         "custom/power-profile",
         "custom/power"
     ],
 
     "custom/wifi-toggle": {
-        "exec": "nmcli radio wifi | grep -q enabled && echo '📶' || echo '📵'",
+        "exec": "nmcli radio wifi | grep -q enabled && echo '' || echo '📵'",
         "interval": 2,
-        "tooltip": "Toggle WiFi (click to toggle)",
+        "tooltip": "WiFi is off (click to enable)",
         "on-click": "nmcli radio wifi $(nmcli radio wifi | grep -q enabled && echo off || echo on)"
     },
 
@@ -84,26 +80,20 @@
     },
 
     "sway/language": {
-        "format": "{short}",
+        "format": "⌨️ {short}",
         "tooltip-format": "{long}",
         "on-click": "swaymsg input '*' xkb_switch_layout next"
     },
 
     "network": {
         "interval": 1,
-        "format-wifi": "{essid} {ipaddr} ({signalStrength}%)",
-        "format-ethernet": "{ipaddr}",
-        "format-linked": "{ifname} (No IP)",
-        "format-disconnected": "No Connection",
-        "tooltip-format": "{ifname}: {ipaddr}/{cidr}\nGateway: {gwaddr}\n↓ {bandwidthDownBits}  ↑ {bandwidthUpBits}",
-        "on-click": "~/.local/bin/wifi-menu.sh"
-    },
-
-    "custom/ping": {
-        "exec": "timeout 2 ping -c 1 -W 1 1.1.1.1 2>/dev/null | awk -F'/' '/^rtt/{printf \"%.0f\", $5}' || echo 'N/A'",
-        "interval": 5,
-        "format": "Ping: {} ms",
-        "tooltip": "Latency to 1.1.1.1"
+        "format-wifi": "📶 {essid}",
+        "format-ethernet": "🌐 Wired",
+        "format-linked": "🔗 {ifname} (No IP)",
+        "format-disconnected": "❌ Disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}\nSignal: {signalStrength}%\nGateway: {gwaddr}\n↓ {bandwidthDownBits}  ↑ {bandwidthUpBits}",
+        "on-click": "~/.local/bin/wifi-menu.sh",
+        "on-click-right": "nmcli radio wifi $(nmcli radio wifi | grep -q enabled && echo off || echo on)"
     },
 
     "cpu": {
@@ -114,28 +104,14 @@
 
     "memory": {
         "interval": 5,
-        "format": "💾 {percentage}% ({used}/{total})",
+        "format": "💾 {percentage}%",
         "tooltip-format": "RAM: {used}/{total} ({percentage}%)\nSwap: {swapUsed}/{swapTotal}"
     },
 
-    "temperature#cpu": {
-        "interval": 2,
-        "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
-        "input-filename": "temp1_input",
-        "format": "🌡️ {temperatureC}°C",
-        "critical-threshold": 90,
-        "format-critical": "🔥 {temperatureC}°C",
-        "tooltip-format": "CPU: {temperatureC}°C"
-    },
-
-    "temperature#gpu": {
-        "interval": 2,
-        "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:08.1/0000:c4:00.0/hwmon",
-        "input-filename": "temp1_input",
-        "format": "🎮 {temperatureC}°C",
-        "critical-threshold": 85,
-        "format-critical": "🔥 {temperatureC}°C",
-        "tooltip-format": "GPU: {temperatureC}°C"
+    "custom/temp": {
+        "exec": "~/.local/bin/waybar-temp.sh",
+        "return-type": "json",
+        "interval": 2
     },
 
     "battery": {
@@ -144,13 +120,13 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{icon} {capacity}% ({time}) {power:.1f}W",
-        "format-charging": "🔌 {capacity}% ({time}) {power:.1f}W",
+        "format": "{icon} {capacity}% {power:.1f}W",
+        "format-charging": "🔌 {capacity}% {power:.1f}W",
         "format-plugged": "🔌 {capacity}% {power:.1f}W",
         "format-full": "🔋 {capacity}%",
         "format-icons": ["🪫", "🔋", "🔋", "🔋", "🔋"],
         "format-time": "{H}:{M}",
-        "tooltip-format": "{timeTo}\n{capacity}% - {power}W"
+        "tooltip-format": "{timeTo}\n{capacity}% - {power}W\nTime remaining: {time}"
     },
 
     "pulseaudio": {
@@ -166,7 +142,7 @@
 
     "clock#date": {
         "interval": 60,
-        "format": "W{:%V %Y/%m/%d %a}",
+        "format": "{:%d/%m/%Y %a}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "on-click": "gnome-calendar",
         "calendar": {

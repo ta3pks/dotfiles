@@ -25,7 +25,8 @@
         "pulseaudio",
         "clock#date",
         "clock#time",
-        "tray"
+        "tray",
+        "custom/power"
     ],
 
     "custom/wifi-toggle": {
@@ -56,6 +57,12 @@
     "tray": {
         "icon-size": 18,
         "spacing": 8
+    },
+
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": "Power Menu",
+        "on-click": "~/.local/bin/power-menu.sh"
     },
 
     "sway/workspaces": {

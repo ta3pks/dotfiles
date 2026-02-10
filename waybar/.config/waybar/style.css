@@ -7,7 +7,7 @@
 }
 
 window#waybar {
-    background-color: rgba(50, 50, 50, 0.2);
+    background-color: rgba(50, 50, 50, 0.4);
     color: #ffffff;
     border-bottom: none;
 }
@@ -180,6 +180,24 @@ tooltip label {
 /* Clock */
 #clock {
     font-weight: bold;
+}
+
+/* Power profile */
+#custom-power-profile {
+    padding: 0 8px;
+    font-size: 14px;
+}
+
+#custom-power-profile.performance {
+    color: #ff6b6b;
+}
+
+#custom-power-profile.balanced {
+    color: #ffd93d;
+}
+
+#custom-power-profile.lowpower {
+    color: #6bff6b;
 }
 
 /* Power button */

@@ -181,3 +181,15 @@ tooltip label {
 #clock {
     font-weight: bold;
 }
+
+/* Power button */
+#custom-power {
+    padding: 0 8px;
+    color: #eb4d4b;
+    font-size: 15px;
+}
+
+#custom-power:hover {
+    color: #ffffff;
+    background-color: #eb4d4b;
+}

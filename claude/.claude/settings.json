@@ -34,6 +34,9 @@
     "claude-memory-plugin@enhance": true,
     "double-shot-latte@superpowers-marketplace": true
   },
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
   "autoUpdatesChannel": "latest",
   "minimumVersion": "2.1.5"
 }

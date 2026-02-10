@@ -1,7 +1,7 @@
 /* Waybar style - matching original swaybar colors */
 
 * {
-    font-family: monospace;
+    font-family: monospace, "FiraCode Nerd Font";
     font-size: 13px;
     min-height: 0;
 }
@@ -116,6 +116,17 @@ tooltip label {
 
 #memory.critical {
     color: #eb4d4b;
+}
+
+/* Bluetooth */
+#custom-bluetooth {
+    padding: 0 8px;
+    color: #5c5c5c;
+    font-size: 18px;
+}
+
+#custom-bluetooth.connected {
+    color: #3498db;
 }
 
 /* Temperature states */

@@ -15,6 +15,7 @@
     "modules-right": [
         "custom/wifi-toggle",
         "network",
+        "custom/bluetooth",
         "sway/language",
         "cpu",
         "memory",
@@ -31,6 +32,14 @@
         "interval": 2,
         "tooltip": "WiFi is off (click to enable)",
         "on-click": "nmcli radio wifi $(nmcli radio wifi | grep -q enabled && echo off || echo on)"
+    },
+
+    "custom/bluetooth": {
+        "exec": "~/.local/bin/waybar-bluetooth.sh",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "bluetoothctl power $(bluetoothctl show | grep -q 'Powered: yes' && echo off || echo on)",
+        "on-click-right": "blueman-manager"
     },
 
     "custom/netspeed": {

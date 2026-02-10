@@ -28,7 +28,7 @@ while IFS=: read -r ssid signal security; do
 done <<< "$networks"
 
 # Show rofi menu
-chosen=$(echo -e "$formatted" | rofi -dmenu -i -p "WiFi" -theme-str 'window {width: 400px;}')
+chosen=$(echo -e "$formatted" | rofi -dmenu -i -p "WiFi" -me-select-entry '' -me-accept-entry 'MousePrimary' -theme-str 'window {width: 400px;} element {padding: 8px;}')
 
 [ -z "$chosen" ] && exit 0
 
@@ -54,7 +54,7 @@ fi
 # Check if network needs password
 security=$(echo "$chosen" | grep -oP '\[\K[^\]]+')
 if [ "$security" != "Open" ]; then
-    password=$(rofi -dmenu -p "Password for $ssid" -password -theme-str 'window {width: 400px;}')
+    password=$(rofi -dmenu -p "Password for $ssid" -password -me-select-entry '' -me-accept-entry 'MousePrimary' -theme-str 'window {width: 400px;} element {padding: 8px;}')
     [ -z "$password" ] && exit 0
     notify "Connecting to $ssid..."
     nmcli device wifi connect "$ssid" password "$password" && notify "Connected to $ssid" || notify "Failed to connect to $ssid"

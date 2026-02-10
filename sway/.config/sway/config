@@ -86,7 +86,7 @@ exec /home/nikos/dotfiles/local_bin/.local/bin/gesture-watchdog.sh
 #
     # Start a terminal
     bindsym $mod+Return exec $term
-    bindsym Alt+r exec rofi -show run
+    bindsym Alt+r exec rofi -show run -me-select-entry '' -me-accept-entry 'MousePrimary' -theme-str 'element {padding: 8px;}'
     bindsym Alt+v exec copyq show
 
     # Kill focused window
@@ -181,7 +181,7 @@ for_window [class=".*"] border none
 # Make pip windows sticky on all workspaces and position at top right
 for_window [title="Picture in picture"] exec /home/nikos/dotfiles/local_bin/.local/bin/position-pip.sh 800 600
 for_window [app_id="mpv"] exec /home/nikos/dotfiles/local_bin/.local/bin/position-pip.sh 800 600
-bindsym Alt+Space exec rofi -show window
+bindsym Alt+Space exec rofi -show window -me-select-entry '' -me-accept-entry 'MousePrimary' -theme-str 'element {padding: 8px;}'
 #
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits

@@ -26,6 +26,7 @@
         "clock#date",
         "clock#time",
         "tray",
+        "custom/power-profile",
         "custom/power"
     ],
 
@@ -57,6 +58,13 @@
     "tray": {
         "icon-size": 18,
         "spacing": 8
+    },
+
+    "custom/power-profile": {
+        "exec": "profile=$(asusctl profile get | head -1 | awk '{print $NF}'); case $profile in LowPower) echo '{\"text\": \"🔋\", \"tooltip\": \"LowPower\", \"class\": \"lowpower\"}';; Balanced) echo '{\"text\": \"⚖️\", \"tooltip\": \"Balanced\", \"class\": \"balanced\"}';; Performance) echo '{\"text\": \"🚀\", \"tooltip\": \"Performance\", \"class\": \"performance\"}';; esac",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "~/.local/bin/power-profile-menu.sh"
     },
 
     "custom/power": {

@@ -34,6 +34,6 @@
     "claude-memory-plugin@enhance": true,
     "double-shot-latte@superpowers-marketplace": true
   },
-  "autoUpdatesChannel": "stable",
+  "autoUpdatesChannel": "latest",
   "minimumVersion": "2.1.5"
 }

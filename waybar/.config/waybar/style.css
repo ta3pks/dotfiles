@@ -70,7 +70,7 @@ tooltip label {
 
 /* Right side modules */
 #network,
-#custom-ping,
+#custom-temp,
 #language,
 #cpu,
 #memory,
@@ -81,41 +81,14 @@ tooltip label {
     color: #ffffff;
 }
 
-/* Fixed widths to prevent shifting */
-#cpu {
-    min-width: 0;
-}
-
-#memory {
-    min-width: 130px;
-}
-
-#battery {
-    min-width: 150px;
-}
-
-#pulseaudio {
-    min-width: 50px;
-}
-
-#custom-ping {
-    min-width: 85px;
-}
-
 /* Module separators via margin */
 #network {
     margin-left: 4px;
 }
 
-/* Wifi toggle */
-#custom-wifi-toggle {
-    padding: 0 4px;
-}
-
 /* Network speed */
 #custom-netspeed {
     padding: 0 8px;
-    min-width: 130px;
 }
 
 /* Network status colors */
@@ -143,6 +116,15 @@ tooltip label {
 
 #memory.critical {
     color: #eb4d4b;
+}
+
+/* Temperature states */
+#custom-temp.critical {
+    color: #eb4d4b;
+}
+
+#custom-temp.warning {
+    color: #f39c12;
 }
 
 /* Battery states */
@@ -174,7 +156,6 @@ tooltip label {
 /* Language indicator */
 #language {
     font-weight: bold;
-    min-width: 20px;
 }
 
 /* Clock */

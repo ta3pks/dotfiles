@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
   "permissions": {
     "allow": [
       "Bash(tree:*)",
@@ -32,10 +35,8 @@
     "claude-notifications-go@claude-notifications-go": true,
     "claude-code-wakatime@wakatime": true,
     "claude-memory-plugin@enhance": true,
-    "double-shot-latte@superpowers-marketplace": true
-  },
-  "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+    "double-shot-latte@superpowers-marketplace": true,
+    "frontend-design@claude-code-plugins": true
   },
   "autoUpdatesChannel": "latest",
   "minimumVersion": "2.1.5"

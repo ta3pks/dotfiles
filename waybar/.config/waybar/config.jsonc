@@ -8,10 +8,9 @@
         "custom/prev-workspace",
         "sway/workspaces",
         "custom/new-workspace",
-        "sway/mode",
-        "custom/netspeed"
+        "sway/mode"
     ],
-    "modules-center": ["clock#date", "clock#time"],
+    "modules-center": ["clock#date", "clock#time", "custom/netspeed"],
     "modules-right": [
         "custom/wifi-toggle",
         "network",

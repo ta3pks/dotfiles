@@ -21,7 +21,7 @@
         "memory",
         "custom/temp",
         "pulseaudio",
-        "battery",
+        "custom/battery",
         "tray",
         "custom/power-profile",
         "custom/power"
@@ -127,19 +127,10 @@
         "interval": 2
     },
 
-    "battery": {
-        "interval": 10,
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}% {power:.1f}W",
-        "format-charging": "🔌 {capacity}% {power:.1f}W",
-        "format-plugged": "🔌 {capacity}% {power:.1f}W",
-        "format-full": "🔋 {capacity}%",
-        "format-icons": ["🪫", "🔋", "🔋", "🔋", "🔋"],
-        "format-time": "{H}:{M}",
-        "tooltip-format": "{timeTo}\n{capacity}% - {power}W\nTime remaining: {time}"
+    "custom/battery": {
+        "exec": "~/.local/bin/waybar-battery.sh",
+        "return-type": "json",
+        "interval": 10
     },
 
     "pulseaudio": {

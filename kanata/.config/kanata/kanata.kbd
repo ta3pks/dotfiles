@@ -1,0 +1,212 @@
+;; ╔══════════════════════════════════════════════════════════════════════╗
+;; ║  Kanata — Mirror Voyager Layout for Regular Keyboards              ║
+;; ╚══════════════════════════════════════════════════════════════════════╝
+;;
+;; Home row mods (bilateral): A/Ctrl S/Alt D/Gui F/Shift | H/Shift U/Ctrl I/Alt O/Gui
+;; Combos: D+F=Esc, J+K=Colon
+;; Tap dance: Esc tap=Esc, double=Underscore
+;; Layer-taps: B=Symbols, N=Nav
+;; Caps=Esc/Ctrl, Space=Space/Shift, LAlt=Alt/Fn, LMeta=Enter/Meta
+;; Repeat key on RAlt, Gaming layer toggle via Fn+G
+
+;; ── Global config ──────────────────────────────────────────────────────
+
+(defcfg
+  process-unmapped-keys yes
+  concurrent-tap-hold yes
+  linux-dev-names-exclude ("ZSA Technology Labs Voyager")
+  linux-continue-if-no-devs-found yes
+)
+
+;; ── Physical layout (standard ANSI) ───────────────────────────────────
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+;; ── Variables ──────────────────────────────────────────────────────────
+
+(defvar
+  ;; Default tapping terms
+  tt  200   ;; tap timeout
+  ht  170   ;; hold timeout
+
+  ;; Layer-tap timing (generous for B/N)
+  lt-tt 200
+  lt-ht 300
+
+  ;; Enter/Meta timing (snappy)
+  en-tt 150
+  en-ht 150
+
+  ;; Same-hand key lists for chordal hold protection
+  ;; When a same-hand key is pressed, the HRM fires tap immediately
+  left-hand-keys (
+    q w e r t
+    a s d f g
+    z x c v b
+  )
+  right-hand-keys (
+    y u i o p
+    h j k l ;
+    n m , . /
+  )
+)
+
+;; ── Fake keys (for nomods layer auto-return) ──────────────────────────
+
+(deffakekeys
+  to-base (layer-switch base)
+)
+
+;; ── Aliases ────────────────────────────────────────────────────────────
+
+(defalias
+  ;; Anti-misfire: on HRM tap, switch to plain keys; auto-return on idle
+  tap (multi
+    (layer-switch nomods)
+    (on-idle-fakekey to-base tap 20)
+  )
+
+  ;; ── Tap dance: Esc position ──
+  ;; Single tap = Esc, double tap = Underscore
+  tde (tap-dance 200 (esc S-min))
+
+  ;; ── Caps Lock: tap Esc / hold Ctrl ──
+  cap (tap-hold $tt $ht esc lctl)
+
+  ;; ── Left-hand home row mods (GASC) ──
+  ;; A = Ctrl, S = Alt, D = Gui, F = Shift
+  a (tap-hold-release-keys $tt $ht (multi a @tap) lctl $left-hand-keys)
+  s (tap-hold-release-keys $tt $ht (multi s @tap) lalt $left-hand-keys)
+  d (tap-hold-release-keys $tt $ht (multi d @tap) lmet $left-hand-keys)
+  f (tap-hold-release-keys $tt $ht (multi f @tap) lsft $left-hand-keys)
+
+  ;; ── Right-hand mods ──
+  ;; H = Shift (home row)
+  h (tap-hold-release-keys $tt $ht (multi h @tap) rsft $right-hand-keys)
+  ;; U = Ctrl, I = Alt, O = Gui (top row)
+  u (tap-hold-release-keys $tt $ht (multi u @tap) rctl $right-hand-keys)
+  i (tap-hold-release-keys $tt $ht (multi i @tap) ralt $right-hand-keys)
+  o (tap-hold-release-keys $tt $ht (multi o @tap) rmet $right-hand-keys)
+
+  ;; ── Layer-taps (generous 300ms hold) ──
+  ;; B hold = symbols/numpad layer
+  bl  (tap-hold-release $lt-tt $lt-ht b (layer-while-held symbols))
+  ;; N hold = navigation/media layer
+  nl  (tap-hold-release $lt-tt $lt-ht n (layer-while-held nav))
+
+  ;; ── Thumb cluster ──
+  ;; Space = tap Space / hold Shift
+  spc (tap-hold $tt $ht spc lsft)
+  ;; Left Meta = tap Enter / hold Meta
+  lmt (tap-hold $en-tt $en-ht ret lmet)
+  ;; Left Alt = tap Alt / hold Function layer
+  lal (tap-hold $tt $ht lalt (layer-while-held function))
+  ;; Right Meta = tap Enter / hold Meta
+  rmt (tap-hold $en-tt $en-ht ret rmet)
+
+  ;; ── Repeat key (repeats last output key) ──
+  rep rpt
+
+  ;; ── Gaming layer control ──
+  gam (layer-switch gaming)
+  bas (layer-switch base)
+)
+
+;; ── Combos ─────────────────────────────────────────────────────────────
+
+(defchordsv2
+  ;; D+F = Escape
+  ((d f) esc 50 first-release ())
+  ;; J+K = Colon (Shift+semicolon)
+  ((j k) (multi lsft ;) 50 first-release ())
+)
+
+;; ── Layer 0: Base (QWERTY + HRMs) ─────────────────────────────────────
+
+(deflayer base
+  @tde f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    @u   @i   @o   _    _    _    _
+  @cap @a   @s   @d   @f   _    @h   _    _    _    _    _    XX
+  _    _    _    _    _    @bl  @nl  _    _    _    _    _
+  _    @lmt @lal          @spc           @rep @rmt _
+)
+
+;; ── No-mods layer (prevents HRM cascades during fast typing) ──────────
+
+(deflayer nomods
+  @tde f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  @cap _    _    _    _    _    _    _    _    _    _    _    XX
+  _    _    _    _    _    @bl  @nl  _    _    _    _    _
+  _    @lmt @lal          @spc           @rep @rmt _
+)
+
+;; ── Layer 1: Symbols & Numpad (hold B) ─────────────────────────────────
+;;
+;;  Left:  ! @ # $ %     Right: = 7 8 9 *
+;;         ^ & ( ) bspc         | 4 5 6 - +
+;;         ~ { } [ ]            0 1 2 3 /
+;;  Number row → F1-F12                 Thumb: .
+
+(deflayer symbols
+  _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  _
+  _    S-1  S-2  S-3  S-4  S-5  =    7    8    9    S-8  _    _    _
+  _    S-6  S-7  S-9  S-0  bspc S-\  4    5    6    min  S-=  _
+  _    S-grv S-[ S-]  [    ]    0    1    2    3    /    _
+  _    _    _              _              .    _    _
+)
+
+;; ── Layer 2: Navigation & Media (hold N) ──────────────────────────────
+;;
+;;  Left:  brightness, volume, media
+;;  Right: Home PgUp PgDn End
+;;         Left Down Up   Right Del
+;;         (N)  Bspc Ins
+
+(deflayer nav
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    home pgup pgdn end  _    _    _    _
+  _    _    _    _    _    _    left down up   rght del  _    _
+  _    brdn brup vold volu mute _    bspc ins  _    _    _
+  _    _    _              _              _    _    _
+)
+
+;; ── Layer 3: Gaming (toggle via Fn+G, exit via CapsLock) ──────────────
+;;
+;;  Strips HRMs from ASDF, plain Space/Alt/Ctrl
+;;  CapsLock = return to base layer
+;;  Enter re-enabled
+
+(deflayer gaming
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  @bas a    s    d    f    _    _    _    _    _    _    _    ret
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    lmet lalt          spc            _    _    _
+)
+
+;; ── Function layer (hold LAlt) ────────────────────────────────────────
+;;
+;;  G = toggle gaming layer
+;;  F12 = live reload kanata config
+
+(deflayer function
+  _    _    _    _    _    _    _    _    _    _    _    _    lrld
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    @gam _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+)

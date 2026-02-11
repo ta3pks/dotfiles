@@ -22,10 +22,11 @@
 
 ## Parallel Execution
 
-**Always use parallel agents when possible.**
+**Always use agent teams (TeamCreate) whenever possible.**
 
-- When facing 2+ independent tasks, use the Task tool to dispatch parallel agents
-- Maximize concurrent execution for independent operations (file reads, searches, API calls)
+- When facing 2+ independent tasks, create a team and spawn teammates to work concurrently
+- Use TaskCreate to define work items and assign them to teammates
+- Maximize concurrent execution through team coordination
 - Only serialize operations that have true dependencies
 
 ## Container Runtime

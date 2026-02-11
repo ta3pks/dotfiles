@@ -74,7 +74,7 @@ tooltip label {
 #language,
 #cpu,
 #memory,
-#battery,
+#custom-battery,
 #pulseaudio,
 #clock {
     padding: 0 8px;
@@ -139,16 +139,15 @@ tooltip label {
 }
 
 /* Battery states */
-#battery.charging,
-#battery.plugged {
+#custom-battery.charging {
     color: #26de81;
 }
 
-#battery.warning:not(.charging) {
+#custom-battery.warning:not(.charging) {
     color: #f39c12;
 }
 
-#battery.critical:not(.charging) {
+#custom-battery.critical:not(.charging) {
     color: #eb4d4b;
     animation: blink 0.5s linear infinite alternate;
 }

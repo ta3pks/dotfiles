@@ -22,12 +22,13 @@
 
 ## Parallel Execution
 
-**Always use agent teams (TeamCreate) whenever possible.**
+**Always use agent teams (TeamCreate) whenever possible. NEVER use the `parallel` skill or `dispatching-parallel-agents` skill.**
 
 - When facing 2+ independent tasks, create a team and spawn teammates to work concurrently
 - Use TaskCreate to define work items and assign them to teammates
 - Maximize concurrent execution through team coordination
 - Only serialize operations that have true dependencies
+- Never use the `parallel` or `dispatching-parallel-agents` skills — always use TeamCreate instead
 
 ## Container Runtime
 

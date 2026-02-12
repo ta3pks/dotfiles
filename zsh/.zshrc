@@ -75,6 +75,7 @@ export ZSH_TMUX_AUTOSTART=false
 export ZSH_TMUX_UNICODE=true
 plugins=(tmux git asdf zoxide direnv encode64 fzf rust procs qrcode systemd thefuck vi-mode zsh-interactive-cd docker-compose jq wakatime)
 
+stty -ixon
 source $HOME/dotfiles/bashrc.sh
 source $ZSH/oh-my-zsh.sh
 source $HOME/.ssh/secret_env

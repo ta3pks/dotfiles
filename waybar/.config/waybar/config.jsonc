@@ -117,7 +117,8 @@
             "critical": 80
         },
         "format": "💾 {percentage}%",
-        "tooltip-format": "RAM: {used}/{total} ({percentage}%)\nSwap: {swapUsed}/{swapTotal}"
+        "tooltip-format": "RAM: {used}/{total} ({percentage}%)\nSwap: {swapUsed}/{swapTotal}",
+        "on-click": "killall -9 rust-analyzer 2>/dev/null; true"
     },
 
     "custom/temp": {

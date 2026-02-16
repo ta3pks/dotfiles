@@ -24,7 +24,7 @@
       "Bash(git status:*)",
       "Bash(pkill:*)"
     ],
-    "defaultMode": "plan"
+    "defaultMode": "bypassPermissions"
   },
   "statusLine": {
     "type": "command",
@@ -39,5 +39,5 @@
     "frontend-design@claude-code-plugins": true
   },
   "autoUpdatesChannel": "latest",
-  "minimumVersion": "2.1.5"
+  "skipDangerousModePermissionPrompt": true
 }

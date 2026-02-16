@@ -144,3 +144,4 @@ $URNETWORK_PROVIDER_INSTALL/bin:\
 
 [ -f "/home/nikos/.ghcup/env" ] && . "/home/nikos/.ghcup/env" # ghcup-env
 
+export PATH="$HOME/.npm-global/bin:$PATH"

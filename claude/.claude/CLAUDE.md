@@ -30,6 +30,14 @@
 - Only serialize operations that have true dependencies
 - Never use the `parallel` or `dispatching-parallel-agents` skills — always use TeamCreate instead
 
+## Subagent Model
+
+**Always use Opus for all subagents. NEVER downgrade to Haiku or Sonnet.**
+
+- When spawning subagents via the Task tool, either omit the `model` parameter (inherits Opus from parent) or explicitly set `model: "opus"`
+- Never use `model: "haiku"` or `model: "sonnet"` for any subagent, regardless of task complexity
+- This applies to all agent types: teammates, explorers, reviewers, specialists, etc.
+
 ## Container Runtime
 
 **Always use `podman` instead of `docker`.**

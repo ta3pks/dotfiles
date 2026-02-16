@@ -37,7 +37,7 @@
         "exec": "~/.local/bin/waybar-bluetooth.sh",
         "return-type": "json",
         "interval": 5,
-        "on-click": "bluetoothctl power $(bluetoothctl show | grep -q 'Powered: yes' && echo off || echo on)",
+        "on-click": "busctl set-property org.bluez /org/bluez/hci0 org.bluez.Adapter1 Powered b $(busctl get-property org.bluez /org/bluez/hci0 org.bluez.Adapter1 Powered | grep -q true && echo false || echo true)",
         "on-click-right": "blueman-manager"
     },
 

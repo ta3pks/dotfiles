@@ -117,6 +117,6 @@ ask_claude() {
 		--header "content-type: application/json" \
 		--data "{ \"model\": \"claude-3-7-sonnet-20250219\", \"max_tokens\": 1024, \"messages\": [ {\"role\": \"user\", \"content\": \"$1\" }]}"
 }
-alias claude="claude --dangerously-skip-permissions  --allow-dangerously-skip-permissions   --teammate-mode tmux "
+alias claude="CLAUDE_BYPASS_PERMISSIONS=1 claude --dangerously-skip-permissions  --allow-dangerously-skip-permissions   --teammate-mode tmux "
 alias o="opencode"
 alias or="opencode run"

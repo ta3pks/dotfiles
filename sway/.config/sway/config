@@ -42,6 +42,8 @@ output eDP-1 mode 1920x1200@180Hz scale 1
 exec /home/nikos/dotfiles/local_bin/.local/bin/cycle_background.sh /home/nikos/dotfiles/bg_images 10
 exec /home/nikos/.local/bin/hintsd
 exec copyq
+exec kdeconnectd
+exec kdeconnect-indicator
 # Touch gesture service for virtual keyboard with watchdog
 exec /home/nikos/dotfiles/local_bin/.local/bin/gesture-watchdog.sh
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)

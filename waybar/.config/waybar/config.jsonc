@@ -20,6 +20,7 @@
         "memory",
         "custom/temp",
         "pulseaudio",
+        "backlight",
         "custom/battery",
         "tray",
         "custom/power-profile",
@@ -141,7 +142,15 @@
         },
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "on-click-right": "pavucontrol",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
         "tooltip-format": "{desc}: {volume}%"
+    },
+
+    "backlight": {
+        "format": "☀️ {percent}%",
+        "on-scroll-up": "brightnessctl set +5%",
+        "on-scroll-down": "brightnessctl set 5%-"
     },
 
     "clock#date": {

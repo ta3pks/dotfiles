@@ -145,3 +145,7 @@ $URNETWORK_PROVIDER_INSTALL/bin:\
 [ -f "/home/nikos/.ghcup/env" ] && . "/home/nikos/.ghcup/env" # ghcup-env
 
 export PATH="$HOME/.npm-global/bin:$PATH"
+
+# OpenClaw Completion
+source "/home/nikos/.openclaw/completions/openclaw.zsh"
+fpath=(~/.zsh/completions $fpath)

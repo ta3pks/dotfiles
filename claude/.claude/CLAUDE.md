@@ -45,3 +45,8 @@
 - Use `podman` for all container operations
 - Use `podman-compose` instead of `docker-compose`
 - Testcontainers work with podman via `DOCKER_HOST=unix:///run/user/1000/podman/podman.sock`
+## Git Branch Workflow
+
+- **`dev` is the default working branch** - Always use `dev` as the goto branch
+- **Never touch main unless specifically instructed** - Main is release-only
+- **Squash merge dev to main** - When merging dev to main, always use squash merge

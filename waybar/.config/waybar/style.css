@@ -76,6 +76,7 @@ tooltip label {
 #memory,
 #custom-battery,
 #pulseaudio,
+#backlight,
 #clock {
     padding: 0 8px;
     color: #ffffff;

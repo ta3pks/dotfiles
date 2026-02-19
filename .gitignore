@@ -101,3 +101,4 @@ rust/.cargo/credentials.toml
 helix/.config/helix/runtime/grammars
 /.claude/
 /.serena/
+telemetry-id

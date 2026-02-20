@@ -3,7 +3,6 @@
     "position": "top",
     "height": 24,
     "spacing": 4,
-
     "modules-left": [
         "custom/prev-workspace",
         "sway/workspaces",
@@ -11,7 +10,12 @@
         "sway/mode",
         "custom/media"
     ],
-    "modules-center": ["custom/gammastep", "clock#date", "clock#time", "custom/netspeed"],
+    "modules-center": [
+        "custom/gammastep",
+        "clock#date",
+        "clock#time",
+        "custom/netspeed"
+    ],
     "modules-right": [
         "custom/wifi-toggle",
         "network",
@@ -27,21 +31,19 @@
         "custom/power-profile",
         "custom/power"
     ],
-
     "custom/gammastep": {
         "exec": "~/.local/bin/waybar-gammastep.sh",
         "return-type": "json",
         "interval": 2,
-        "on-click": "~/.local/bin/waybar-gammastep.sh toggle"
+        "on-click": "~/.local/bin/waybar-gammastep.sh toggle",
+        "on-click-right": "~/.local/bin/waybar-gammastep.sh force-night"
     },
-
     "custom/wifi-toggle": {
-        "exec": "nmcli radio wifi | grep -q enabled && echo '' || echo '📵'",
+        "exec": "nmcli radio wifi | grep -q enabled && echo '' || echo '\ud83d\udcf5'",
         "interval": 2,
         "tooltip": "WiFi is off (click to enable)",
         "on-click": "nmcli radio wifi $(nmcli radio wifi | grep -q enabled && echo off || echo on)"
     },
-
     "custom/bluetooth": {
         "exec": "~/.local/bin/waybar-bluetooth.sh",
         "return-type": "json",
@@ -49,25 +51,21 @@
         "on-click": "busctl set-property org.bluez /org/bluez/hci0 org.bluez.Adapter1 Powered b $(busctl get-property org.bluez /org/bluez/hci0 org.bluez.Adapter1 Powered | grep -q true && echo false || echo true)",
         "on-click-right": "blueman-manager"
     },
-
     "custom/netspeed": {
         "exec": "~/.local/bin/waybar.sh speed",
         "interval": 1,
         "tooltip": "Network speed"
     },
-
     "custom/prev-workspace": {
         "format": "-",
         "tooltip": "Create workspace before first (if min > 1)",
         "on-click": "min=$(swaymsg -t get_workspaces | jq '[.[].num] | min // 1'); [ $min -gt 1 ] && swaymsg workspace number $((min - 1))"
     },
-
     "custom/new-workspace": {
         "format": "+",
         "tooltip": "Create new workspace",
         "on-click": "swaymsg workspace number $(swaymsg -t get_workspaces | jq '[.[].num] | max // 0 | . + 1')"
     },
-
     "custom/media": {
         "exec": "~/.local/bin/waybar-media.sh",
         "interval": 2,
@@ -79,86 +77,78 @@
         "on-scroll-up": "playerctl $([ -f /tmp/waybar-media-player ] && echo \"-p $(cat /tmp/waybar-media-player)\") next",
         "on-scroll-down": "playerctl $([ -f /tmp/waybar-media-player ] && echo \"-p $(cat /tmp/waybar-media-player)\") previous"
     },
-
     "tray": {
         "icon-size": 18,
         "spacing": 8
     },
-
     "custom/power-profile": {
-        "exec": "profile=$(asusctl profile get | head -1 | awk '{print $NF}'); case $profile in LowPower) echo '{\"text\": \"🔋\", \"tooltip\": \"LowPower\", \"class\": \"lowpower\"}';; Balanced) echo '{\"text\": \"⚖️\", \"tooltip\": \"Balanced\", \"class\": \"balanced\"}';; Performance) echo '{\"text\": \"🚀\", \"tooltip\": \"Performance\", \"class\": \"performance\"}';; esac",
+        "exec": "profile=$(asusctl profile get | head -1 | awk '{print $NF}'); case $profile in LowPower) echo '{\"text\": \"\ud83d\udd0b\", \"tooltip\": \"LowPower\", \"class\": \"lowpower\"}';; Balanced) echo '{\"text\": \"\u2696\ufe0f\", \"tooltip\": \"Balanced\", \"class\": \"balanced\"}';; Performance) echo '{\"text\": \"\ud83d\ude80\", \"tooltip\": \"Performance\", \"class\": \"performance\"}';; esac",
         "return-type": "json",
         "interval": 5,
         "on-click": "~/.local/bin/power-profile-menu.sh"
     },
-
     "custom/power": {
-        "format": "⏻",
+        "format": "\u23fb",
         "tooltip": "Power Menu",
         "on-click": "~/.local/bin/power-menu.sh"
     },
-
     "sway/workspaces": {
         "disable-scroll": false,
         "all-outputs": true,
         "format": "{name}"
     },
-
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
-
     "sway/language": {
-        "format": "⌨️ {short}",
+        "format": "\u2328\ufe0f {short}",
         "tooltip-format": "{long}",
         "on-click": "swaymsg input '*' xkb_switch_layout next"
     },
-
     "network": {
         "interval": 1,
-        "format-wifi": "📶 {essid}",
-        "format-ethernet": "🌐 Wired",
-        "format-linked": "🔗 {ifname} (No IP)",
-        "format-disconnected": "❌ Disconnected",
-        "tooltip-format": "{ifname}: {ipaddr}/{cidr}\nSignal: {signalStrength}%\nGateway: {gwaddr}\n↓ {bandwidthDownBits}  ↑ {bandwidthUpBits}",
+        "format-wifi": "\ud83d\udcf6 {essid}",
+        "format-ethernet": "\ud83c\udf10 Wired",
+        "format-linked": "\ud83d\udd17 {ifname} (No IP)",
+        "format-disconnected": "\u274c Disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}\nSignal: {signalStrength}%\nGateway: {gwaddr}\n\u2193 {bandwidthDownBits}  \u2191 {bandwidthUpBits}",
         "on-click": "~/.local/bin/wifi-menu.sh",
         "on-click-right": "nmcli radio wifi $(nmcli radio wifi | grep -q enabled && echo off || echo on)"
     },
-
     "cpu": {
         "interval": 2,
-        "format": "🖥️ {usage}%",
+        "format": "\ud83d\udda5\ufe0f {usage}%",
         "tooltip-format": "CPU: {usage}%\n{avg_frequency} GHz"
     },
-
     "memory": {
         "interval": 5,
         "states": {
             "warning": 60,
             "critical": 80
         },
-        "format": "💾 {percentage}%",
+        "format": "\ud83d\udcbe {percentage}%",
         "tooltip-format": "RAM: {used}/{total} ({percentage}%)\nSwap: {swapUsed}/{swapTotal}",
         "on-click": "killall -9 rust-analyzer 2>/dev/null; true"
     },
-
     "custom/temp": {
         "exec": "~/.local/bin/waybar-temp.sh",
         "return-type": "json",
         "interval": 2
     },
-
     "custom/battery": {
         "exec": "~/.local/bin/waybar-battery.sh",
         "return-type": "json",
         "interval": 10
     },
-
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-muted": "🔇 {volume}%",
+        "format-muted": "\ud83d\udd07 {volume}%",
         "format-icons": {
-            "default": ["🔈", "🔉", "🔊"]
+            "default": [
+                "\ud83d\udd08",
+                "\ud83d\udd09",
+                "\ud83d\udd0a"
+            ]
         },
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "on-click-right": "pavucontrol",
@@ -166,13 +156,11 @@
         "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
         "tooltip-format": "{desc}: {volume}%"
     },
-
     "backlight": {
-        "format": "☀️ {percent}%",
+        "format": "\u2600\ufe0f {percent}%",
         "on-scroll-up": "brightnessctl set +5%",
         "on-scroll-down": "brightnessctl set 5%-"
     },
-
     "clock#date": {
         "interval": 60,
         "format": "{:%d/%m/%Y %a}",
@@ -190,7 +178,6 @@
             }
         }
     },
-
     "clock#time": {
         "interval": 1,
         "format": "{:%H:%M}",

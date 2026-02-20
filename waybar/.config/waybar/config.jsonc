@@ -10,7 +10,7 @@
         "custom/new-workspace",
         "sway/mode"
     ],
-    "modules-center": ["clock#date", "clock#time", "custom/netspeed"],
+    "modules-center": ["custom/gammastep", "clock#date", "clock#time", "custom/netspeed"],
     "modules-right": [
         "custom/wifi-toggle",
         "network",
@@ -26,6 +26,13 @@
         "custom/power-profile",
         "custom/power"
     ],
+
+    "custom/gammastep": {
+        "exec": "~/.local/bin/waybar-gammastep.sh",
+        "return-type": "json",
+        "interval": 2,
+        "on-click": "~/.local/bin/waybar-gammastep.sh toggle"
+    },
 
     "custom/wifi-toggle": {
         "exec": "nmcli radio wifi | grep -q enabled && echo '' || echo '📵'",

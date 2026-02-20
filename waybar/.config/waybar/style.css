@@ -203,3 +203,25 @@ tooltip label {
     color: #ffffff;
     background-color: #eb4d4b;
 }
+
+/* Gammastep (blue light filter) */
+#custom-gammastep {
+    padding: 0 8px;
+    font-size: 16px;
+}
+
+#custom-gammastep.night {
+    color: #f39c12;
+}
+
+#custom-gammastep.day {
+    color: #87ceeb;
+}
+
+#custom-gammastep.off {
+    color: #5c5c5c;
+}
+
+#custom-gammastep:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}

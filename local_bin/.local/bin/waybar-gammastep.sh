@@ -41,21 +41,23 @@ esac
 hour=$(date +%H)
 if [ "$hour" -ge 7 ] && [ "$hour" -lt 18 ]; then
     is_daytime=1
+    auto_temp="6500K"
 else
     is_daytime=0
+    auto_temp="3000K"
 fi
 
 # Output status for waybar
 if pgrep -x "gammastep" > /dev/null; then
     forced=$(cat "$STATUS_FILE" 2>/dev/null)
     if [ "$forced" = "day" ]; then
-        echo '{"text": "☀️", "tooltip": "FORCED DAY (6500K)\nLeft-click: off\nRight-click: → auto", "class": "forced-day"}'
+        echo "{\"text\": \"☀️\", \"tooltip\": \"FORCED DAY (6500K)\\nLeft-click: off\\nRight-click: → auto\", \"class\": \"forced-day\"}"
     elif [ "$forced" = "night" ]; then
-        echo '{"text": "🌙", "tooltip": "FORCED NIGHT (3000K)\nLeft-click: off\nRight-click: → forced day", "class": "forced-night"}'
+        echo "{\"text\": \"🌙\", \"tooltip\": \"FORCED NIGHT (3000K)\\nLeft-click: off\\nRight-click: → forced day\", \"class\": \"forced-night\"}"
     elif [ "$is_daytime" -eq 1 ]; then
-        echo '{"text": "☀️", "tooltip": "AUTO - Day mode\nLeft-click: off\nRight-click: → forced night", "class": "day"}'
+        echo "{\"text\": \"☀️\", \"tooltip\": \"AUTO - Day ($auto_temp)\\nLeft-click: off\\nRight-click: → forced night\", \"class\": \"day\"}"
     else
-        echo '{"text": "🌙", "tooltip": "AUTO - Night mode\nLeft-click: off\nRight-click: → forced night", "class": "night"}'
+        echo "{\"text\": \"🌙\", \"tooltip\": \"AUTO - Night ($auto_temp)\\nLeft-click: off\\nRight-click: → forced night\", \"class\": \"night\"}"
     fi
 else
     echo '{"text": "🔆", "tooltip": "OFF\nLeft-click: enable (auto)\nRight-click: → forced night", "class": "off"}'

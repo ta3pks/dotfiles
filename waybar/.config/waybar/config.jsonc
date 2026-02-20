@@ -8,7 +8,8 @@
         "custom/prev-workspace",
         "sway/workspaces",
         "custom/new-workspace",
-        "sway/mode"
+        "sway/mode",
+        "custom/media"
     ],
     "modules-center": ["custom/gammastep", "clock#date", "clock#time", "custom/netspeed"],
     "modules-right": [
@@ -65,6 +66,18 @@
         "format": "+",
         "tooltip": "Create new workspace",
         "on-click": "swaymsg workspace number $(swaymsg -t get_workspaces | jq '[.[].num] | max // 0 | . + 1')"
+    },
+
+    "custom/media": {
+        "exec": "~/.local/bin/waybar-media.sh",
+        "interval": 2,
+        "max-length": 60,
+        "signal": 8,
+        "on-click": "playerctl $([ -f /tmp/waybar-media-player ] && echo \"-p $(cat /tmp/waybar-media-player)\") play-pause",
+        "on-click-middle": "~/.local/bin/waybar-media-cycle.sh",
+        "on-click-right": "~/.local/bin/waybar-media-select.sh",
+        "on-scroll-up": "playerctl $([ -f /tmp/waybar-media-player ] && echo \"-p $(cat /tmp/waybar-media-player)\") next",
+        "on-scroll-down": "playerctl $([ -f /tmp/waybar-media-player ] && echo \"-p $(cat /tmp/waybar-media-player)\") previous"
     },
 
     "tray": {

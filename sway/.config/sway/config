@@ -44,6 +44,7 @@ exec /home/nikos/.local/bin/hintsd
 exec copyq
 exec kdeconnectd
 exec kdeconnect-indicator
+exec gammastep
 # Touch gesture service for virtual keyboard with watchdog
 exec /home/nikos/dotfiles/local_bin/.local/bin/gesture-watchdog.sh
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)

@@ -36,7 +36,7 @@
         "return-type": "json",
         "interval": 2,
         "on-click": "~/.local/bin/waybar-gammastep.sh toggle",
-        "on-click-right": "~/.local/bin/waybar-gammastep.sh force-night"
+        "on-click-right": "~/.local/bin/waybar-gammastep.sh cycle-mode"
     },
     "custom/wifi-toggle": {
         "exec": "nmcli radio wifi | grep -q enabled && echo '' || echo '\ud83d\udcf5'",

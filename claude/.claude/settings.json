@@ -29,7 +29,7 @@
   "model": "opus",
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/statusline.sh"
+    "command": "node \"/home/nikos/.claude/hooks/gsd-statusline.js\""
   },
   "enabledPlugins": {
     "superpowers@superpowers-marketplace": true,
@@ -39,5 +39,27 @@
     "frontend-design@claude-code-plugins": true
   },
   "autoUpdatesChannel": "latest",
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/home/nikos/.claude/hooks/gsd-check-update.js\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/home/nikos/.claude/hooks/gsd-context-monitor.js\""
+          }
+        ]
+      }
+    ]
+  }
 }

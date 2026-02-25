@@ -146,6 +146,4 @@ $URNETWORK_PROVIDER_INSTALL/bin:\
 
 export PATH="$HOME/.npm-global/bin:$PATH"
 
-# OpenClaw Completion
-source "/home/nikos/.openclaw/completions/openclaw.zsh"
 fpath=(~/.zsh/completions $fpath)

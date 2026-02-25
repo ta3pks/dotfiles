@@ -120,3 +120,9 @@ ask_claude() {
 alias claude="CLAUDE_BYPASS_PERMISSIONS=1 claude --dangerously-skip-permissions  --allow-dangerously-skip-permissions   --teammate-mode tmux "
 alias o="opencode"
 alias or="opencode run"
+
+vllm() {
+    HSA_OVERRIDE_GFX_VERSION=11.0.0 python3.12 -m vllm.entrypoints.openai.api_server \
+        --model "$1" \
+        --gpu-memory-utilization 0.9
+}

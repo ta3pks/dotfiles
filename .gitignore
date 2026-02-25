@@ -102,3 +102,4 @@ helix/.config/helix/runtime/grammars
 /.claude/
 /.serena/
 telemetry-id
+.serena/project.yml

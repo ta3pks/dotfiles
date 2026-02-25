@@ -8,7 +8,8 @@
         "sway/workspaces",
         "custom/new-workspace",
         "sway/mode",
-        "custom/media"
+        "custom/media",
+        "custom/glm-quota"
     ],
     "modules-center": [
         "custom/gammastep",
@@ -194,5 +195,11 @@
                 "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
             }
         }
+    },
+    "custom/glm-quota": {
+        "exec": "~/.config/waybar/scripts/glm-quota.py",
+        "return-type": "json",
+        "interval": 300,
+        "on-click": "~/.config/waybar/scripts/glm-quota.py"
     }
 }

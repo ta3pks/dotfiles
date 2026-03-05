@@ -83,7 +83,7 @@
         "spacing": 8
     },
     "custom/power-profile": {
-        "exec": "profile=$(asusctl profile get | head -1 | awk '{print $NF}'); case $profile in LowPower) echo '{\"text\": \"\ud83d\udd0b\", \"tooltip\": \"LowPower\", \"class\": \"lowpower\"}';; Balanced) echo '{\"text\": \"\u2696\ufe0f\", \"tooltip\": \"Balanced\", \"class\": \"balanced\"}';; Performance) echo '{\"text\": \"\ud83d\ude80\", \"tooltip\": \"Performance\", \"class\": \"performance\"}';; esac",
+        "exec": "profile=$(asusctl profile get | head -1 | awk '{print $NF}'); case $profile in Quiet) echo '{\"text\": \"\ud83d\udd0b\", \"tooltip\": \"Quiet\", \"class\": \"lowpower\"}';; Balanced) echo '{\"text\": \"\u2696\ufe0f\", \"tooltip\": \"Balanced\", \"class\": \"balanced\"}';; Performance) echo '{\"text\": \"\ud83d\ude80\", \"tooltip\": \"Performance\", \"class\": \"performance\"}';; esac",
         "return-type": "json",
         "interval": 5,
         "on-click": "~/.local/bin/power-profile-menu.sh"

@@ -104,12 +104,12 @@
   ;; ── Thumb cluster ──
   ;; Space = tap Space / hold Shift
   spc (tap-hold $tt $ht spc lsft)
-  ;; Left Meta = tap Enter / hold Meta
-  lmt (tap-hold $en-tt $en-ht ret lmet)
-  ;; Left Alt = tap Alt / hold Function layer
-  lal (tap-hold $tt $ht lalt (layer-while-held function))
-  ;; Right Meta = tap Enter / hold Meta
-  rmt (tap-hold $en-tt $en-ht ret rmet)
+  ;; Left Meta = Meta only
+  lmt lmet
+  ;; Left Alt = tap Enter / hold Alt
+  lal (tap-hold $en-tt $en-ht ret lalt)
+  ;; Right Meta = Meta only
+  rmt rmet
 
   ;; ── Repeat key (repeats last output key) ──
   rep rpt
@@ -120,12 +120,9 @@
 )
 
 ;; ── Combos ─────────────────────────────────────────────────────────────
-
 (defchordsv2
-  ;; D+F = Escape
-  ((d f) esc 50 first-release ())
-  ;; J+K = Colon (Shift+semicolon)
-  ((j k) (multi lsft ;) 50 first-release ())
+  (d f) esc 50 first-release ()
+  (j k) (macro S-;) 50 first-release ()
 )
 
 ;; ── Layer 0: Base (QWERTY + HRMs) ─────────────────────────────────────

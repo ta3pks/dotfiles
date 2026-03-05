@@ -147,3 +147,6 @@ $URNETWORK_PROVIDER_INSTALL/bin:\
 export PATH="$HOME/.npm-global/bin:$PATH"
 
 fpath=(~/.zsh/completions $fpath)
+
+# OpenFang
+export PATH=/home/nikos/.openfang/bin:$PATH

@@ -27,19 +27,6 @@
     "defaultMode": "bypassPermissions"
   },
   "model": "opus",
-  "statusLine": {
-    "type": "command",
-    "command": "node \"/home/nikos/.claude/hooks/gsd-statusline.js\""
-  },
-  "enabledPlugins": {
-    "superpowers@superpowers-marketplace": true,
-    "claude-notifications-go@claude-notifications-go": true,
-    "claude-code-wakatime@wakatime": true,
-    "claude-memory-plugin@enhance": true,
-    "frontend-design@claude-code-plugins": true
-  },
-  "autoUpdatesChannel": "latest",
-  "skipDangerousModePermissionPrompt": true,
   "hooks": {
     "SessionStart": [
       {
@@ -61,5 +48,18 @@
         ]
       }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "node \"/home/nikos/.claude/hooks/gsd-statusline.js\""
+  },
+  "enabledPlugins": {
+    "superpowers@superpowers-marketplace": true,
+    "claude-notifications-go@claude-notifications-go": true,
+    "claude-code-wakatime@wakatime": true,
+    "claude-memory-plugin@enhance": true,
+    "frontend-design@claude-code-plugins": true
+  },
+  "autoUpdatesChannel": "latest",
+  "skipDangerousModePermissionPrompt": true
 }

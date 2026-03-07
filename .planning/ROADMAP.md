@@ -26,12 +26,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   1. User can scan repository and find no hardcoded secrets in version control
   2. User can verify all common secret patterns are covered by .gitignore
   3. User can reference a documented strategy for handling sensitive values (env vars, credential files)
-**Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
-- [ ] 01-01: Audit repository for secrets and sensitive data
-- [ ] 01-02: Update .gitignore with comprehensive secret patterns
-- [ ] 01-03: Document secret handling strategy
+- [ ] 01-01-PLAN.md — Audit repository for hardcoded secrets using gitleaks
+- [ ] 01-02-PLAN.md — Update .gitignore with comprehensive secret patterns
+- [ ] 01-03-PLAN.md — Document secret handling strategy in README
 
 ### Phase 2: Documentation & Organization
 **Goal**: Users can understand, navigate, and verify the repository structure

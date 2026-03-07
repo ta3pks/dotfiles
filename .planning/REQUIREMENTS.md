@@ -69,18 +69,18 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DOC-01 | Phase 2 | Pending |
-| DOC-02 | Phase 2 | Pending |
-| DOC-03 | Phase 2 | Pending |
-| AUTO-01 | Phase 3 | Pending |
-| AUTO-02 | Phase 3 | Pending |
-| AUTO-03 | Phase 3 | Pending |
-| SEC-01 | Phase 1 | Pending |
-| SEC-02 | Phase 1 | Pending |
-| SEC-03 | Phase 1 | Pending |
-| ORG-01 | Phase 4 | Pending |
-| ORG-02 | Phase 4 | Pending |
-| ORG-03 | Phase 4 | Pending |
+| SEC-01 | Phase 1: Security Audit | Pending |
+| SEC-02 | Phase 1: Security Audit | Pending |
+| SEC-03 | Phase 1: Security Audit | Pending |
+| DOC-01 | Phase 2: Documentation & Organization | Pending |
+| DOC-02 | Phase 2: Documentation & Organization | Pending |
+| DOC-03 | Phase 2: Documentation & Organization | Pending |
+| ORG-01 | Phase 2: Documentation & Organization | Pending |
+| ORG-02 | Phase 2: Documentation & Organization | Pending |
+| ORG-03 | Phase 2: Documentation & Organization | Pending |
+| AUTO-01 | Phase 3: Bootstrap Automation | Pending |
+| AUTO-02 | Phase 3: Bootstrap Automation | Pending |
+| AUTO-03 | Phase 3: Bootstrap Automation | Pending |
 
 **Coverage:**
 - v1 requirements: 12 total

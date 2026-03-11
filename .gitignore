@@ -103,3 +103,72 @@ helix/.config/helix/runtime/grammars
 /.serena/
 telemetry-id
 .serena/project.yml
+
+# ========================================
+# Secrets and Credentials
+# ========================================
+
+# Private keys and certificates
+*.pem
+*.key
+*.crt
+id_rsa*
+id_ed25519*
+*.ppk
+
+# Environment files (may contain secrets)
+.env
+.env.*
+!.env.example
+.env.local
+.env.*.local
+
+# Token and secret patterns
+*_token
+*_secret
+*credentials*
+API_KEY*
+SECRET_*
+PASSWORD*
+
+# KeePass databases
+*.kdbx
+*.kdbx.*
+
+# ========================================
+# AI Tool Configs (may contain API keys)
+# ========================================
+
+.anthropic/
+.cursor/
+.aider*
+.claude/
+.opencode/
+
+# ========================================
+# Shell History (may contain secrets)
+# ========================================
+
+*_history
+.bash_history
+.zsh_history
+.history
+.sh_history
+
+# ========================================
+# SSH Configuration
+# ========================================
+
+.ssh/
+ssh_config
+known_hosts
+config/.ssh/
+
+# ========================================
+# Cloud Provider Credentials
+# ========================================
+
+.aws/
+.gcp/
+.azure/
+.config/gcloud/

@@ -77,7 +77,7 @@ ${_BOLD}USAGE:${_RESET}
 
 ${_BOLD}OPTIONS:${_RESET}
     --dry-run               Preview changes without creating symlinks
-    --undo                  Remove symlinks and restore backups (stub)
+    --undo                  Remove symlinks and restore backups via manifest
     --all                   Select all tools (non-interactive)
     --essential             Select essential tools only (non-interactive)
     --conflict=MODE         Conflict strategy: overwrite, backup, skip
@@ -144,11 +144,89 @@ if [[ "$HELP" -eq 1 ]]; then
 fi
 
 # ---------------------------------------------------------------------------
-# Undo stub (implemented in Plan 02)
+# Undo — remove symlinks and restore backups using manifest
 # ---------------------------------------------------------------------------
 if [[ "$UNDO" -eq 1 ]]; then
-    log_warn "Undo functionality will be implemented in a future update."
-    log_warn "To manually undo, remove symlinks listed in: $MANIFEST_FILE"
+    if [[ ! -f "$MANIFEST_FILE" ]]; then
+        log_error "No manifest found. Nothing to undo."
+        exit 1
+    fi
+
+    # Check for empty manifest
+    if [[ ! -s "$MANIFEST_FILE" ]]; then
+        log_info "Nothing to undo (manifest is empty)."
+        rm -f "$MANIFEST_FILE"
+        exit 0
+    fi
+
+    undo_removed=0
+    undo_restored=0
+    undo_skipped=0
+
+    # Process manifest in reverse order (newest first)
+    while IFS='|' read -r target source; do
+        [[ -z "$target" ]] && continue
+
+        if [[ ! -L "$target" ]] && [[ ! -e "$target" ]]; then
+            # Symlink no longer exists
+            log_warn "Already removed, skipping: $target"
+            ((undo_skipped++)) || true
+            continue
+        fi
+
+        if [[ -L "$target" ]]; then
+            current_target=$(readlink -f "$target" 2>/dev/null || echo "")
+            # Check symlink points into dotfiles repo
+            if [[ "$current_target" != "$SCRIPT_DIR"* ]]; then
+                log_warn "Symlink changed (not pointing to dotfiles), skipping: $target"
+                ((undo_skipped++)) || true
+                continue
+            fi
+
+            if [[ "$DRY_RUN" -eq 1 ]]; then
+                log_dry "Would remove symlink: $target"
+            else
+                rm "$target"
+                log_info "Removed symlink: $target"
+            fi
+            ((undo_removed++)) || true
+        else
+            # Not a symlink — was manually changed
+            log_warn "Not a symlink (manually changed), skipping: $target"
+            ((undo_skipped++)) || true
+            continue
+        fi
+
+        # Check for backup to restore
+        if [[ -e "${target}.bak" ]]; then
+            if [[ "$DRY_RUN" -eq 1 ]]; then
+                log_dry "Would restore backup: ${target}.bak -> $target"
+            else
+                mv "${target}.bak" "$target"
+                log_info "Restored backup: ${target}.bak -> $target"
+            fi
+            ((undo_restored++)) || true
+        fi
+    done < <(tac "$MANIFEST_FILE")
+
+    # Summary
+    echo ""
+    printf "${_BOLD}========== Undo Summary ==========${_RESET}\n"
+    if [[ "$DRY_RUN" -eq 1 ]]; then
+        printf "${_BLUE}(Dry run — no changes were made)${_RESET}\n"
+    fi
+    printf "  Symlinks removed:  %d\n" "$undo_removed"
+    printf "  Backups restored:  %d\n" "$undo_restored"
+    printf "  Skipped:           %d\n" "$undo_skipped"
+    echo ""
+
+    # Remove manifest after successful undo (not in dry-run)
+    if [[ "$DRY_RUN" -eq 0 ]]; then
+        rm -f "$MANIFEST_FILE"
+        log_info "Removed manifest: $MANIFEST_FILE"
+    fi
+
+    log_info "Undo complete."
     exit 0
 fi
 

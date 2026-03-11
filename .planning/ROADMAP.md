@@ -38,16 +38,16 @@ Plans:
 **Depends on**: Phase 1
 **Requirements**: DOC-01, DOC-02, DOC-03, ORG-01, ORG-02, ORG-03
 **Success Criteria** (what must be TRUE):
-  1. User can install dotfiles by following README instructions without guessing
-  2. User can quickly locate any tool's configuration by reading the structure documentation
-  3. User can verify prerequisites are installed before running setup
-  4. User can understand the XDG-compliant symlink strategy used
-**Plans**: TBD
+   1. User can install dotfiles by following README instructions without guessing
+   2. User can quickly locate any tool's configuration by reading the structure documentation
+   3. User can verify prerequisites are installed before running setup
+   4. User can understand the XDG-compliant symlink strategy used
+**Plans:** 3 plans
 
 Plans:
-- [ ] 02-01: Create comprehensive README with installation instructions
-- [ ] 02-02: Document repository structure and per-tool directories
-- [ ] 02-03: Document symlink strategy and XDG compliance
+- [ ] 02-01-PLAN.md — Enhanced README with comprehensive sections (DOC-01, DOC-02, DOC-03, ORG-03)
+- [ ] 02-02-PLAN.md — Per-tool README files in key directories (ORG-02)
+- [ ] 02-03-PLAN.md — Supporting docs: ADRs, philosophy, XDG compliance (ORG-01)
 
 ### Phase 3: Bootstrap Automation
 **Goal**: Users can set up their complete environment with a single command

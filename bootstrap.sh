@@ -35,12 +35,12 @@ COUNT_ERRORED=0
 # Color helpers (respect NO_COLOR)
 # ---------------------------------------------------------------------------
 if [[ -z "${NO_COLOR:-}" ]] && [[ -t 1 ]]; then
-    _RED='\033[0;31m'
-    _GREEN='\033[0;32m'
-    _YELLOW='\033[0;33m'
-    _BLUE='\033[0;34m'
-    _BOLD='\033[1m'
-    _RESET='\033[0m'
+    _RED=$'\033[0;31m'
+    _GREEN=$'\033[0;32m'
+    _YELLOW=$'\033[0;33m'
+    _BLUE=$'\033[0;34m'
+    _BOLD=$'\033[1m'
+    _RESET=$'\033[0m'
 else
     _RED='' _GREEN='' _YELLOW='' _BLUE='' _BOLD='' _RESET=''
 fi
@@ -464,7 +464,7 @@ create_symlink() {
 
     # Verify source exists
     if [[ ! -e "$abs_src" ]]; then
-        log_warn "Source does not exist, skipping: $abs_src"
+        log_warn "Source not found: $abs_src — skipping"
         ((COUNT_ERRORED++)) || true
         return
     fi
@@ -490,7 +490,15 @@ create_symlink() {
         local expected_target
         expected_target=$(readlink -f "$abs_src" 2>/dev/null || echo "$abs_src")
 
-        if [[ "$current_target" == "$expected_target" ]]; then
+        # Handle broken/dangling symlink
+        if [[ -z "$current_target" ]] || [[ ! -e "$dest_expanded" ]]; then
+            if [[ "$DRY_RUN" -eq 1 ]]; then
+                log_dry "Would remove dangling symlink: $dest_expanded"
+            else
+                rm "$dest_expanded"
+                log_warn "Removed dangling symlink: $dest_expanded"
+            fi
+        elif [[ "$current_target" == "$expected_target" ]]; then
             if [[ "$DRY_RUN" -eq 1 ]]; then
                 log_dry "Would skip: $dest_expanded (already linked)"
             else
@@ -608,51 +616,42 @@ printf "  Errors:    %d\n" "$COUNT_ERRORED"
 echo ""
 
 # ---------------------------------------------------------------------------
-# Verification (skip in dry-run mode)
+# Verification — use manifest to verify all created symlinks
 # ---------------------------------------------------------------------------
-if [[ "$DRY_RUN" -eq 0 ]]; then
+if [[ "$DRY_RUN" -eq 0 ]] && [[ -f "$MANIFEST_FILE" ]]; then
     log_info "Verifying symlinks..."
+    verify_total=0
+    verify_ok=0
     verify_errors=0
 
-    for tool in "${SELECTED_TOOLS[@]}"; do
-        local mapping_count
-        mapping_count=$(jq ".tools.\"$tool\".symlinks.mappings | length" "$PREREQ_FILE")
+    while IFS='|' read -r target source; do
+        [[ -z "$target" ]] && continue
+        ((verify_total++)) || true
 
-        for (( i=0; i<mapping_count; i++ )); do
-            local src dest
-            src=$(jq -r ".tools.\"$tool\".symlinks.mappings[$i].src" "$PREREQ_FILE")
-            dest=$(jq -r ".tools.\"$tool\".symlinks.mappings[$i].dest" "$PREREQ_FILE")
+        if [[ -L "$target" ]]; then
+            actual=$(readlink -f "$target" 2>/dev/null || echo "")
+            expected=$(readlink -f "$source" 2>/dev/null || echo "$source")
 
-            # Skip glob patterns for verification (individual files were verified during creation)
-            if [[ "$src" == *'*' ]]; then
-                continue
-            fi
-
-            local dest_expanded
-            dest_expanded=$(expand_tilde "$dest")
-            local abs_src="${SCRIPT_DIR}/${src}"
-
-            if [[ -L "$dest_expanded" ]]; then
-                local actual
-                actual=$(readlink -f "$dest_expanded" 2>/dev/null || echo "")
-                local expected
-                expected=$(readlink -f "$abs_src" 2>/dev/null || echo "$abs_src")
-
-                if [[ "$actual" != "$expected" ]]; then
-                    log_error "Verification failed: $dest_expanded -> $actual (expected $expected)"
-                    ((verify_errors++)) || true
-                fi
-            elif [[ "$CONFLICT_STRATEGY" != "skip" ]]; then
-                log_error "Verification failed: $dest_expanded is not a symlink"
+            if [[ "$actual" == "$expected" ]]; then
+                ((verify_ok++)) || true
+            else
+                log_error "Verification failed: $target -> $actual (expected $expected)"
                 ((verify_errors++)) || true
             fi
-        done
-    done
+        elif [[ "$CONFLICT_STRATEGY" == "skip" ]]; then
+            # Skipped entries won't be in manifest, but be safe
+            ((verify_ok++)) || true
+        else
+            log_error "Verification failed: $target is not a symlink"
+            ((verify_errors++)) || true
+        fi
+    done < "$MANIFEST_FILE"
 
-    if [[ "$verify_errors" -eq 0 ]]; then
-        log_info "All symlinks verified successfully."
-    else
+    log_info "Verified: ${verify_ok}/${verify_total} symlinks correct"
+
+    if [[ "$verify_errors" -gt 0 ]]; then
         log_error "$verify_errors symlink(s) failed verification."
+        exit 1
     fi
 fi
 

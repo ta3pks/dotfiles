@@ -1,0 +1,314 @@
+{
+  "core": {
+    "jq": {
+      "check": "command -v jq",
+      "description": "JSON processor (required by bootstrap)"
+    },
+    "whiptail": {
+      "check": "command -v whiptail",
+      "description": "TUI dialog tool (required by bootstrap)"
+    }
+  },
+  "tools": {
+    "zsh": {
+      "category": "essential",
+      "check": "command -v zsh",
+      "description": "Z Shell",
+      "symlinks": {
+        "type": "home",
+        "mappings": [
+          { "src": "zsh/.zshrc", "dest": "~/.zshrc" },
+          { "src": "zsh/.bash_aliases", "dest": "~/.bash_aliases" }
+        ]
+      }
+    },
+    "git": {
+      "category": "essential",
+      "check": "command -v git",
+      "description": "Git version control",
+      "symlinks": {
+        "type": "home",
+        "mappings": [
+          { "src": "git/.gitconfig", "dest": "~/.gitconfig" },
+          { "src": "git/.gitignore_global", "dest": "~/.gitignore_global" }
+        ]
+      }
+    },
+    "nvim": {
+      "category": "essential",
+      "check": "command -v nvim",
+      "description": "Neovim editor (LazyVim)",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "nvim/.config/nvim", "dest": "~/.config/nvim" }
+        ]
+      }
+    },
+    "tmux": {
+      "category": "essential",
+      "check": "command -v tmux",
+      "description": "Terminal multiplexer",
+      "symlinks": {
+        "type": "home",
+        "mappings": [
+          { "src": "tmux/.tmux.conf", "dest": "~/.tmux.conf" },
+          { "src": "tmux/.tmux", "dest": "~/.tmux" }
+        ]
+      }
+    },
+    "local_bin": {
+      "category": "essential",
+      "check": "true",
+      "description": "Custom scripts (~/.local/bin)",
+      "symlinks": {
+        "type": "nested",
+        "mappings": [
+          { "src": "local_bin/.local/bin/*", "dest": "~/.local/bin/" }
+        ]
+      }
+    },
+    "aider": {
+      "category": "optional",
+      "check": "command -v aider",
+      "description": "AI pair programming tool",
+      "symlinks": {
+        "type": "home",
+        "mappings": [
+          { "src": "aider/.aider.conf.yml", "dest": "~/.aider.conf.yml" }
+        ]
+      }
+    },
+    "coc": {
+      "category": "optional",
+      "check": "true",
+      "description": "Conquer of Completion (Vim)",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "coc/.config/coc", "dest": "~/.config/coc" }
+        ]
+      }
+    },
+    "espanso": {
+      "category": "optional",
+      "check": "command -v espanso",
+      "description": "Text expander",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "espanso/.config/espanso", "dest": "~/.config/espanso" }
+        ]
+      }
+    },
+    "flameshot": {
+      "category": "optional",
+      "check": "command -v flameshot",
+      "description": "Screenshot tool",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "flameshot/.config/flameshot", "dest": "~/.config/flameshot" }
+        ]
+      }
+    },
+    "fusuma": {
+      "category": "optional",
+      "check": "command -v fusuma",
+      "description": "Touchpad gesture recognizer",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "fusuma/.config/fusuma", "dest": "~/.config/fusuma" }
+        ]
+      }
+    },
+    "gammastep": {
+      "category": "optional",
+      "check": "command -v gammastep",
+      "description": "Color temperature adjuster",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "gammastep/.config/gammastep", "dest": "~/.config/gammastep" }
+        ]
+      }
+    },
+    "ghostty": {
+      "category": "optional",
+      "check": "command -v ghostty",
+      "description": "Ghostty terminal emulator",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "ghostty/.config/ghostty", "dest": "~/.config/ghostty" }
+        ]
+      }
+    },
+    "hints": {
+      "category": "optional",
+      "check": "true",
+      "description": "Hints configuration",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "hints/.config/hints", "dest": "~/.config/hints" }
+        ]
+      }
+    },
+    "kanata": {
+      "category": "optional",
+      "check": "command -v kanata",
+      "description": "Keyboard remapping (alternative)",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "kanata/.config/kanata", "dest": "~/.config/kanata" }
+        ]
+      }
+    },
+    "kilo": {
+      "category": "optional",
+      "check": "true",
+      "description": "Kilo text editor config",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "kilo/.config/kilo", "dest": "~/.config/kilo" }
+        ]
+      }
+    },
+    "kitty": {
+      "category": "optional",
+      "check": "command -v kitty",
+      "description": "Kitty terminal emulator",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "kitty/.config/kitty", "dest": "~/.config/kitty" }
+        ]
+      }
+    },
+    "kmonad": {
+      "category": "optional",
+      "check": "command -v kmonad",
+      "description": "Advanced keyboard remapping",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "kmonad/.config/kmonad", "dest": "~/.config/kmonad" }
+        ]
+      }
+    },
+    "mpv": {
+      "category": "optional",
+      "check": "command -v mpv",
+      "description": "Media player",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "mpv/.config/mpv", "dest": "~/.config/mpv" }
+        ]
+      }
+    },
+    "opencode": {
+      "category": "optional",
+      "check": "command -v opencode",
+      "description": "AI coding environment",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "opencode/.config/opencode", "dest": "~/.config/opencode" }
+        ]
+      }
+    },
+    "rio": {
+      "category": "optional",
+      "check": "command -v rio",
+      "description": "Rio terminal emulator",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "rio/.config/rio", "dest": "~/.config/rio" }
+        ]
+      }
+    },
+    "rust": {
+      "category": "optional",
+      "check": "command -v rustc",
+      "description": "Rust toolchain config",
+      "symlinks": {
+        "type": "nested",
+        "mappings": [
+          { "src": "rust/.cargo/config.toml", "dest": "~/.cargo/config.toml" }
+        ]
+      }
+    },
+    "sketchybar": {
+      "category": "optional",
+      "check": "command -v sketchybar",
+      "description": "macOS menu bar customization",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "sketchybar/.config/sketchybar", "dest": "~/.config/sketchybar" }
+        ]
+      }
+    },
+    "skhd": {
+      "category": "optional",
+      "check": "command -v skhd",
+      "description": "macOS hotkey daemon",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "skhd/.config/skhd", "dest": "~/.config/skhd" }
+        ]
+      }
+    },
+    "sway": {
+      "category": "optional",
+      "check": "command -v sway",
+      "description": "Wayland tiling compositor",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "sway/.config/sway", "dest": "~/.config/sway" }
+        ]
+      }
+    },
+    "systemd_user_files": {
+      "category": "optional",
+      "check": "command -v systemctl",
+      "description": "Systemd user services (Ollama, Syncthing)",
+      "symlinks": {
+        "type": "nested",
+        "mappings": [
+          { "src": "systemd_user_files/.config/systemd/user/*", "dest": "~/.config/systemd/user/" }
+        ]
+      }
+    },
+    "waybar": {
+      "category": "optional",
+      "check": "command -v waybar",
+      "description": "Wayland status bar",
+      "symlinks": {
+        "type": "directory",
+        "mappings": [
+          { "src": "waybar/.config/waybar", "dest": "~/.config/waybar" }
+        ]
+      }
+    },
+    "yabai": {
+      "category": "optional",
+      "check": "command -v yabai",
+      "description": "macOS tiling window manager",
+      "symlinks": {
+        "type": "home",
+        "mappings": [
+          { "src": "yabai/.yabairc", "dest": "~/.yabairc" }
+        ]
+      }
+    }
+  }
+}

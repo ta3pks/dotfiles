@@ -57,12 +57,12 @@ Plans:
   1. User can run `./bootstrap.sh` and complete setup without errors
   2. User can verify all expected symlinks exist in correct locations after bootstrap
   3. User can run bootstrap script multiple times safely without duplicate or broken symlinks
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 03-01: Create bootstrap script with symlink creation
-- [ ] 03-02: Add idempotency and error handling
-- [ ] 03-03: Test bootstrap on fresh environment
+- [ ] 03-01-PLAN.md — Core bootstrap script + prerequisites.json (AUTO-01, AUTO-02)
+- [ ] 03-02-PLAN.md — Undo, dry-run, manifest tracking, idempotency hardening (AUTO-03)
+- [ ] 03-03-PLAN.md — Test suite and validation (AUTO-01, AUTO-02, AUTO-03)
 
 ## Progress
 

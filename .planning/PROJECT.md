@@ -2,11 +2,21 @@
 
 ## What This Is
 
-A personal Linux development environment configuration repository with automated bootstrap, comprehensive documentation, and security hardening. Manages shell, editor, window manager, terminal emulator, and AI-powered development tools using manual symlinks (no GNU stow).
+A personal Linux development environment configuration repository with automated bootstrap, comprehensive documentation, security hardening, and AI memory management. Manages shell, editor, window manager, terminal emulator, and AI-powered development tools using manual symlinks (no GNU stow).
 
 ## Core Value
 
 Users can quickly understand, maintain, and replicate the setup without breaking symlinks.
+
+## Current Milestone: v2.0 Memory System
+
+**Goal:** Build a CLI-independent persistent memory system for AI coding assistants using vector database storage.
+
+**Target features:**
+- Vector database for semantic memory storage
+- Local Ollama embeddings for privacy
+- Works with any AI tool (OpenCode, Claude Code, Aider, Cursor)
+- Remembers code patterns, decisions, conversation context, cross-project knowledge
 
 ## Requirements
 
@@ -27,7 +37,7 @@ Users can quickly understand, maintain, and replicate the setup without breaking
 
 ### Active
 
-(Empty — ready for v2 requirements)
+(To be defined for v2.0)
 
 ### Out of Scope
 
@@ -37,6 +47,7 @@ Users can quickly understand, maintain, and replicate the setup without breaking
 | chezmoi/yadm migration | Manual symlink approach is optimal |
 | GUI configuration | Defeats CLI/automation purpose |
 | Mobile app | Web-first, mobile later |
+| Cloud-only storage | Privacy requires local-first approach |
 
 ## Context
 
@@ -59,6 +70,7 @@ Users can quickly understand, maintain, and replicate the setup without breaking
 - **Structure**: Manual symlinks — Changing folder locations breaks links
 - **Compatibility**: Keep existing configs working
 - **Documentation**: Keep docs accurate as tools evolve
+- **Privacy**: Local-first, no cloud API calls for sensitive data
 
 ## Key Decisions
 
@@ -72,4 +84,4 @@ Users can quickly understand, maintain, and replicate the setup without breaking
 | XDG ~/.config convention | Standard Linux location | ✓ Good |
 
 ---
-*Last updated: 2026-03-11 after v1.0 milestone completion*
+*Last updated: 2026-03-12 after starting v2.0 milestone*

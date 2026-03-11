@@ -48,7 +48,22 @@ fi
 log_info()  { printf "${_GREEN}[INFO]${_RESET}  %s\n" "$*"; }
 log_warn()  { printf "${_YELLOW}[WARN]${_RESET}  %s\n" "$*"; }
 log_error() { printf "${_RED}[ERROR]${_RESET} %s\n" "$*" >&2; }
-log_dry()   { printf "${_BLUE}[DRY]${_RESET}   %s\n" "$*"; }
+log_dry()   { printf "${_BLUE}[DRY-RUN]${_RESET} %s\n" "$*"; }
+
+# ---------------------------------------------------------------------------
+# Manifest tracking
+# ---------------------------------------------------------------------------
+manifest_record() {
+    local target="$1"
+    local source="$2"
+    # Remove existing entry for this target (dedup/update) then append
+    if [[ -f "$MANIFEST_FILE" ]]; then
+        local tmp="${MANIFEST_FILE}.tmp"
+        grep -v "^${target}|" "$MANIFEST_FILE" > "$tmp" 2>/dev/null || true
+        mv "$tmp" "$MANIFEST_FILE"
+    fi
+    echo "${target}|${source}" >> "$MANIFEST_FILE"
+}
 
 # ---------------------------------------------------------------------------
 # Usage
@@ -344,7 +359,7 @@ handle_conflict() {
         overwrite|backup)
             local backup="${target}.bak"
             if [[ "$DRY_RUN" -eq 1 ]]; then
-                log_dry "Would back up: $target -> $backup"
+                log_dry "Would backup: $target -> $backup"
             else
                 mv "$target" "$backup"
                 log_info "Backed up: $target -> $backup"
@@ -354,7 +369,7 @@ handle_conflict() {
             ;;
         skip)
             if [[ "$DRY_RUN" -eq 1 ]]; then
-                log_dry "Would skip: $target (conflict)"
+                log_dry "Conflict: $target exists (strategy: skip)"
             else
                 log_warn "Skipped: $target (exists, conflict strategy: skip)"
             fi
@@ -399,7 +414,7 @@ create_symlink() {
 
         if [[ "$current_target" == "$expected_target" ]]; then
             if [[ "$DRY_RUN" -eq 1 ]]; then
-                log_dry "Already linked: $dest_expanded -> $abs_src"
+                log_dry "Would skip: $dest_expanded (already linked)"
             else
                 log_info "Already linked: $dest_expanded"
             fi
@@ -429,6 +444,7 @@ create_symlink() {
     else
         ln $ln_flags "$abs_src" "$dest_expanded"
         log_info "Linked: $dest_expanded -> $abs_src"
+        manifest_record "$dest_expanded" "$abs_src"
     fi
     ((COUNT_LINKED++)) || true
 }

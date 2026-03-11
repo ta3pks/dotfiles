@@ -60,7 +60,7 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Core bootstrap script + prerequisites.json (AUTO-01, AUTO-02)
+- [x] 03-01-PLAN.md — Core bootstrap script + prerequisites.json (AUTO-01, AUTO-02)
 - [ ] 03-02-PLAN.md — Undo, dry-run, manifest tracking, idempotency hardening (AUTO-03)
 - [ ] 03-03-PLAN.md — Test suite and validation (AUTO-01, AUTO-02, AUTO-03)
 
@@ -73,7 +73,7 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. Security Audit | 0/3 | Not started | - |
 | 2. Documentation & Organization | 0/3 | Not started | - |
-| 3. Bootstrap Automation | 0/3 | Not started | - |
+| 3. Bootstrap Automation | 1/3 | In progress | - |
 
 ---
 *Roadmap created: 2026-03-08*

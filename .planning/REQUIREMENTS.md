@@ -72,34 +72,40 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| MEM-01 | TBD | Pending |
-| MEM-02 | TBD | Pending |
-| MEM-03 | TBD | Pending |
-| MEM-04 | TBD | Pending |
-| MEM-05 | TBD | Pending |
-| VEC-01 | TBD | Pending |
-| VEC-02 | TBD | Pending |
-| VEC-03 | TBD | Pending |
-| EMB-01 | TBD | Pending |
-| EMB-02 | TBD | Pending |
-| EMB-03 | TBD | Pending |
-| CLI-01 | TBD | Pending |
-| CLI-02 | TBD | Pending |
-| CLI-03 | TBD | Pending |
-| CLI-04 | TBD | Pending |
-| CLI-05 | TBD | Pending |
-| INT-01 | TBD | Pending |
-| INT-02 | TBD | Pending |
-| INT-03 | TBD | Pending |
-| INT-04 | TBD | Pending |
-| DATA-01 | TBD | Pending |
-| DATA-02 | TBD | Pending |
-| DATA-03 | TBD | Pending |
+| MEM-01 | Phase 5 | Pending |
+| MEM-02 | Phase 5 | Pending |
+| MEM-03 | Phase 5 | Pending |
+| MEM-04 | Phase 5 | Pending |
+| MEM-05 | Phase 5 | Pending |
+| VEC-01 | Phase 4 | Pending |
+| VEC-02 | Phase 4 | Pending |
+| VEC-03 | Phase 4 | Pending |
+| EMB-01 | Phase 4 | Pending |
+| EMB-02 | Phase 4 | Pending |
+| EMB-03 | Phase 4 | Pending |
+| CLI-01 | Phase 5 | Pending |
+| CLI-02 | Phase 5 | Pending |
+| CLI-03 | Phase 5 | Pending |
+| CLI-04 | Phase 5 | Pending |
+| CLI-05 | Phase 5 | Pending |
+| INT-01 | Phase 6 | Pending |
+| INT-02 | Phase 6 | Pending |
+| INT-03 | Phase 6 | Pending |
+| INT-04 | Phase 6 | Pending |
+| DATA-01 | Phase 7 | Pending |
+| DATA-02 | Phase 7 | Pending |
+| DATA-03 | Phase 7 | Pending |
 
 **Coverage:**
-- v2 requirements: 22 total
-- Mapped to phases: 0
-- Unmapped: 22 ⚠️
+- v2 requirements: 23 total
+- Mapped to phases: 23
+- Unmapped: 0 ✓
+
+**Phase Summary:**
+- Phase 4 (Storage Foundation): VEC-01, VEC-02, VEC-03, EMB-01, EMB-02, EMB-03 (6)
+- Phase 5 (Memory CLI): CLI-01, CLI-02, CLI-03, CLI-04, CLI-05, MEM-01, MEM-02, MEM-03, MEM-04, MEM-05 (10)
+- Phase 6 (AI Integration): INT-01, INT-02, INT-03, INT-04 (4)
+- Phase 7 (Data Management): DATA-01, DATA-02, DATA-03 (3)
 
 ---
 *Requirements defined: 2026-03-12*

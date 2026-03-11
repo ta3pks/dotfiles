@@ -2,50 +2,74 @@
 
 ## What This Is
 
-A personal Linux development environment configuration repository. Manages shell, editor, window manager, terminal emulator, and AI-powered development tools without using GNU stow. Files are organized by tool and linked manually to The repository is includes configuration files for shell, editors, window managers, terminal emulators, and AI-powered development tools.
+A personal Linux development environment configuration repository with automated bootstrap, comprehensive documentation, and security hardening. Manages shell, editor, window manager, terminal emulator, and AI-powered development tools using manual symlinks (no GNU stow).
 
 ## Core Value
 
-Users (including my future self and can quickly understand, maintain, and replicate my setup without breaking stow symlinks.
+Users can quickly understand, maintain, and replicate the setup without breaking symlinks.
 
 ## Requirements
 
 ### Validated
 
-- ✓ Shell environment (zsh with Oh My Zsh, bashrc.sh) — existing
-- ✓ Editor (Neovim - LazyVim-based configuration — existing
-- ✓ Window management (Sway, Yabai, — existing
-- ✓ Input & keyboard (kmonad, kanata, espanso) — existing
-- ✓ Text expansion (espanso) — existing
-- ✓ System services (systemd_user_files/) — existing
+- ✓ SEC-01: No hardcoded secrets in version control — v1.0
+- ✓ SEC-02: .gitignore covers all secret patterns — v1.0
+- ✓ SEC-03: Secret handling strategy documented — v1.0
+- ✓ DOC-01: README has clear installation instructions — v1.0
+- ✓ DOC-02: README explains repository structure — v1.0
+- ✓ DOC-03: README documents prerequisites — v1.0
+- ✓ AUTO-01: Bootstrap script runs without errors — v1.0
+- ✓ AUTO-02: Bootstrap script creates all symlinks — v1.0
+- ✓ AUTO-03: Bootstrap script is idempotent — v1.0
+- ✓ ORG-01: Configs follow XDG convention — v1.0
+- ✓ ORG-02: Per-tool directories maintained — v1.0
+- ✓ ORG-03: Symlink strategy documented — v1.0
 
 ### Active
 
-- [ ] Document existing tools and configs systematically
-- [ ] Create reference docs for how things work
-- [ ] Maintain stow-compatible folder structure
+(Empty — ready for v2 requirements)
 
 ### Out of Scope
 
-- Mobile app — web-first, mobile later
-- GNU stow or alternative — stow is the strict requirement, must be preserved
+| Feature | Reason |
+|---------|--------|
+| GNU Stow | Project explicitly avoids it |
+| chezmoi/yadm migration | Manual symlink approach is optimal |
+| GUI configuration | Defeats CLI/automation purpose |
+| Mobile app | Web-first, mobile later |
 
 ## Context
 
-Existing codebase with 47 directories, 47 entries. Uses git submodules for external themes (kitty themes, TPM). Heavy integration with AI tools (OpenCode, Aider, Ollama local models. Key technologies: Lua (Neovim),  Rust, Shell (zsh/bash), Python scripts.
+**Shipped v1.0** with 109,761 LOC (shell, markdown, json, lua, rust).
+
+**Tech stack:**
+- Shell: bootstrap.sh, zsh, bash
+- Editor: Neovim (LazyVim)
+- AI: OpenCode (micode framework), Aider, Ollama
+- Window: Sway (Wayland), Yabai (macOS)
+- Input: kmonad, kanata, espanso
+
+**Key artifacts:**
+- `bootstrap.sh` — Interactive setup with --dry-run, --undo
+- `prerequisites.json` — 27 tools with symlink mappings
+- `test_bootstrap.sh` — 13 automated test cases
 
 ## Constraints
 
-- **Structure**: Must maintain stow-compatible hierarchy — Changing folder locations breaks stow symlinks
-- **Compatibility**: Keep existing configs working — don't break user workflows
-- **Documentation**: Keep docs accurate and current tool versions change
+- **Structure**: Manual symlinks — Changing folder locations breaks links
+- **Compatibility**: Keep existing configs working
+- **Documentation**: Keep docs accurate as tools evolve
 
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
+| Manual symlinks over GNU stow | Explicit control, no magic | ✓ Good |
 | LazyVim for Neovim | June 2025 migration | ✓ Good |
-| Micode framework for OpenCode | September 2025 | — Pending |
+| Micode framework for OpenCode | September 2025 | ✓ Good |
+| Manifest-driven bootstrap | Track all symlinks for undo | ✓ Good |
+| ANSI-C quoting for colors | Fix escape sequence handling | ✓ Good |
+| XDG ~/.config convention | Standard Linux location | ✓ Good |
 
 ---
-*Last updated: 2026-03-07 after initialization*
+*Last updated: 2026-03-11 after v1.0 milestone completion*

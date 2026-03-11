@@ -1,81 +1,33 @@
 # Roadmap: Dotfiles Repository
 
-## Overview
+## Milestones
 
-Transform a mature but undocumented dotfiles repository into a well-documented, secure, and easily reproducible development environment. The journey starts with security (ensuring no secrets are exposed), then documents the existing structure, and finally adds automation for one-command setup.
+- ✅ **v1.0 MVP** — Phases 1-3 (shipped 2026-03-11)
 
 ## Phases
 
-**Phase Numbering:**
-- Integer phases (1, 2, 3): Planned milestone work
-- Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
+<details>
+<summary>✅ v1.0 MVP (Phases 1-3) — SHIPPED 2026-03-11</summary>
 
-Decimal phases appear between their surrounding integers in numeric order.
+- [x] Phase 1: Security Audit (4/4 plans) — completed 2026-03-11
+- [x] Phase 2: Documentation & Organization (3/3 plans) — completed 2026-03-11
+- [x] Phase 3: Bootstrap Automation (3/3 plans) — completed 2026-03-11
 
-- [ ] **Phase 1: Security Audit** - Remove secrets and establish protection patterns
-- [ ] **Phase 2: Documentation & Organization** - Document structure and symlink strategy
-- [ ] **Phase 3: Bootstrap Automation** - Create idempotent setup script
+**Key accomplishments:**
+- Security hardening with Gitleaks integration
+- Comprehensive documentation (README + 8 per-tool READMEs)
+- Bootstrap automation with manifest tracking, --dry-run, --undo
+- 13 automated test cases for bootstrap functionality
 
-## Phase Details
-
-### Phase 1: Security Audit
-**Goal**: Repository is free of secrets and protected against future credential exposure
-**Depends on**: Nothing (first phase)
-**Requirements**: SEC-01, SEC-02, SEC-03
-**Success Criteria** (what must be TRUE):
-  1. User can scan repository and find no hardcoded secrets in version control
-  2. User can verify all common secret patterns are covered by .gitignore
-  3. User can reference a documented strategy for handling sensitive values (env vars, credential files)
-**Plans:** 3 plans
-
-Plans:
-- [ ] 01-01-PLAN.md — Audit repository for hardcoded secrets using gitleaks
-- [ ] 01-02-PLAN.md — Update .gitignore with comprehensive secret patterns
-- [ ] 01-03-PLAN.md — Document secret handling strategy in README
-
-### Phase 2: Documentation & Organization
-**Goal**: Users can understand, navigate, and verify the repository structure
-**Depends on**: Phase 1
-**Requirements**: DOC-01, DOC-02, DOC-03, ORG-01, ORG-02, ORG-03
-**Success Criteria** (what must be TRUE):
-   1. User can install dotfiles by following README instructions without guessing
-   2. User can quickly locate any tool's configuration by reading the structure documentation
-   3. User can verify prerequisites are installed before running setup
-   4. User can understand the XDG-compliant symlink strategy used
-**Plans:** 3 plans
-
-Plans:
-- [ ] 02-01-PLAN.md — Enhanced README with comprehensive sections (DOC-01, DOC-02, DOC-03, ORG-03)
-- [ ] 02-02-PLAN.md — Per-tool README files in key directories (ORG-02)
-- [ ] 02-03-PLAN.md — Supporting docs: ADRs, philosophy, XDG compliance (ORG-01)
-
-### Phase 3: Bootstrap Automation
-**Goal**: Users can set up their complete environment with a single command
-**Depends on**: Phase 2
-**Requirements**: AUTO-01, AUTO-02, AUTO-03
-**Success Criteria** (what must be TRUE):
-  1. User can run `./bootstrap.sh` and complete setup without errors
-  2. User can verify all expected symlinks exist in correct locations after bootstrap
-  3. User can run bootstrap script multiple times safely without duplicate or broken symlinks
-**Plans**: 3 plans
-
-Plans:
-- [x] 03-01-PLAN.md — Core bootstrap script + prerequisites.json (AUTO-01, AUTO-02)
-- [ ] 03-02-PLAN.md — Undo, dry-run, manifest tracking, idempotency hardening (AUTO-03)
-- [ ] 03-03-PLAN.md — Test suite and validation (AUTO-01, AUTO-02, AUTO-03)
+</details>
 
 ## Progress
 
-**Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3
-
-| Phase | Plans Complete | Status | Completed |
-|-------|----------------|--------|-----------|
-| 1. Security Audit | 0/3 | Not started | - |
-| 2. Documentation & Organization | 0/3 | Not started | - |
-| 3. Bootstrap Automation | 1/3 | In progress | - |
+| Phase | Milestone | Plans Complete | Status | Completed |
+|-------|-----------|----------------|--------|-----------|
+| 1. Security Audit | v1.0 | 4/4 | Complete | 2026-03-11 |
+| 2. Documentation & Organization | v1.0 | 3/3 | Complete | 2026-03-11 |
+| 3. Bootstrap Automation | v1.0 | 3/3 | Complete | 2026-03-11 |
 
 ---
-*Roadmap created: 2026-03-08*
-*Depth: quick (3 phases)*
-*Coverage: 12/12 requirements mapped*
+*See `.planning/milestones/v1.0-ROADMAP.md` for full milestone details.*

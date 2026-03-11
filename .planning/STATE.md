@@ -1,68 +1,58 @@
 # Project State
 
-## Project Reference
-
-See: .planning/PROJECT.md (updated 2026-03-07)
-
-**Core value:** Users can quickly understand, maintain, and replicate my setup without breaking stow symlinks
-**Current focus:** Security Audit
-
-## Current Position
-
-Phase: 3 of 3 (Bootstrap Automation)
-Plan: 2 of 3 in current phase
-Status: In Progress
-Last activity: 2026-03-11 — Verified 03-02 bootstrap enhancements (dry-run, undo, manifest)
-
-Progress: [████████░░] 80%
-
-## Performance Metrics
-
-**Velocity:**
-- Total plans completed: 8
-- Average duration: ~5 min
-- Total execution time: ~0.7 hours
-
-**By Phase:**
-
-| Phase | Plans | Total | Avg/Plan |
-|-------|-------|-------|----------|
-| 1. Security Audit | 3/3 | ~15 min | ~5 min |
-| 2. Documentation & Organization | 3/3 | ~15 min | ~5 min |
-| 3. Bootstrap Automation | 2/3 | 8 min | 4 min |
-
-**Recent Trend:**
-- Last 5 plans: 03-01 (4 min), 03-02 (4 min)
-- Trend: stable
-
-*Updated after each plan completion*
-| Phase 03-bootstrap-automation P03 | 5 min | 2 tasks | 1 files |
-
-## Accumulated Context
-
-### Decisions
-
-Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
-
-- Roadmap: Consolidated to 3 phases (quick depth) combining Documentation + Organization
-- 03-01: Manifest-driven symlink creation with 3 types (directory, home, nested/glob)
-- 03-01: Yabai uses home symlink type since it lacks .config directory structure
-- 03-02: All bootstrap enhancements (dry-run, undo, manifest, idempotency) verified working
-
-### Pending Todos
-
-None yet.
-
-### Blockers/Concerns
-
-None yet.
-
-## Session Continuity
-
-Last session: 2026-03-11
-Stopped at: Completed 03-02-PLAN.md (bootstrap enhancements verification)
-Resume file: None
+**Status:** Milestone v1.0 Complete
+**Last Activity:** 2026-03-11
+**Current Phase:** None (ready for next milestone)
 
 ---
-*State initialized: 2026-03-08*
+
+## Project Reference
+
+See: .planning/PROJECT.md (updated 2026-03-11)
+
+**Core value:** Users can quickly understand, maintain, and replicate the setup without breaking symlinks.
+**Current focus:** Ready for v2 planning
+
+---
+
+## Position
+
+**Milestone:** v1.0 MVP — SHIPPED
+**Phase:** All phases complete
+**Plan:** All plans complete
+
+---
+
+## Session History
+
+### 2026-03-11: v1.0 Milestone Completion
+
+- Completed Phase 3: Bootstrap Automation (plans 01-03)
+- Fixed color escape handling in bootstrap.sh (ANSI-C quoting)
+- Archived milestone to `.planning/milestones/`
+- Updated PROJECT.md with full evolution review
+- All 12 v1 requirements validated
+
+---
+
+## Decisions
+
+| Decision | Date | Rationale |
+|----------|------|-----------|
+| Manual symlinks over GNU stow | Initial | Explicit control, no magic |
+| LazyVim for Neovim | 2025-06 | Modern Lua-based config |
+| Micode framework for OpenCode | 2025-09 | Multi-agent orchestration |
+| Manifest-driven bootstrap | 2026-03 | Track symlinks for undo |
+| ANSI-C quoting for colors | 2026-03-11 | Fix escape sequence handling |
+
+---
+
+## Blockers
+
+None
+
+---
+
+## Next Actions
+
+Run `/gsd-new-milestone` to start v2 planning.

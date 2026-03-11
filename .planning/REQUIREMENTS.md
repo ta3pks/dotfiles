@@ -13,8 +13,8 @@
 
 ### Automation
 
-- [ ] **AUTO-01**: Bootstrap script exists and runs without errors
-- [ ] **AUTO-02**: Bootstrap script creates all necessary symlinks
+- [x] **AUTO-01**: Bootstrap script exists and runs without errors
+- [x] **AUTO-02**: Bootstrap script creates all necessary symlinks
 - [ ] **AUTO-03**: Bootstrap script is idempotent (safe to run multiple times)
 
 ### Security
@@ -78,8 +78,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ORG-01 | Phase 2: Documentation & Organization | Pending |
 | ORG-02 | Phase 2: Documentation & Organization | Pending |
 | ORG-03 | Phase 2: Documentation & Organization | Pending |
-| AUTO-01 | Phase 3: Bootstrap Automation | Pending |
-| AUTO-02 | Phase 3: Bootstrap Automation | Pending |
+| AUTO-01 | Phase 3: Bootstrap Automation | Complete |
+| AUTO-02 | Phase 3: Bootstrap Automation | Complete |
 | AUTO-03 | Phase 3: Bootstrap Automation | Pending |
 
 **Coverage:**

@@ -5,14 +5,20 @@ Personal dotfiles repository for a Linux development environment. Manages config
 ## Quick Start
 
 ```bash
-# Clone the repository
-git clone https://github.com/ta3pks/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-
-# Link configurations as needed (example)
-ln -s ~/dotfiles/nvim/.config/nvim ~/.config/nvim
-ln -s ~/dotfiles/zsh/.zshrc ~/.zshrc
+git clone https://github.com/ta3pks/dotfiles.git ~/dotfiles && cd ~/dotfiles && ./install
 ```
+
+## Prerequisites
+
+### Required
+- **Shell**: [zsh](https://www.zsh.org/), [Oh My Zsh](https://ohmyz.sh/)
+- **Editor**: [neovim](https://neovim.io/) 0.9+, [git](https://git-scm.com/)
+
+### Optional
+- **TUI**: [gum](https://github.com/charmbracelet/gum) - Enhanced install script experience
+- **Security**: [gitleaks](https://github.com/gitleaks/gitleaks) - Secret scanning
+- **Runtime**: [bun](https://bun.sh/) - Package manager (preferred over npm)
+- **Runtime**: [cargo](https://rustup.rs/) - Rust toolchain
 
 ## Key Components
 
@@ -23,6 +29,65 @@ ln -s ~/dotfiles/zsh/.zshrc ~/.zshrc
 | Sway | `sway/.config/sway/` | Wayland compositor |
 | OpenCode | `opencode/.config/opencode/` | AI coding environment |
 | Kmonad | `kmonad/.config/kmonad/` | Keyboard remapping |
+| Git | `git/` | Git configuration |
+| Espanso | `espanso/.config/espanso/` | Text expansion |
+| Ghostty | `ghostty/.config/ghostty/` | Terminal emulator |
+
+## Installation
+
+This repository uses an interactive install script (Phase 3) for symlink management:
+
+```bash
+./install           # Interactive TUI - select what to link
+./install --dry-run # Preview changes without applying
+./install --undo    # Restore from backups
+```
+
+The script uses manual symlinks (no GNU Stow dependency). See [docs/decisions/001-manual-symlinks.md](docs/decisions/001-manual-symlinks.md) for the rationale.
+
+## Structure
+
+```
+~/dotfiles/
+├── nvim/          # Neovim (LazyVim)
+├── zsh/           # Shell configuration
+├── sway/          # Wayland compositor
+├── opencode/      # AI coding environment
+├── kmonad/        # Keyboard remapping
+├── git/           # Git configuration
+├── espanso/       # Text expansion
+├── ghostty/       # Terminal emulator
+├── docs/          # Cross-cutting documentation
+│   └── decisions/ # Architecture Decision Records
+└── local_bin/     # Custom scripts
+```
+
+See per-tool READMEs for details (e.g., [nvim/README.md](nvim/README.md)).
+
+## Symlink Strategy
+
+### XDG Base Directory Compliance
+
+This repository follows the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/latest/):
+
+| XDG Path | Purpose | Example |
+|----------|---------|---------|
+| `~/.config/` | Configuration files | `~/.config/nvim/` |
+| `~/.local/share/` | Data files | `~/.local/share/nvim/` |
+| `~/.cache/` | Cache files | `~/.cache/nvim/` |
+
+**Repository structure mirrors XDG:**
+- `nvim/.config/nvim/` → `~/.config/nvim/`
+- `sway/.config/sway/` → `~/.config/sway/`
+
+### Manual Symlinks
+
+No GNU Stow or dotfile manager. Explicit `ln -s` commands via the install script provide:
+- Full control over what gets linked
+- No external dependencies
+- Easy handling of edge cases
+
+See [ADR-001: Manual Symlinks over GNU Stow](docs/decisions/001-manual-symlinks.md) for the full decision.
 
 ## Secrets Management
 
@@ -53,12 +118,6 @@ Custom utilities are in `local_bin/.local/bin/`:
 
 ## Development
 
-### Prerequisites
-
-- [bun](https://bun.sh/) - Package manager (preferred over npm)
-- [cargo](https://rustup.rs/) - Rust toolchain
-- [gitleaks](https://github.com/gitleaks/gitleaks) - Secret scanning
-
 ### Testing
 
 ```bash
@@ -68,6 +127,10 @@ cargo test
 # Rust tests on remote machine
 ~/.local/bin/remote_test.sh
 ```
+
+## Contributing
+
+Personal dotfiles, but feel free to borrow ideas. For architectural decisions, see [docs/decisions/](docs/decisions/).
 
 ## License
 

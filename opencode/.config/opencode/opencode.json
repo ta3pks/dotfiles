@@ -45,29 +45,6 @@
       "url": "http://127.0.0.1:9100/mcp",
       "enabled": false
     },
-    "jira": {
-      "type": "local",
-      "command": ["bunx", "mcp-remote", "https://mcp.atlassian.com/v1/sse"],
-      "enabled": false
-    },
-    "context7": {
-      "type": "remote",
-      "url": "https://mcp.context7.com/mcp",
-      "enabled": false,
-      "headers": {
-        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
-      }
-    },
-    "gh_grep": {
-      "type": "remote",
-      "url": "https://mcp.grep.app",
-      "enabled": false
-    },
-    "pipedream": {
-      "type": "local",
-      "command": ["bunx", "mcp-remote", "https://mcp.pipedream.net/v2"],
-      "enabled": false
-    },
     "clickhouse": {
       "type": "local",
       "command": ["mcp-clickhouse"],
@@ -116,21 +93,6 @@
       "headers": {
         "Authorization": "Bearer {env:ZAI_API_KEY}"
       }
-    },
-    "serena": {
-      "type": "local",
-      "command": [
-        "uvx",
-        "--from",
-        "git+https://github.com/oraios/serena",
-        "serena",
-        "start-mcp-server",
-        "--context",
-        "ide",
-        "--project-from-cwd",
-        "--enable-web-dashboard=false"
-      ],
-      "enabled": true
     }
   }
 }

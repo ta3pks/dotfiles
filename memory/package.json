@@ -5,10 +5,17 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "bun test",
-    "cli": "bun run src/cli/index.ts"
+    "cli": "bun run src/cli/index.ts",
+  },
+  "mcp": "bun run src/mcp/server.ts",
+  },
+  "stdio": "bun run src/stdio/index.ts",
+  },
+  "http": "bun run src/http/server.ts"
   },
   "dependencies": {
     "@lancedb/lancedb": "^0.26.2",
+    "@modelcontextprotocol/sdk": "^1.27.1",
     "chalk": "^5.6.2",
     "cli-table3": "^0.6.5",
     "commander": "^14.0.3",

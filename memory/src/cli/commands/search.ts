@@ -3,6 +3,7 @@ import inquirer from 'inquirer';
 import { initMemoryService, searchMemories, closeMemoryService } from '../../memory/index.js';
 import { checkOllama } from '../errors.js';
 import { formatSearchResults, error, type OutputOptions } from '../output/format.js';
+import { isValidType, type MemoryType } from '../types/registry.js';
 
 export function registerSearchCommand(program: Command): void {
   program
@@ -11,6 +12,7 @@ export function registerSearchCommand(program: Command): void {
     .option('-l, --limit <number>', 'Maximum results', '10')
     .option('-t, --tag <tag>', 'Filter by tag')
     .option('-p, --project <project>', 'Filter by project')
+    .option('--type <type>', 'Filter by memory type (pattern, decision, context, knowledge, preference, note)')
     .option('--json', 'Output as JSON')
     .option('-q, --quiet', 'Only output memory IDs')
     .option('-v, --verbose', 'Show full content')
@@ -24,6 +26,7 @@ async function searchAction(
     limit?: string;
     tag?: string;
     project?: string;
+    type?: string;
     json?: boolean;
     quiet?: boolean;
     verbose?: boolean;
@@ -59,6 +62,15 @@ async function searchAction(
     const limit = parseInt(options.limit || '10', 10);
     let results = await searchMemories(finalQuery, { limit });
     
+    // Apply filters
+    if (options.type) {
+      if (!isValidType(options.type)) {
+        error(`Invalid type: ${options.type}`);
+        process.exit(1);
+      }
+      // Filter by type tag
+      results = results.filter(r => r.tags?.includes(options.type!));
+    }
     if (options.tag) {
       results = results.filter(r => r.tags?.includes(options.tag!));
     }

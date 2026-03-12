@@ -2,6 +2,7 @@ import { Command } from 'commander';
 import { initMemoryService, listAllMemories, closeMemoryService } from '../../memory/index.js';
 import { checkOllama } from '../errors.js';
 import { formatMemoryList, error, type OutputOptions } from '../output/format.js';
+import { isValidType, type MemoryType } from '../types/registry.js';
 
 export function registerListCommand(program: Command): void {
   program
@@ -9,6 +10,7 @@ export function registerListCommand(program: Command): void {
     .description('List all memories')
     .option('-t, --tag <tag>', 'Filter by tag')
     .option('-p, --project <project>', 'Filter by project')
+    .option('--type <type>', 'Filter by memory type (pattern, decision, context, knowledge, preference)')
     .option('-l, --limit <number>', 'Maximum results', '50')
     .option('--json', 'Output as JSON')
     .option('-q, --quiet', 'Only output memory IDs')
@@ -19,6 +21,7 @@ export function registerListCommand(program: Command): void {
 async function listAction(options: {
   tag?: string;
   project?: string;
+  type?: string;
   limit?: string;
   json?: boolean;
   quiet?: boolean;
@@ -35,11 +38,25 @@ async function listAction(options: {
     await initMemoryService();
     
     const limit = parseInt(options.limit || '50', 10);
-    const memories = listAllMemories({
+    
+    // Validate type if provided
+    if (options.type) {
+      if (!isValidType(options.type)) {
+        error(`Invalid type: ${options.type}. Valid types are: pattern, decision, context, knowledge, preference, note`);
+        process.exit(1);
+      }
+    }
+    
+    let memories = listAllMemories({
       tag: options.tag,
       project: options.project,
       limit
     });
+    
+    // Filter by type if specified
+    if (options.type) {
+      memories = memories.filter(m => m.tags?.includes(options.type!));
+    }
     
     formatMemoryList(memories, opts);
     

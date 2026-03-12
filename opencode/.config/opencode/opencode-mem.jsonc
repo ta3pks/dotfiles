@@ -30,7 +30,9 @@
   // ============================================
   
   // Default: Nomic Embed v1 (768 dimensions, 8192 context, multilingual)
-  "embeddingModel": "Xenova/nomic-embed-text-v1",
+  "embeddingModel": "nomic-embed-text:latest",
+  "embeddingApiUrl": "http://localhost:11434/v1",
+  "embeddingApiKey": "ollama",
   
   // Auto-detected dimensions (no need to set manually)
   // "embeddingDimensions": 768,
@@ -91,9 +93,9 @@
   "memoryProvider": "openai-chat",
   
   // REQUIRED for auto-capture (all 3 must be set):
-  "memoryModel": "gpt-4o-mini",
-  "memoryApiUrl": "https://api.openai.com/v1",
-  "memoryApiKey": "sk-...",
+  "memoryModel": "gpt-oss:latest",
+  "memoryApiUrl": "http://localhost:11434/v1",
+  "memoryApiKey": "ollama",
 
   // API Key Formats:
   // Direct value:        "sk-..."

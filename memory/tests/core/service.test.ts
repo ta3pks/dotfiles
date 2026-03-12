@@ -2,7 +2,6 @@ import { describe, test, expect, beforeEach, afterEach } from "bun:test";
 import { MemoryService } from "../../src/core/index.js";
 import { rm, mkdir } from "node:fs/promises";
 import { join } from "path";
-import { generateEmbedding, from "../../src/embeddings/index.js";
 
 const TEST_DATA_PATH = join(import.meta.dirname, "../../test-data-core-service");
 

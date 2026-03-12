@@ -13,7 +13,7 @@ import {
   searchSimilar,
   deleteVector,
 } from "../storage/lancedb.js";
-import { generateEmbedding } from "../embeddings/ollama.js";
+import { getEmbedding } from "../embeddings/ollama.js";
 import type { MemoryEntry, SearchResult } from "../storage/types.js";
 import { DEFAULT_MODEL, type ModelName } from "../storage/types.js";
 import type { StoreOptions, SearchOptions, ListOptions, ContextOptions } from "./types.js";
@@ -49,7 +49,8 @@ export class MemoryService {
       embeddingModel: this.modelName,
     };
 
-    const vector = await generateEmbedding(content, this.modelName);
+    const result = await getEmbedding(content, this.modelName);
+    const vector = result.embedding;
 
     await addVector({ id, vector, content });
     insertMemory(entry);
@@ -60,7 +61,8 @@ export class MemoryService {
   async search(query: string, options?: SearchOptions): Promise<SearchResult[]> {
     if (!this.initialized) await this.init();
 
-    const queryVector = await generateEmbedding(query, this.modelName);
+    const queryResult = await getEmbedding(query, this.modelName);
+    const queryVector = queryResult.embedding;
     const results = await searchSimilar(queryVector, options?.limit || 10);
 
     const searchResults: SearchResult[] = [];

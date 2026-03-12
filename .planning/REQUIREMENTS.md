@@ -35,10 +35,10 @@
 
 ### AI Tool Integration
 
-- [ ] **INT-01**: MCP server for OpenCode integration
+- [x] **INT-01**: MCP server for OpenCode integration
 - [ ] **INT-02**: Stdio interface for Claude Code/Aider
-- [ ] **INT-03**: HTTP API for Cursor/other tools
-- [ ] **INT-04**: Works with any AI tool (CLI-independent)
+- [x] **INT-03**: HTTP API for Cursor/other tools
+- [x] **INT-04**: Works with any AI tool (CLI-independent)
 
 ### Data Management
 
@@ -88,10 +88,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CLI-03 | Phase 5 | Pending |
 | CLI-04 | Phase 5 | Pending |
 | CLI-05 | Phase 5 | Pending |
-| INT-01 | Phase 6 | Pending |
+| INT-01 | Phase 6 | Complete |
 | INT-02 | Phase 6 | Pending |
-| INT-03 | Phase 6 | Pending |
-| INT-04 | Phase 6 | Pending |
+| INT-03 | Phase 6 | Complete |
+| INT-04 | Phase 6 | Complete |
 | DATA-01 | Phase 7 | Pending |
 | DATA-02 | Phase 7 | Pending |
 | DATA-03 | Phase 7 | Pending |

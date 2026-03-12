@@ -1,63 +1,44 @@
 #!/usr/bin/env bun
 import { Command } from 'commander';
 import chalk from 'chalk';
-import { isValidType, getAvailableTypes, getTypeDescription } from '../types/registry.js';
 
-export function registerTypesCommand(program: Command): void {
-  program
-    .command('types')
-    .description('List available memory types with descriptions')
-    .option('-l, --limit <number>', 'Maximum results', '50')
-    .option('-t, --tag <tag>', 'Filter by tag')
-    .option('-p, --project <project>', 'Filter by project')
-    .option('--type <type>', 'Filter by memory type (pattern, decision, context, knowledge, preference, note)')
-    .option('-q, --quiet', 'Quiet mode')
-    .option('--json', 'Output as JSON')
-    .option('--no-color', 'Disable colored output')
-    .action(typesAction);
-}
+// Import command registrations
+import { registerStoreCommand } from './commands/store.js';
+import { registerListCommand } from './commands/list.js';
+import { registerGetCommand } from './commands/get.js';
+import { registerDeleteCommand } from './commands/delete.js';
+import { registerSearchCommand } from './commands/search.js';
+import { registerBackupCommand } from './commands/backup.js';
+import { registerCleanupCommand } from './commands/cleanup.js';
+import { registerTypesCommand } from './commands/types.js';
+import { registerExportCommand } from './commands/export.js';
+import { registerImportCommand } from './commands/import.js';
 
-async function typesAction(
-  content: string | undefined,
-  options: {
-    tag?: string;
-    project?: string;
-    type?: string;
-    limit?: string;
-    json?: boolean;
-    quiet?: boolean;
-    noColor?: boolean
-  }
-): Promise<void> {
-  const opts: OutputOptions = {
-    json: options.json,
-    quiet: options.quiet,
-    noColor: options.noColor
-  };
-  
-  try {
-    await checkOllama();
-    await initMemoryService();
-    
-    const limit = parseInt(options.limit || '50', 10);
-    
-    let memories = listAllMemories({
-      tag: options.tag,
-      project: options.project,
-      limit
-    });
-    
-    // Apply type filter
-    if (options.type) {
-        if (!isValidType(options.type)) {
-          error(`Invalid type: ${options.type}. Valid types are: pattern, decision, context, knowledge, preference, note`);
-          process.exit(1);
-        }
-    }
-    
-    formatMemoryList(memories, opts);
-  } catch (err) {
-    error(err instanceof Error ? err.message : String(err));
-    process.exit(1);
-  }
-}
+const program = new Command();
+
+program
+  .name('memory')
+  .description('Memory service CLI - Store, search, and manage memories')
+  .version('0.1.0');
+
+// Register all commands
+registerStoreCommand(program);
+registerListCommand(program);
+registerGetCommand(program);
+registerDeleteCommand(program);
+registerSearchCommand(program);
+registerBackupCommand(program);
+registerCleanupCommand(program);
+registerTypesCommand(program);
+registerExportCommand(program);
+registerImportCommand(program);
+
+// Error handling for unknown commands
+program.on('command:*', () => {
+  console.error(chalk.red('Error: Unknown command'));
+  console.error(chalk.dim('Run `memory --help` for available commands'));
+  process.exit(1);
+});
+
+// Parse arguments
+program.parse();

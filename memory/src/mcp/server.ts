@@ -1,7 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { MemoryService } from "../core/service.js";
-import type { MemoryEntry, from "../storage/types.js";
+import type { MemoryEntry } from "../storage/types.js";
 
 const server = new McpServer(
   {

@@ -28,10 +28,10 @@ describe("Backup Command", () => {
   describe("backup", () => {
     test("creates timestamped backup file", async () => {
       const program = new Command();
+      program.exitOverride();
       registerBackupCommand(program);
       
-      // Simulate backup command
-      await program.parseAsync(["node", "test", "backup", "-o", backupDir], { from: "user" });
+      await program.parseAsync(["backup", "-o", backupDir], { from: "user" });
       
       // Verify backup file was created
       const files = await readdir(backupDir);
@@ -48,9 +48,10 @@ describe("Backup Command", () => {
     test("respects --output option", async () => {
       const customDir = join(testDb.dbPath, "custom-backups");
       const program = new Command();
+      program.exitOverride();
       registerBackupCommand(program);
       
-      await program.parseAsync(["node", "test", "backup", "-o", customDir], { from: "user" });
+      await program.parseAsync(["backup", "-o", customDir], { from: "user" });
       
       // Verify backup was created in custom directory
       const files = await readdir(customDir);
@@ -59,13 +60,10 @@ describe("Backup Command", () => {
 
     test("respects --name option", async () => {
       const program = new Command();
+      program.exitOverride();
       registerBackupCommand(program);
       
-      await program.parseAsync([
-        "node", "test", "backup",
-        "-o", backupDir,
-        "-n", "custom-backup"
-      ], { from: "user" });
+      await program.parseAsync(["backup", "-o", backupDir, "-n", "custom-backup"], { from: "user" });
       
       // Verify custom named backup was created
       const files = await readdir(backupDir);
@@ -73,19 +71,12 @@ describe("Backup Command", () => {
     });
 
     test("rotates old backups with --max-backups", async () => {
-      const program = new Command();
-      registerBackupCommand(program);
-      
       // Create 5 backups with max-backups=3
       for (let i = 0; i < 5; i++) {
         const cmd = new Command();
+        cmd.exitOverride();
         registerBackupCommand(cmd);
-        await cmd.parseAsync([
-          "node", "test", "backup",
-          "-o", backupDir,
-          "-n", `backup-${i}`,
-          "-m", "3"
-        ], { from: "user" });
+        await cmd.parseAsync(["backup", "-o", backupDir, "-n", `backup-${i}`, "-m", "3"], { from: "user" });
       }
       
       // Should only have 3 backups
@@ -102,14 +93,16 @@ describe("Backup Command", () => {
 
   describe("restore", () => {
     test("lists available backups with --list", async () => {
-      const program = new Command();
-      registerBackupCommand(program);
+      const backupProgram = new Command();
+      backupProgram.exitOverride();
+      registerBackupCommand(backupProgram);
       
       // Create a backup first
-      await program.parseAsync(["node", "test", "backup", "-o", backupDir], { from: "user" });
+      await backupProgram.parseAsync(["backup", "-o", backupDir], { from: "user" });
       
       // List backups
       const listProgram = new Command();
+      listProgram.exitOverride();
       registerBackupCommand(listProgram);
       
       // Capture output
@@ -118,11 +111,7 @@ describe("Backup Command", () => {
       console.log = (...args: any[]) => logs.push(args.join(" "));
       
       try {
-        await listProgram.parseAsync([
-          "node", "test", "backup", "restore",
-          "-o", backupDir,
-          "--list"
-        ], { from: "user" });
+        await listProgram.parseAsync(["backup", "restore", "-o", backupDir, "--list"], { from: "user" });
       } finally {
         console.log = originalLog;
       }
@@ -133,15 +122,12 @@ describe("Backup Command", () => {
     });
 
     test("restores database from backup", async () => {
-      const program = new Command();
-      registerBackupCommand(program);
+      const backupProgram = new Command();
+      backupProgram.exitOverride();
+      registerBackupCommand(backupProgram);
       
       // Create backup with known content
-      await program.parseAsync([
-        "node", "test", "backup",
-        "-o", backupDir,
-        "-n", "test-restore"
-      ], { from: "user" });
+      await backupProgram.parseAsync(["backup", "-o", backupDir, "-n", "test-restore"], { from: "user" });
       
       // Get original memory count
       const originalMemories = await testDb.service.search("test");
@@ -158,12 +144,9 @@ describe("Backup Command", () => {
       
       // Restore from backup (with --yes to skip confirmation)
       const restoreProgram = new Command();
+      restoreProgram.exitOverride();
       registerBackupCommand(restoreProgram);
-      await restoreProgram.parseAsync([
-        "node", "test", "backup", "restore",
-        "-f", join(backupDir, "test-restore.db"),
-        "--yes"
-      ], { from: "user" });
+      await restoreProgram.parseAsync(["backup", "restore", "-f", join(backupDir, "test-restore.db"), "--yes"], { from: "user" });
       
       // Re-initialize service to see restored state
       await testDb.service.init(testDb.dbPath);
@@ -174,10 +157,6 @@ describe("Backup Command", () => {
     });
 
     test("validates backup file before restore", async () => {
-      const program = new Command();
-      registerBackupCommand(program);
-      
-      // Try to restore from invalid file
       const invalidFile = join(testDb.dbPath, "invalid.db");
       
       // Create a non-SQLite file
@@ -186,15 +165,12 @@ describe("Backup Command", () => {
       
       // Should throw validation error
       const restoreProgram = new Command();
+      restoreProgram.exitOverride();
       registerBackupCommand(restoreProgram);
       
       let errorThrown = false;
       try {
-        await restoreProgram.parseAsync([
-          "node", "test", "backup", "restore",
-          "-f", invalidFile,
-          "--yes"
-        ], { from: "user" });
+        await restoreProgram.parseAsync(["backup", "restore", "-f", invalidFile, "--yes"], { from: "user" });
       } catch (err) {
         errorThrown = true;
         expect(err).toBeDefined();

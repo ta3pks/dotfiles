@@ -6,12 +6,9 @@
   "scripts": {
     "test": "bun test",
     "cli": "bun run src/cli/index.ts",
-  },
-  "mcp": "bun run src/mcp/server.ts",
-  },
-  "stdio": "bun run src/stdio/index.ts",
-  },
-  "http": "bun run src/http/server.ts"
+    "mcp": "bun run src/mcp/server.ts",
+    "stdio": "bun run src/stdio/index.ts",
+    "http": "bun run src/http/server.ts"
   },
   "dependencies": {
     "@lancedb/lancedb": "^0.26.2",

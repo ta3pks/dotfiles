@@ -150,4 +150,4 @@ export function getTypeDescription(type: MemoryType): string {
 }
 
 // Re-export types
-export { MemoryType, TypedMemoryInput, BaseMemoryInput } from './index.js';
+export type { MemoryType, TypedMemoryInput, BaseMemoryInput } from './index.js';

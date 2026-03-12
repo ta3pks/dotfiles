@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "ES2022",
-    "moduleResolution": "bundler",
+    "moduleResolution": "commonjs",
     "strict": true,
     "skipLibCheck": true,
     "outDir": "./dist",

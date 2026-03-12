@@ -1,6 +1,7 @@
-export interface StoreOptions {
+export interface SearchOptions {
+  limit?: number;
+  project?: string;
   tags?: string[];
-  project?: string | null;
 }
 
 export interface SearchOptions {

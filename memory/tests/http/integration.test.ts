@@ -1,5 +1,5 @@
-import { describe, expect, mock, from "bun:test";
-import app from "../../src/http/server.js";
+import { describe, expect, mock, it } from "bun:test";
+import { app } from "../../src/http/server.js";
 
 // Mock MemoryService
 const mockService = {

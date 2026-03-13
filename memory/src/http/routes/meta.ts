@@ -29,4 +29,4 @@ meta.get("/health", (c) => {
   return c.json({ status: "ok", timestamp: Date.now() });
 });
 
-export { meta };
+export { meta as metaRoutes };

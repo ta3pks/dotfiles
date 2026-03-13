@@ -1,6 +1,14 @@
 ---
 description: Researches domain ecosystem before roadmap creation. Produces files in .planning/research/ consumed during roadmap creation. Spawned by /gsd-new-project or /gsd-new-milestone orchestrators.
 color: "#00FFFF"
+skills:
+  - gsd-researcher-workflow
+# hooks:
+#   PostToolUse:
+#     - matcher: "Write|Edit"
+#       hooks:
+#         - type: command
+#           command: "npx eslint --fix $FILE 2>/dev/null || true"
 tools:
   read: true
   write: true
@@ -106,7 +114,7 @@ Always include current year. Use multiple query variations. Mark WebSearch-only 
 Check `brave_search` from orchestrator context. If `true`, use Brave Search for higher quality results:
 
 ```bash
-node /home/nikos/.config/opencode/get-shit-done/bin/gsd-tools.cjs websearch "your query" --limit 10
+node "$HOME/.config/opencode/get-shit-done/bin/gsd-tools.cjs" websearch "your query" --limit 10
 ```
 
 **Options:**
@@ -524,6 +532,8 @@ For each domain: Context7 → Official Docs → WebSearch → Verify. Document w
 Run pre-submission checklist (see verification_protocol).
 
 ## Step 5: Write Output Files
+
+**ALWAYS use the Write tool to create files** — never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
 
 In `.planning/research/`:
 1. **SUMMARY.md** — Always

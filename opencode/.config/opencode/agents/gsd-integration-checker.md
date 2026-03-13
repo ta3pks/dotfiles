@@ -1,6 +1,8 @@
 ---
 description: Verifies cross-phase integration and E2E flows. Checks that phases connect properly and user workflows complete end-to-end.
 color: "#0000FF"
+skills:
+  - gsd-integration-workflow
 tools:
   read: true
   bash: true

@@ -1,6 +1,14 @@
 ---
 description: Synthesizes research outputs from parallel researcher agents into SUMMARY.md. Spawned by /gsd-new-project after 4 researcher agents complete.
 color: "#800080"
+skills:
+  - gsd-synthesizer-workflow
+# hooks:
+#   PostToolUse:
+#     - matcher: "Write|Edit"
+#       hooks:
+#         - type: command
+#           command: "npx eslint --fix $FILE 2>/dev/null || true"
 tools:
   read: true
   write: true
@@ -124,6 +132,8 @@ Identify gaps that couldn't be resolved and need attention during planning.
 
 ## Step 6: Write SUMMARY.md
 
+**ALWAYS use the Write tool to create files** — never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
+
 Use template: /home/nikos/.config/opencode/get-shit-done/templates/research-project/SUMMARY.md
 
 Write to `.planning/research/SUMMARY.md`
@@ -133,7 +143,7 @@ Write to `.planning/research/SUMMARY.md`
 The 4 parallel researcher agents write files but do NOT commit. You commit everything together.
 
 ```bash
-node /home/nikos/.config/opencode/get-shit-done/bin/gsd-tools.cjs commit "docs: complete project research" --files .planning/research/
+node "$HOME/.config/opencode/get-shit-done/bin/gsd-tools.cjs" commit "docs: complete project research" --files .planning/research/
 ```
 
 ## Step 8: Return Summary

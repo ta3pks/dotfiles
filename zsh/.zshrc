@@ -150,3 +150,4 @@ fpath=(~/.zsh/completions $fpath)
 
 # OpenFang
 export PATH=/home/nikos/.openfang/bin:$PATH
+unalias gsd

@@ -22,4 +22,4 @@ context.get("/", async (c) => {
   }
 });
 
-export { context };
+export { context as contextRoutes };

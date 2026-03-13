@@ -3,18 +3,20 @@ import { MemoryService } from "../../src/core/index.js";
 import { rm, mkdir } from "node:fs/promises";
 import { join } from "path";
 
-const TEST_DATA_PATH = join(import.meta.dirname, "../../test-data-core-service");
-
-const service = new MemoryService();
+let currentTestPath: string;
+let service: MemoryService;
 
 beforeEach(async () => {
-  await rm(TEST_DATA_PATH).catch(() => {});
-  await mkdir(TEST_DATA_PATH, { recursive: true });
-  await service.init(TEST_DATA_PATH);
+  currentTestPath = join(import.meta.dirname, `../../test-data-${Date.now()}-${Math.random().toString(36).slice(2)}`);
+  await mkdir(currentTestPath, { recursive: true });
+  service = new MemoryService();
+  await service.init(currentTestPath);
 });
 
 afterEach(async () => {
-  await rm(TEST_DATA_PATH).catch(() => {});
+  if (currentTestPath) {
+    await rm(currentTestPath, { recursive: true, force: true }).catch(() => {});
+  }
 });
 
 describe("MemoryService", () => {

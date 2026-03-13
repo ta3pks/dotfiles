@@ -84,4 +84,4 @@ memories.delete("/:id", async (c) => {
   }
 });
 
-export { memories };
+export { memories as memoriesRoutes };

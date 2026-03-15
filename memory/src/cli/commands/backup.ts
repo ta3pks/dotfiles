@@ -75,8 +75,13 @@ async function listBackups(backupDir: string, pattern?: string): Promise<BackupI
     }
   }
 
-  // Sort by creation date, newest first
-  return backups.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  // Sort by creation date, newest first; use filename as tiebreaker for stability
+  return backups.sort((a, b) => {
+    const timeDiff = b.createdAt.getTime() - a.createdAt.getTime();
+    if (timeDiff !== 0) return timeDiff;
+    // Descending filename sort for stability (higher numbers = more recent)
+    return b.name.localeCompare(a.name);
+  });
 }
 
 /**

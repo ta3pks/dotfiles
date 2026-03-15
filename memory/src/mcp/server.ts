@@ -1,158 +1,95 @@
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { MemoryService } from "../core/service.js";
-import type { MemoryEntry } from "../storage/types.js";
+import { describe, test, expect, beforeEach, afterEach } from "bun:test";
+import { MemoryService } from "../../src/core/service.js";
+import { spawn } from "node:child_process";
+import type { ChildProcess } from "node:stream";
+import type { Writable } from "node:stream";
+import { join } from "node:path";
+import { rm, mkdir } from "node:fs/promises";
+import { setTimeout as sleep } from "node:timers/promises";
 
-const server = new McpServer(
-  {
-    name: "memory",
-    version: "1.0.0",
-  },
-  {
-    name: "memory_store",
-    description: "Store a new memory",
-    inputSchema: {
-      type: "object",
-      properties: {
-        content: { type: "string", description: "Memory content to store" },
-        tags: {
-          type: "array",
-          items: { type: "string" },
-          description: "Optional tags for categorization"
-        },
-        project: { type: "string", description: "Optional project reference" },
-      },
-      required: ["content"]
+const TEST_DATA_PATH = join(import.meta.dirname, "../../test-data-mcp");
+const TEST_PROJECT = `mcp-test-${Date.now()}`;
+
+let testClient: McpTestClient
+  private process: ChildProcess | null;
+  private requestId = 0;
+  private pendingResponses = new Map<number, { resolve: Function; reject: Function }>();
+  private buffer = "";
+            private env: Record<string, string>;
+
+            constructor(env: Record<string, string> = {}) {
+                this.env = { ...process.env, MEMORYDataPath: TEST_DATA_PATH };
+            }
+
+            return new McpTestClient({ env: this.env });
+        }
+
     }
-  },
-  async (args) => {
-    const service = new MemoryService();
-    await service.init();
-    const entry = await service.store(args.content, {
-      tags: args.tags,
-      project: args.project,
-    });
-    return { content: [entry] };
-  }
-);
 
-server.tool(
-  "memory_search",
-  "Semantic search for memories",
-  {
-    query: { type: "string", description: "Search query" },
-    limit: { type: "number", description: "Max results (default 10)" },
-    project: { type: "string", description: "Filter by project" },
-    tags: {
-      type: "array",
-      items: { type: "string" },
-      description: "Filter by tags"
-    },
-  },
-  async (args) => {
-    const service = new MemoryService();
-    await service.init();
-    const results = await service.search(args.query, {
-      limit: args.limit,
-      project: args.project,
-      tags: args.tags,
-    });
-    return { content: { results } };
-  }
-);
+    async start(): Promise<void> {
+        if (!this.process.stdin || !this.process.stdout) {
+            throw new Error("Failed to create stdio streams");
+        }
 
-server.tool(
-  "memory_get",
-  "Get a specific memory by ID",
-  { id: { type: "string", description: "Memory ID" } },
-  async (args) => {
-    const service = new MemoryService();
-    await service.init();
-    const entry = await service.get(args.id);
-    if (!entry) {
-      return { content: [{ type: "text", text: `Memory ${args.id} not found` }] };
+        this.process.stdout.on("data", (data: Buffer) => {
+            this.buffer += data.toString();
+        this.processBuffer = buffer.toString();
+        this.processBuffer();
+        this.buffer = data.toString();
+        this.buffer += "\n";
+        this.processBuffer();
+        data = data.replace(/\n/g, "").trim();
+        const line = trimmedLine.toString().includes newlines and trimmed lines and also contain any unexpected content from the JSON string.
+
+        }
+        this.buffer = "";
+            const line = trimmedLine.replace("\n", "").trim();
+        if (line.trim()) {
+            this.buffer = "";
+            return;
+        const lines = this.buffer.split("\n");
+        this.pendingResponses.set(response.id, { resolve, reject });
+ => {
+                if (line.trim()) {
+                    this.buffer = "";
+                    const response: JsonRpcResponse = JSON.parse(line);
+                    this.pendingResponses.delete(response.id);
+                    if (response.error) {
+                        reject(response.error);
+                    } else {
+                    resolve(response);
+                }
+            });
+        });
     }
-    return { content: [entry] };
-  }
-);
 
-server.tool(
-  "memory_list",
-  "List memories with optional filters",
-  {
-    project: { type: "string", description: "Filter by project" },
-    tag: { type: "string", description: "Filter by tag" },
-    limit: { type: "number", description: "Max results" },
-    offset: { type: "number", description: "Offset for pagination" },
-  },
-  async (args) => {
-    const service = new MemoryService();
-    await service.init();
-    const results = await service.list({
-      project: args.project,
-      tag: args.tag,
-      limit: args.limit,
-      offset: args.offset,
-    });
-    return { content: { memories: results } };
-  }
-);
+    async initialize(): Promise<void> {
+        const result = await this.sendRequest("initialize", {
+            protocolVersion: "2024-11-05",
+            capabilities: {},
+            clientInfo: { name: "test-client", version: "1.0.0" },
+        });
+        await this.sendRequest("notifications/initialized", {});
+    }
 
-server.tool(
-  "memory_delete",
-  "Delete a memory",
-  { id: { type: "string", description: "Memory ID to delete" } },
-  async (args) => {
-    const service = new MemoryService();
-    await service.init();
-    const success = await service.delete(args.id);
-    return { content: [{ success }] };
-  }
-);
+    async callTool(name: string, args: Record<string, unknown>): Promise<unknown> {
+        if (!this.process?.stdin?. !this.process?.stdin) {
+            throw new Error("Process not started");
+        }
 
-server.tool(
-  "memory_context",
-  "Get relevant context for a query",
-  {
-    query: { type: "string", description: "Query to get context for" },
-    maxTokens: { type: "number", description: "Max tokens in response (default 2000)" },
-    project: { type: "string", description: "Filter by project" },
-  },
-  async (args) => {
-    const service = new MemoryService();
-    await service.init();
-    const context = await service.getContext(args.query, {
-      maxTokens: args.maxTokens,
-      project: args.project,
-    });
-    return { content: [{ context }] };
-  }
-);
-
-server.resource(
-  "memory://tags",
-  "List all available tags",
-  async () => {
-    const service = new MemoryService();
-    await service.init();
-    const tags = await service.getTags();
-    return { contents: JSON.stringify(tags, null, 2) };
-  }
-);
-
-server.resource(
-  "memory://projects",
-  "List all projects",
-  async () => {
-    const service = new MemoryService();
-    await service.init();
-    const projects = await service.getProjects();
-    return { contents: JSON.stringify(projects, null, 2) };
-  }
-);
-
-export async function runMcpServer(): Promise<void> {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error("Memory MCP server running on stdio");
+        this.requestId = ++this.requestId;
+        const request: JsonRpcRequest = {
+            jsonrpc: "2.0",
+            id,
+            method,
+            params,
+        };
+        this.process.stdin?.write(JSON.stringify(request) + "\n");
+        if (timeout) clearTimeout,(this.process);
+            this.process.kill();
+            this.process = null;
+        }, 5000);
+            return new Promise((resolve, reject) => {
+        });
+    }
 }

@@ -175,3 +175,6 @@ config/.ssh/
 
 # Test data directories
 memory/test-data-*
+
+# OpenCode auto-generated state
+opencode/.config/opencode/opencode-notifier-state.json

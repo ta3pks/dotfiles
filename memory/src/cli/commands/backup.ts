@@ -3,7 +3,7 @@ import inquirer from 'inquirer';
 import { copyFile, mkdir, readdir, stat, unlink, access, readFile } from 'node:fs/promises';
 import { join, basename } from 'node:path';
 import { homedir } from 'node:os';
-import { initMemoryService, closeMemoryService, isInitialized } from '../../memory/index.js';
+import { closeMemoryService, isInitialized } from '../../memory/index.js';
 import { CLIError, NotFoundError, ValidationError } from '../errors.js';
 import { success, error, formatDate, type OutputOptions } from '../output/format.js';
 import chalk from 'chalk';
@@ -46,8 +46,12 @@ function generateBackupFilename(customName?: string): string {
 
 /**
  * List existing backups in a directory
+ * @param backupDir - Directory to search for backups
+ * @param pattern - Optional prefix pattern to match. 
+ *                  Undefined = default 'memory-backup-'
+ *                  Empty string '' = match all .db files
  */
-async function listBackups(backupDir: string): Promise<BackupInfo[]> {
+async function listBackups(backupDir: string, pattern?: string): Promise<BackupInfo[]> {
   try {
     await access(backupDir);
   } catch {
@@ -56,9 +60,10 @@ async function listBackups(backupDir: string): Promise<BackupInfo[]> {
 
   const files = await readdir(backupDir);
   const backups: BackupInfo[] = [];
+  const prefix = pattern === undefined ? 'memory-backup-' : pattern;
 
   for (const file of files) {
-    if (file.endsWith('.db') && file.startsWith('memory-backup-')) {
+    if (file.endsWith('.db') && (prefix === '' || file.startsWith(prefix))) {
       const filePath = join(backupDir, file);
       const stats = await stat(filePath);
       backups.push({
@@ -76,14 +81,17 @@ async function listBackups(backupDir: string): Promise<BackupInfo[]> {
 
 /**
  * Rotate old backups, keeping only maxBackups most recent
+ * @param backupDir - Directory containing backups
+ * @param maxBackups - Maximum number of backups to keep
+ * @param pattern - Optional prefix pattern to match (default: 'memory-backup-')
  */
-async function rotateBackups(backupDir: string, maxBackups: number): Promise<string[]> {
-  const backups = await listBackups(backupDir);
+async function rotateBackups(backupDir: string, maxBackups: number, pattern?: string): Promise<string[]> {
+  const backups = await listBackups(backupDir, pattern);
   const deleted: string[] = [];
 
-  if (backups.length >= maxBackups) {
+  if (backups.length > maxBackups) {
     // Delete oldest backups beyond the limit
-    const toDelete = backups.slice(maxBackups - 1);
+    const toDelete = backups.slice(maxBackups);
     for (const backup of toDelete) {
       await unlink(backup.path);
       deleted.push(backup.name);
@@ -138,6 +146,7 @@ export function registerBackupCommand(program: Command): void {
     .command('restore')
     .description('Restore database from a backup file')
     .option('-f, --file <path>', 'Backup file path')
+    .option('-d, --dir <directory>', 'Backup directory (for listing)', DEFAULT_BACKUP_DIR)
     .option('-l, --list', 'List available backups')
     .option('-y, --yes', 'Skip confirmation prompt')
     .option('--json', 'Output as JSON')
@@ -163,9 +172,6 @@ async function backupAction(
   };
 
   try {
-    // Initialize service to ensure database exists
-    await initMemoryService();
-    
     const dbPath = getDatabasePath();
     const backupDir = options.output || DEFAULT_BACKUP_DIR;
     const maxBackups = parseInt(options.maxBackups || String(DEFAULT_MAX_BACKUPS), 10);
@@ -190,10 +196,9 @@ async function backupAction(
     // Get backup size
     const stats = await stat(backupPath);
     
-    // Rotate old backups
-    const deletedBackups = await rotateBackups(backupDir, maxBackups);
-    
-    await closeMemoryService();
+    // Rotate old backups - match all .db files when custom name provided
+    const rotationPattern = options.name ? '' : undefined;
+    const deletedBackups = await rotateBackups(backupDir, maxBackups, rotationPattern);
     
     // Report results
     if (opts.json) {
@@ -222,6 +227,7 @@ async function backupAction(
 async function restoreAction(
   options: {
     file?: string;
+    dir?: string;
     list?: boolean;
     yes?: boolean;
     json?: boolean;
@@ -236,7 +242,7 @@ async function restoreAction(
   };
 
   try {
-    const backupDir = DEFAULT_BACKUP_DIR;
+    const backupDir = options.dir || DEFAULT_BACKUP_DIR;
     
     // Handle --list option
     if (options.list) {
@@ -334,6 +340,12 @@ async function restoreAction(
     
     // Restore: copy backup to database location
     await copyFile(options.file, dbPath);
+    
+    // Clean up WAL files to ensure clean restore
+    const walPath = dbPath + '-wal';
+    const shmPath = dbPath + '-shm';
+    try { await unlink(walPath); } catch { /* ignore if doesn't exist */ }
+    try { await unlink(shmPath); } catch { /* ignore if doesn't exist */ }
     
     // Report results
     if (opts.json) {

@@ -3,7 +3,6 @@
   "plugin": [
     "@mohak34/opencode-notifier@latest",
     "@tarquinen/opencode-dcp@latest",
-    "opencode-mem",
     "opencode-wakatime"
   ],
   "permission": {

@@ -26,32 +26,6 @@
     ],
     "defaultMode": "bypassPermissions"
   },
-  "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"/home/nikos/.claude/hooks/gsd-check-update.js\""
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"/home/nikos/.claude/hooks/gsd-context-monitor.js\""
-          }
-        ]
-      }
-    ]
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "node \"/home/nikos/.claude/hooks/gsd-statusline.js\""
-  },
   "enabledPlugins": {
     "claude-notifications-go@claude-notifications-go": true,
     "claude-code-wakatime@wakatime": true,

@@ -45,6 +45,12 @@
 - Use `podman` for all container operations
 - Use `podman-compose` instead of `docker-compose`
 - Testcontainers work with podman via `DOCKER_HOST=unix:///run/user/1000/podman/podman.sock`
+## TDD & BMAD Story Workflow
+
+**Always use TDD.** Write tests first, then implement.
+
+**BMAD stories use tmux teams.** First `/bmad-create-story` to prepare the story, then `/bmad-dev-story` to implement. One teammate per story, sequential chaining, cleanup between stories. Analyze parallelism first and ask before running parallel. Hard rule — no exceptions. Details in memory.
+
 ## Git Branch Workflow
 
 - **`dev` is the default working branch** - Always use `dev` as the goto branch

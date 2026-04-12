@@ -1,0 +1,15 @@
+{
+    "from": "User",
+    "host_type": "flashforge",
+    "inherits": "Flashforge Adventurer 5M Pro 0.6 Nozzle",
+    "name": "Flashforge Adventurer 5M Pro 0.6 Nozzle - Copy",
+    "print_host": "192.168.10.5",
+    "printer_extruder_id": [
+        "1"
+    ],
+    "printer_extruder_variant": [
+        "Direct Drive Standard"
+    ],
+    "printer_settings_id": "Flashforge Adventurer 5M Pro 0.6 Nozzle - Copy",
+    "version": "2.3.2.60"
+}

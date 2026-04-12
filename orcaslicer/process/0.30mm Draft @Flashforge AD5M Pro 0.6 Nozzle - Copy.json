@@ -1,0 +1,32 @@
+{
+    "enable_support": "1",
+    "from": "User",
+    "gap_infill_speed": "300",
+    "inherits": "0.42mm Draft @Flashforge AD5M Pro 0.6 Nozzle",
+    "initial_layer_infill_speed": "300",
+    "initial_layer_print_height": "0.3",
+    "initial_layer_speed": "150",
+    "inner_wall_speed": "400",
+    "internal_solid_infill_speed": "400",
+    "layer_height": "0.3",
+    "name": "0.30mm Draft @Flashforge AD5M Pro 0.6 Nozzle - Copy",
+    "outer_wall_speed": "300",
+    "travel_speed": "600",
+    "precise_outer_wall": "0",
+    "print_extruder_id": [
+        "1"
+    ],
+    "print_extruder_variant": [
+        "Direct Drive Standard"
+    ],
+    "print_settings_id": "0.30mm Draft @Flashforge AD5M Pro 0.6 Nozzle - Copy",
+    "sparse_infill_pattern": "supportcubic",
+    "sparse_infill_speed": "400",
+    "support_critical_regions_only": "1",
+    "support_interface_speed": "105",
+    "support_on_build_plate_only": "1",
+    "support_speed": "300",
+    "support_type": "tree(auto)",
+    "top_surface_speed": "300",
+    "version": "2.3.2.60"
+}

@@ -1,0 +1,30 @@
+{
+    "enable_support": "1",
+    "from": "User",
+    "gap_infill_speed": "225",
+    "inherits": "0.18mm Fine @Flashforge AD5M Pro 0.6 Nozzle",
+    "initial_layer_infill_speed": "100",
+    "initial_layer_speed": "70",
+    "inner_wall_speed": "225",
+    "internal_solid_infill_speed": "225",
+    "name": "0.18mm Fine @Flashforge AD5M Pro 0.6 Nozzle - Copy",
+    "outer_wall_speed": "180",
+    "precise_outer_wall": "0",
+    "print_extruder_id": [
+        "1"
+    ],
+    "print_extruder_variant": [
+        "Direct Drive Standard"
+    ],
+    "print_settings_id": "0.18mm Fine @Flashforge AD5M Pro 0.6 Nozzle - Copy",
+    "sparse_infill_pattern": "supportcubic",
+    "sparse_infill_speed": "150",
+    "support_interface_speed": "60",
+    "support_on_build_plate_only": "1",
+    "support_speed": "150",
+    "support_type": "tree(auto)",
+    "top_surface_speed": "300",
+    "travel_speed": "600",
+    "tree_support_top_rate": "10%",
+    "version": "2.3.2.60"
+}

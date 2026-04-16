@@ -32,6 +32,7 @@
     "claude-memory-plugin@enhance": true,
     "frontend-design@claude-code-plugins": true
   },
+  "extraKnownMarketplaces": {},
   "autoUpdatesChannel": "latest",
   "skipDangerousModePermissionPrompt": true
 }

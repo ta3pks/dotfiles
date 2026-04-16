@@ -175,6 +175,16 @@ exec /home/nikos/dotfiles/local_bin/.local/bin/gesture-watchdog.sh
     bindsym Ctrl+Alt+Super+k exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh move next
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
+    # 3-finger touchpad swipe: workspace navigation
+    bindgesture swipe:3:right workspace next
+    bindgesture swipe:3:left workspace prev
+    # 3-finger touchpad swipe: launcher + notification center
+    bindgesture swipe:3:up exec ulauncher
+    bindgesture swipe:3:down exec swaync-client -t -sw
+    # 4-finger touchpad swipe: move focused container to workspace
+    bindgesture swipe:4:right exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh move next
+    bindgesture swipe:4:left exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh move prev
 # Remove titlebars and borders
 default_border none
 default_floating_border none

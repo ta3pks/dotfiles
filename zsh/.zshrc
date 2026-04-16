@@ -151,3 +151,4 @@ fpath=(~/.zsh/completions $fpath)
 # OpenFang
 export PATH=/home/nikos/.openfang/bin:$PATH
 unalias gsd
+export HINDSIGHT_LLM_PROVIDER=claude-code

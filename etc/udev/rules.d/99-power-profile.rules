@@ -1,0 +1,5 @@
+# ASUS power profile switching on AC plug/unplug.
+# Matches /etc/asusd/asusd.ron (platform_profile_on_ac / platform_profile_on_battery).
+# Deploy with: sudo install -m 644 99-power-profile.rules /etc/udev/rules.d/ && sudo udevadm control --reload
+SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", RUN+="/usr/bin/asusctl profile set Balanced"
+SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", RUN+="/usr/bin/asusctl profile set Quiet"

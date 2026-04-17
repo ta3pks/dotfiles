@@ -1,5 +1,12 @@
 #!/bin/bash
 bat="/sys/class/power_supply/BAT0"
+since_charge_script=""
+
+if [ -x "$HOME/.local/bin/battery_since_charge.sh" ]; then
+    since_charge_script="$HOME/.local/bin/battery_since_charge.sh"
+elif [ -x "$HOME/dotfiles/local_bin/.local/bin/battery_since_charge.sh" ]; then
+    since_charge_script="$HOME/dotfiles/local_bin/.local/bin/battery_since_charge.sh"
+fi
 
 capacity=$(cat "$bat/capacity" 2>/dev/null || echo 0)
 status=$(cat "$bat/status" 2>/dev/null || echo "Unknown")
@@ -25,6 +32,21 @@ fi
 # Uptime
 uptime_str=$(uptime -p | sed 's/^up //')
 
+# Battery session info
+battery_session_tooltip=""
+if [ -n "$since_charge_script" ]; then
+    session_line=$("$since_charge_script" --tooltip 2>/dev/null || true)
+    if [[ "$session_line" =~ \(([^()]*)\)$ ]]; then
+        session_duration="${BASH_REMATCH[1]}"
+        session_duration=$(printf '%s\n' "$session_duration" | sed -E 's/ [0-9]+s$//')
+        battery_session_tooltip="On battery: ${session_duration}"
+    elif [ "$session_line" = "On AC power" ]; then
+        battery_session_tooltip=""
+    elif [ -n "$session_line" ]; then
+        battery_session_tooltip="$session_line"
+    fi
+fi
+
 # Icon and class
 if [ "$status" = "Charging" ] || [ "$status" = "Full" ] || [ "$status" = "Not charging" ]; then
     icon="🔌"
@@ -48,8 +70,17 @@ else
 fi
 
 # Build tooltip
+tooltip_header=""
+if [ -n "$battery_session_tooltip" ] && [ -n "$time_str" ]; then
+    tooltip_header="$battery_session_tooltip\\n$time_str"
+elif [ -n "$battery_session_tooltip" ]; then
+    tooltip_header="$battery_session_tooltip"
+elif [ -n "$time_str" ]; then
+    tooltip_header="$time_str"
+fi
+
 tooltip="${capacity}% - ${power_w}W"
-[ -n "$time_str" ] && tooltip="$time_str\\n$tooltip"
+[ -n "$tooltip_header" ] && tooltip="$tooltip_header\\n$tooltip"
 tooltip="$tooltip\\nUptime: $uptime_str"
 
 printf '{"text": "%s", "tooltip": "%s", "class": "%s", "percentage": %d}\n' \

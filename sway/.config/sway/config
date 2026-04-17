@@ -185,6 +185,8 @@ exec /home/nikos/dotfiles/local_bin/.local/bin/gesture-watchdog.sh
     # 4-finger touchpad swipe: move focused container to workspace
     bindgesture swipe:4:right exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh move next
     bindgesture swipe:4:left exec /home/nikos/dotfiles/local_bin/.local/bin/workspace_navigation.sh move prev
+    # 4-finger touchpad hold: kill focused window (same as $mod+q)
+    bindgesture hold:4 kill
 # Remove titlebars and borders
 default_border none
 default_floating_border none

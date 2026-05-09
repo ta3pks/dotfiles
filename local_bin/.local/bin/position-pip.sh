@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get the output where the pip window is currently located
-pip_output=$(swaymsg -t get_tree | jq -r '.. | objects | select(.name? and (.name | test("Picture in picture"; "i"))) | .output' | head -1)
+pip_output=$(swaymsg -t get_tree | jq -r '.. | objects | select(.name? and (.name | test("Picture.?[Ii]n.?[Pp]icture"; "i"))) | .output' | head -1)
 
 # If pip window not found, use focused output
 if [ "$pip_output" = "null" ] || [ -z "$pip_output" ]; then
@@ -26,3 +26,4 @@ echo "Output: $pip_output, Screen width: $screen_width, Scale: $scale, Effective
 # Apply to pip window with absolute positioning
 swaymsg '[title="Picture in picture"] floating enable, sticky enable, resize set '"$window_width"' '"$window_height"', move absolute position '"$position"' 100'
 swaymsg '[app_id="mpv"] floating enable, sticky enable, resize set '"$window_width"' '"$window_height"', move absolute position '"$position"' 100'
+swaymsg '[title="Picture-in-Picture"] floating enable, sticky enable, resize set '"$window_width"' '"$window_height"', move absolute position '"$position"' 100'

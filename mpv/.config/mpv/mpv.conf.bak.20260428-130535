@@ -24,7 +24,3 @@ save-position-on-quit
 save-watch-history
 write-filename-in-watch-later-config
 watch-later-options=start
-
-# Subtitle defaults — never auto-select subs on playback start
-sid=no
-sub-auto=no

@@ -29,6 +29,12 @@ input * {
     tap enabled
 }
 
+input "2821:6704:ASUSTeK_Computer_Inc._GZ302EA-Keyboard_Touchpad" {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+}
+
 focus_on_window_activation focus
 
 # Disable builtin display if external displays are connected
@@ -195,6 +201,7 @@ for_window [class=".*"] border none
 
 # Make pip windows sticky on all workspaces and position at top right
 for_window [title="Picture in picture"] exec /home/nikos/dotfiles/local_bin/.local/bin/position-pip.sh 800 600
+for_window [title="Picture-in-Picture"] exec /home/nikos/dotfiles/local_bin/.local/bin/position-pip.sh 800 600
 for_window [app_id="mpv"] exec /home/nikos/dotfiles/local_bin/.local/bin/position-pip.sh 800 600
 bindsym Alt+Space exec rofi -show window -me-select-entry '' -me-accept-entry 'MousePrimary' -theme-str 'element {padding: 8px;}'
 #

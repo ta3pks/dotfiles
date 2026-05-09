@@ -69,6 +69,8 @@ Use the worktree-isolation lane pattern for parallel git-tree work. Run a file-c
 
 Teammate teardown order: SendMessage `shutdown_request` → wait for `shutdown_approved` ack → only then `TeamDelete`. Skipping the ack orphans processes; SIGKILL leaks them from the harness.
 
+**Self-recognition before terminating any claude process.** Before SIGTERM/SIGKILL on a `claude --teammate-mode` PID you suspect is orphaned, prove it isn't *you*. Compare against `$TMUX_PANE` (your own pane), `$$` ancestry, and `tmux list-panes -s -t <session> -F '#{pane_id} #{pane_pid} #{pane_current_command}'`. A teammate-mode claude process with a low ELAPSED time looks deceptively "fresh" — it may be your current session post-resume, not a leftover. If your `TMUX_PANE` matches the suspect pane, abort. Killing your own pane terminates the live operator session mid-action. (Origin: 2026-05-02, almost killed the main session during a global-cleanup audit.)
+
 **Drive to plan completion.** Inside an approved plan, execute autonomously — spawn waves, monitor, handle blockers, commit, push per the exit gate. Story-internal decisions (file paths, branch names, commit wording, code-review iteration) are manager's call. Escalate ONLY for: scope expansion, new open questions, hard quality-gate failures without obvious fix, or operator-impactful side effects (force-push main, prod data delete, secret rotation).
 
 **Mandatory ceremony floor (non-negotiable).** Every story runs `/bmad-create-story` → `/bmad-dev-story` → `/bmad-code-review` → `/simplify`. No carve-outs for size/scope/UI-only/docs/config. If `/simplify` finds nothing, the teammate records `simplify pass: no-op (reviewed X, all clean)` in the SendMessage summary — "skipped, probably nothing" is rejected.

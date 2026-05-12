@@ -82,22 +82,48 @@ You are <name>, working as a tmux teammate on the <team_name> team.
 ## Out of scope (DO NOT touch)
 - path/to/forbidden/*.rs  (owned by lane <other-lane>)
 
-## Mandatory 4-phase chain (non-negotiable)
-1. /bmad-create-story → produces story spec in implementation_artifacts
-2. /bmad-dev-story → implement + tests
-3. /bmad-code-review → adversarial review, iterate until clean
-4. /simplify → review changed code for reuse/quality; if nothing to do, record "simplify pass: no-op (reviewed X, all clean)"
+## Mandatory 4-phase chain (NON-NEGOTIABLE)
 
-## When done
-- All tests scoped to your changes pass (`cargo test --lib <module>` for backend; `pnpm typecheck && pnpm lint` for admin_ui)
-- Commit on your branch with a descriptive message
-- TaskUpdate your task to completed
-- SendMessage to manager with:
-  - Branch name + final commit SHA
-  - One-line summary of what shipped
-  - simplify outcome (changes or no-op + what was reviewed)
-  - Any blockers / followups / known limitations
-- Then go idle. Do NOT initiate shutdown — manager owns lifecycle.
+All four phases MUST run, in order, every time. There are no carve-outs for diff size, "obviously trivial", "no architectural decisions", or "small enough to review directly". If the diff is small enough to skip ceremony, ceremony is small enough to run.
+
+1. `/bmad-create-story` → produces story spec in implementation_artifacts
+2. `/bmad-dev-story` → implement + tests
+3. `/bmad-code-review` → adversarial review, iterate until clean
+4. **`/simplify` → MUST RUN. Review changed code for reuse/quality/efficiency. If nothing to apply, record `simplify pass: no-op (reviewed <files>, all clean)` with the exact files reviewed. "Skipped, probably nothing" is rejected.** Going idle without a simplify pass is a process violation that will be sent back for redo.
+
+### Why simplify is enforced even for tiny diffs
+
+Real-world examples where simplify caught material issues despite "obviously trivial" diffs:
+- A 5-line composable change had a `useState` cache check ABOVE the permission gate — only surfaced during simplify-driven review of the patch shape
+- A "one-line :disabled add" trapped read-only viewers with no exit because the Cancel button got the disable too
+- Three sibling composables had the same antipattern as the patched one — simplify-pass audit found them all in one sweep
+
+The simplify pass is the canary, not the polish.
+
+## When done — gating checklist
+
+Before sending the final SendMessage to manager, verify EACH:
+
+- [ ] Phase 1 `/bmad-create-story` ran; story spec file exists at the recorded path
+- [ ] Phase 2 `/bmad-dev-story` ran; tests for the changes pass (`cargo test --lib <module>` for backend; `pnpm typecheck && pnpm exec eslint <changed-files>` for admin_ui; Vitest for new composables)
+- [ ] Phase 3 `/bmad-code-review` ran; iterations applied OR explicitly recorded as "1 pass, clean first try"
+- [ ] Phase 4 `/simplify` ran; outcome is either applied changes OR `no-op (reviewed <files>, all clean)`
+- [ ] Commit on your branch with a descriptive message
+- [ ] `TaskUpdate` task → `completed`
+
+ONLY THEN send the final SendMessage to manager with:
+- Branch name + final commit SHA
+- One-line summary of what shipped
+- **simplify outcome (verbatim — `applied: <description>` OR `no-op (reviewed <files>, all clean)`)** — manager will reject the lane if this is missing
+- Any blockers / followups / known limitations
+
+Then go idle. Do NOT initiate shutdown — manager owns lifecycle.
+
+### Common failure modes (don't fall into these)
+
+- "The diff is tiny, I'll skip create-story and code-review and just commit." → Rejected. Run all four phases. Tiny diffs still need durable records.
+- "Simplify found nothing — I'll skip the report line." → Rejected. Record `no-op (reviewed <files>, all clean)` explicitly so the manager can see the pass happened.
+- "I'll mark task completed first, then think about simplify." → Wrong order. Simplify MUST land before TaskUpdate-completed and before the final SendMessage. If simplify surfaces changes, you'll be amending a "completed" task which is messy.
 
 ## Operator preferences
 - English-only prose in messages back to manager.
@@ -221,6 +247,10 @@ Inherited from `~/.claude/CLAUDE.md` — never carve out:
 4. `/simplify` → reuse/quality pass; if nothing to do, record "no-op (reviewed X, all clean)" — "skipped, probably nothing" is rejected
 
 No carve-outs for size, scope, UI-only, docs, or config-only stories.
+
+### Manager enforcement on simplify specifically
+
+Teammates MUST run `/simplify` before considering themselves done. The final SendMessage report MUST include a simplify outcome line verbatim — either `applied: <description>` or `no-op (reviewed <files>, all clean)`. If the line is missing, send the lane back with explicit instructions to run the missing phase. This rule has been earned through experience: teammates who skip simplify because "the diff is small / obviously clean" miss real issues (cache-ordering antipatterns, cancel-button traps, sibling-composable leaks) that only surface during the deliberate quality pass. Don't accept "I reviewed it informally during dev-story" as a substitute.
 
 ## Progress Reporting Cadence
 

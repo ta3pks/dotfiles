@@ -143,6 +143,33 @@ PASSWORD*
 .cursor/
 .aider*
 .claude/
+
+# Re-include the curated dotfiles claude/.claude/ config.
+# Allow-list only — anything new must be opted-in explicitly.
+!claude/.claude/
+!claude/.claude/CLAUDE.md
+!claude/.claude/RTK.md
+!claude/.claude/SOUL.md
+!claude/.claude/settings.json
+!claude/.claude/statusline.sh
+!claude/.claude/skills/
+!claude/.claude/skills/**
+
+# Belt-and-suspenders: NEVER let credentials / session state sneak in
+# if the dotfiles tree expands later.
+claude/.claude/.credentials*
+claude/.claude/secrets*
+claude/.claude/.env*
+claude/.claude/projects/
+claude/.claude/teams/
+claude/.claude/tasks/
+claude/.claude/sessions/
+claude/.claude/cache/
+claude/.claude/logs/
+claude/.claude/history.jsonl
+claude/.claude/transcripts/
+claude/.claude/telemetry/
+
 .opencode/
 
 # ========================================

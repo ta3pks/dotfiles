@@ -152,3 +152,6 @@ fpath=(~/.zsh/completions $fpath)
 export PATH=/home/nikos/.openfang/bin:$PATH
 unalias gsd
 export HINDSIGHT_LLM_PROVIDER=claude-code
+
+# Added by PAI installer — make bun reachable for hook subprocesses
+export PATH="$HOME/.bun/bin:$PATH"

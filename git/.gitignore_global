@@ -2,4 +2,5 @@
 .DS_Store
 Session.vim
 .Session.vim
+.pi-loop.json.lock
 /tags

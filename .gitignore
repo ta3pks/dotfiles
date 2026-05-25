@@ -205,3 +205,6 @@ memory/test-data-*
 
 # OpenCode auto-generated state
 opencode/.config/opencode/opencode-notifier-state.json
+
+# Pi loop lockfile
+.pi-loop.json.lock

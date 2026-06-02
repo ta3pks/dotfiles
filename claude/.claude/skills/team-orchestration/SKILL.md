@@ -1,7 +1,7 @@
 ---
 name: team-orchestration
 description: Manager-and-teammates workflow for parallel story execution via tmux teammates and git worktrees. Use when dispatching 2+ file-disjoint stories, running BMAD chains in parallel, or any time you want to keep manager context clean by delegating scoped work to teammates. Includes mandatory cleanup ceremony and orphan-handling guards.
-version: 1.0
+version: 1.1
 ---
 
 # Team Orchestration — Manager + Tmux Teammates + Worktrees
@@ -30,6 +30,23 @@ Before calling TeamCreate, prove this is genuinely parallel work:
 2. **Dependency graph.** If story B needs story A's output (new function, schema, etc.), B is blocked until A merges. Note `addBlockedBy` on the task.
 3. **Lane count cap.** More than 4-5 simultaneous lanes loses visibility — split into waves instead.
 4. **Branch base.** All worktrees should base off the same clean commit (usually `origin/main` or the current `dev` HEAD). Verify with `git fetch && git log --oneline -3`.
+
+## Versioning During Parallel Dispatch (Lane-Local Bump Rule)
+
+When the repo bumps a version per change (e.g. `backend/Cargo.toml` semver), parallel lanes all editing the same manifest is the most common merge conflict. Decide the bump matrix **at dispatch time** and assign each lane's target **explicitly in its prompt** — never let teammates choose their own bump (they each bump from the same baseline and collide).
+
+**Step 1 — compute the bump matrix from commit type, not lane count.** Most lanes don't bump at all. Per the standard semver rule (`feat!`=major, `feat`=minor, `fix`=patch; **`chore`/`docs`/`refactor`/`test` = NO bump**), a typical mixed wave has only one or zero bumping lanes. Classify each lane up front:
+
+| Lane type | Bumps? |
+| --- | --- |
+| `feat` / `feat!` / `fix` | yes — assign explicit target |
+| `chore` / `refactor` / `docs` / `test` | **no bump** — say so in the prompt |
+
+In practice this usually means **exactly one lane bumps**, so there is **zero `Cargo.toml`/manifest conflict** in the wave — the disjoint guarantee holds for the manifest too. State the version line in the bumping lane's prompt (e.g. "feat → bump 0.129.4 → 0.130.0; you are the ONLY lane bumping") and tell the others "no version bump (chore/docs/etc.)".
+
+**Step 2 — if multiple lanes genuinely bump** (two `feat`s, or `feat`+`fix` in one wave): assign each a distinct target from the shared baseline, then **reconcile once at merge** — take the highest resulting version, recompute the final number, and fix it up in the integration commit. Don't have teammates coordinate bumps with each other.
+
+**Step 3 — `Cargo.lock` rides along.** The lock file records the package version, so the bumping lane also changes `Cargo.lock`. If only one lane touched it, the 3-way merge is clean. If the lock drifted for other reasons, regenerate it once on `main` after merge (`cargo check --locked` will flag drift; the pre-commit hook enforces `--locked`).
 
 ## Worktree Setup (Manager)
 
@@ -229,6 +246,48 @@ rm -rf /tmp/<lane>-worktree  # stubs sometimes left in /tmp
 - Operator restarted tmux mid-session (panes survive, claude PIDs don't get clean exits).
 - Skipping the `shutdown_request → shutdown_response` ack and going straight to `TeamDelete` (the documented anti-pattern).
 
+## Manager Recovery — Finishing/Unsticking a Stalled Teammate
+
+Distinct from orphan-handling above. **Orphaned = dead, needs killing. Stalled = alive but stopped mid-chain without reporting — do NOT kill it; ground-truth and nudge.** A teammate that goes idle (one or more idle notifications) without sending a completion report is stalled, not done and not orphaned. Idle just means its turn ended.
+
+### Step 1 — Ground-truth the worktree directly (don't wait on messages)
+
+Messages can be stale or never arrive. Inspect the lane's actual git state from the manager:
+
+```bash
+cd .claude/worktrees/<lane>
+git rev-parse --abbrev-ref HEAD
+git log --oneline <base-sha>..HEAD     # any commits yet?
+git status --short                     # uncommitted work? new/modified files?
+grep '^version' backend/Cargo.toml     # bump landed (if this lane bumps)?
+ls <expected-new-file>                 # did the deliverable get written?
+```
+…and `TaskGet <id>` for the task's status field.
+
+### Step 2 — Interpret the ground truth
+
+| Observed state | Diagnosis | Action |
+| --- | --- | --- |
+| Committed + task `completed`, but silent | Done, just didn't report | Ping it: "send your completion report (branch+SHA+simplify line)". |
+| Uncommitted changes + task `in_progress`, idle | **Stalled mid-chain** | Nudge with its exact visible state + the ordered remaining steps. |
+| No changes at all, idle early | Stuck before starting / confused | Re-send the brief; ask what's blocking. |
+| Clean tree at base + task `in_progress` | Possibly lost work or never began | Ask directly; may need re-dispatch. |
+
+A stale-snapshot trap: you may observe "uncommitted, HEAD at base" in the window between a teammate's dev-story finish and its commit. Re-check before concluding — the teammate may have committed seconds later.
+
+### Step 3 — Nudge precisely (paste its own state back)
+
+Don't say "are you done?" — show the teammate exactly what you see and the exact ordered phases left, e.g.:
+> "I can see your worktree: Cargo.toml bumped ✓, files X/Y modified, new test Z present, but HEAD still at base and task in_progress — you stopped mid-chain. Finish, in order: (1) run `<test cmd>`; (2) /bmad-code-review; (3) /simplify (record the verbatim line); (4) commit on `<branch>` (no --no-verify); (5) TaskUpdate→completed; (6) SendMessage me the report. If blocked, tell me what — don't go idle silently."
+
+### Step 4 — If it stalls AGAIN after an explicit nudge: manager takes over
+
+The implementation is usually already done (that's why it stalled at the commit/report step), so completion is low-risk. From the lane's worktree, the manager finishes the chain itself: run the lane's tests, do the code-review substance + simplify, commit on the lane branch, then merge. Re-run the gates after: the lane's own tests, plus the integration build/tests on `main` after merge. Record in the merge/summary that the manager completed the lane.
+
+### Conventions to carry when finishing a teammate's story
+
+Pull these from the original dispatch brief so the takeover matches what the teammate would have done: the lane's **base branch**, its **file scope** (don't expand it), its assigned **version-bump target** (or no-bump), and the **simplify-line requirement** (record `applied:` or `no-op (reviewed <files>, all clean)` even on a manager-completed lane).
+
 ## Known Claude Code Teammate-Mode Gotchas
 
 - **`pane-base-index` non-zero breaks teammate messaging** — Claude Code assumes 0-based pane indexing for routing keys to teammate panes. If your tmux config sets `pane-base-index 1` or similar, teammate panes open but receive no instructions. ([anthropics/claude-code#23527](https://github.com/anthropics/claude-code/issues/23527))
@@ -251,6 +310,10 @@ No carve-outs for size, scope, UI-only, docs, or config-only stories.
 ### Manager enforcement on simplify specifically
 
 Teammates MUST run `/simplify` before considering themselves done. The final SendMessage report MUST include a simplify outcome line verbatim — either `applied: <description>` or `no-op (reviewed <files>, all clean)`. If the line is missing, send the lane back with explicit instructions to run the missing phase. This rule has been earned through experience: teammates who skip simplify because "the diff is small / obviously clean" miss real issues (cache-ordering antipatterns, cancel-button traps, sibling-composable leaks) that only surface during the deliberate quality pass. Don't accept "I reviewed it informally during dev-story" as a substitute.
+
+### BMAD-skill substance vs literal invocation (autonomous teammates)
+
+Some BMAD skills (notably `/bmad-code-review`) have **human-checkpoint halts** in their step-files that stall an autonomous teammate. In that case the teammate runs the **substance** of the phase rather than the literal interactive skill — for code-review that means the adversarial layers it would have driven: **Blind Hunter** (correctness bugs), **Edge Case Hunter** (boundaries/inputs), **Acceptance Auditor** (ACs actually covered) — on the committed diff, applying findings and reporting them. Accept this as ceremony-floor compliance **only if the report shows the substance ran** — i.e. the layers named + findings applied/refuted (e.g. "3 layers, 2 findings applied, 0 false-positives open"). This is not a loophole: the value is the adversarial pass, and it demonstrably catches real bugs (e.g. a lane's review caught a HIGH where a lowercase config entry would silently reject every user because `validate()` was never called at boot). Reject a bare "I self-reviewed informally" — that is not the substance.
 
 ## Progress Reporting Cadence
 

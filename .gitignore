@@ -200,8 +200,9 @@ config/.ssh/
 .azure/
 .config/gcloud/
 
-# Test data directories
-memory/test-data-*
+# Removed from repo (too large)
+memory/
+coc/
 
 # OpenCode auto-generated state
 opencode/.config/opencode/opencode-notifier-state.json

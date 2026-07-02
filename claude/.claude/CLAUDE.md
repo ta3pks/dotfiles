@@ -16,7 +16,9 @@
 
 ## Parallel Execution
 
-**Use `TeamCreate` (tmux teammates) for 2+ independent tasks; never the `parallel` or `dispatching-parallel-agents` skills.** Define work via `TaskCreate`, serialize only true dependencies.
+**DEFAULT: use background `Agent` subagents for 2+ independent tasks — NOT tmux teammates.** (Changed 2026-06-09.) Spawn each with the `Agent` tool, `run_in_background: true`, and `isolation: "worktree"` for file-mutating parallel work. Subagents are fire-and-collect: they run their task, return their final message as the result, and **auto-terminate** — no idle-ping monitoring, no `shutdown_request`/ack ceremony, no `TeamDelete`, no manual worktree reclaim. The harness notifies me when each finishes. This removes the babysitting overhead (and the commit-race / false-stall failure modes) that tmux teammates carried.
+
+Use `TeamCreate` (tmux teammates) ONLY when persistent interactive back-and-forth coordination is genuinely required mid-task (rare) — not for ordinary fan-out. Never the `parallel` or `dispatching-parallel-agents` skills. Serialize only true dependencies.
 
 ## Subagent Model
 
@@ -25,6 +27,12 @@
 ## Container Runtime
 
 **Use `podman`/`podman-compose` instead of `docker`/`docker-compose`.** Testcontainers: `DOCKER_HOST=unix:///run/user/1000/podman/podman.sock`.
+
+## Background Commands — NEVER sleep-poll with until/while loops
+
+**NEVER use `until`/`while` sleep-polling loops in Bash** (e.g. `until grep -q X file; do sleep 1; done`, `while true; do ...; sleep N; done`, or any `sleep`-in-a-loop wait). They LEAK — the bash sandbox is namespace-isolated, so these shells are NOT reaped when the tool call returns; they keep running as orphaned processes in the host namespace and pile up. This is a real, recurring leak. Very important.
+
+**Instead:** launch the long task with `run_in_background: true` and rely on the harness's **completion notification** to re-invoke you when it exits — do NOT poll for it. For waiting on a specific external condition the harness can't track, use `ScheduleWakeup` (one delayed re-invocation), not a sleep-loop. The `Monitor` tool's `until`-loop examples are also banned for the same reason. If you catch yourself writing `sleep` inside a loop, stop — there is always a notification-based alternative.
 
 ## Sentry Triage Drill
 
@@ -51,7 +59,7 @@ When the operator asks about Sentry / production errors / "what's left", run thi
 
 **Always use TDD.** Write tests first, then implement.
 
-**BMAD stories use tmux teams.** Every story dispatch runs the **full 4-phase chain**: `/bmad-create-story` → `/bmad-dev-story` → `/bmad-code-review` → `/simplify`. One teammate per story, cleanup between stories. The 4-phase chain is **non-negotiable** — see "Mandatory ceremony floor" below.
+**BMAD stories use background `Agent` subagents** (changed 2026-06-09 — was tmux teams). One subagent per story via the `Agent` tool with `run_in_background: true` + `isolation: "worktree"`; it runs the full chain and returns its result, then auto-terminates (no shutdown ceremony / TeamDelete / manual worktree reclaim). The manager still merges each story's branch and resolves conflicts. Every story dispatch runs the **full 4-phase chain**: `/bmad-create-story` → `/bmad-dev-story` → `/bmad-code-review` → `/simplify`. The 4-phase chain is **non-negotiable** — see "Mandatory ceremony floor" below. (The tmux-team machinery in the sections below — worktree lifecycle, shutdown order, self-recognition — applies ONLY on the rare occasions a real tmux team is used; with subagents the harness owns that lifecycle.)
 
 **Parallel is the default, not sequential.** When stories/tasks are mechanically independent — file-disjoint, no shared state, no order dependency, no quality regression risk — dispatch them in parallel. Don't ask, dispatch. Sequential is the exception, used only when:
 
@@ -107,3 +115,39 @@ If running a status check (e.g. `/bmad-sprint-status`) and you see `backlog` ret
 
 @RTK.md
 @SOUL.md
+
+<!-- icm:start -->
+## Persistent memory (ICM) — MANDATORY
+
+This project uses [ICM](https://github.com/rtk-ai/icm) for persistent memory across sessions.
+You MUST use it actively. Not optional.
+
+### Recall (before starting work)
+```bash
+icm recall "query"                        # search memories
+icm recall "query" -t "topic-name"        # filter by topic
+icm recall-context "query" --limit 5      # formatted for prompt injection
+```
+
+### Store — MANDATORY triggers
+You MUST call `icm store` when ANY of the following happens:
+1. **Error resolved** → `icm store -t errors-resolved -c "description" -i high -k "keyword1,keyword2"`
+2. **Architecture/design decision** → `icm store -t decisions-{project} -c "description" -i high`
+3. **User preference discovered** → `icm store -t preferences -c "description" -i critical`
+4. **Significant task completed** → `icm store -t context-{project} -c "summary of work done" -i high`
+5. **Conversation exceeds ~20 tool calls without a store** → store a progress summary
+
+Do this BEFORE responding to the user. Not after. Not later. Immediately.
+
+Do NOT store: trivial details, info already in this file, ephemeral state (build logs, git status).
+
+### Other commands
+```bash
+icm forget <id>                          # remove a memory by ID
+icm list --all                           # list all memories
+icm list --topic <name>                  # list memories in a topic
+icm update <id> -c "updated content"     # edit memory in-place
+icm health                                # topic hygiene audit
+icm topics                                # list all topics
+```
+<!-- icm:end -->

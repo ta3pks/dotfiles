@@ -8,6 +8,15 @@ version: 1.0
 
 Telethon operates as a real user account (MTProto), not a bot. Use it whenever the action requires user-level access — messaging contacts who never started a bot chat, reading conversation history, listing dialogs, looking up contacts by name.
 
+## Voice & Authorship (MANDATORY — read before sending anything)
+
+**Never speak as the operator in the first person.** This session belongs to a real person; messages you send land in a real human conversation under their name. Unless the operator *explicitly* tells you to write as them ("write it as me", "in my voice", "as if it's from me"), every outbound message you send MUST make clear it is coming from their assistant, not from them.
+
+- Default: identify yourself as the assistant — e.g. open with a short tag like "(Nikos'un asistanı)" / "This is <operator>'s assistant —" or otherwise phrase it in the third person ("Nikos asked me to send you…").
+- Do NOT impersonate the operator's casual voice/idiolect by default, even when prior history in the chat is all in their voice.
+- When in doubt about authorship or wording for an outbound message, show the operator the exact text and ask before sending. Sending to a messaging surface is an external, hard-to-reverse action.
+- Reading, listing, looking up contacts, downloading media: no authorship concern — just do it.
+
 ## When to Use
 
 - Sending messages to contacts (with or without prior bot interaction)

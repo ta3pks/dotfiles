@@ -5,5 +5,5 @@ if pgrep -f "wvkbd-mobintl" > /dev/null; then
     killall wvkbd-mobintl
 else
     # Not running - start it normally
-    wvkbd-mobintl &
+    wvkbd-mobintl -L 250 &
 fi

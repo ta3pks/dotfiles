@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if pgrep -f "wvkbd-mobintl" > /dev/null; then
-    # Running - kill it
-    killall wvkbd-mobintl
+KEYBOARD_BIN="$HOME/.local/bin/wvkbd-mobintl-custom"
+
+if pgrep -f "wvkbd-mobintl-custom" > /dev/null; then
+    killall wvkbd-mobintl-custom
 else
-    # Not running - start it normally
-    wvkbd-mobintl -L 250 &
+    "$KEYBOARD_BIN" -L 250 &
 fi

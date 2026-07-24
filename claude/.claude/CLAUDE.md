@@ -16,9 +16,11 @@
 
 ## Parallel Execution
 
-**DEFAULT: use background `Agent` subagents for 2+ independent tasks — NOT tmux teammates.** (Changed 2026-06-09.) Spawn each with the `Agent` tool, `run_in_background: true`, and `isolation: "worktree"` for file-mutating parallel work. Subagents are fire-and-collect: they run their task, return their final message as the result, and **auto-terminate** — no idle-ping monitoring, no `shutdown_request`/ack ceremony, no `TeamDelete`, no manual worktree reclaim. The harness notifies me when each finishes. This removes the babysitting overhead (and the commit-race / false-stall failure modes) that tmux teammates carried.
+**DEFAULT: use background `Agent` subagents for 2+ independent tasks — NOT tmux teammates.** (Changed 2026-06-09.) Spawn each with the `Agent` tool, `run_in_background: true`, and `isolation: "worktree"` for file-mutating parallel work. Subagents are fire-and-collect: they run their task and return their final message as the result. The harness notifies me when each finishes. This removes the babysitting overhead (and the commit-race / false-stall failure modes) that tmux teammates carried.
 
 Use `TeamCreate` (tmux teammates) ONLY when persistent interactive back-and-forth coordination is genuinely required mid-task (rare) — not for ordinary fan-out. Never the `parallel` or `dispatching-parallel-agents` skills. Serialize only true dependencies.
+
+**Cleanup after completion (added 2026-07-08): subagents do NOT reliably auto-terminate — they can linger idle and send idle-notification pings after delivering their result.** As soon as a spawned agent has delivered its result and its task is complete, send it a `shutdown_request` via `SendMessage` immediately — don't wait for the operator to ask. Applies to every spawned agent, background or tmux.
 
 ## Subagent Model
 

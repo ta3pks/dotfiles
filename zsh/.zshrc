@@ -135,7 +135,6 @@ $HOME/.local/bin:\
 $HOME/.asdf/shims:\
 /nix/bin:\
 $BUN_INSTALL/bin:\
-$BUN_INSTALL/install/global/node_modules/.bin:\
 $PNPM_HOME:\
 $PATH:\
 $HOME/.lmstudio/bin:\

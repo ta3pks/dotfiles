@@ -209,3 +209,4 @@ opencode/.config/opencode/opencode-notifier-state.json
 
 # Pi loop lockfile
 .pi-loop.json.lock
+claude/.claude/skills/synced/

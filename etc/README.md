@@ -11,27 +11,27 @@ See the per-file notes below.
 
 ## Files
 
-### `udev/rules.d/99-power-profile.rules`
+### Power profiles (`asusd/`, `tuned/`)
 
-Switches the ASUS platform profile on AC plug/unplug:
+Battery -> ASUS quiet (`low-power`), AC -> `balanced`. Two daemons write
+`/sys/firmware/acpi/platform_profile`, so they must agree:
 
-- AC connected → `Balanced`
-- AC disconnected → `Quiet`
+- `asusd/asusd.ron`: `platform_profile_on_battery: LowPower`,
+  `platform_profile_on_ac: Balanced`. (asusctl renamed `Quiet` to `LowPower`.)
+- `tuned/ppd.conf`: on battery tuned-ppd maps `balanced` to
+  `balanced-battery-quiet` instead of stock `balanced-battery`, which includes
+  `balanced` and forces `platform_profile=balanced`, overriding asusd.
+- `tuned/profiles/balanced-battery-quiet/tuned.conf`: `balanced-battery` plus
+  `platform_profile=low-power|quiet`.
 
-**Why this file exists:** `asusd` has its own auto-switching
-(`/etc/asusd/asusd.ron`: `platform_profile_on_ac: Balanced`,
-`platform_profile_on_battery: Quiet`), but a udev rule was also set up to fire
-`asusctl profile set <X>` on power-supply events. The two mechanisms race, and
-whichever one the udev rule picks wins visibly. So the udev rule is kept in
-sync with `asusd.ron` to avoid fighting.
+The old udev rule that ran `asusctl profile set` on plug events was removed;
+it raced asusd and its `Quiet` argument no longer exists.
 
 **Deploy:**
 
 ```sh
-sudo install -m 644 udev/rules.d/99-power-profile.rules /etc/udev/rules.d/
-sudo udevadm control --reload
+sudo install -m 644 asusd/asusd.ron /etc/asusd/
+sudo install -m 644 tuned/ppd.conf /etc/tuned/
+sudo install -D -m 644 tuned/profiles/balanced-battery-quiet/tuned.conf /etc/tuned/profiles/balanced-battery-quiet/tuned.conf
+sudo systemctl restart asusd tuned-ppd
 ```
-
-**If you change the desired profile**, update both this rule AND
-`/etc/asusd/asusd.ron`'s `platform_profile_on_ac` / `platform_profile_on_battery`
-keys to match.

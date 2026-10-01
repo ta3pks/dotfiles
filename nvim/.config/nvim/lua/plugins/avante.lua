@@ -43,7 +43,7 @@ return {
     },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-  build = "make",
+  build = "CARGO_TARGET_DIR=target make", -- global CARGO_TARGET_DIR breaks the Makefile's hardcoded target/ path
   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
